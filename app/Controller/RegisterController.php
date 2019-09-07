@@ -20,7 +20,7 @@ class RegisterController
      */
     public static function toRegisterPage ()
     {
-        $view = new View('register.tpl', []);
+        $view = new View('register.tpl', ['title' => 'Sign Up']);
         $view->display();
     }
 

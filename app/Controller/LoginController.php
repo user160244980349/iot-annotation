@@ -26,7 +26,7 @@ class LoginController
             exit;
         }
 
-        $view = new View('login.tpl', []);
+        $view = new View('login.tpl', ['title' => 'Sign In']);
         $view->display();
     }
 

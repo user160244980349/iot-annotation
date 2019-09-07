@@ -18,7 +18,7 @@ class ExceptionController
      */
     public static function notFound ()
     {
-        $view = new View('404.tpl', []);
+        $view = new View('404.tpl', ['title' => '404 Exception']);
         $view->display();
     }
 
@@ -29,7 +29,7 @@ class ExceptionController
      */
     public static function accessForbidden ()
     {
-        $view = new View('403.tpl', []);
+        $view = new View('403.tpl', ['title' => '403 Exception']);
         $view->display();
     }
 

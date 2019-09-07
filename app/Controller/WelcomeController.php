@@ -24,7 +24,7 @@ class WelcomeController
             header("location: /home");
         }
 
-        $view = new View('welcome.tpl', []);
+        $view = new View('welcome.tpl', ['title' => 'Welcome']);
         $view->display();
     }
 
