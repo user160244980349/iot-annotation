@@ -4,7 +4,7 @@
 $config = require_once 'config.php';
 
 # Import composer autoloader
-require __DIR__ . '/../vendor/autoload.php';
+require_once $config['autoload'];
 
 # Call application
 $app = new App\Core\Application();
