@@ -1,0 +1,15 @@
+{
+    "name": "user/phpEngine",
+    "description": "null",
+    "type": "project",
+    "require": {
+        "symfony/var-dumper": "^4.3",
+        "ext-pdo": "*",
+        "ext-readline": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

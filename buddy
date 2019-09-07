@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Buddy will help you do some routines
+ */
+
+$tool_names = scandir('tools');
+$id = 0;
+
+print ":)\n";
+
+foreach ($tool_names as $tool_name) {
+    if (!is_dir("tools/$tool_name")) {
+        if (preg_match("/^(\w+)/", $tool_name, $matches)) {
+            $tools[++$id] = $tool_name;
+            print $id . ". " . $matches[1] . "\n";
+        }
+    }
+}
+
+$id = readline("--> ");
+if(preg_match("/^(\d+)$/", $id)) {
+    if (isset($tools[(int)$id])) {
+        print ":D\n";
+        require_once "tools/" . $tools[(int)$id];
+    } else {
+        print ":C\n";
+    }
+} else {
+    print ":/\n";
+}
+
+print ":*";
