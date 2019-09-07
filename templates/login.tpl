@@ -1,5 +1,4 @@
 <?php include 'header.tpl' ?>
-<?php echo "hi $username, you are at home page!" ?>
 <a href="register">Sign Up</a>
 <form action="login" method="post">
     <div><input type="text" name="username" placeholder="Enter your username" required></div>
