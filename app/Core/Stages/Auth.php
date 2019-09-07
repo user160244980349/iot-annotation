@@ -20,9 +20,10 @@ class Auth implements StageInterface
      */
     public function let (AppState $state)
     {
-        if ($state->request->parameters['route'] == '/' ||
-            $state->request->parameters['route'] == '/login' ||
-            $state->request->parameters['route'] == '/register') {
+        if ($state->controllerCall->getMethodName()[0] == 'App\Controller\ExceptionController' ||
+            $state->controllerCall->getMethodName()[0] == 'App\Controller\WelcomeController' ||
+            $state->controllerCall->getMethodName()[0] == 'App\Controller\RegisterController' ||
+            $state->controllerCall->getMethodName()[0] == 'App\Controller\LoginController') {
             return $state;
         }
 

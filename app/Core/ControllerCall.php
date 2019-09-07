@@ -31,6 +31,17 @@ class ControllerCall
      * @param AppState $state.
      * @access public.
      */
+    public function getMethodName ()
+    {
+        return $this->_method;
+    }
+
+    /**
+     * Exec controller method.
+     *
+     * @param AppState $state.
+     * @access public.
+     */
     public function exec (AppState $state)
     {
         call_user_func($this->_method, $state, ...$this->_args);
