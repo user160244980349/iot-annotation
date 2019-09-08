@@ -44,7 +44,7 @@ class LoginController
         $user = User::get($state->database, $username);
 
         if ($user['user_password'] == $password) {
-            $state->session->set('auth', 'yes');
+            $state->session->set('auth', true);
             $state->session->set('username', $username);
             header("location: /home");
             exit;

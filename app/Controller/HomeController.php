@@ -21,7 +21,8 @@ class HomeController
     public static function toHomePage (AppState $state)
     {
         $state->session->get('username', $username);
-        $view = new View('home.tpl', ['title' => 'Home', 'username' => $username]);
+        $state->session->get('username', $auth);
+        $view = new View('home.tpl', ['title' => 'Home', 'auth' => $auth, 'username' => $username]);
         $view->display();
     }
 

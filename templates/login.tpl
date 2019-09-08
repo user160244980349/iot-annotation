@@ -1,8 +1,41 @@
-<?php include 'header.tpl' ?>
-<a href="register">Sign Up</a>
-<form action="login" method="post">
-    <div><input type="text" name="username" placeholder="Enter your username" required></div>
-    <div><input type="password" name="password" placeholder="Enter your password" required></div>
-    <div><input type="submit" value="Submit"></div>
-</form>
-<?php include 'footer.tpl' ?>
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title><?php echo $title ?></title>
+        <?php include 'dependencies/css.tpl' ?>
+    </head>
+    <body>
+
+        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Hello!</h1>
+            <p class="lead">
+                Greetings! You are at the sign ip page now. So you can sign in or <a href="register">sign up</a>.
+            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-3">
+
+                        <form method="post">
+                            <div class="form-group text-left">
+                                <label for="inputUsername">Username</label>
+                                <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Enter username" required="" autofocus="">
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Enter password" required="">
+                            </div>
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php include 'dependencies/js.tpl' ?>
+
+    </body>
+</html>

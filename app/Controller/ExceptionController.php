@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Core\AppState;
 use App\Core\View;
 
 /**
@@ -14,22 +15,26 @@ class ExceptionController
     /**
      * Go to not found page.
      *
+     * @param AppState $state
      * @access public.
      */
-    public static function notFound ()
+    public static function notFound (AppState $state)
     {
-        $view = new View('404.tpl', ['title' => '404 Exception']);
+        $state->session->get('username', $auth);
+        $view = new View('404.tpl', ['title' => '404 Exception', 'auth' => $auth]);
         $view->display();
     }
 
     /**
      * Go to access forbidden page.
      *
+     * @param AppState $state
      * @access public.
      */
-    public static function accessForbidden ()
+    public static function accessForbidden (AppState $state)
     {
-        $view = new View('403.tpl', ['title' => '403 Exception']);
+        $state->session->get('username', $auth);
+        $view = new View('403.tpl', ['title' => '403 Exception', 'auth' => $auth]);
         $view->display();
     }
 
