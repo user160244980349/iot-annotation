@@ -1,5 +1,5 @@
 DONE
-* Composer configuration
+* Composer integration
 * Bootstrapping
 * Static and dynamic routing
 * Controllers
@@ -8,6 +8,8 @@ DONE
 * Registration
 * Views
 * Context binding to views
+* Webpack integration
+* Bootstrap design
 
 TODO
 * Views processor

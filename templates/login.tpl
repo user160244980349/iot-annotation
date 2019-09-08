@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title><?php echo $title ?></title>
-        <?php include 'dependencies/css.tpl' ?>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
 
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <?php include 'dependencies/js.tpl' ?>
+        <script type="application/javascript" src="js/main.js"></script>
 
     </body>
 </html>

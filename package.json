@@ -1,0 +1,26 @@
+{
+  "name": "phpengine",
+  "version": "1.0.0",
+  "description": "DONE\r * Composer configuration\r * Bootstrapping\r * Static and dynamic routing\r * Controllers\r * Request performing pipeline\r * Login\r * Registration\r * Views\r * Context binding to views",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://satan7991@bitbucket.org/satan7991/phpengine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/satan7991/phpengine#readme",
+  "devDependencies": {
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}
