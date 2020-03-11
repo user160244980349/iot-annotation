@@ -3,10 +3,10 @@
 namespace App\Core;
 
 /**
- * DialogContainer.php
+ * AppState.php
  *
- * Container, that will flow through services and controller
- * to gather data, necessary to response.
+ * Container, that will flow through middlewares and controller
+ * to gather data, that is necessary to response.
  */
 class AppState
 {
@@ -66,8 +66,8 @@ class AppState
     public function __construct ()
     {
         $this->request = new Request();
-        $this->session = new PhpSession();
-        $this->database = new Database();
+        $this->session = null;
+        $this->database = null;
         $this->dataObjects = [];
         $this->response = [];
     }

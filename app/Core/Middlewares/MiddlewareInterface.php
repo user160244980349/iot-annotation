@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Core\Stages;
+namespace App\Core\Middlewares;
 
 use App\Core\AppState;
 
 /**
- * StageInterfacehp
+ * MiddlewareInterface.php
  *
  * Interface to provide blocks, that can be iterated
  * like stages of response formation.
  */
-interface StageInterface
+interface MiddlewareInterface
 {
     /**
      * Do some job.

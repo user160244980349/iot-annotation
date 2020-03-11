@@ -1,10 +1,8 @@
 <?php
 
-# Important directories
-$config = require_once 'config.php';
+namespace App;
 
-# Import composer autoloader
-require_once $config['autoload'];
+use App\Core\Application as App;
 
 # Call application
-$app = new App\Core\Application();
+$app = new App();

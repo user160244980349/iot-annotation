@@ -2,11 +2,9 @@
 
 namespace App\Core;
 
-use App\Core\Stages\Receiver;
-use App\Core\Stages\Auth;
-use App\Core\Stages\Router;
-use App\Core\Stages\Access;
-use App\Core\Stages\ControllerExecution;
+use App\Core\Middlewares\Receiver;
+use App\Core\Configuration as Conf;
+use App\Core\Middlewares\MiddlewareInterface;
 
 /**
  * Application.php
@@ -16,12 +14,12 @@ use App\Core\Stages\ControllerExecution;
 class Application
 {
     /**
-     * Pipeline for services.
+     * Queue for middlewares.
      *
-     * @var Pipeline.
+     * @var MiddlewareQueue.
      * @access private.
      */
-    private $_pipeline;
+    private $_queue;
 
     /**
      * Application constructor.
@@ -30,16 +28,14 @@ class Application
      */
     public function __construct ()
     {
-        $this->_pipeline = new Pipeline([
+        $this->_queue = new MiddlewareQueue([
             new Receiver(),
-            new Router(),
-            new Auth(),
-            new Access(),
-            new ControllerExecution(),
         ]);
 
-        $appState = $this->_pipeline->run();
-        # dump($appState);
+        $appState = $this->_queue->run();
+
+        # test app
+        dump($appState);
     }
 
     /**
@@ -49,7 +45,7 @@ class Application
      */
     public function __destruct ()
     {
-        $this->_pipeline = null;
+        $this->_queue = null;
     }
 
 }

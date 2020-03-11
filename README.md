@@ -1,17 +1,33 @@
-DONE
-* Composer integration
-* Bootstrapping
-* Static and dynamic routing
-* Controllers
-* Request performing pipeline
-* Login
-* Registration
-* Views
-* Context binding to views
-* Webpack integration
-* Bootstrap design
++ Точка входа
++	Настройка htaccess
++	Загрузка композера
 
-TODO
-* Views processor
-* Migrations
-* Seeds
++ Конвеер посредников
+
++	Посредник формирования объекта запроса
++		Обработка get
++		Обработка post
++		Обработка put
++		Обработка delete
+
+	Посредник роутинга
+		Выделение параметров из роута		
+
+	Посредник аутентификации
+		Считывание прав доступа для роута
+		Проверка доступа
+
+	Посредник вызова контроллеров
+		Определение контроллера
+		Передача параметров
+
+	Посредник шаблонизации
+		Распаковка значений
+		Циклы
+		Условия
+
+Шина сервисов
+	Сервис конфигурации
+	Сервис локализации
+	Сервис аутентификации
+	Сервис доступа

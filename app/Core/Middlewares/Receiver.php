@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Core\Stages;
+namespace App\Core\Middlewares;
 
 use App\Core\AppState;
+use App\Core\Middlewares\MiddlewareInterface;
 
 /**
  * Receiver.php
  *
- * Service class for parsing incoming request.
+ * Middleware class for parsing incoming request.
  */
-class Receiver implements StageInterface
+class Receiver implements MiddlewareInterface
 {
     /**
      * StageInterface method.
