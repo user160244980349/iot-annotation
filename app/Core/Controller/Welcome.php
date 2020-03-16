@@ -2,7 +2,7 @@
 
 namespace App\Core\Controller;
 
-use App\Core\AppState;
+use App\Core\Request;
 
 /**
  * WelcomeController.php
@@ -14,16 +14,14 @@ class Welcome
     /**
      * Go to home page.
      *
-     * @param AppState $state.
+     * @param Request $state.
      * @access public.
      */
-    public static function toWelcomePage (AppState $state)
+    public static function toWelcomePage (Request $request)
     {
         // if ($state->session->get('auth', $out)) {
         //     header("location: /home");
         // }
-
-        $state->controller = "welcome";
     }
 
 }

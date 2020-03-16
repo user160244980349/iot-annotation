@@ -2,7 +2,7 @@
 
 namespace App\Core\Middleware;
 
-use App\Core\AppState;
+use App\Core\Request;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
@@ -15,13 +15,13 @@ class Receiver implements MiddlewareInterface
     /**
      * StageInterface method.
      *
-     * @param AppState $null Null because not needed.
-     * @return AppState Initialized request object.
+     * @param Request $null Null because not needed.
+     * @return Request Initialized request object.
      * @access public.
      */
-    public function let (AppState $null = null)
+    public function let (Request $null = null) : Request
     {
-        return new AppState();
+        return new Request();
     }
 
 }

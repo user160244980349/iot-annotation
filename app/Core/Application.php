@@ -35,10 +35,10 @@ class Application
             new ControllerExecution(),
         ]);
 
-        $appState = $this->_queue->run();
+        $request = $this->_queue->run();
 
-        # test app
-        dump($appState);
+        # test
+        dump($request);
     }
 
     /**

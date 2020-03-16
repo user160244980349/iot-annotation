@@ -3,7 +3,7 @@
 namespace App\Core\Middleware;
 
 use App\Core\ControllerCall;
-use App\Core\AppState;
+use App\Core\Request;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
@@ -24,14 +24,14 @@ class Router implements MiddlewareInterface
     /**
      * StageInterface method.
      *
-     * @param AppState $state.
-     * @return AppState Modified container.
+     * @param Request $state.
+     * @return Request Modified container.
      * @access public.
      */
-    public function let (AppState $state)
+    public function let (Request $request) : Request
     {
-        foreach ($this->_routes[$state->request->method] as $route_pattern => $controller) {
-            if (preg_match($route_pattern, $state->request->parameters['route'], $params_matches)) {
+        foreach ($this->_routes[$request->method] as $route_pattern => $controller) {
+            if (preg_match($route_pattern, $request->parameters['route'], $params_matches)) {
                 array_shift($params_matches);
                 $controllerCall = new ControllerCall($controller, $params_matches);
                 break;
@@ -39,12 +39,12 @@ class Router implements MiddlewareInterface
         }
 
         if (isset($controllerCall)) {
-            $state->controllerCall = $controllerCall;
+            $request->controllerCall = $controllerCall;
         } else {
-            $state->controllerCall = new ControllerCall(['App\Controller\ExceptionController', 'notFound'], []);
+            $request->controllerCall = new ControllerCall(['App\Controller\ExceptionController', 'notFound'], []);
         }
 
-        return $state;
+        return $request;
     }
 
     /**

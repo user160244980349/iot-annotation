@@ -70,6 +70,7 @@ class Request
      */
     public function __destruct ()
     {
+        $this->session = null;
         $this->method = null;
         $this->uri = null;
         $this->parameters = null;

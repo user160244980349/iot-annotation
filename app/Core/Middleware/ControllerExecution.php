@@ -2,7 +2,7 @@
 
 namespace App\Core\Middleware;
 
-use App\Core\AppState;
+use App\Core\Request;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
@@ -15,14 +15,14 @@ class ControllerExecution implements MiddlewareInterface
     /**
      * StageInterface method.
      *
-     * @param AppState $state.
-     * @return AppState Modified container.
+     * @param Request $state.
+     * @return Request Modified container.
      * @access public.
      */
-    public function let (AppState $state)
+    public function let (Request $request) : Request
     {
-        $state->controllerCall->exec($state);
-        return $state;
+        $request->controllerCall->exec($request);
+        return $request;
     }
 
 }

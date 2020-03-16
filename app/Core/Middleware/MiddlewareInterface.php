@@ -2,7 +2,7 @@
 
 namespace App\Core\Middleware;
 
-use App\Core\AppState;
+use App\Core\Request;
 
 /**
  * MiddlewareInterface.php
@@ -15,10 +15,10 @@ interface MiddlewareInterface
     /**
      * Do some job.
      *
-     * @param AppState $state Container to manage.
-     * @return AppState Modified container.
+     * @param Request $state Container to manage.
+     * @return Request Modified container.
      * @access public.
      */
-    public function let (AppState $state);
+    public function let (Request $request) : Request;
 
 }

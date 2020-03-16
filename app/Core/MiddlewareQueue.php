@@ -20,7 +20,7 @@ class MiddlewareQueue
     /**
      * Iterate all middlewares as a chain.
      *
-     * @return AppState Modified container.
+     * @return Request Modified container.
      * @access public.
      */
     public function run ()

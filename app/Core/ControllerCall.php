@@ -39,12 +39,12 @@ class ControllerCall
     /**
      * Exec controller method.
      *
-     * @param AppState $state.
+     * @param Request $state.
      * @access public.
      */
-    public function exec (AppState $state)
+    public function exec (Request $request)
     {
-        forward_static_call($this->_method, $state, ...$this->_args);
+        forward_static_call($this->_method, $request, ...$this->_args);
     }
 
     /**
