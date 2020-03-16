@@ -11,22 +11,22 @@ return [
 
     'GET' => [
         # welcome route
-        '/^\/$/'            => ['App\Core\Controller\Welcome', 'toWelcomePage'],
+        '/^$/'            => ['App\Core\Controller\Welcome', 'toWelcomePage'],
         # registration routes
-        '/^\/register$/'    => ['App\Core\Controller\Register', 'toRegisterPage'],
+        '/^register$/'    => ['App\Core\Controller\Register', 'toRegisterPage'],
         # login routes
-        '/^\/login$/'       => ['App\Core\Controller\Login', 'toLoginPage'],
+        '/^login$/'       => ['App\Core\Controller\Login', 'toLoginPage'],
         # home route
-        '/^\/home$/'        => ['App\Core\Controller\Home', 'toHomePage'],
+        '/^home$/'        => ['App\Core\Controller\Home', 'toHomePage'],
     ],
 
     'POST' => [
         # do register
-        '/^\/register$/'    => ['App\Core\Controller\Register', 'registerUser'],
+        '/^register$/'    => ['App\Core\Controller\Register', 'registerUser'],
         # do login
-        '/^\/login$/'       => ['App\Core\Controller\Login', 'logUserIn'],
+        '/^login$/'       => ['App\Core\Controller\Login', 'logUserIn'],
         # do logout
-        '/^\/logout$/'      => ['App\Core\Controller\Login', 'logUserOut'],
+        '/^logout$/'      => ['App\Core\Controller\Login', 'logUserOut'],
     ],
 
     'PUT' => [

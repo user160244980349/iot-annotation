@@ -55,7 +55,7 @@ class Request
             }
         }
 
-        $this->parameters['route'] = $_SERVER['REQUEST_URI'];
+        $this->parameters['route'] = substr($_SERVER['REQUEST_URI'], 1);
     }
 
 }
