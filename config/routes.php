@@ -1,5 +1,12 @@
 <?php
 
+/**
+* Patterns for parameters:
+*
+* ([0-9]+) <- number
+* ([a-zA-Z]+) <- word
+*/
+
 return [
 
     'GET' => [

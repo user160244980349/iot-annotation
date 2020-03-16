@@ -44,14 +44,4 @@ class MiddlewareQueue
         $this->_middlewares = $queuedMiddlewares;
     }
 
-    /**
-     * Queue destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->_middlewares = null;
-    }
-
 }

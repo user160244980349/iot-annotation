@@ -14,14 +14,12 @@ class Welcome
     /**
      * Go to home page.
      *
-     * @param Request $state.
+     * @param Request $request.
      * @access public.
      */
     public static function toWelcomePage (Request $request)
     {
-        // if ($state->session->get('auth', $out)) {
-        //     header("location: /home");
-        // }
+        print("Welcome!");
     }
 
 }

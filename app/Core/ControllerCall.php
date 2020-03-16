@@ -28,7 +28,6 @@ class ControllerCall
     /**
      * Exec controller method.
      *
-     * @param AppState $state.
      * @access public.
      */
     public function getMethodName ()
@@ -39,7 +38,7 @@ class ControllerCall
     /**
      * Exec controller method.
      *
-     * @param Request $state.
+     * @param Request $request.
      * @access public.
      */
     public function exec (Request $request)
@@ -58,17 +57,6 @@ class ControllerCall
     {
         $this->_method = $method;
         $this->_args = $args;
-    }
-
-    /**
-     * ControllerCall destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->_method = null;
-        $this->_args = null;
     }
 
 }

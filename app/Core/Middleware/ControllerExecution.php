@@ -13,15 +13,15 @@ use App\Core\Middleware\MiddlewareInterface;
 class ControllerExecution implements MiddlewareInterface
 {
     /**
-     * StageInterface method.
+     * MiddlewareInterface method.
      *
-     * @param Request $state.
+     * @param Request $request.
      * @return Request Modified container.
      * @access public.
      */
     public function let (Request $request) : Request
     {
-        $request->controllerCall->exec($request);
+        $request->controller->exec($request);
         return $request;
     }
 

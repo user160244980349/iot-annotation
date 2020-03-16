@@ -24,7 +24,7 @@ class Router implements MiddlewareInterface
     /**
      * StageInterface method.
      *
-     * @param Request $state.
+     * @param Request $request.
      * @return Request Modified container.
      * @access public.
      */
@@ -39,9 +39,9 @@ class Router implements MiddlewareInterface
         }
 
         if (isset($controllerCall)) {
-            $request->controllerCall = $controllerCall;
+            $request->controller = $controllerCall;
         } else {
-            $request->controllerCall = new ControllerCall(['App\Controller\ExceptionController', 'notFound'], []);
+            $request->controller = new ControllerCall(['App\Core\Controller\RouteException', 'notFound'], []);
         }
 
         return $request;
@@ -56,16 +56,6 @@ class Router implements MiddlewareInterface
     {
         global $fsmap;
         $this->_routes = require_once $fsmap['routes'];
-    }
-
-    /**
-     * Router destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->_routes = null;
     }
 
 }

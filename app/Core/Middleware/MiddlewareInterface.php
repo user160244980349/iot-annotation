@@ -15,7 +15,7 @@ interface MiddlewareInterface
     /**
      * Do some job.
      *
-     * @param Request $state Container to manage.
+     * @param Request $request Container to manage.
      * @return Request Modified container.
      * @access public.
      */

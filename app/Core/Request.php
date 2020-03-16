@@ -26,12 +26,12 @@ class Request
     public $parameters;
 
     /**
-     * Request session.
+     * Controller that will be executed.
      *
-     * @var array.
+     * @var Controller.
      * @access public.
      */
-    public $session;
+    public $controller;
 
     /**
      * Request constructor.
@@ -41,11 +41,6 @@ class Request
     public function __construct ()
     {
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->session = $_SESSION;
-
-        if (empty($this->session)) {
-            session_start();
-        }
 
         if ($this->method == 'GET') {
             $this->parameters = $_GET;
@@ -61,19 +56,6 @@ class Request
         }
 
         $this->parameters['route'] = $_SERVER['REQUEST_URI'];
-    }
-
-    /**
-     * Request destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->session = null;
-        $this->method = null;
-        $this->uri = null;
-        $this->parameters = null;
     }
 
 }

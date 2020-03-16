@@ -41,14 +41,4 @@ class Application
         dump($request);
     }
 
-    /**
-     * Application destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->_queue = null;
-    }
-
 }
