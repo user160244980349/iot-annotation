@@ -19,7 +19,7 @@ class LoginController
      * @param AppState $state.
      * @access public.
      */
-    public function toLoginPage (AppState $state)
+    public static function toLoginPage (AppState $state)
     {
         if ($state->session->contains('auth')) {
             header("location: /home");

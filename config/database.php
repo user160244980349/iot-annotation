@@ -5,7 +5,7 @@ return [
     # Database credentials
     'driver'    => 'mysql',
     'address'   => 'localhost',
-    'name'      => 'om_loc',
+    'name'      => 'phpengine',
     'user'      => 'user',
     'password'  => 'secret',
 

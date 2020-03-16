@@ -44,7 +44,7 @@ class ControllerCall
      */
     public function exec (AppState $state)
     {
-        call_user_func($this->_method, $state, ...$this->_args);
+        forward_static_call($this->_method, $state, ...$this->_args);
     }
 
     /**
