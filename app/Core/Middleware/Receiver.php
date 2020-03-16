@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Middlewares;
+namespace App\Core\Middleware;
 
 use App\Core\AppState;
-use App\Core\Middlewares\MiddlewareInterface;
+use App\Core\Middleware\MiddlewareInterface;
 
 /**
  * Receiver.php

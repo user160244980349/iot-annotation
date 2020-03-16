@@ -1,7 +1,10 @@
 <?php
 
+# Get paths
+$fsmap = require_once '../config/fsmap.php';
+
 # Import composer autoloader
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once $fsmap['autoload'];
 
 # Import part, that boots application up
-require_once __DIR__ . '/../app/main.php';
+require_once $fsmap['main'];

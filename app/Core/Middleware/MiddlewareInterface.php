@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Middlewares;
+namespace App\Core\Middleware;
 
 use App\Core\AppState;
 

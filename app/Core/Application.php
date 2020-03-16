@@ -2,9 +2,10 @@
 
 namespace App\Core;
 
-use App\Core\Middlewares\Receiver;
-use App\Core\Configuration as Conf;
-use App\Core\Middlewares\MiddlewareInterface;
+use App\Core\Middleware\Receiver;
+use App\Core\Middleware\Router;
+use App\Core\Middleware\ControllerExecution;
+use App\Core\Middleware\MiddlewareInterface;
 
 /**
  * Application.php
@@ -30,6 +31,8 @@ class Application
     {
         $this->_queue = new MiddlewareQueue([
             new Receiver(),
+            new Router(),
+            new ControllerExecution(),
         ]);
 
         $appState = $this->_queue->run();
