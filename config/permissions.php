@@ -21,8 +21,8 @@ return [
     # login route
     'login.post'        => ['unauthorized'],
     # home route
-    'home.get'          => ['unauthorized'],
+    'home.get'          => ['authorized'],
     # logout route
-    'logout.post'       => ['unauthorized'],
+    'logout.post'       => ['authorized'],
 
 ];

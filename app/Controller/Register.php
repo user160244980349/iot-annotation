@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Core\Request;
-use App\Core\ServiceBus;
 use App\Core\View;
+use App\Core\ServiceBus;
+use App\Model\User;
 
 /**
  * WelcomeController.php
@@ -21,18 +22,39 @@ class Register
      */
     public static function toRegisterPage (Request $request)
     {
-        $request->view = new View('register.tpl', ['title' => 'Register', 'auth' => 0]);
+        $session = ServiceBus::get('session');
+        $request->view = new View('register.tpl', [
+            'title' => 'Register',
+            'auth' => $session->get('auth'),
+            'username' => $session->get('username')
+        ]);
     }
-    
+
     /**
-     * Go to home page.
+     * Register new user.
      *
-     * @param Request $request.
+     * @param AppState $state.
      * @access public.
      */
     public static function register (Request $request)
     {
-        $request->view = new View('register.tpl', ['title' => 'Register', 'auth' => 0]);
+        $session = ServiceBus::get('session');
+
+        $username = $request->parameters['username'];
+        $password = md5(md5($request->parameters['password']));
+        $password_confirm = md5(md5($request->parameters['password_confirm']));
+
+        if ($password == $password_confirm) {
+            User::add([
+                'user_name' => $username,
+                'user_password' => $password,
+            ]);
+
+            $session->set('auth', true);
+            $session->set('username', $username);
+            header("location: /home");
+            exit;
+        }
     }
 
 }

@@ -35,6 +35,14 @@ class Request
     public $route;
 
     /**
+     * View that will be executed.
+     *
+     * @var View.
+     * @access public.
+     */
+    public $view;
+
+    /**
      * Route constructor.
      *
      * @access public.

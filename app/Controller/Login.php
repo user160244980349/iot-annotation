@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Core\Request;
-use App\Core\ServiceBus;
 use App\Core\View;
+use App\Core\ServiceBus;
+use App\Model\User;
 
 /**
  * WelcomeController.php
@@ -21,7 +22,12 @@ class Login
      */
     public static function toLoginPage (Request $request)
     {
-        $request->view = new View('login.tpl', ['title' => 'Login', 'auth' => 0]);
+        $session = ServiceBus::get('session');
+        $request->view = new View('login.tpl', [
+            'title' => 'Login',
+            'auth' => $session->get('auth'),
+            'username' => $session->get('username')
+        ]);
     }
 
     /**
@@ -32,6 +38,33 @@ class Login
      */
     public static function login (Request $request)
     {
-        $request->view = new View('home.tpl', ['title' => 'Home', 'auth' => 0]);
+        $session = ServiceBus::get('session');
+        $username = $request->parameters['username'];
+        $password = md5(md5($request->parameters['password']));
+
+        $user = User::get($username);
+
+        if ($user['user_password'] == $password) {
+            $session->set('auth', true);
+            $session->set('username', $username);
+            header("location: /home");
+            exit;
+        } else {
+            header("location: /login");
+            exit;
+        }
+    }
+
+    /**
+     * Log user in.
+     *
+     * @param AppState $state.
+     * @access public.
+     */
+    public static function logout (Request $state)
+    {
+        ServiceBus::get('session')->destroy();
+        header("location: /");
+        exit;
     }
 }

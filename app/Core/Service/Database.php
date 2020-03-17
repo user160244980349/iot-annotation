@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Service;
 
 use PDO;
 use PDOStatement;
+use App\Core\ServiceBus;
 
 /**
  * Database.php

@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Core\Request;
-use App\Core\ServiceBus;
 use App\Core\View;
+use App\Core\ServiceBus;
 
 /**
  * WelcomeController.php
@@ -21,7 +21,12 @@ class Welcome
      */
     public static function toWelcomePage (Request $request)
     {
-        $request->view = new View('welcome.tpl', ['title' => 'Welcome', 'auth' => 0]);
+        $session = ServiceBus::get('session');
+        $request->view = new View('Welcome.tpl', [
+            'title' => 'Home',
+            'auth' => $session->get('auth'),
+            'username' => $session->get('username')
+        ]);
     }
 
 }

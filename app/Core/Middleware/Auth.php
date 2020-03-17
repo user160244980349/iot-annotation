@@ -23,11 +23,7 @@ class Auth implements MiddlewareInterface
      */
     public function let (Request $request) : Request
     {
-        // ServiceBus::get('session');
 
-        if (0) {
-            $request->route = new Route('forbidden', ['App\Controller\RouteException', 'toForbiddenPage'], []);
-        }
         return $request;
     }
 

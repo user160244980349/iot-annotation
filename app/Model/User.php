@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Core\Database;
+use App\Core\ServiceBus;
 use PDOStatement;
 
 /**
@@ -19,8 +19,10 @@ class User
      * @param array $user
      * @access public
      */
-    public static function add (Database $db, array $user)
+    public static function add (array $user)
     {
+        $db = ServiceBus::get('database');
+
         $queryString = "insert into user (";
         foreach ($user as $key => $value) {
             $queryString = "$queryString $key, ";
@@ -43,8 +45,10 @@ class User
      * @return false|PDOStatement
      * @access public
      */
-    public static function get (Database $db, $username)
+    public static function get ($username)
     {
+        $db = ServiceBus::get('database');
+
         return $db->query("select * from user where user_name = '$username'")->fetch();
     }
 

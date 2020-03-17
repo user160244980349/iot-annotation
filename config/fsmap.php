@@ -7,6 +7,7 @@ return [
     'main'          => __DIR__ . '/../app/main.php',
     'services'      => __DIR__ . '/../config/services.php',
     'middlewares'   => __DIR__ . '/../config/middlewares.php',
+    'permissions'   => __DIR__ . '/../config/permissions.php',
     'routes'        => __DIR__ . '/../config/routes.php',
     'database'      => __DIR__ . '/../config/database.php',
     'language'      => __DIR__ . '/../config/language.php',
