@@ -21,7 +21,7 @@ class ControllerExecution implements MiddlewareInterface
      */
     public function let (Request $request) : Request
     {
-        $request->controller->exec($request);
+        forward_static_call($request->route->controller, $request, ...$request->route->args);
         return $request;
     }
 

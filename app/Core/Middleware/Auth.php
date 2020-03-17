@@ -3,7 +3,7 @@
 namespace App\Core\Middleware;
 
 use App\Core\Request;
-use App\Core\ControllerCall;
+use App\Core\Route;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
@@ -23,9 +23,8 @@ class Auth implements MiddlewareInterface
     public function let (Request $request) : Request
     {
         if (0) {
-            $request->controller = new ControllerCall(['App\Core\Controller\RouteException', 'forbidden'], []);
+            $request->route = new Route('forbidden', ['App\Core\Controller\RouteException', 'forbidden'], []);
         }
-
         return $request;
     }
 

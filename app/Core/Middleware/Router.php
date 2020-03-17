@@ -2,8 +2,8 @@
 
 namespace App\Core\Middleware;
 
-use App\Core\ControllerCall;
 use App\Core\Request;
+use App\Core\Route;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
@@ -30,19 +30,27 @@ class Router implements MiddlewareInterface
      */
     public function let (Request $request) : Request
     {
-        foreach ($this->_routes[$request->method] as $route_pattern => $controller) {
-            if (preg_match($route_pattern, $request->parameters['route'], $params_matches)) {
+        foreach ($this->_routes as $route) {
+
+            if ($route['method'] == $request->method &&
+                preg_match($route['pattern'], $request->parameters['route'], $params_matches)) {
                 array_shift($params_matches);
-                $controllerCall = new ControllerCall($controller, $params_matches);
-                break;
+
+                $request->route = new Route (
+                    $route['name'],
+                    $route['controller'],
+                    $params_matches
+                );
+
+                return $request;
             }
         }
 
-        if (isset($controllerCall)) {
-            $request->controller = $controllerCall;
-        } else {
-            $request->controller = new ControllerCall(['App\Core\Controller\RouteException', 'notFound'], []);
-        }
+        $request->route = new Route (
+            'notFound',
+            ['App\Core\Controller\RouteException', 'notFound'],
+            []
+        );
 
         return $request;
     }

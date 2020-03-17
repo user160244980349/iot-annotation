@@ -26,12 +26,12 @@ class Request
     public $parameters;
 
     /**
-     * Controller that will be executed.
+     * Route that will be executed.
      *
-     * @var Controller.
+     * @var Route.
      * @access public.
      */
-    public $controller;
+    public $route;
 
     /**
      * Request constructor.
@@ -54,8 +54,6 @@ class Request
                 }
             }
         }
-
-        $this->parameters['route'] = substr($_SERVER['REQUEST_URI'], 1);
     }
 
 }
