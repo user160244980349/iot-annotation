@@ -2,6 +2,7 @@
 
 namespace App\Core\Middleware;
 
+use App\Core\ServiceBus;
 use App\Core\Request;
 use App\Core\Route;
 use App\Core\Middleware\MiddlewareInterface;
@@ -22,6 +23,8 @@ class Auth implements MiddlewareInterface
      */
     public function let (Request $request) : Request
     {
+        ServiceBus::instance()->get('session');
+
         if (0) {
             $request->route = new Route('forbidden', ['App\Core\Controller\RouteException', 'forbidden'], []);
         }

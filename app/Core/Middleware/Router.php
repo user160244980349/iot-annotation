@@ -2,6 +2,7 @@
 
 namespace App\Core\Middleware;
 
+use App\Core\ServiceBus;
 use App\Core\Request;
 use App\Core\Route;
 use App\Core\Middleware\MiddlewareInterface;
@@ -62,8 +63,7 @@ class Router implements MiddlewareInterface
      */
     public function __construct ()
     {
-        global $fsmap;
-        $this->_routes = require_once $fsmap['routes'];
+        $this->_routes = ServiceBus::instance()->get('conf')->get('routes');
     }
 
 }

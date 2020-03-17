@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Service;
 
+use App\Core\ServiceBus;
+use App\Core\MiddlewareQueue;
 use App\Core\Middleware\Receiver;
 use App\Core\Middleware\Router;
 use App\Core\Middleware\Auth;
@@ -28,14 +30,14 @@ class Application
      *
      * @access public.
      */
-    public function __construct ()
-    {
-        $this->_queue = new MiddlewareQueue([
-            new Receiver(),
-            new Router(),
-            new Auth(),
-            new ControllerExecution(),
-        ]);
+    public function run () {
+
+        $middleware_names = ServiceBus::instance()->get('conf')->get('middlewares');
+        $middleware_objects = [];
+        foreach ($middleware_names as $middleware) {
+            array_push($middleware_objects, new $middleware());
+        }
+        $this->_queue = new MiddlewareQueue($middleware_objects);
 
         $request = $this->_queue->run();
 
