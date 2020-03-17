@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Core\Controller;
+namespace App\Controller;
 
 use App\Core\Request;
+use App\Core\View;
 
 /**
  * WelcomeController.php
@@ -17,9 +18,9 @@ class RouteException
      * @param Request $request.
      * @access public.
      */
-    public static function notFound (Request $request)
+    public static function toNotFoundPage (Request $request)
     {
-        print("Route not found 404");
+        $request->view = new View('404.tpl', ['title' => '404 Exception', 'auth' => $auth]);
     }
 
     /**
@@ -28,8 +29,8 @@ class RouteException
      * @param Request $request.
      * @access public.
      */
-    public static function forbidden (Request $request)
+    public static function toForbiddenPage (Request $request)
     {
-        print("Forbidden 403");
+        $request->view = new View('403.tpl', ['title' => '403 Exception', 'auth' => $auth]);
     }
 }

@@ -35,6 +35,7 @@ class Receiver implements MiddlewareInterface
                 }
             }
         }
+        $parameters['route'] = substr($_SERVER['REQUEST_URI'], 1);
 
         return new Request($method, $parameters);
     }

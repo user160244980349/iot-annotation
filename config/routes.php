@@ -12,36 +12,36 @@ return [
      [  'name'          => 'welcome.get',
         'method'        => 'get',
         'pattern'       => '/^$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Welcome', 'toWelcomePage'] ],
 
      [  'name'          => 'register.get',
         'method'        => 'get',
         'pattern'       => '/^register$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Register', 'toRegisterPage'] ],
 
      [  'name'          => 'register.post',
         'method'        => 'post',
         'pattern'       => '/^register$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Register', 'register'] ],
 
      [  'name'          => 'login.get',
         'method'        => 'get',
         'pattern'       => '/^login$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Login', 'toLoginPage'] ],
 
      [  'name'          => 'login.post',
         'method'        => 'post',
         'pattern'       => '/^login$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Login', 'login'] ],
 
      [  'name'          => 'home.get',
         'method'        => 'get',
         'pattern'       => '/^home$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Home', 'toHomePage'] ],
 
      [  'name'          => 'logout.post',
         'method'        => 'post',
         'pattern'       => '/^logout$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+        'controller'    => ['App\Controller\Login', 'logout'] ],
 
 ];

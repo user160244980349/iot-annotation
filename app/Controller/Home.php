@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Core\Controller;
+namespace App\Controller;
 
 use App\Core\Request;
 use App\Core\ServiceBus;
+use App\Core\View;
 
 /**
  * WelcomeController.php
  *
  * Controller class to load home page.
  */
-class Welcome
+class Home
 {
     /**
      * Go to home page.
@@ -18,9 +19,9 @@ class Welcome
      * @param Request $request.
      * @access public.
      */
-    public static function toWelcomePage (Request $request)
+    public static function toHomePage (Request $request)
     {
-        print("Welcome!");
+        $request->view = new View('home.tpl', ['title' => 'Home', 'auth' => 0]);
     }
 
 }

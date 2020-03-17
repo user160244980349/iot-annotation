@@ -32,7 +32,6 @@ class Router implements MiddlewareInterface
     public function let (Request $request) : Request
     {
         foreach ($this->_routes as $route) {
-
             if ($route['method'] == $request->method &&
                 preg_match($route['pattern'], $request->parameters['route'], $params_matches)) {
                 array_shift($params_matches);
@@ -47,7 +46,7 @@ class Router implements MiddlewareInterface
             }
         }
 
-        $request->route = new Route ('notFound', ['App\Core\Controller\RouteException', 'notFound'], []);
+        $request->route = new Route ('notFound', ['App\Controller\RouteException', 'toNotFoundPage'], []);
 
         return $request;
     }
