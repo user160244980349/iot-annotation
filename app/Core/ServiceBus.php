@@ -13,7 +13,7 @@ class ServiceBus
      * ServiceBus instance.
      *
      * @var ServiceBus.
-     * @access public.
+     * @access private.
      */
     private static $_instance;
 
@@ -21,7 +21,7 @@ class ServiceBus
      * ServiceBus array.
      *
      * @var array.
-     * @access public.
+     * @access private.
      */
     private $_services;
 
@@ -42,7 +42,34 @@ class ServiceBus
      *
      * @access public.
      */
-    public function autoload () {
+    public static function autoload () {
+        return self::instance()->autoloadd();
+    }
+
+    /**
+     * ServiceBus constructor.
+     *
+     * @access public.
+     */
+    public static function register (string $alias, $object) {
+        return self::instance()->registerd($alias, $object);
+    }
+
+    /**
+     * ServiceBus constructor.
+     *
+     * @access public.
+     */
+    public static function get (string $alias) {
+        return self::instance()->getd($alias);
+    }
+
+    /**
+     * ServiceBus constructor.
+     *
+     * @access public.
+     */
+    public function autoloadd () {
         $service_classes = self::$_instance->get('conf')->get('services');
         foreach ($service_classes as $alias => $service_class) {
             $this->_services[$alias] = ['class' => $service_class, 'object' => null];
@@ -54,7 +81,7 @@ class ServiceBus
      *
      * @access public.
      */
-    public function register (string $alias, $object) {
+    public function registerd (string $alias, $object) {
         if (!isset($this->_services[$alias])) {
             $this->_services[$alias]['class'] = get_class($object);
             $this->_services[$alias]['object'] = $object;
@@ -66,7 +93,7 @@ class ServiceBus
      *
      * @access public.
      */
-    public function get (string $alias) {
+    public function getd (string $alias) {
         if (!isset($this->_services[$alias]['object'])) {
             $this->_services[$alias]['object'] = new $this->_services[$alias]['class']();
         }

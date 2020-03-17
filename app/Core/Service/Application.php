@@ -4,11 +4,6 @@ namespace App\Core\Service;
 
 use App\Core\ServiceBus;
 use App\Core\MiddlewareQueue;
-use App\Core\Middleware\Receiver;
-use App\Core\Middleware\Router;
-use App\Core\Middleware\Auth;
-use App\Core\Middleware\ControllerExecution;
-use App\Core\Middleware\MiddlewareInterface;
 
 /**
  * Application.php
@@ -32,7 +27,7 @@ class Application
      */
     public function run () {
 
-        $middleware_names = ServiceBus::instance()->get('conf')->get('middlewares');
+        $middleware_names = ServiceBus::get('conf')->get('middlewares');
         $middleware_objects = [];
         foreach ($middleware_names as $middleware) {
             array_push($middleware_objects, new $middleware());

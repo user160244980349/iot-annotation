@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Route;
 /**
  * Request.php
  *
@@ -34,26 +35,14 @@ class Request
     public $route;
 
     /**
-     * Request constructor.
+     * Route constructor.
      *
      * @access public.
      */
-    public function __construct ()
-    {
-        $this->method = $_SERVER['REQUEST_METHOD'];
-
-        if ($this->method == 'GET') {
-            $this->parameters = $_GET;
-        } elseif ($this->method == 'POST') {
-            $this->parameters = $_POST;
-            if (isset($this->parameters['_method'])) {
-                if ($this->parameters['_method'] == 'put') {
-                    $this->method = 'PUT';
-                } elseif ($this->parameters['_method'] == 'delete') {
-                    $this->method = 'DELETE';
-                }
-            }
-        }
+    public function __construct (string $method, array $parameters, Route $route = null) {
+        $this->method = $method;
+        $this->parameters = $parameters;
+        $this->route = $route;
     }
 
 }

@@ -9,14 +9,6 @@ namespace App\Core\Service;
  */
 class Session
 {
-    /**
-     * ServiceBus array.
-     *
-     * @var array.
-     * @access public.
-     */
-    private $_content;
-
      /**
       * get content of conf file.
       *
@@ -24,10 +16,7 @@ class Session
       * @access public.
       */
      public function __construct () {
-
          session_start();
-         $this->_content = $_SESSION;
-
      }
 
       /**
@@ -36,8 +25,8 @@ class Session
        * @var string.
        * @access public.
        */
-      public function set () {
-
+      public function set (string $name, $value) {
+          $_SESSION[$name] = $value;
       }
 
        /**
@@ -46,8 +35,18 @@ class Session
         * @var string.
         * @access public.
         */
-       public function get () {
-
+       public function get (string $name) {
+           return $_SESSION[$name];
        }
+
+        /**
+         * get content of conf file.
+         *
+         * @var string.
+         * @access public.
+         */
+        public function destroy () {
+            session_destroy();
+        }
 
 }

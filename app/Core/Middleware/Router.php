@@ -47,11 +47,7 @@ class Router implements MiddlewareInterface
             }
         }
 
-        $request->route = new Route (
-            'notFound',
-            ['App\Core\Controller\RouteException', 'notFound'],
-            []
-        );
+        $request->route = new Route ('notFound', ['App\Core\Controller\RouteException', 'notFound'], []);
 
         return $request;
     }
@@ -63,7 +59,7 @@ class Router implements MiddlewareInterface
      */
     public function __construct ()
     {
-        $this->_routes = ServiceBus::instance()->get('conf')->get('routes');
+        $this->_routes = ServiceBus::get('conf')->get('routes');
     }
 
 }

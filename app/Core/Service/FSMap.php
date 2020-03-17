@@ -13,7 +13,7 @@ class FSMap
       * ServiceBus array.
       *
       * @var array.
-      * @access public.
+      * @access private.
       */
      private static $_conf_path = __DIR__ . '/../../../config/fsmap.php';
 
@@ -21,7 +21,7 @@ class FSMap
        * ServiceBus array.
        *
        * @var array.
-       * @access public.
+       * @access private.
        */
       private $_paths;
 

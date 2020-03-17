@@ -19,7 +19,7 @@ class Configuration
       * @access public.
       */
      public function get (string $alias) {
-         return require_once ServiceBus::instance()->get('fsmap')->get($alias);
+         return require_once ServiceBus::get('fsmap')->get($alias);
      }
 
 }
