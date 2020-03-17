@@ -14,16 +14,6 @@ return [
         'pattern'       => '/^$/',
         'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
 
-     [  'name'          => 'home.get',
-        'method'        => 'get',
-        'pattern'       => '/^home$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'testSessions'] ],
-
-     [  'name'          => 'logout.get',
-        'method'        => 'get',
-        'pattern'       => '/^logout$/',
-        'controller'    => ['App\Core\Controller\Welcome', 'logout'] ],
-
      [  'name'          => 'register.get',
         'method'        => 'get',
         'pattern'       => '/^register$/',
@@ -42,6 +32,11 @@ return [
      [  'name'          => 'login.post',
         'method'        => 'post',
         'pattern'       => '/^login$/',
+        'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
+
+     [  'name'          => 'home.get',
+        'method'        => 'get',
+        'pattern'       => '/^home$/',
         'controller'    => ['App\Core\Controller\Welcome', 'toWelcomePage'] ],
 
      [  'name'          => 'logout.post',
