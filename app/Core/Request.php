@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Route;
+
 /**
  * Request.php
  *
@@ -10,6 +11,7 @@ use App\Core\Route;
  */
 class Request
 {
+
     /**
      * Request parameters.
      *
@@ -37,6 +39,8 @@ class Request
     /**
      * Route constructor.
      *
+     * @param array $parameters.
+     * @param Route $route.
      * @access public.
      */
     public function __construct (array $parameters, Route $route = null) {

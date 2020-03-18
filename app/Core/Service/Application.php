@@ -21,7 +21,7 @@ class Application
     private $_queue;
 
     /**
-     * Application constructor.
+     * Application run method.
      *
      * @access public.
      */

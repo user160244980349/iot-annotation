@@ -8,15 +8,15 @@ use App\Core\ServiceBus;
 /**
  * User.php
  *
- * Class that provides user model, who use application.
+ * Class that provides user model.
  */
 class User
 {
+
     /**
-     * Gets collection with info
+     * Adds new user into database.
      *
-     * @param Database $db
-     * @param array $user
+     * @param array $user.
      * @access public
      */
     public static function add (array $user)
@@ -31,12 +31,11 @@ class User
     }
 
     /**
-     * Gets collection with info
+     * Gets array with info.
      *
-     * @param Database $db
-     * @param $username
-     * @return false|PDOStatement
-     * @access public
+     * @param $username.
+     * @return false|PDOStatement.
+     * @access public.
      */
     public static function getByName (string $username)
     {
@@ -46,12 +45,11 @@ class User
     }
 
     /**
-     * Gets collection with info
+     * Gets array with info.
      *
-     * @param Database $db
-     * @param $username
-     * @return false|PDOStatement
-     * @access public
+     * @param int $id.
+     * @return false|PDOStatement.
+     * @access public.
      */
     public static function getById (int $id)
     {
@@ -61,12 +59,10 @@ class User
     }
 
     /**
-     * Gets collection with info
+     * Gets array with info.
      *
-     * @param Database $db
-     * @param $username
-     * @return false|PDOStatement
-     * @access public
+     * @return false|PDOStatement.
+     * @access public.
      */
     public static function getAll ()
     {

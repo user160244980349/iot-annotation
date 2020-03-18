@@ -8,14 +8,15 @@ use App\Core\ServiceBus;
 use App\Model\User;
 
 /**
- * WelcomeController.php
+ * Welcome.php
  *
- * Controller class to load home page.
+ * Controller class to load welcome page.
  */
 class Welcome
 {
+
     /**
-     * Go to home page.
+     * Go to welcome page.
      *
      * @param Request $request.
      * @access public.

@@ -12,10 +12,11 @@ use App\Model\User;
  */
 class Auth
 {
+
     /**
      * Register new user.
      *
-     * @param AppState $state.
+     * @param array $user User credentials.
      * @access public.
      */
     public function register (array $user)
@@ -31,9 +32,10 @@ class Auth
     }
 
     /**
-     * Register new user.
+     * Log user in.
      *
-     * @param AppState $state.
+     * @param string $username.
+     * @param steing $password.
      * @access public.
      */
     public function login (string $username, string $password)
@@ -48,9 +50,9 @@ class Auth
     }
 
     /**
-     * Register new user.
+     * Get authorized user.
      *
-     * @param AppState $state.
+     * @param int $user.
      * @access public.
      */
     public function user (int $id)
@@ -59,9 +61,9 @@ class Auth
     }
 
     /**
-     * Register new user.
+     * Check if user has permitions.
      *
-     * @param AppState $state.
+     * @param array $permissions Permitions list.
      * @access public.
      */
     public function allowed (array $permissions)
@@ -71,13 +73,13 @@ class Auth
     }
 
     /**
-     * Register new user.
+     * Log user out.
      *
-     * @param AppState $state.
      * @access public.
      */
     public function logout ()
     {
         ServiceBus::get('session')->destroy();
     }
+
 }

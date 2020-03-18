@@ -8,17 +8,18 @@ use App\Core\ServiceBus;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
- * View.php
+ * Auth.php
  *
- * Class View - template manager, that collects variables and injects those in templates.
+ * Class Auth checks access to pages.
  */
 class Auth implements MiddlewareInterface
 {
+
     /**
-     * StageInterface method.
+     * Method providing middlewares chain call.
      *
      * @param Request $request.
-     * @return Request Modified container.
+     * @return Request Modified request.
      * @access public.
      */
     public function let (Request $request) : Request

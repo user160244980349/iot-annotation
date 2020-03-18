@@ -8,15 +8,16 @@ use App\Core\Request;
  * MiddlewareInterface.php
  *
  * Interface to provide blocks, that can be iterated
- * like stages of response formation.
+ * like stages to format response.
  */
 interface MiddlewareInterface
 {
+
     /**
-     * Do some job.
+     * Method providing middlewares chain call.
      *
-     * @param Request $request Container to manage.
-     * @return Request Modified container.
+     * @param Request $request Request to manage.
+     * @return Request Modified request.
      * @access public.
      */
     public function let (Request $request) : Request;

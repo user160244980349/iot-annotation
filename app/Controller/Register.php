@@ -7,14 +7,15 @@ use App\Core\View;
 use App\Core\ServiceBus;
 
 /**
- * WelcomeController.php
+ * Register.php
  *
- * Controller class to load home page.
+ * Controller class to manage registration.
  */
 class Register
 {
+
     /**
-     * Go to home page.
+     * Go to register page.
      *
      * @param Request $request.
      * @access public.
@@ -33,7 +34,7 @@ class Register
     /**
      * Register new user.
      *
-     * @param AppState $state.
+     * @param Request $request.
      * @access public.
      */
     public static function register (Request $request)

@@ -8,12 +8,12 @@ use App\Core\Middleware\MiddlewareInterface;
 /**
  * ControllerExecution.php
  *
- * Service class for exec controller algorithm.
+ * Middleware class for exec controllers.
  */
 class ControllerExecution implements MiddlewareInterface
 {
     /**
-     * MiddlewareInterface method.
+     * Method providing middlewares chain call.
      *
      * @param Request $request.
      * @return Request Modified container.

@@ -3,16 +3,16 @@
 namespace App\Core\Service;
 
 /**
- * Receiver.php
+ * Session.php
  *
- * Middleware class for parsing incoming request.
+ * Service for manage sessions.
  */
 class Session
 {
+
      /**
-      * get content of conf file.
+      * Constructor of service class.
       *
-      * @var string.
       * @access public.
       */
      public function __construct () {
@@ -20,9 +20,10 @@ class Session
      }
 
       /**
-       * get content of conf file.
+       * Set session variable.
        *
-       * @var string.
+       * @param string $name.
+       * @param $value.
        * @access public.
        */
       public function set (string $name, $value) {
@@ -30,9 +31,9 @@ class Session
       }
 
        /**
-        * get content of conf file.
+        * Get session variable.
         *
-        * @var string.
+        * @param string $name.
         * @access public.
         */
        public function get (string $name) {
@@ -40,9 +41,8 @@ class Session
        }
 
         /**
-         * get content of conf file.
+         * Destroy session.
          *
-         * @var string.
          * @access public.
          */
         public function destroy () {

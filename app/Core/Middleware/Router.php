@@ -23,10 +23,10 @@ class Router implements MiddlewareInterface
     private $_routes;
 
     /**
-     * StageInterface method.
+     * Method providing middlewares chain call.
      *
      * @param Request $request.
-     * @return Request Modified container.
+     * @return Request Modified request.
      * @access public.
      */
     public function let (Request $request) : Request

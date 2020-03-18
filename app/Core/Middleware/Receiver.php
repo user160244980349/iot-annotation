@@ -12,8 +12,9 @@ use App\Core\Middleware\MiddlewareInterface;
  */
 class Receiver implements MiddlewareInterface
 {
+    
     /**
-     * StageInterface method.
+     * Method providing middlewares chain call.
      *
      * @param Request $null Null because not needed.
      * @return Request Initialized request object.

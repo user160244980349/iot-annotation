@@ -5,7 +5,7 @@ namespace App\Core;
 /**
  * MiddlewareQueue.php
  *
- * Class, that contains core services important for application work.
+ * Class, that contains core middlewares important for application work.
  */
 class MiddlewareQueue
 {
@@ -36,7 +36,6 @@ class MiddlewareQueue
     /**
      * Queue constructor.
      *
-     * @param array $queuedMiddlewares Sequenced middlewares.
      * @access public.
      */
     public function __construct ()

@@ -8,12 +8,13 @@ use App\Core\ServiceBus;
 use App\Model\User;
 
 /**
- * WelcomeController.php
+ * RouteException.php
  *
- * Controller class to load home page.
+ * Controller class to load exciption pages.
  */
 class RouteException
 {
+
     /**
      * Go to 404 page.
      *
@@ -63,4 +64,5 @@ class RouteException
             'username' => $data['user_name'],
         ]);
     }
+    
 }

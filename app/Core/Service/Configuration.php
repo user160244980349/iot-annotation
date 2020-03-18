@@ -5,17 +5,17 @@ namespace App\Core\Service;
 use App\Core\ServiceBus;
 
 /**
- * Receiver.php
+ * Configuration.php
  *
- * Middleware class for parsing incoming request.
+ * Service providing access to conf files.
  */
 class Configuration
 {
 
      /**
-      * get content of conf file.
+      * Get content of conf file.
       *
-      * @var string.
+      * @param string $alias Service alias to get.
       * @access public.
       */
      public function get (string $alias) {

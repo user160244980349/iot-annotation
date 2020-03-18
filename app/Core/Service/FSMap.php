@@ -3,14 +3,15 @@
 namespace App\Core\Service;
 
 /**
- * Receiver.php
+ * FSMap.php
  *
- * Middleware class for parsing incoming request.
+ * Provide access to important paths.
  */
 class FSMap
 {
+
      /**
-      * ServiceBus array.
+      * Configuration file path.
       *
       * @var array.
       * @access private.
@@ -26,9 +27,8 @@ class FSMap
       private $_paths;
 
      /**
-      * get path to conf file.
+      * FSMap constructor.
       *
-      * @var string.
       * @access public.
       */
      public function __construct () {
@@ -36,9 +36,9 @@ class FSMap
      }
 
      /**
-      * get path to conf file.
+      * Get path by alias.
       *
-      * @var string.
+      * @param string $alias.
       * @access public.
       */
      public function get (string $alias) {

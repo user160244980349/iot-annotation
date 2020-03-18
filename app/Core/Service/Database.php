@@ -13,6 +13,7 @@ use App\Core\ServiceBus;
  */
 class Database
 {
+
     /**
      * Driver for database access.
      *
@@ -30,7 +31,7 @@ class Database
     private $_address;
 
     /**
-     * Database name access for.
+     * Database name for access.
      *
      * @var string.
      * @access private.
@@ -38,7 +39,7 @@ class Database
     private $_name;
 
     /**
-     * Database user access for.
+     * Database for user access.
      *
      * @var string.
      * @access private.
@@ -93,18 +94,6 @@ class Database
             $this->_user = $conf['user'],
             $this->_password
         );
-    }
-
-    /**
-     * Database destructor.
-     *
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $_address = null;
-        $_name = null;
-        $_password = null;
     }
 
 }

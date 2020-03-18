@@ -13,8 +13,9 @@ use App\Core\ServiceBus;
  */
 class Login
 {
+
     /**
-     * Go to home page.
+     * Go to login page.
      *
      * @param Request $request.
      * @access public.
@@ -31,7 +32,7 @@ class Login
     }
 
     /**
-     * Go to home page.
+     * Log user in.
      *
      * @param Request $request.
      * @access public.
@@ -49,9 +50,9 @@ class Login
     }
 
     /**
-     * Log user in.
+     * Log user out.
      *
-     * @param AppState $state.
+     * @param Request $request.
      * @access public.
      */
     public static function logout (Request $state)
@@ -60,4 +61,5 @@ class Login
         header("location: /");
         exit;
     }
+
 }

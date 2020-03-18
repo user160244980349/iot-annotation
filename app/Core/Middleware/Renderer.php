@@ -6,17 +6,18 @@ use App\Core\Request;
 use App\Core\Middleware\MiddlewareInterface;
 
 /**
- * View.php
+ * Renderer.php
  *
- * Class View - template manager, that collects variables and injects those in templates.
+ * Class Renderer - calls renderer display method.
  */
 class Renderer implements MiddlewareInterface
 {
+
     /**
-     * StageInterface method.
+     * Method providing middlewares chain call.
      *
      * @param Request $request.
-     * @return Request Modified container.
+     * @return Request Modified request.
      * @access public.
      */
     public function let (Request $request) : Request

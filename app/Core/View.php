@@ -9,6 +9,7 @@ namespace App\Core;
  */
 class View
 {
+
     /**
      * Path of template.
      *
@@ -49,19 +50,6 @@ class View
     {
         $this->path = ServiceBus::get('fsmap')->get('templates') . '/' . $path;
         $this->variables = $variables;
-    }
-
-    /**
-     * View constructor.
-     *
-     * @param string $path Path of template file.
-     * @param array $variables Variables to paste in template.
-     * @access public.
-     */
-    public function __destruct ()
-    {
-        $this->path = null;
-        $this->variables = null;
     }
 
 }

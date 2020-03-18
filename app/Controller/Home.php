@@ -8,12 +8,13 @@ use App\Core\ServiceBus;
 use App\Model\User;
 
 /**
- * WelcomeController.php
+ * Home.php
  *
  * Controller class to load home page.
  */
 class Home
 {
+    
     /**
      * Go to home page.
      *

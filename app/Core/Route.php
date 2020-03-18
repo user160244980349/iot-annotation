@@ -9,6 +9,7 @@ namespace App\Core;
  */
 class Route
 {
+    
     /**
      * Request method.
      *
@@ -36,6 +37,9 @@ class Route
     /**
      * Route constructor.
      *
+     * @param string $name.
+     * @param array $controller.
+     * @param array $args.
      * @access public.
      */
     public function __construct (string $name, array $controller, array $args) {

@@ -9,6 +9,7 @@ namespace App\Core;
  */
 class ServiceBus
 {
+
     /**
      * ServiceBus instance.
      *
@@ -38,7 +39,7 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * ServiceBus autoload services from config.
      *
      * @access public.
      */
@@ -47,8 +48,10 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * Register new service with existing object.
      *
+     * @param string $alias.
+     * @param $object.
      * @access public.
      */
     public static function register (string $alias, $object) {
@@ -56,8 +59,9 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * Service getter.
      *
+     * @param string $alias.
      * @access public.
      */
     public static function get (string $alias) {
@@ -65,7 +69,7 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * ServiceBus autoload services from config.
      *
      * @access public.
      */
@@ -77,8 +81,10 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * Register new service with existing object.
      *
+     * @param string $alias.
+     * @param $object.
      * @access public.
      */
     public function registerd (string $alias, $object) {
@@ -89,8 +95,9 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus constructor.
+     * Service getter.
      *
+     * @param string $alias.
      * @access public.
      */
     public function getd (string $alias) {
