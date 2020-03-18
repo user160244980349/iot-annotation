@@ -13,4 +13,4 @@ ServiceBus::autoload();
 ServiceBus::get('application')->run();
 
 # test
-dump(ServiceBus::instance());
+# dump(ServiceBus::instance());

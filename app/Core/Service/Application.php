@@ -28,8 +28,8 @@ class Application
     public function run () {
 
         $this->_queue = new MiddlewareQueue();
-        # $this->_queue->run();
-        dump($this->_queue->run());
+        $this->_queue->run();
+        # dump($this->_queue->run());
 
     }
 
