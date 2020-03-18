@@ -27,17 +27,10 @@ class Application
      */
     public function run () {
 
-        $middleware_names = ServiceBus::get('conf')->get('middlewares');
-        $middleware_objects = [];
-        foreach ($middleware_names as $middleware) {
-            array_push($middleware_objects, new $middleware());
-        }
-        $this->_queue = new MiddlewareQueue($middleware_objects);
+        $this->_queue = new MiddlewareQueue();
+        # $this->_queue->run();
+        dump($this->_queue->run());
 
-        $request = $this->_queue->run();
-
-        # test
-        dump($request);
     }
 
 }

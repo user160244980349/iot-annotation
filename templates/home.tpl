@@ -10,16 +10,14 @@
     </head>
     <body>
 
-        <?php include 'header.tpl' ?>
+        <?php include 'blocks/header.tpl' ?>
         <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">Hello!</h1>
             <p class="lead">
                 <?php echo "Greetings $username! You are at the home page now." ?>
             </p>
         </div>
-        <?php include 'footer.tpl' ?>
-
-        <script type="application/javascript" src="js/main.js"></script>
+        <?php include 'blocks/footer.tpl' ?>
 
     </body>
 </html>

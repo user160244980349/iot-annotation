@@ -13,7 +13,7 @@
         <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">Hello!</h1>
             <p class="lead">
-                Greetings! You are at the sign ip page now. So you can sign in or <a href="register">sign up</a>.
+                Greetings! You are at the sign in page now. So you can sign in or <a href="register">sign up</a>.
             </p>
             <div class="container">
                 <div class="row">
@@ -35,8 +35,6 @@
                 </div>
             </div>
         </div>
-
-        <script type="application/javascript" src="js/main.js"></script>
 
     </body>
 </html>

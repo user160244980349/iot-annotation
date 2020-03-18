@@ -4,7 +4,7 @@ return [
 
     'root'          => __DIR__ . '/..',
     'autoload'      => __DIR__ . '/../vendor/autoload.php',
-    'main'          => __DIR__ . '/../app/main.php',
+    'bootstrap'     => __DIR__ . '/../app/bootstrap.php',
     'services'      => __DIR__ . '/../config/services.php',
     'middlewares'   => __DIR__ . '/../config/middlewares.php',
     'permissions'   => __DIR__ . '/../config/permissions.php',

@@ -21,23 +21,26 @@ class Receiver implements MiddlewareInterface
      */
     public function let (Request $null = null) : Request
     {
+
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $method = 'get';
             $parameters = $_GET;
-        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $method = 'post';
+            $parameters['method'] = 'get';
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $parameters = $_POST;
+            $parameters['uri'] = $_GET['uri'];
+            $parameters['method'] = 'post';
             if (isset($parameters['_method'])) {
                 if ($parameters['_method'] == 'put') {
-                    $method = 'put';
+                    $parameters['method'] = 'put';
                 } elseif ($parameters['_method'] == 'delete') {
-                    $method = 'delete';
+                    $parameters['method'] = 'delete';
                 }
             }
         }
-        $parameters['route'] = substr($_SERVER['REQUEST_URI'], 1);
 
-        return new Request($method, $parameters);
+        return new Request($parameters);
     }
 
 }

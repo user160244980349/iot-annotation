@@ -39,9 +39,13 @@ class MiddlewareQueue
      * @param array $queuedMiddlewares Sequenced middlewares.
      * @access public.
      */
-    public function __construct (array $queuedMiddlewares)
+    public function __construct ()
     {
-        $this->_middlewares = $queuedMiddlewares;
+        $middlewares = ServiceBus::get('conf')->get('middlewares');
+        $this->_middlewares = [];
+        foreach ($middlewares as $middleware) {
+            array_push($this->_middlewares, new $middleware());
+        }
     }
 
 }

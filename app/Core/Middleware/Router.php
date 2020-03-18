@@ -32,8 +32,8 @@ class Router implements MiddlewareInterface
     public function let (Request $request) : Request
     {
         foreach ($this->_routes as $route) {
-            if ($route['method'] == $request->method &&
-                preg_match($route['pattern'], $request->parameters['route'], $params_matches)) {
+            if ($route['method'] == $request->parameters['method'] &&
+                preg_match($route['pattern'], $request->parameters['uri'], $params_matches)) {
                 array_shift($params_matches);
 
                 $request->route = new Route (

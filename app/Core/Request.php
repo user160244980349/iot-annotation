@@ -11,14 +11,6 @@ use App\Core\Route;
 class Request
 {
     /**
-     * Request method.
-     *
-     * @var array.
-     * @access public.
-     */
-    public $method;
-
-    /**
      * Request parameters.
      *
      * @var array.
@@ -47,8 +39,7 @@ class Request
      *
      * @access public.
      */
-    public function __construct (string $method, array $parameters, Route $route = null) {
-        $this->method = $method;
+    public function __construct (array $parameters, Route $route = null) {
         $this->parameters = $parameters;
         $this->route = $route;
     }

@@ -13,13 +13,13 @@
         <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">Hello!</h1>
             <p class="lead">
-                Greetings! You are at the sign up page now. So you can sign up.
+                Greetings! You are at the sign up page now. Also you can <a href="login">sign in</a>.
             </p>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 offset-3">
 
-                        <form method="post" action="register">
+                        <form method="post">
                             <div class="form-group text-left">
                                 <label for="inputUsername">Username</label>
                                 <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Enter username" required="" autofocus="">
@@ -43,8 +43,6 @@
                 </div>
             </div>
         </div>
-
-        <script type="application/javascript" src="js/main.js"></script>
 
     </body>
 </html>
