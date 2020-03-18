@@ -21,11 +21,8 @@ class RouteException
      */
     public static function toNotFoundPage (Request $request)
     {
-        $session = ServiceBus::get('session');
         $request->view = new View('404.tpl', [
             'title' => '404 Exception',
-            'auth' => $session->get('auth'),
-            'username' => $session->get('username')
         ]);
     }
 
@@ -37,11 +34,8 @@ class RouteException
      */
     public static function toForbiddenPage (Request $request)
     {
-        $session = ServiceBus::get('session');
         $request->view = new View('403.tpl', [
             'title' => '403 Exception',
-            'auth' => $session->get('auth'),
-            'username' => $session->get('username')
         ]);
     }
 }

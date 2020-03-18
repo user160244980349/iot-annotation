@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\Request;
 use App\Core\View;
 use App\Core\ServiceBus;
+use App\Model\User;
 
 /**
  * WelcomeController.php
@@ -21,11 +22,11 @@ class Home
      */
     public static function toHomePage (Request $request)
     {
-        $session = ServiceBus::get('session');
+        $data = User::getById(ServiceBus::get('session')->get('user_id'));
+        dump($data);
         $request->view = new View('home.tpl', [
             'title' => 'Home',
-            'auth' => $session->get('auth'),
-            'username' => $session->get('username')
+            'username' => $data['user_name'],
         ]);
     }
 

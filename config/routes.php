@@ -44,4 +44,9 @@ return [
         'pattern'       => '/^logout$/',
         'controller'    => ['App\Controller\Login', 'logout'] ],
 
+     [  'name'          => 'logout.get',
+        'method'        => 'get',
+        'pattern'       => '/^logout$/',
+        'controller'    => ['App\Controller\Login', 'logout'] ],
+
 ];

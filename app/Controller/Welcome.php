@@ -21,11 +21,8 @@ class Welcome
      */
     public static function toWelcomePage (Request $request)
     {
-        $session = ServiceBus::get('session');
         $request->view = new View('Welcome.tpl', [
             'title' => 'Home',
-            'auth' => $session->get('auth'),
-            'username' => $session->get('username')
         ]);
     }
 

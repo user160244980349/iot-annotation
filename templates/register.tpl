@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6 offset-3">
 
-                        <form method="post">
+                        <form method="post" action="register">
                             <div class="form-group text-left">
                                 <label for="inputUsername">Username</label>
                                 <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Enter username" required="" autofocus="">
