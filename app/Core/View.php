@@ -47,8 +47,7 @@ class View
      */
     public function __construct ($path, array $variables)
     {
-        global $config;
-        $this->path = $config['templates'] . '/' . $path;
+        $this->path = ServiceBus::get('fsmap')->get('templates') . '/' . $path;
         $this->variables = $variables;
     }
 

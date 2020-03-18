@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Route;
 /**
  * Request.php
  *
@@ -9,14 +10,6 @@ namespace App\Core;
  */
 class Request
 {
-    /**
-     * Request method.
-     *
-     * @var array.
-     * @access public.
-     */
-    public $method;
-
     /**
      * Request parameters.
      *
@@ -26,53 +19,29 @@ class Request
     public $parameters;
 
     /**
-     * Request session.
+     * Route that will be executed.
      *
-     * @var array.
+     * @var Route.
      * @access public.
      */
-    public $session;
+    public $route;
 
     /**
-     * Request constructor.
+     * View that will be executed.
      *
+     * @var View.
      * @access public.
      */
-    public function __construct ()
-    {
-        $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->session = $_SESSION;
-
-        if (empty($this->session)) {
-            session_start();
-        }
-
-        if ($this->method == 'GET') {
-            $this->parameters = $_GET;
-        } elseif ($this->method == 'POST') {
-            $this->parameters = $_POST;
-            if (isset($this->parameters['_method'])) {
-                if ($this->parameters['_method'] == 'put') {
-                    $this->method = 'PUT';
-                } elseif ($this->parameters['_method'] == 'delete') {
-                    $this->method = 'DELETE';
-                }
-            }
-        }
-
-        $this->parameters['route'] = $_SERVER['REQUEST_URI'];
-    }
+    public $view;
 
     /**
-     * Request destructor.
+     * Route constructor.
      *
      * @access public.
      */
-    public function __destruct ()
-    {
-        $this->method = null;
-        $this->uri = null;
-        $this->parameters = null;
+    public function __construct (array $parameters, Route $route = null) {
+        $this->parameters = $parameters;
+        $this->route = $route;
     }
 
 }

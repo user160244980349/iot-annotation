@@ -19,7 +19,5 @@
         </div>
         <?php include 'blocks/footer.tpl' ?>
 
-        <script type="application/javascript" src="js/main.js"></script>
-
     </body>
 </html>

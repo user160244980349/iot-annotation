@@ -1,33 +1,52 @@
 <?php
 
+/**
+* Patterns for parameters:
+*
+* ([0-9]+)      <- number
+* ([a-zA-Z]+)   <- word
+*/
+
 return [
 
-    'GET' => [
-        # welcome route
-        '/^\/$/'            => ['App\Controller\WelcomeController', 'toWelcomePage'],
-        # registration routes
-        '/^\/register$/'    => ['App\Controller\RegisterController', 'toRegisterPage'],
-        # login routes
-        '/^\/login$/'       => ['App\Controller\LoginController', 'toLoginPage'],
-        # home route
-        '/^\/home$/'        => ['App\Controller\HomeController', 'toHomePage'],
-    ],
+     [  'name'          => 'welcome.get',
+        'method'        => 'get',
+        'pattern'       => '/^$/',
+        'controller'    => ['App\Controller\Welcome', 'toWelcomePage'] ],
 
-    'POST' => [
-        # do register
-        '/^\/register$/'    => ['App\Controller\RegisterController', 'registerUser'],
-        # do login
-        '/^\/login$/'       => ['App\Controller\LoginController', 'logUserIn'],
-        # do logout
-        '/^\/logout$/'      => ['App\Controller\LoginController', 'logUserOut'],
-    ],
+     [  'name'          => 'register.get',
+        'method'        => 'get',
+        'pattern'       => '/^register$/',
+        'controller'    => ['App\Controller\Register', 'toRegisterPage'] ],
 
-    'PUT' => [
+     [  'name'          => 'register.post',
+        'method'        => 'post',
+        'pattern'       => '/^register$/',
+        'controller'    => ['App\Controller\Register', 'register'] ],
 
-    ],
+     [  'name'          => 'login.get',
+        'method'        => 'get',
+        'pattern'       => '/^login$/',
+        'controller'    => ['App\Controller\Login', 'toLoginPage'] ],
 
-    'DELETE' => [
+     [  'name'          => 'login.post',
+        'method'        => 'post',
+        'pattern'       => '/^login$/',
+        'controller'    => ['App\Controller\Login', 'login'] ],
 
-    ],
+     [  'name'          => 'home.get',
+        'method'        => 'get',
+        'pattern'       => '/^home$/',
+        'controller'    => ['App\Controller\Home', 'toHomePage'] ],
+
+     [  'name'          => 'logout.post',
+        'method'        => 'post',
+        'pattern'       => '/^logout$/',
+        'controller'    => ['App\Controller\Login', 'logout'] ],
+
+     [  'name'          => 'logout.get',
+        'method'        => 'get',
+        'pattern'       => '/^logout$/',
+        'controller'    => ['App\Controller\Login', 'logout'] ],
 
 ];

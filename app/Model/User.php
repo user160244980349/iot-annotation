@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use App\Core\Database;
 use PDOStatement;
+use App\Core\ServiceBus;
 
 /**
  * User.php
@@ -19,20 +19,15 @@ class User
      * @param array $user
      * @access public
      */
-    public static function add (Database $db, array $user)
+    public static function add (array $user)
     {
-        $queryString = "insert into user (";
-        foreach ($user as $key => $value) {
-            $queryString = "$queryString $key, ";
-        }
-        $queryString = substr($queryString, 0, -2);
-        $queryString = "$queryString ) values (";
-        foreach ($user as $key => $value) {
-            $queryString = "$queryString '$value', ";
-        }
-        $queryString = substr($queryString, 0, -2);
-        $queryString = "$queryString )";
-        $db->query($queryString);
+
+        $query_string = "insert into user (user_name,user_password,user_email) values ('" .
+                        $user['user_name'] . "','" .
+                        $user['user_password'] . "','" .
+                        $user['user_email'] . "')";
+
+        return ServiceBus::get('database')->query($query_string);
     }
 
     /**
@@ -43,9 +38,41 @@ class User
      * @return false|PDOStatement
      * @access public
      */
-    public static function get (Database $db, $username)
+    public static function getByName (string $username)
     {
-        return $db->query("select * from user where user_name = '$username'")->fetch();
+        $query_string = "select * from user where user_name = '$username'";
+
+        return ServiceBus::get('database')->query($query_string)->fetch();
+    }
+
+    /**
+     * Gets collection with info
+     *
+     * @param Database $db
+     * @param $username
+     * @return false|PDOStatement
+     * @access public
+     */
+    public static function getById (int $id)
+    {
+        $query_string = "select * from user where user_id = '$id'";
+
+        return ServiceBus::get('database')->query($query_string)->fetch();
+    }
+
+    /**
+     * Gets collection with info
+     *
+     * @param Database $db
+     * @param $username
+     * @return false|PDOStatement
+     * @access public
+     */
+    public static function getAll ()
+    {
+        $query_string = "select * from user";
+
+        return ServiceBus::get('database')->query($query_string)->fetchAll();
     }
 
 }
