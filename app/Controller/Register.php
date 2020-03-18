@@ -21,6 +21,10 @@ class Register
      */
     public static function toRegisterPage (Request $request)
     {
+        if (ServiceBus::get('session')->get('user_id')) {
+            header("location: /home");
+        }
+
         $request->view = new View('register.tpl', [
             'title' => 'Register',
         ]);

@@ -46,7 +46,7 @@ class Router implements MiddlewareInterface
             }
         }
 
-        $request->route = new Route ('notFound', ['App\Controller\RouteException', 'toNotFoundPage'], []);
+        $request->route = new Route ('not_found.get', ['App\Controller\RouteException', 'toNotFoundPage'], []);
 
         return $request;
     }

@@ -23,9 +23,9 @@ class Home
     public static function toHomePage (Request $request)
     {
         $data = User::getById(ServiceBus::get('session')->get('user_id'));
-        dump($data);
         $request->view = new View('home.tpl', [
             'title' => 'Home',
+            'user_id' => $data['user_id'],
             'username' => $data['user_name'],
         ]);
     }

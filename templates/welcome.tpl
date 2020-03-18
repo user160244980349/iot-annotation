@@ -15,7 +15,7 @@
             <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 class="display-4">Welcome!</h1>
                 <p class="lead">
-                    you are at the welcome page now.
+                    You are at the welcome page now.
                 </p>
             </div>
         </div>

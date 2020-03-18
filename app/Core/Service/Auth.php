@@ -64,6 +64,18 @@ class Auth
      * @param AppState $state.
      * @access public.
      */
+    public function allowed (array $permissions)
+    {
+        $user_id = ServiceBus::get('session')->get('user_id');
+        return isset($user_id);
+    }
+
+    /**
+     * Register new user.
+     *
+     * @param AppState $state.
+     * @access public.
+     */
     public function logout ()
     {
         ServiceBus::get('session')->destroy();

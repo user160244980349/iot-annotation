@@ -21,6 +21,10 @@ class Login
      */
     public static function toLoginPage (Request $request)
     {
+        if (ServiceBus::get('session')->get('user_id')) {
+            header("location: /home");
+        }
+
         $request->view = new View('login.tpl', [
             'title' => 'Login',
         ]);
