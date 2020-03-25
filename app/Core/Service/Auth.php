@@ -35,7 +35,7 @@ class Auth
      * Log user in.
      *
      * @param string $username.
-     * @param steing $password.
+     * @param string $password.
      * @access public.
      */
     public function login (string $username, string $password)

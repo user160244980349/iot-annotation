@@ -6,5 +6,6 @@ return [
     'session'       => 'App\Core\Service\Session',
     'database'      => 'App\Core\Service\Database',
     'auth'          => 'App\Core\Service\Auth',
+    'console'       => 'App\Core\Service\Console',
 
 ];

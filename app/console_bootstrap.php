@@ -1,7 +1,5 @@
 <?php
 
-namespace App;
-
 use App\Core\ServiceBus;
 use App\Core\Service\FSMap;
 use App\Core\Service\Configuration;
@@ -10,7 +8,7 @@ use App\Core\Service\Configuration;
 ServiceBus::register('fsmap', new FSMap());
 ServiceBus::register('conf', new Configuration());
 ServiceBus::autoload();
-ServiceBus::get('application')->run();
+ServiceBus::get('console')->run($argv);
 
 # test
 # dump(ServiceBus::instance());
