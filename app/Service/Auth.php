@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Service;
+namespace App\Service;
 
-use App\Core\ServiceBus;
+use App\Object\ServiceBus;
 use App\Model\User;
 
 /**
@@ -21,8 +21,8 @@ class Auth
      */
     public function register (array $user)
     {
-        if ($user['user_password'] == $user['password_confirm']) {
-            $user['user_password'] = md5(md5($user['user_password']));
+        if ($user['password'] == $user['password_confirm']) {
+            $user['password'] = md5(md5($user['password']));
             $user['password_confirm'] = md5(md5($user['password_confirm']));
             if (User::add($user)) {
                 return true;
@@ -42,10 +42,10 @@ class Auth
     {
         $user = User::getByName($username);
 
-        if ($user['user_password'] != md5(md5($password))) {
+        if ($user['password'] != md5(md5($password))) {
             return false;
         }
-        ServiceBus::get('session')->set('user_id', $user['user_id']);
+        ServiceBus::get('session')->set('user_id', $user['id']);
         return true;
     }
 
@@ -55,9 +55,23 @@ class Auth
      * @param int $user.
      * @access public.
      */
-    public function user (int $id)
+    public function authenticated ()
     {
-        return User::getById($id);
+        if (ServiceBus::get('session')->get('user_id')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get authorized user.
+     *
+     * @param int $user.
+     * @access public.
+     */
+    public function user ()
+    {
+        return User::getById(ServiceBus::get('session')->get('user_id'));
     }
 
     /**
@@ -68,8 +82,7 @@ class Auth
      */
     public function allowed (array $permissions)
     {
-        $user_id = ServiceBus::get('session')->get('user_id');
-        return isset($user_id);
+        return $this->authenticated();
     }
 
     /**

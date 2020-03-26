@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Core\Request;
-use App\Core\View;
-use App\Core\ServiceBus;
+use App\Object\Request;
+use App\Object\View;
+use App\Object\ServiceBus;
 
 /**
  * Register.php
@@ -22,8 +22,9 @@ class Register
      */
     public static function toRegisterPage (Request $request)
     {
-        if (ServiceBus::get('session')->get('user_id')) {
+        if (ServiceBus::get('auth')->authenticated()) {
             header("location: /home");
+            exit;
         }
 
         $request->view = new View('register.tpl', [
@@ -42,10 +43,10 @@ class Register
         $auth = ServiceBus::get('auth');
 
         if ($auth->register([
-            'user_name' => $request->parameters['username'],
-            'user_password' => $request->parameters['password'],
+            'name' => $request->parameters['username'],
+            'password' => $request->parameters['password'],
             'password_confirm' => $request->parameters['password_confirm'],
-            'user_email' => $request->parameters['email'] ])) {
+            'email' => $request->parameters['email'] ])) {
 
             if ($auth->login(   $request->parameters['username'],
                                 $request->parameters['password'] )) {

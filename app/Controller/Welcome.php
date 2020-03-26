@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Core\Request;
-use App\Core\View;
-use App\Core\ServiceBus;
+use App\Object\Request;
+use App\Object\View;
+use App\Object\ServiceBus;
 use App\Model\User;
 
 /**
@@ -23,20 +23,19 @@ class Welcome
      */
     public static function toWelcomePage (Request $request)
     {
-        $id = ServiceBus::get('session')->get('user_id');
 
-        if (!isset($id)) {
+        if (!ServiceBus::get('auth')->authenticated()) {
             $request->view = new View('welcome.tpl', [
                 'title' => 'Welcome',
             ]);
             return;
         }
 
-        $data = User::getById($id);
+        $data = ServiceBus::get('auth')->user();
         $request->view = new View('welcome.tpl', [
             'title' => 'Welcome',
-            'user_id' => $data['user_id'],
-            'username' => $data['user_name'],
+            'user_id' => $data['id'],
+            'username' => $data['name'],
         ]);
     }
 

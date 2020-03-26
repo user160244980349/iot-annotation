@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Service;
+namespace App\Service;
 
-use App\Core\ServiceBus;
-use App\Core\MiddlewareQueue;
+use App\Object\ServiceBus;
+use App\Object\MiddlewareQueue;
 
 /**
  * Application.php

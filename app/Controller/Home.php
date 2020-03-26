@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Core\Request;
-use App\Core\View;
-use App\Core\ServiceBus;
+use App\Object\Request;
+use App\Object\View;
+use App\Object\ServiceBus;
 use App\Model\User;
 
 /**
@@ -14,7 +14,7 @@ use App\Model\User;
  */
 class Home
 {
-    
+
     /**
      * Go to home page.
      *
@@ -23,11 +23,11 @@ class Home
      */
     public static function toHomePage (Request $request)
     {
-        $data = User::getById(ServiceBus::get('session')->get('user_id'));
+        $data = ServiceBus::get('auth')->user();
         $request->view = new View('home.tpl', [
             'title' => 'Home',
-            'user_id' => $data['user_id'],
-            'username' => $data['user_name'],
+            'user_id' => $data['id'],
+            'username' => $data['name'],
         ]);
     }
 

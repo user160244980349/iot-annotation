@@ -2,10 +2,10 @@
 
 return [
 
-    'application'   => 'App\Core\Service\Application',
-    'session'       => 'App\Core\Service\Session',
-    'database'      => 'App\Core\Service\Database',
-    'auth'          => 'App\Core\Service\Auth',
-    'console'       => 'App\Core\Service\Console',
+    'application'   => 'App\Service\Application',
+    'session'       => 'App\Service\Session',
+    'database'      => 'App\Service\Database',
+    'auth'          => 'App\Service\Auth',
+    'console'       => 'App\Service\Console',
 
 ];

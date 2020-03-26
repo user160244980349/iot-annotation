@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Middleware;
+namespace App\Middleware;
 
-use App\Core\Request;
-use App\Core\Route;
-use App\Core\ServiceBus;
-use App\Core\Middleware\MiddlewareInterface;
+use App\Object\Request;
+use App\Object\Route;
+use App\Object\ServiceBus;
+use App\Middleware\MiddlewareInterface;
 
 /**
  * Auth.php

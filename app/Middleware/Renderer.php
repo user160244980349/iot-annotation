@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Middleware;
+namespace App\Middleware;
 
-use App\Core\Request;
-use App\Core\Middleware\MiddlewareInterface;
+use App\Object\Request;
+use App\Middleware\MiddlewareInterface;
 
 /**
  * Renderer.php

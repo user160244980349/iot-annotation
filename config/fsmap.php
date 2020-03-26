@@ -3,14 +3,13 @@
 return [
 
     'root'          => __DIR__ . '/..',
-    'autoload'      => __DIR__ . '/../vendor/autoload.php',
-    'bootstrap'     => __DIR__ . '/../app/bootstrap.php',
-    'services'      => __DIR__ . '/../config/services.php',
-    'middlewares'   => __DIR__ . '/../config/middlewares.php',
-    'permissions'   => __DIR__ . '/../config/permissions.php',
-    'routes'        => __DIR__ . '/../config/routes.php',
-    'database'      => __DIR__ . '/../config/database.php',
-    'language'      => __DIR__ . '/../config/language.php',
+    'services'      => __DIR__ . '/services.php',
+    'middlewares'   => __DIR__ . '/middlewares.php',
+    'console'       => __DIR__ . '/console.php',
+    'permissions'   => __DIR__ . '/permissions.php',
+    'routes'        => __DIR__ . '/routes.php',
+    'database'      => __DIR__ . '/database.php',
     'templates'     => __DIR__ . '/../templates',
+    'migrations'    => __DIR__ . '/../database/migrations',
 
 ];

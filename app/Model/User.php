@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use PDOStatement;
-use App\Core\ServiceBus;
+use App\Object\ServiceBus;
 
 /**
  * User.php
@@ -22,12 +22,17 @@ class User
     public static function add (array $user)
     {
 
-        $query_string = "insert into user (user_name,user_password,user_email) values ('" .
-                        $user['user_name'] . "','" .
-                        $user['user_password'] . "','" .
-                        $user['user_email'] . "')";
+            $query_string = "INSERT INTO `users` (
+                                `name`,
+                                `password`,
+                                `email`
+                            ) VALUES (
+                                '{$user['name']}',
+                                '{$user['password']}',
+                                '{$user['email']}'
+                            )";
 
-        return ServiceBus::get('database')->query($query_string);
+            return ServiceBus::get('database')->query($query_string);
     }
 
     /**
@@ -37,9 +42,9 @@ class User
      * @return false|PDOStatement.
      * @access public.
      */
-    public static function getByName (string $username)
+    public static function getByName (string $name)
     {
-        $query_string = "select * from user where user_name = '$username'";
+        $query_string = "SELECT * FROM `users` WHERE `name` = '$name'";
 
         return ServiceBus::get('database')->query($query_string)->fetch();
     }
@@ -53,7 +58,7 @@ class User
      */
     public static function getById (int $id)
     {
-        $query_string = "select * from user where user_id = '$id'";
+        $query_string = "SELECT * FROM `users` WHERE `id` = '$id'";
 
         return ServiceBus::get('database')->query($query_string)->fetch();
     }
@@ -66,7 +71,7 @@ class User
      */
     public static function getAll ()
     {
-        $query_string = "select * from user";
+        $query_string = "SELECT * FROM `users`";
 
         return ServiceBus::get('database')->query($query_string)->fetchAll();
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Service;
+namespace App\Service;
 
-use App\Core\ServiceBus;
+use App\Object\ServiceBus;
 
 /**
  * Configuration.php

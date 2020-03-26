@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Core\Service;
+namespace App\Service;
 
 use PDO;
 use PDOStatement;
-use App\Core\ServiceBus;
+use App\Object\ServiceBus;
 
 /**
  * Database.php
@@ -72,6 +72,18 @@ class Database
     public function query ($queryString)
     {
         return $this->_connection->query($queryString);
+    }
+
+    /**
+     * Send query to database and give a response.
+     *
+     * @param string $queryString Query to send.
+     * @return false|PDOStatement.
+     * @access public.
+     */
+    public function error ()
+    {
+        return $this->_connection->errorInfo();
     }
 
     /**

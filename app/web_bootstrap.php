@@ -1,8 +1,8 @@
 <?php
 
-use App\Core\ServiceBus;
-use App\Core\Service\FSMap;
-use App\Core\Service\Configuration;
+use App\Object\ServiceBus;
+use App\Service\FSMap;
+use App\Service\Configuration;
 
 # Call application
 ServiceBus::register('fsmap', new FSMap());

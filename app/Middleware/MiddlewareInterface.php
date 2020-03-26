@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Middleware;
+namespace App\Middleware;
 
-use App\Core\Request;
+use App\Object\Request;
 
 /**
  * MiddlewareInterface.php

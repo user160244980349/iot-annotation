@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Service;
+namespace App\Service;
 
 /**
  * FSMap.php
@@ -16,7 +16,7 @@ class FSMap
       * @var array.
       * @access private.
       */
-     private static $_conf_path = __DIR__ . '/../../../config/fsmap.php';
+     private static $_conf_path = __DIR__ . '/../../config/fsmap.php';
 
       /**
        * ServiceBus array.

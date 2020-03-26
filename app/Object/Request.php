@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core;
+namespace App\Object;
 
-use App\Core\Route;
+use Route;
 
 /**
  * Request.php

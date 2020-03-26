@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App\Object;
 
 /**
  * Route.php
@@ -9,7 +9,7 @@ namespace App\Core;
  */
 class Route
 {
-    
+
     /**
      * Request method.
      *

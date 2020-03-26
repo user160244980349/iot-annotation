@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Core\Request;
-use App\Core\View;
-use App\Core\ServiceBus;
+use App\Object\Request;
+use App\Object\View;
+use App\Object\ServiceBus;
 
 /**
  * WelcomeController.php
@@ -22,8 +22,9 @@ class Login
      */
     public static function toLoginPage (Request $request)
     {
-        if (ServiceBus::get('session')->get('user_id')) {
+        if (ServiceBus::get('auth')->authenticated()) {
             header("location: /home");
+            exit;
         }
 
         $request->view = new View('login.tpl', [
