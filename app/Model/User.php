@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
+use Engine\Entity\ServiceBus;
 use PDOStatement;
-use App\Object\ServiceBus;
 
 /**
  * User.php
@@ -16,35 +16,42 @@ class User
     /**
      * Adds new user into database.
      *
-     * @param array $user.
      * @access public
+     * @param array $user .
+     * @return false|PDOStatement.
      */
-    public static function add (array $user)
+    public static function add(array $user)
     {
 
-            $query_string = "INSERT INTO `users` (
-                                `name`,
-                                `password`,
-                                `email`
-                            ) VALUES (
-                                '{$user['name']}',
-                                '{$user['password']}',
-                                '{$user['email']}'
-                            )";
+        $query_string =
+<<<EOQ
+INSERT INTO `users` (
+    `name`,
+    `password`,
+    `email`
+) VALUES (
+    '{$user['name']}',
+    '{$user['password']}',
+    '{$user['email']}'
+);
+EOQ;
 
-            return ServiceBus::get('database')->query($query_string);
+        return ServiceBus::get('database')->query($query_string);
     }
 
     /**
      * Gets array with info.
      *
-     * @param $username.
-     * @return false|PDOStatement.
      * @access public.
+     * @param string $name
+     * @return false|PDOStatement.
      */
-    public static function getByName (string $name)
+    public static function getByName(string $name)
     {
-        $query_string = "SELECT * FROM `users` WHERE `name` = '$name'";
+        $query_string =
+<<<EOQ
+SELECT * FROM `users` WHERE `name` = '$name';
+EOQ;
 
         return ServiceBus::get('database')->query($query_string)->fetch();
     }
@@ -52,13 +59,16 @@ class User
     /**
      * Gets array with info.
      *
-     * @param int $id.
-     * @return false|PDOStatement.
      * @access public.
+     * @param int $id .
+     * @return false|PDOStatement.
      */
-    public static function getById (int $id)
+    public static function getById(int $id)
     {
-        $query_string = "SELECT * FROM `users` WHERE `id` = '$id'";
+        $query_string =
+<<<EOQ
+SELECT * FROM `users` WHERE `id` = '$id';
+EOQ;
 
         return ServiceBus::get('database')->query($query_string)->fetch();
     }
@@ -66,12 +76,15 @@ class User
     /**
      * Gets array with info.
      *
-     * @return false|PDOStatement.
      * @access public.
+     * @return false|PDOStatement.
      */
-    public static function getAll ()
+    public static function getAll()
     {
-        $query_string = "SELECT * FROM `users`";
+        $query_string =
+<<<EOQ
+SELECT * FROM `users`;
+EOQ;
 
         return ServiceBus::get('database')->query($query_string)->fetchAll();
     }

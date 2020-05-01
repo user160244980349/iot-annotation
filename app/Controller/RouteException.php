@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Object\Request;
-use App\Object\View;
-use App\Object\ServiceBus;
-use App\Model\User;
+use Engine\Entity\Request;
+use Engine\Entity\ServiceBus;
+use Engine\Entity\View;
 
 /**
  * RouteException.php
@@ -18,10 +17,10 @@ class RouteException
     /**
      * Go to 404 page.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
-    public static function toNotFoundPage (Request $request)
+    public static function toNotFoundPage(Request $request)
     {
 
         if (!ServiceBus::get('auth')->authenticated()) {
@@ -42,10 +41,10 @@ class RouteException
     /**
      * Go to 403 page.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
-    public static function toForbiddenPage (Request $request)
+    public static function toForbiddenPage(Request $request)
     {
 
         if (!ServiceBus::get('auth')->authenticated()) {

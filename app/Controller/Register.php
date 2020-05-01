@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Object\Request;
-use App\Object\View;
-use App\Object\ServiceBus;
+use Engine\Entity\Request;
+use Engine\Entity\ServiceBus;
+use Engine\Entity\View;
 
 /**
  * Register.php
@@ -17,10 +17,10 @@ class Register
     /**
      * Go to register page.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
-    public static function toRegisterPage (Request $request)
+    public static function toRegisterPage(Request $request)
     {
         if (ServiceBus::get('auth')->authenticated()) {
             header("location: /home");
@@ -35,10 +35,10 @@ class Register
     /**
      * Register new user.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
-    public static function register (Request $request)
+    public static function register(Request $request)
     {
         $auth = ServiceBus::get('auth');
 
@@ -46,10 +46,10 @@ class Register
             'name' => $request->parameters['username'],
             'password' => $request->parameters['password'],
             'password_confirm' => $request->parameters['password_confirm'],
-            'email' => $request->parameters['email'] ])) {
+            'email' => $request->parameters['email']])) {
 
-            if ($auth->login(   $request->parameters['username'],
-                                $request->parameters['password'] )) {
+            if ($auth->login($request->parameters['username'],
+                $request->parameters['password'])) {
                 header("location: /home");
                 exit;
             }

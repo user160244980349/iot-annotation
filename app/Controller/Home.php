@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Object\Request;
-use App\Object\View;
-use App\Object\ServiceBus;
-use App\Model\User;
+use Engine\Entity\Request;
+use Engine\Entity\ServiceBus;
+use Engine\Entity\View;
 
 /**
  * Home.php
@@ -18,10 +17,10 @@ class Home
     /**
      * Go to home page.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
-    public static function toHomePage (Request $request)
+    public static function toHomePage(Request $request)
     {
         $data = ServiceBus::get('auth')->user();
         $request->view = new View('home.tpl', [

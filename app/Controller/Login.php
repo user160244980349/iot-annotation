@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Object\Request;
-use App\Object\View;
-use App\Object\ServiceBus;
+use Engine\Entity\Request;
+use Engine\Entity\ServiceBus;
+use Engine\Entity\View;
 
 /**
  * WelcomeController.php
@@ -20,7 +20,7 @@ class Login
      * @param Request $request.
      * @access public.
      */
-    public static function toLoginPage (Request $request)
+    public static function toLoginPage(Request $request)
     {
         if (ServiceBus::get('auth')->authenticated()) {
             header("location: /home");
@@ -38,7 +38,7 @@ class Login
      * @param Request $request.
      * @access public.
      */
-    public static function login (Request $request)
+    public static function login(Request $request)
     {
         if (ServiceBus::get('auth')->login(
             $request->parameters['username'],
@@ -56,7 +56,7 @@ class Login
      * @param Request $request.
      * @access public.
      */
-    public static function logout (Request $state)
+    public static function logout(Request $request)
     {
         ServiceBus::get('auth')->logout();
         header("location: /");
