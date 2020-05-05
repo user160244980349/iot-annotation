@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use Engine\Entity\ServiceBus;
 use PDOStatement;
+use Engine\Entity\ServiceBus;
 
 /**
  * User.php
@@ -16,77 +16,80 @@ class User
     /**
      * Adds new user into database.
      *
-     * @access public
-     * @param array $user .
+     * @access public.
+     * @param array $user.
      * @return false|PDOStatement.
      */
     public static function add(array $user)
     {
+        $response = ServiceBus::get('database')->fetch(
+            "INSERT INTO `users` (
+                `name`,
+                `password`,
+                `email`
+            ) VALUES (
+                '{$user['name']}',
+                '{$user['password']}',
+                '{$user['email']}'
+            );");
 
-        $query_string =
-<<<EOQ
-INSERT INTO `users` (
-    `name`,
-    `password`,
-    `email`
-) VALUES (
-    '{$user['name']}',
-    '{$user['password']}',
-    '{$user['email']}'
-);
-EOQ;
-
-        return ServiceBus::get('database')->query($query_string);
+        return isset($response);
     }
 
     /**
-     * Gets array with info.
+     * Gives array with user info.
      *
      * @access public.
-     * @param string $name
+     * @param string $name.
      * @return false|PDOStatement.
      */
     public static function getByName(string $name)
     {
-        $query_string =
-<<<EOQ
-SELECT * FROM `users` WHERE `name` = '$name';
-EOQ;
-
-        return ServiceBus::get('database')->query($query_string)->fetch();
+        return ServiceBus::get('database')->fetch(
+            "SELECT * FROM `users` WHERE `name` = '$name';");
     }
 
     /**
-     * Gets array with info.
+     * Gives array with user info.
      *
      * @access public.
-     * @param int $id .
+     * @param int $id.
      * @return false|PDOStatement.
      */
     public static function getById(int $id)
     {
-        $query_string =
-<<<EOQ
-SELECT * FROM `users` WHERE `id` = '$id';
-EOQ;
-
-        return ServiceBus::get('database')->query($query_string)->fetch();
+        return ServiceBus::get('database')->fetch(
+            "SELECT * FROM `users` WHERE `id` = '$id';");
     }
 
     /**
-     * Gets array with info.
+     * Gives array with all users info.
      *
      * @access public.
      * @return false|PDOStatement.
      */
     public static function getAll()
     {
-        $query_string =
-<<<EOQ
-SELECT * FROM `users`;
-EOQ;
+        return ServiceBus::get('database')->fetchAll(
+            "SELECT * FROM `users`;");
+    }
 
-        return ServiceBus::get('database')->query($query_string)->fetchAll();
+    /**
+     * Gives array with all user permissions.
+     *
+     * @access public.
+     * @param int $id.
+     * @return array.
+     */
+    public static function permissions(int $id) : array
+    {
+        return ServiceBus::get('database')->fetchAll(
+            "SELECT `for` FROM `users`
+                INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
+                INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
+                INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
+                INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
+                WHERE `users`.`id` = '$id'");
     }
 
 }

@@ -4,6 +4,7 @@ namespace Engine\Service;
 
 use App\Model\User;
 use Engine\Entity\ServiceBus;
+use PDOStatement;
 
 /**
  * Receiver.php
@@ -16,8 +17,9 @@ class Auth
     /**
      * Register new user.
      *
-     * @param array $user User credentials.
      * @access public.
+     * @param array $user User credentials.
+     * @return bool
      */
     public function register(array $user)
     {
@@ -34,9 +36,10 @@ class Auth
     /**
      * Log user in.
      *
-     * @param string $username .
-     * @param string $password .
      * @access public.
+     * @param string $username.
+     * @param string $password.
+     * @return bool
      */
     public function login(string $username, string $password)
     {
@@ -45,41 +48,61 @@ class Auth
         if ($user['password'] != md5(md5($password))) {
             return false;
         }
-        ServiceBus::get('session')->set('user_id', $user['id']);
+
+        ServiceBus::get('session')->set('id', $user['id']);
         return true;
     }
 
     /**
      * Get authorized user.
      *
-     * @param int $user .
      * @access public.
+     * @return false|PDOStatement
      */
     public function user()
     {
-        return User::getById(ServiceBus::get('session')->get('user_id'));
+        $id = ServiceBus::get('session')->get('id');
+
+        if (isset($id)) {
+            return User::getById($id);
+        }
+        return null;
     }
 
     /**
-     * Check if user has permitions.
+     * Check if user has permissions.
      *
-     * @param array $permissions Permitions list.
      * @access public.
+     * @param array $permissions Permissions list.
+     * @return bool
      */
     public function allowed(array $permissions)
     {
-        return $this->authenticated();
+        $id = ServiceBus::get('session')->get('id');
+        if (!isset($id)) {
+            return false;
+        }
+
+        $user_permissions = array_column(User::permissions($id), 'for');
+        $difference = array_diff($permissions, $user_permissions);
+        if (count($difference) != count($user_permissions) - count($permissions)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Get authorized user.
      *
-     * @param int $user .
      * @access public.
+     * @return bool
      */
     public function authenticated()
     {
-        if (ServiceBus::get('session')->get('user_id')) {
+        $id = ServiceBus::get('session')->get('id');
+
+        if (isset($id)) {
             return true;
         }
         return false;

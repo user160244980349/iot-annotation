@@ -2,8 +2,6 @@
 
 namespace Engine\Command;
 
-use Engine\Entity\ServiceBus;
-
 /**
  * Session.php
  *
@@ -15,7 +13,8 @@ class Session
     /**
      * Clears user session
      */
-    public static function clear() {
+    public static function clear()
+    {
         print("clearing sessions...\n");
         self::rrmdir(session_save_path());
         print("sessions were cleared.\n");
@@ -25,12 +24,12 @@ class Session
      * Recursively removes directory content
      *
      * @access private.
-     * @param $directory.
-     * @param null $delete_parent.
+     * @param $directory .
+     * @param null $delete_parent .
      */
     private static function rrmdir($directory, $delete_parent = null)
     {
-        $files = glob($directory . '/{,.}[!.,!..]*',GLOB_MARK|GLOB_BRACE);
+        $files = glob($directory . '/{,.}[!.,!..]*', GLOB_MARK | GLOB_BRACE);
         foreach ($files as $file) {
             if (is_dir($file)) {
                 self::rrmdir($file, 1);

@@ -9,7 +9,7 @@ use Engine\Entity\View;
 /**
  * Register.php
  *
- * Controller class to manage registration.
+ * Controller class for managing registration.
  */
 class Register
 {
@@ -17,7 +17,7 @@ class Register
     /**
      * Go to register page.
      *
-     * @param Request $request .
+     * @param Request $request.
      * @access public.
      */
     public static function toRegisterPage(Request $request)
@@ -35,7 +35,7 @@ class Register
     /**
      * Register new user.
      *
-     * @param Request $request .
+     * @param Request $request.
      * @access public.
      */
     public static function register(Request $request)

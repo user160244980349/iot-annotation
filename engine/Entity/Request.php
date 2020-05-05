@@ -2,8 +2,6 @@
 
 namespace Engine\Entity;
 
-use Route;
-
 /**
  * Request.php
  *

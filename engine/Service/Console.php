@@ -14,7 +14,7 @@ class Console
      * Run command.
      *
      * @access public.
-     * @param array $args.
+     * @param array $args .
      */
     public function run(array $args)
     {

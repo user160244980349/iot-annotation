@@ -3,6 +3,6 @@
 return [
 
     # Home page
-    'home.get' => ['authorized'],
+    'home.get' => ['authenticated'],
 
 ];

@@ -17,6 +17,7 @@ class Configuration
      *
      * @param string $alias Service alias to get.
      * @access public.
+     * @return mixed
      */
     public function get(string $alias)
     {

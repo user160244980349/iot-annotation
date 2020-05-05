@@ -20,17 +20,42 @@ class Seed
      */
     public static function create(string $name)
     {
-        $file = ServiceBus::get('fsmap')->get('seeds') . '/' . date('m-d-Y_H-i-s') . '_' . $name . '.php';
+        print("creating seeds...\n");
+        $path = ServiceBus::get('fsmap')->get('seeds');
+        $date = date('m_d_Y_H_i_s');
+        $name = "{$name}_seed";
+        $file = "{$path}/{$date}_{$name}.php";
         $content =
-<<<EOT
+            /** @lang php&sql */
+            <<<EOT
 <?php
 
+namespace Database\Migration;
+
+use Engine\Entity\Seed;
 use Engine\Entity\ServiceBus;
 
-ServiceBus::get('database')->query( /** query **/ );
-EOT;
+class {$name}_{$date} extends Seed
+{
+    
+    public static function do() {
+        ServiceBus::get('database')->query(
+<<<EOQ
+SELECT * FROM `table`
+EOQ
+        );
+    }
+    
+    public static function undo() {
+        ServiceBus::get('database')->query(
+<<<EOQ
+SELECT * FROM `table`
+EOQ
+        );
+    }
 
-        print("creating migration...\n");
+}
+EOT;
         file_put_contents($file, $content);
         print("migration was created.\n");
     }

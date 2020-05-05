@@ -9,7 +9,7 @@ use Engine\Entity\View;
 /**
  * RouteException.php
  *
- * Controller class to load exciption pages.
+ * Controller class to load exception pages.
  */
 class RouteException
 {
@@ -17,19 +17,11 @@ class RouteException
     /**
      * Go to 404 page.
      *
-     * @param Request $request .
      * @access public.
+     * @param Request $request.
      */
     public static function toNotFoundPage(Request $request)
     {
-
-        if (!ServiceBus::get('auth')->authenticated()) {
-            $request->view = new View('404.tpl', [
-                'title' => '404 Exception',
-            ]);
-            return;
-        }
-
         $data = ServiceBus::get('auth')->user();
         $request->view = new View('404.tpl', [
             'title' => '404 Exception',
@@ -41,19 +33,11 @@ class RouteException
     /**
      * Go to 403 page.
      *
-     * @param Request $request .
      * @access public.
+     * @param Request $request.
      */
     public static function toForbiddenPage(Request $request)
     {
-
-        if (!ServiceBus::get('auth')->authenticated()) {
-            $request->view = new View('403.tpl', [
-                'title' => '403 Exception',
-            ]);
-            return;
-        }
-
         $data = ServiceBus::get('auth')->user();
         $request->view = new View('403.tpl', [
             'title' => '403 Exception',

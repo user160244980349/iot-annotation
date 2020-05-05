@@ -9,7 +9,7 @@ use Engine\Entity\View;
 /**
  * Home.php
  *
- * Controller class to load home page.
+ * Controller class for loading home page.
  */
 class Home
 {
@@ -17,8 +17,8 @@ class Home
     /**
      * Go to home page.
      *
-     * @param Request $request .
      * @access public.
+     * @param Request $request.
      */
     public static function toHomePage(Request $request)
     {

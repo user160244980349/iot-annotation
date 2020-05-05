@@ -27,7 +27,7 @@ class ServiceBus
     private $_services;
 
     /**
-     * ServiceBus autoload services from config.
+     * ServiceBus autoload services from ngn-config.
      *
      * @access public.
      */
@@ -37,7 +37,7 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus autoload services from config.
+     * ServiceBus autoload services from ngn-config.
      *
      * @access public.
      */

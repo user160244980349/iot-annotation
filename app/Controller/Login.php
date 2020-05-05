@@ -9,7 +9,7 @@ use Engine\Entity\View;
 /**
  * WelcomeController.php
  *
- * Controller class to load home page.
+ * Controller class for loading login page.
  */
 class Login
 {
@@ -17,8 +17,8 @@ class Login
     /**
      * Go to login page.
      *
-     * @param Request $request.
      * @access public.
+     * @param Request $request.
      */
     public static function toLoginPage(Request $request)
     {
@@ -35,8 +35,8 @@ class Login
     /**
      * Log user in.
      *
-     * @param Request $request.
      * @access public.
+     * @param Request $request.
      */
     public static function login(Request $request)
     {
@@ -53,8 +53,8 @@ class Login
     /**
      * Log user out.
      *
-     * @param Request $request.
      * @access public.
+     * @param Request $request.
      */
     public static function logout(Request $request)
     {

@@ -9,7 +9,7 @@ use Engine\Entity\View;
 /**
  * Welcome.php
  *
- * Controller class to load welcome page.
+ * Controller class for loading welcome page.
  */
 class Welcome
 {
@@ -17,19 +17,11 @@ class Welcome
     /**
      * Go to welcome page.
      *
-     * @param Request $request .
      * @access public.
+     * @param Request $request.
      */
     public static function toWelcomePage(Request $request)
     {
-
-        if (!ServiceBus::get('auth')->authenticated()) {
-            $request->view = new View('welcome.tpl', [
-                'title' => 'Welcome',
-            ]);
-            return;
-        }
-
         $data = ServiceBus::get('auth')->user();
         $request->view = new View('welcome.tpl', [
             'title' => 'Welcome',

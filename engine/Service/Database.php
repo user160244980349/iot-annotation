@@ -4,7 +4,6 @@ namespace Engine\Service;
 
 use Engine\Entity\ServiceBus;
 use PDO;
-use PDOStatement;
 
 /**
  * Database.php
@@ -88,19 +87,38 @@ class Database
      * Send query to database and give a response.
      *
      * @param string $queryString Query to send.
-     * @return false|PDOStatement.
+     * @return array
      * @access public.
      */
-    public function query($queryString)
+    public function fetch($queryString)
     {
-        return $this->_connection->query($queryString);
+        $pdo = $this->_connection->query($queryString);
+        if (isset($pdo) && $pdo != false) {
+            return $pdo->fetch(PDO::FETCH_ASSOC);
+        }
+        return null;
     }
 
     /**
      * Send query to database and give a response.
      *
      * @param string $queryString Query to send.
-     * @return false|PDOStatement.
+     * @return array
+     * @access public.
+     */
+    public function fetchAll($queryString)
+    {
+        $pdo = $this->_connection->query($queryString);
+        if (isset($pdo) && $pdo != false) {
+            return $pdo->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return null;
+    }
+
+    /**
+     * Send query to database and give a response.
+     *
+     * @return array
      * @access public.
      */
     public function error()
