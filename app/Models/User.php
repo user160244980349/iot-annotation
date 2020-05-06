@@ -22,8 +22,8 @@ class User
      */
     public static function add(array $user)
     {
-        $response = Database::fetch(
-            "INSERT INTO `users` (
+        $response = Database::fetch("
+            INSERT INTO `users` (
                 `name`,
                 `password`,
                 `email`
@@ -45,8 +45,8 @@ class User
      */
     public static function getByName(string $name)
     {
-        return Database::fetch(
-            "SELECT * FROM `users` WHERE `name` = '$name';");
+        return Database::fetch("
+            SELECT * FROM `users` WHERE `name` = '$name';");
     }
 
     /**
@@ -58,8 +58,8 @@ class User
      */
     public static function getById(int $id)
     {
-        return Database::fetch(
-            "SELECT * FROM `users` WHERE `id` = '$id';");
+        return Database::fetch("
+            SELECT * FROM `users` WHERE `id` = '$id';");
     }
 
     /**
@@ -70,8 +70,8 @@ class User
      */
     public static function getAll()
     {
-        return Database::fetchAll(
-            "SELECT * FROM `users`;");
+        return Database::fetchAll("
+            SELECT * FROM `users`;");
     }
 
 }

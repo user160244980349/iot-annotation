@@ -83,17 +83,16 @@ EOT;
             self::init();
         }
 
-        $response = Database::fetch(
-            "SELECT MAX(`iteration`) as `max` FROM `migrations`;");
+        $response = Database::fetch("
+            SELECT MAX(`iteration`) as `max` FROM `migrations`;");
 
         if (!isset($response['max']))
             $iteration = 0;
         else
             $iteration = $response['max'] + 1;
 
-        $response = array_column(Database::fetchAll(
-            "SELECT DISTINCT `class` FROM `migrations`;"),
-            'class');
+        $response = array_column(Database::fetchAll("
+            SELECT DISTINCT `class` FROM `migrations`;"), 'class');
 
         $migrations_list = Configuration::get('migrations_list');
         foreach ($migrations_list as $migration) {
@@ -108,8 +107,8 @@ EOT;
             $migration::commit();
 
             $escaped_migration = addslashes($migration);
-            Database::fetch(
-                "INSERT INTO `migrations` (
+            Database::fetch("
+                INSERT INTO `migrations` (
                     `class`,
                     `iteration`
                 ) VALUE (
@@ -127,17 +126,48 @@ EOT;
      *
      * @access public.
      */
+    public static function revert()
+    {
+        print("undoing migrations...\n");
+
+        $iteration = Database::fetch("
+            SELECT MAX(`iteration`) as `max` FROM `migrations`;");
+
+        $migrations_list = Database::fetchAll("
+            SELECT `class` FROM `migrations` WHERE `migrations`.`iteration` = {$iteration['max']} ORDER BY `id` DESC");
+        $migrations_list = array_column($migrations_list, 'class');
+
+        foreach ($migrations_list as $migration) {
+            if (in_array(ITransaction::class, class_implements($migration))) {
+                $migration::revert();
+                $migration = addslashes($migration);
+                Database::fetch("
+                    DELETE FROM `migrations` WHERE `migrations`.`class` = '$migration'");
+            }
+        }
+
+        print("all migrations have been undone.\n");
+    }
+
+    /**
+     * Drop tables.
+     *
+     * @access public.
+     */
     public static function revert_all()
     {
         print("undoing migrations...\n");
 
         $migrations_list = Database::fetchAll("
-            SELECT `iteration` FROM `migrations`");
+            SELECT `iteration` FROM `migrations` ORDER BY `id` DESC");
         $migrations_list = array_column($migrations_list, 'class');
 
         foreach (array_reverse($migrations_list) as $migration) {
-            if (is_a($migration, ITransaction::class)) {
+            if (in_array(ITransaction::class, class_implements($migration))) {
                 $migration::revert();
+                $migration = addslashes($migration);
+                Database::fetch("
+                    DELETE FROM `migrations` WHERE `migrations`.`class` = '$migration'");
             }
         }
 

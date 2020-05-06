@@ -7,9 +7,9 @@
 - [x] Fix restructure mistakes 
 - [x] Exceptions handler
 - [x] Seeds for users, groups and permissions
-- [ ] Isolate auth service
-- [ ] Decorators for usage everywhere in project
-- [ ] More smart migrations with undo and so on
+- [x] Isolate auth service
+- [x] Decorators for usage everywhere in project
+- [x] More smart migrations with undo and so on
 - [ ] Rework the docs because they don’t make any sense 
 - [ ] Optimize route search 
 - [ ] Make things more strict
