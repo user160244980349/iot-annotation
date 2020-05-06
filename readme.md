@@ -1,10 +1,15 @@
-<h1>TODO</h1>
-<ul>
-    <li>Think about configs placement</li>
-    <li>+ Cleanup controllers, there are many issues with session vars</li>
-    <li>Rework the docs because they doesn`t make any sense</li>
-    <li>+ Authenticatable interface</li>
-    <li>+ Bring all permissions checks to the user model implementing authenticatable interface</li>
-    <li>More smart migrations with undo and so on</li>
-    <li>Decorators for usage in app folder</li>
-</ul>
+# TODO
+- [x] Think about configs placement 
+- [x] Restructure the project 
+- [x] Cleanup controllers, there are many issues with session vars 
+- [x] Env file
+- [x] Replace all paths to relational with project root 
+- [x] Fix restructure mistakes 
+- [x] Exceptions handler
+- [x] Seeds for users, groups and permissions
+- [ ] Isolate auth service
+- [ ] Decorators for usage everywhere in project
+- [ ] More smart migrations with undo and so on
+- [ ] Rework the docs because they don’t make any sense 
+- [ ] Optimize route search 
+- [ ] Make things more strict

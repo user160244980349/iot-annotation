@@ -7,46 +7,41 @@
  * ([a-zA-Z]+)   <- word
  */
 
-use App\Controller\Home;
-use App\Controller\Login;
-use App\Controller\Register;
-use App\Controller\Welcome;
-
 return [
 
     [   'name' => 'welcome.get',
         'method' => 'get',
         'pattern' => '/^$/',
-        'controller' => [Welcome::class, 'toWelcomePage'] ],
+        'controller' => ['App\Controllers\Welcome', 'toWelcomePage'] ],
 
     [   'name' => 'register.get',
         'method' => 'get',
         'pattern' => '/^register$/',
-        'controller' => [Register::class, 'toRegisterPage'] ],
+        'controller' => ['App\Controllers\Register', 'toRegisterPage'] ],
 
     [   'name' => 'register.post',
         'method' => 'post',
         'pattern' => '/^register$/',
-        'controller' => [Register::class, 'register'] ],
+        'controller' => ['App\Controllers\Register', 'register'] ],
 
     [   'name' => 'login.get',
         'method' => 'get',
         'pattern' => '/^login$/',
-        'controller' => [Login::class, 'toLoginPage'] ],
+        'controller' => ['App\Controllers\Login', 'toLoginPage'] ],
 
     [   'name' => 'login.post',
         'method' => 'post',
         'pattern' => '/^login$/',
-        'controller' => [Login::class, 'login'] ],
+        'controller' => ['App\Controllers\Login', 'login'] ],
 
     [   'name' => 'home.get',
         'method' => 'get',
         'pattern' => '/^home$/',
-        'controller' => [Home::class, 'toHomePage'] ],
+        'controller' => ['App\Controllers\Home', 'toHomePage'] ],
 
     [   'name' => 'logout.post',
         'method' => 'post',
         'pattern' => '/^logout$/',
-        'controller' => [Login::class, 'logout'] ],
+        'controller' => ['App\Controllers\Login', 'logout'] ],
 
 ];
