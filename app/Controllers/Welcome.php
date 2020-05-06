@@ -25,8 +25,8 @@ class Welcome
         $data = ServiceBus::get('auth')->user();
         $request->view = new View('welcome.tpl', [
             'title' => 'Welcome',
-            'user_id' => $data['id'],
-            'username' => $data['name'],
+            'id' => $data['id'],
+            'name' => $data['name'],
         ]);
     }
 

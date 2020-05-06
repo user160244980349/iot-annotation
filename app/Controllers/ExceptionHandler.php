@@ -33,8 +33,8 @@ class ExceptionHandler
             'code' => $exception->getCode(),
             'debug' => $debug,
             'trace' => $exception->getTrace(),
-            'user_id' => $data['id'],
-            'username' => $data['name'],
+            'id' => $data['id'],
+            'name' => $data['name'],
         ]);
 
     }
