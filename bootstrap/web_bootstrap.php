@@ -1,10 +1,10 @@
 <?php
 
+use Engine\Decorators\Application;
 use Engine\Decorators\ServiceBus;
 use Engine\Services\Configuration;
 use Engine\Services\Env;
 use Engine\Services\FSMap;
-use Engine\Decorators\Application;
 
 # Call application
 ServiceBus::register('env', new Env());

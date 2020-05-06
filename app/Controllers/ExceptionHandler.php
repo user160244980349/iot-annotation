@@ -19,9 +19,9 @@ class ExceptionHandler
     /**
      * Go to n-exception page.
      *
-     * @access public.
-     * @param Request $request .
-     * @param Error $exception .
+     * @access public
+     * @param Request $request
+     * @param Error $exception
      */
     public static function handle(Request $request, Error $exception)
     {

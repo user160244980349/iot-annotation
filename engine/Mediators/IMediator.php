@@ -16,9 +16,9 @@ interface IMediator
     /**
      * Method providing mediator chain call.
      *
-     * @param Request $request Request to manage.
-     * @return Request Modified request.
-     * @access public.
+     * @access public
+     * @param Request $request Request to manage
+     * @return Request Modified request
      */
     public function let(Request $request): Request;
 

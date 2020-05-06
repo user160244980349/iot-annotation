@@ -19,9 +19,9 @@ class Auth implements IMediator
      * Method providing mediators chain call.
      *
      * @access public.
-     * @param Request $request .
-     * @return Request Modified request.
-     * @throws Error.
+     * @param Request $request
+     * @return Request Modified request
+     * @throws Error
      */
     public function let(Request $request): Request
     {

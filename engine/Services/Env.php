@@ -13,8 +13,8 @@ class Env
     /**
      * Path to env file.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_env;
 
@@ -22,7 +22,7 @@ class Env
     /**
      * Constructor for initialization.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -33,9 +33,9 @@ class Env
     /**
      * Configuration file path.
      *
-     * @access public.
-     * @param string $alias .
-     * @return mixed.
+     * @access public
+     * @param string $alias
+     * @return mixed
      */
     public function get(string $alias)
     {

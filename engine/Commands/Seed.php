@@ -18,7 +18,7 @@ class Seed
     /**
      * Create seeds file.
      *
-     * @access public.
+     * @access public
      * @param string $name
      */
     public static function create(string $name): void
@@ -72,7 +72,7 @@ EOT;
     /**
      * Inserting seeds.
      *
-     * @access public.
+     * @access public
      */
     public static function do(): void
     {

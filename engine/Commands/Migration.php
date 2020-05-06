@@ -18,8 +18,8 @@ class Migration
     /**
      * Create tables.
      *
-     * @access public.
-     * @param string $name .
+     * @access public
+     * @param string $name
      */
     public static function create(string $name): void
     {
@@ -73,7 +73,7 @@ EOT;
     /**
      * Create tables.
      *
-     * @access public.
+     * @access public
      */
     public static function do(): void
     {
@@ -124,8 +124,8 @@ EOT;
     /**
      * Create tables.
      *
-     * @access public.
-     * @return bool.
+     * @access public
+     * @return bool
      */
     private static function check(): bool
     {
@@ -139,7 +139,7 @@ EOT;
     /**
      * Create tables.
      *
-     * @access public.
+     * @access public
      */
     private static function init(): void
     {
@@ -157,7 +157,7 @@ EOT;
     /**
      * Drop tables.
      *
-     * @access public.
+     * @access public
      */
     public static function revert(): void
     {
@@ -185,7 +185,7 @@ EOT;
     /**
      * Drop tables.
      *
-     * @access public.
+     * @access public
      */
     public static function revert_all(): void
     {

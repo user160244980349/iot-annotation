@@ -15,9 +15,9 @@ class Receiver implements IMediator
     /**
      * Method providing mediator chain call.
      *
-     * @param Request $null Null because not needed.
-     * @return Request Initialized request object.
-     * @access public.
+     * @access public
+     * @param Request $null Null because not needed
+     * @return Request Initialized request object
      */
     public function let(Request $null = null): Request
     {

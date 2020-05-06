@@ -15,9 +15,9 @@ class Session
     /**
      * Sets session variable.
      *
-     * @param string $name .
-     * @param $value .
-     * @access public.
+     * @param string $name
+     * @param $value
+     * @access public
      */
     public static function set(string $name, $value): void
     {
@@ -27,9 +27,9 @@ class Session
     /**
      * Gives session variable.
      *
-     * @param string $name .
-     * @access public.
-     * @return mixed.
+     * @param string $name
+     * @access public
+     * @return mixed
      */
     public static function get(string $name)
     {
@@ -39,7 +39,7 @@ class Session
     /**
      * Destroys session.
      *
-     * @access public.
+     * @access public
      */
     public static function destroy(): void
     {

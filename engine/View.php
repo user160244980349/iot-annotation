@@ -15,25 +15,25 @@ class View
     /**
      * Path of template.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $path;
 
     /**
      * Variables for template.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $variables;
 
     /**
      * View constructor.
      *
-     * @access public.
-     * @param string $path Path of template file.
-     * @param array $variables Variables to paste in template.
+     * @access public
+     * @param string $path Path of template file
+     * @param array $variables Variables to paste in template
      */
     public function __construct($path, array $variables)
     {
@@ -44,7 +44,7 @@ class View
     /**
      * Render template.
      *
-     * @access public.
+     * @access public
      */
     public function display(): void
     {

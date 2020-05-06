@@ -13,33 +13,33 @@ class Request
     /**
      * Request parameters.
      *
-     * @access public.
-     * @var array.
+     * @access public
+     * @var array
      */
     public $parameters;
 
     /**
      * Route that will be executed.
      *
-     * @access public.
-     * @var Route.
+     * @access public
+     * @var Route
      */
     public $route;
 
     /**
      * View that will be displayed.
      *
-     * @access public.
-     * @var View.
+     * @access public
+     * @var View
      */
     public $view;
 
     /**
      * Route constructor.
      *
-     * @access public.
-     * @param array $parameters .
-     * @param Route $route .
+     * @access public
+     * @param array $parameters
+     * @param Route $route
      */
     public function __construct(array $parameters, Route $route = null)
     {

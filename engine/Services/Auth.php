@@ -17,9 +17,9 @@ class Auth
     /**
      * Registers new user.
      *
-     * @access public.
-     * @param array $user User credentials.
-     * @return bool.
+     * @access public
+     * @param array $user User credentials
+     * @return bool
      */
     public function register(array $user): bool
     {
@@ -38,9 +38,9 @@ class Auth
     /**
      * Log user out.
      *
-     * @access public.
-     * @param int $id .
-     * @param string $group .
+     * @access public
+     * @param int $id
+     * @param string $group
      * @return array.
      */
     public function associate(int $id, string $group): array
@@ -56,9 +56,9 @@ class Auth
     /**
      * Log user in.
      *
-     * @access public.
-     * @param array $user .
-     * @return bool.
+     * @access public
+     * @param array $user
+     * @return bool
      */
     public function login(array $user): bool
     {
@@ -75,8 +75,8 @@ class Auth
     /**
      * Get authorized user.
      *
-     * @access public.
-     * @return false|int.
+     * @access public
+     * @return false|int
      */
     public function userId()
     {
@@ -91,8 +91,8 @@ class Auth
     /**
      * Get authorized user.
      *
-     * @access public.
-     * @return null|array.
+     * @access public
+     * @return null|array
      */
     public function user()
     {
@@ -107,8 +107,8 @@ class Auth
     /**
      * Get authorized user.
      *
-     * @access public.
-     * @return bool.
+     * @access public
+     * @return bool
      */
     public function authenticated(): bool
     {
@@ -123,10 +123,10 @@ class Auth
     /**
      * Check if user has permissions.
      *
-     * @access public.
-     * @param int $id .
-     * @param array $permissions Permissions list.
-     * @return bool.
+     * @access public
+     * @param int $id
+     * @param array $permissions Permissions list
+     * @return bool
      */
     public function allowed(int $id, array $permissions): bool
     {
@@ -142,9 +142,9 @@ class Auth
     /**
      * Log user out.
      *
-     * @access public.
-     * @param int $id .
-     * @return array.
+     * @access public
+     * @param int $id
+     * @return array
      */
     public function permissions(int $id): array
     {

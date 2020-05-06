@@ -17,15 +17,15 @@ class Router implements IMediator
     /**
      * Map for url's and controllers.
      *
-     * @access private.
-     * @var array.
+     * @access private
+     * @var array
      */
     private $_routes;
 
     /**
      * Router constructor.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -35,10 +35,10 @@ class Router implements IMediator
     /**
      * Method providing mediator chain call.
      *
-     * @access public.
-     * @param Request $request .
-     * @return Request Modified request.
-     * @throws Error.
+     * @access public
+     * @param Request $request
+     * @return Request Modified request
+     * @throws Error
      */
     public function let(Request $request): Request
     {

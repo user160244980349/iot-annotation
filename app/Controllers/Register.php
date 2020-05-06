@@ -18,8 +18,8 @@ class Register
     /**
      * Go to register page.
      *
-     * @param Request $request .
-     * @access public.
+     * @access public
+     * @param Request $request
      */
     public static function toRegisterPage(Request $request)
     {
@@ -35,8 +35,8 @@ class Register
     /**
      * Register new user.
      *
-     * @param Request $request .
-     * @access public.
+     * @access public
+     * @param Request $request
      */
     public static function register(Request $request)
     {

@@ -15,23 +15,23 @@ class ServiceBus
     /**
      * ServiceBus instance.
      *
-     * @access private.
-     * @var ServiceBus.
+     * @access private
+     * @var ServiceBus
      */
     private static $_instance;
 
     /**
      * ServiceBus array.
      *
-     * @access private.
-     * @var array.
+     * @access private
+     * @var array
      */
     private $_services;
 
     /**
      * ServiceBus instance getter.
      *
-     * @access public.
+     * @access public
      */
     public static function instance()
     {
@@ -44,7 +44,7 @@ class ServiceBus
     /**
      * ServiceBus autoload services from config.
      *
-     * @access public.
+     * @access public
      */
     public function autoload()
     {
@@ -57,9 +57,9 @@ class ServiceBus
     /**
      * Service getter.
      *
-     * @access public.
-     * @param string $alias .
-     * @return object.
+     * @access public
+     * @param string $alias
+     * @return object
      */
     public function get(string $alias): object
     {
@@ -72,9 +72,9 @@ class ServiceBus
     /**
      * Register new service with existing object.
      *
-     * @access public.
-     * @param string $alias .
-     * @param object $object .
+     * @access public
+     * @param string $alias
+     * @param object $object
      */
     public function register(string $alias, $object)
     {

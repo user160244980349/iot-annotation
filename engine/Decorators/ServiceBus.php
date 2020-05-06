@@ -13,7 +13,7 @@ class ServiceBus
     /**
      * ServiceBus autoload services from config.
      *
-     * @access public.
+     * @access public
      */
     public static function autoload(): void
     {
@@ -23,9 +23,9 @@ class ServiceBus
     /**
      * Service getter.
      *
-     * @access public.
-     * @param string $alias .
-     * @return object.
+     * @access public
+     * @param string $alias
+     * @return object
      */
     public static function get(string $alias): object
     {
@@ -35,7 +35,7 @@ class ServiceBus
     /**
      * ServiceBus instance getter.
      *
-     * @access public.
+     * @access public
      */
     public static function instance(): \Engine\ServiceBus
     {
@@ -45,12 +45,12 @@ class ServiceBus
     /**
      * Register new service with existing object.
      *
-     * @access public.
-     * @param string $alias.
-     * @param $object.
+     * @access public
+     * @param string $alias
+     * @param $object
      * @return void
      */
-    public static function register(string $alias, $object) : void
+    public static function register(string $alias, $object): void
     {
         \Engine\ServiceBus::instance()->register($alias, $object);
     }

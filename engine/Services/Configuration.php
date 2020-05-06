@@ -15,9 +15,9 @@ class Configuration
     /**
      * Gives content of conf file.
      *
-     * @param string $alias Service alias to get.
-     * @access public.
-     * @return mixed.
+     * @access public
+     * @param string $alias Service alias to get
+     * @return mixed
      */
     public function get(string $alias)
     {

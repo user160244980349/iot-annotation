@@ -64,7 +64,7 @@ class Database
     /**
      * Database constructor.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -88,9 +88,9 @@ class Database
     /**
      * Sends query to database and gives a response.
      *
-     * @access public.
-     * @param string $queryString Query to send.
-     * @return array.
+     * @access public
+     * @param string $queryString Query to send
+     * @return array
      */
     public function fetch($queryString)
     {
@@ -104,9 +104,9 @@ class Database
     /**
      * Sends query to database and gives a response.
      *
-     * @access public.
-     * @param string $queryString Query to send.
-     * @return array.
+     * @access public
+     * @param string $queryString Query to send
+     * @return array
      */
     public function fetchAll($queryString)
     {
@@ -120,8 +120,8 @@ class Database
     /**
      * Gives an error.
      *
-     * @access public.
-     * @return array.
+     * @access public
+     * @return array
      */
     public function error()
     {

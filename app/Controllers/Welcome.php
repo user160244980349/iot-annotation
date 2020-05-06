@@ -17,8 +17,8 @@ class Welcome
     /**
      * Go to welcome page.
      *
-     * @access public.
-     * @param Request $request .
+     * @access public
+     * @param Request $request
      */
     public static function toWelcomePage(Request $request)
     {

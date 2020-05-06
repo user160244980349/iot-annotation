@@ -13,7 +13,7 @@ class Session
     /**
      * Constructor of service class.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -23,9 +23,9 @@ class Session
     /**
      * Set session variable.
      *
-     * @access public.
-     * @param string $name .
-     * @param $value .
+     * @access public
+     * @param string $name
+     * @param $value
      */
     public function set(string $name, $value): void
     {
@@ -35,9 +35,9 @@ class Session
     /**
      * Get session variable.
      *
-     * @access public.
-     * @param string $name .
-     * @return mixed.
+     * @access public
+     * @param string $name
+     * @return mixed
      */
     public function get(string $name)
     {
@@ -47,7 +47,7 @@ class Session
     /**
      * Destroy session.
      *
-     * @access public.
+     * @access public
      */
     public function destroy(): void
     {

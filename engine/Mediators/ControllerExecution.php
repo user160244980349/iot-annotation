@@ -14,9 +14,9 @@ class ControllerExecution implements IMediator
     /**
      * Method providing mediators chain call.
      *
-     * @access public.
-     * @param Request $request .
-     * @return Request Modified container.
+     * @access public
+     * @param Request $request
+     * @return Request Modified container
      */
     public function let(Request $request): Request
     {

@@ -15,9 +15,9 @@ class User
     /**
      * Adds new user into database.
      *
-     * @access public.
-     * @param array $user .
-     * @return bool.
+     * @access public
+     * @param array $user
+     * @return bool
      */
     public static function add(array $user): bool
     {
@@ -38,9 +38,9 @@ class User
     /**
      * Gives array with user info.
      *
-     * @access public.
-     * @param string $name .
-     * @return array.
+     * @access public
+     * @param string $name
+     * @return array
      */
     public static function getByName(string $name): array
     {
@@ -51,11 +51,11 @@ class User
     /**
      * Gives array with user info.
      *
-     * @access public.
-     * @param int $id .
-     * @return array.
+     * @access public
+     * @param int $id
+     * @return null|array
      */
-    public static function getById(int $id): array
+    public static function getById(int $id)
     {
         return Database::fetch("
             SELECT * FROM `users` WHERE `id` = '$id';");
@@ -64,8 +64,8 @@ class User
     /**
      * Gives array with all users info.
      *
-     * @access public.
-     * @return array.
+     * @access public
+     * @return array
      */
     public static function getAll(): array
     {

@@ -13,34 +13,34 @@ class Route
     /**
      * Request method.
      *
-     * @access public.
-     * @var string.
+     * @access public
+     * @var string
      */
     public $name;
 
     /**
      * Request parameters.
      *
-     * @access public.
-     * @var array.
+     * @access public
+     * @var array
      */
     public $controller;
 
     /**
      * Request parameters.
      *
-     * @access public.
-     * @var array.
+     * @access public
+     * @var array
      */
     public $args;
 
     /**
      * Route constructor.
      *
-     * @access public.
-     * @param string $name .
-     * @param array $controller .
-     * @param array $args .
+     * @access public
+     * @param string $name
+     * @param array $controller
+     * @param array $args
      */
     public function __construct(string $name, array $controller, array $args)
     {

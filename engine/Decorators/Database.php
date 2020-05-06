@@ -15,9 +15,9 @@ class Database
     /**
      * Sends query to database and gives a response with 1 record.
      *
-     * @access public.
-     * @param string $queryString Query to send.
-     * @return null|array.
+     * @access public
+     * @param string $queryString Query to send
+     * @return null|array
      */
     public static function fetch(string $queryString)
     {

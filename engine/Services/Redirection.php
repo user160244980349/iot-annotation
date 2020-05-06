@@ -13,8 +13,8 @@ class Redirection
     /**
      * Performs redirection.
      *
-     * @access public.
-     * @param string $uri .
+     * @access public
+     * @param string $uri
      */
     public function redirect(string $uri): void
     {

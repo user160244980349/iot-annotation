@@ -15,7 +15,7 @@ class Application
     /**
      * Application run method.
      *
-     * @access public.
+     * @access public
      */
     public function run(): void
     {

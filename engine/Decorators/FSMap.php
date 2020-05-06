@@ -15,9 +15,9 @@ class FSMap
     /**
      * Get path by alias.
      *
-     * @access public.
-     * @param string $alias .
-     * @return string.
+     * @access public
+     * @param string $alias
+     * @return string
      */
     public static function get(string $alias): string
     {

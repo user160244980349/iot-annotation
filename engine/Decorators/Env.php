@@ -15,9 +15,9 @@ class Env
     /**
      * Configuration file path.
      *
-     * @access public.
-     * @param string $alias.
-     * @return mixed.
+     * @access public
+     * @param string $alias
+     * @return mixed
      */
     public static function get(string $alias)
     {

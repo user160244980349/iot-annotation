@@ -1,6 +1,6 @@
 <?php
 
-use Engine\Decorators\Application;
+use Engine\Decorators\Console;
 use Engine\Decorators\ServiceBus;
 use Engine\Services\Configuration;
 use Engine\Services\Env;
@@ -11,7 +11,7 @@ ServiceBus::register('env', new Env());
 ServiceBus::register('fs_map', new FSMap());
 ServiceBus::register('conf', new Configuration());
 ServiceBus::autoload();
-Application::run();
+Console::run($argv);
 
 # Debug output
 # dump(ServiceBus::instance());

@@ -15,9 +15,9 @@ class Auth
     /**
      * Register new user.
      *
-     * @access public.
-     * @param array $user User credentials.
-     * @return bool.
+     * @access public
+     * @param array $user User credentials
+     * @return bool
      */
     public static function register(array $user): bool
     {

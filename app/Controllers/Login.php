@@ -18,8 +18,8 @@ class Login
     /**
      * Go to login page.
      *
-     * @access public.
-     * @param Request $request .
+     * @access public
+     * @param Request $request
      */
     public static function toLoginPage(Request $request)
     {

@@ -15,9 +15,9 @@ class Renderer implements IMediator
     /**
      * Method providing mediator chain call.
      *
-     * @param Request $request .
-     * @return Request Modified request.
-     * @access public.
+     * @access public
+     * @param Request $request
+     * @return Request Modified request
      */
     public function let(Request $request): Request
     {

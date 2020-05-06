@@ -15,23 +15,23 @@ class FSMap
     /**
      * Configuration file path.
      *
-     * @access private.
-     * @var array.
+     * @access private
+     * @var array
      */
     private $_root;
 
     /**
      * ServiceBus array.
      *
-     * @access private.
-     * @var array.
+     * @access private
+     * @var array
      */
     private $_paths;
 
     /**
      * FSMap constructor.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -42,9 +42,9 @@ class FSMap
     /**
      * Get path by alias.
      *
-     * @access public.
-     * @param string $alias .
-     * @return string.
+     * @access public
+     * @param string $alias
+     * @return string
      */
     public function get(string $alias): string
     {

@@ -15,8 +15,8 @@ class Console
     /**
      * Run command.
      *
-     * @access public.
-     * @param array $args .
+     * @access public
+     * @param array $args
      */
     public function run(array $args): void
     {

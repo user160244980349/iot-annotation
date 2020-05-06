@@ -12,6 +12,8 @@ class Session
 
     /**
      * Clears user session
+     *
+     * @access public
      */
     public static function clear(): void
     {
@@ -23,9 +25,9 @@ class Session
     /**
      * Recursively removes directory content
      *
-     * @access private.
-     * @param $directory .
-     * @param null $delete_parent .
+     * @access private
+     * @param $directory
+     * @param null $delete_parent
      */
     private static function rrmdir($directory, $delete_parent = null): void
     {

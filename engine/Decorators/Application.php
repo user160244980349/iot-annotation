@@ -2,8 +2,6 @@
 
 namespace Engine\Decorators;
 
-use Engine\MediatorsQueue;
-
 /**
  * Application.php
  *
@@ -15,7 +13,7 @@ class Application
     /**
      * Application run method.
      *
-     * @access public.
+     * @access public
      */
     public static function run(): void
     {

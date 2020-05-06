@@ -15,15 +15,15 @@ class MediatorsQueue
     /**
      * Mediators providing different functions.
      *
-     * @access private.
-     * @var array.
+     * @access private
+     * @var array
      */
     private $_mediators;
 
     /**
      * Queue constructor.
      *
-     * @access public.
+     * @access public
      */
     public function __construct()
     {
@@ -37,8 +37,8 @@ class MediatorsQueue
     /**
      * Iterate all mediators as a chain.
      *
-     * @access public.
-     * @return Request Modified container.
+     * @access public
+     * @return Request Modified container
      */
     public function run(): Request
     {
