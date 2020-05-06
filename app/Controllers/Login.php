@@ -8,7 +8,7 @@ use Engine\Request;
 use Engine\View;
 
 /**
- * WelcomeController.php
+ * Login.php
  *
  * Controller class for loading login page.
  */
@@ -36,8 +36,8 @@ class Login
     /**
      * Log user in.
      *
-     * @access public.
-     * @param Request $request .
+     * @access public
+     * @param Request $request
      */
     public static function login(Request $request)
     {
@@ -50,8 +50,8 @@ class Login
     /**
      * Log user out.
      *
-     * @access public.
-     * @param Request $request .
+     * @access public
+     * @param Request $request
      */
     public static function logout(Request $request)
     {
