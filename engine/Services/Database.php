@@ -2,8 +2,8 @@
 
 namespace Engine\Services;
 
-use PDO;
 use Engine\Decorators\Env;
+use PDO;
 
 /**
  * Database.php
@@ -16,48 +16,48 @@ class Database
     /**
      * Driver for database access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_driver;
 
     /**
      * Address for database access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_address;
 
     /**
      * Database name for access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_name;
 
     /**
      * Database for user access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_user;
 
     /**
      * Password for database access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_password;
 
     /**
      * Connection instance for database access.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $_connection;
 
@@ -86,11 +86,11 @@ class Database
     }
 
     /**
-     * Send query to database and give a response.
+     * Sends query to database and gives a response.
      *
-     * @param string $queryString Query to send.
-     * @return array
      * @access public.
+     * @param string $queryString Query to send.
+     * @return array.
      */
     public function fetch($queryString)
     {
@@ -102,11 +102,11 @@ class Database
     }
 
     /**
-     * Send query to database and give a response.
+     * Sends query to database and gives a response.
      *
-     * @param string $queryString Query to send.
-     * @return array
      * @access public.
+     * @param string $queryString Query to send.
+     * @return array.
      */
     public function fetchAll($queryString)
     {
@@ -118,10 +118,10 @@ class Database
     }
 
     /**
-     * Send query to database and give a response.
+     * Gives an error.
      *
-     * @return array
      * @access public.
+     * @return array.
      */
     public function error()
     {

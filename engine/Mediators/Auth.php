@@ -2,26 +2,26 @@
 
 namespace Engine\Mediators;
 
-use Engine\Request;
-use Engine\Decorators\Configuration;
 use Engine\Decorators\Auth as AuthService;
+use Engine\Decorators\Configuration;
+use Engine\Request;
 use Error;
 
 /**
- * Service.php
+ * Auth.php
  *
- * Class Service checks access to pages.
+ * Class Auth checks access to pages.
  */
 class Auth implements IMediator
 {
 
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediators chain call.
      *
+     * @access public.
      * @param Request $request .
      * @return Request Modified request.
-     * @access public.
-     * @throws Error
+     * @throws Error.
      */
     public function let(Request $request): Request
     {

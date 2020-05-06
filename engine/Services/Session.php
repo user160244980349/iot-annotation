@@ -23,11 +23,11 @@ class Session
     /**
      * Set session variable.
      *
+     * @access public.
      * @param string $name .
      * @param $value .
-     * @access public.
      */
-    public function set(string $name, $value)
+    public function set(string $name, $value): void
     {
         $_SESSION[$name] = $value;
     }
@@ -35,8 +35,9 @@ class Session
     /**
      * Get session variable.
      *
-     * @param string $name .
      * @access public.
+     * @param string $name .
+     * @return mixed.
      */
     public function get(string $name)
     {
@@ -48,7 +49,7 @@ class Session
      *
      * @access public.
      */
-    public function destroy()
+    public function destroy(): void
     {
         session_destroy();
     }

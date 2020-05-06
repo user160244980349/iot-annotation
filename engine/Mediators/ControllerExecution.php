@@ -7,16 +7,16 @@ use Engine\Request;
 /**
  * ControllerExecution.php
  *
- * Middleware class for exec controllers.
+ * Mediator class for exec controllers.
  */
 class ControllerExecution implements IMediator
 {
     /**
      * Method providing mediators chain call.
      *
+     * @access public.
      * @param Request $request .
      * @return Request Modified container.
-     * @access public.
      */
     public function let(Request $request): Request
     {

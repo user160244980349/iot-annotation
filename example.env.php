@@ -28,7 +28,7 @@ return [
         'database' => '/config/database.php',
 
         # Templates path
-        'templates' =>'/templates',
+        'templates' => '/templates',
 
         # Migrations and seeds
         'migrations' => '/database/migrations',

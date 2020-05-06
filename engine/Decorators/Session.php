@@ -13,22 +13,23 @@ class Session
 {
 
     /**
-     * Set session variable.
+     * Sets session variable.
      *
      * @param string $name .
      * @param $value .
      * @access public.
      */
-    public static function set(string $name, $value)
+    public static function set(string $name, $value): void
     {
-        return ServiceBus::instance()->get('session')->set($name, $value);
+        ServiceBus::instance()->get('session')->set($name, $value);
     }
 
     /**
-     * Get session variable.
+     * Gives session variable.
      *
      * @param string $name .
      * @access public.
+     * @return mixed.
      */
     public static function get(string $name)
     {
@@ -36,13 +37,13 @@ class Session
     }
 
     /**
-     * Destroy session.
+     * Destroys session.
      *
      * @access public.
      */
-    public static function destroy()
+    public static function destroy(): void
     {
-        return ServiceBus::instance()->get('session')->destroy();
+        ServiceBus::instance()->get('session')->destroy();
     }
 
 }

@@ -10,6 +10,7 @@
 - [x] Isolate auth service
 - [x] Decorators for usage everywhere in project
 - [x] More smart migrations with undo and so on
-- [ ] Rework the docs because they don’t make any sense 
+- [x] Redirection service
+- [x] Rework the docs because they don’t make any sense 
+- [x] Make things more strict
 - [ ] Optimize route search 
-- [ ] Make things more strict

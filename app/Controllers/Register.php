@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Engine\Decorators\Auth;
+use Engine\Decorators\Redirection;
 use Engine\Request;
 use Engine\View;
 
@@ -17,14 +18,13 @@ class Register
     /**
      * Go to register page.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
     public static function toRegisterPage(Request $request)
     {
         if (Auth::authenticated()) {
-            header("location: /home");
-            exit;
+            Redirection::redirect('/home');
         }
 
         $request->view = new View('register.tpl', [
@@ -35,7 +35,7 @@ class Register
     /**
      * Register new user.
      *
-     * @param Request $request.
+     * @param Request $request .
      * @access public.
      */
     public static function register(Request $request)
@@ -43,13 +43,11 @@ class Register
 
         if (Auth::register($request->parameters['user'])) {
             if (Auth::login($request->parameters['user'])) {
-                header("location: /home");
-                exit;
+                Redirection::redirect('/home');
             }
         }
 
-        header("location: /register");
-        exit;
+        Redirection::redirect('/register');
     }
 
 }

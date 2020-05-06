@@ -2,7 +2,7 @@
 
 namespace Engine\Services;
 
-use \Engine\Decorators\FSMap;
+use Engine\Decorators\FSMap;
 
 /**
  * Configuration.php
@@ -17,7 +17,7 @@ class Configuration
      *
      * @param string $alias Service alias to get.
      * @access public.
-     * @return mixed
+     * @return mixed.
      */
     public function get(string $alias)
     {

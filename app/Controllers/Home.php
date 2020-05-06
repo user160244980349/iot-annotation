@@ -18,7 +18,7 @@ class Home
      * Go to home page.
      *
      * @access public.
-     * @param Request $request.
+     * @param Request $request .
      */
     public static function toHomePage(Request $request)
     {

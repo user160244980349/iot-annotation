@@ -7,7 +7,7 @@ use Engine\ITransaction;
 
 class create_permissions_table_migration_05_05_2020_01_51_39 implements ITransaction
 {
-    
+
     public static function commit()
     {
         Database::fetch(
@@ -16,7 +16,7 @@ class create_permissions_table_migration_05_05_2020_01_51_39 implements ITransac
                 `for`       VARCHAR(255)
             )");
     }
-    
+
     public static function revert()
     {
         Database::fetch(

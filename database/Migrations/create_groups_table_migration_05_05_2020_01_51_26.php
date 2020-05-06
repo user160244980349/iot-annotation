@@ -7,7 +7,7 @@ use Engine\ITransaction;
 
 class create_groups_table_migration_05_05_2020_01_51_26 implements ITransaction
 {
-    
+
     public static function commit()
     {
         Database::fetch(
@@ -16,7 +16,7 @@ class create_groups_table_migration_05_05_2020_01_51_26 implements ITransaction
                 `name`      VARCHAR(255)
             )");
     }
-    
+
     public static function revert()
     {
         Database::fetch(

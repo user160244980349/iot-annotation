@@ -40,7 +40,7 @@ class MediatorsQueue
      * @access public.
      * @return Request Modified container.
      */
-    public function run()
+    public function run(): Request
     {
         $result = null;
 

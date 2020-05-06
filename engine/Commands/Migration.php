@@ -19,9 +19,9 @@ class Migration
      * Create tables.
      *
      * @access public.
-     * @param string $name
+     * @param string $name .
      */
-    public static function create(string $name)
+    public static function create(string $name): void
     {
         print("creating migration...\n");
 
@@ -30,8 +30,8 @@ class Migration
         $name = "{$name}_migration";
         $file = "{$path}/{$name}_{$date}.php";
         $content =
-/** @lang php */
-<<<EOT
+            /** @lang php */
+            <<<EOT
 <?php
 
 namespace Database\Migrations;
@@ -75,7 +75,7 @@ EOT;
      *
      * @access public.
      */
-    public static function do()
+    public static function do(): void
     {
         print("setting up migrations...\n");
 
@@ -122,11 +122,44 @@ EOT;
     }
 
     /**
+     * Create tables.
+     *
+     * @access public.
+     * @return bool.
+     */
+    private static function check(): bool
+    {
+        print("checking if migration table exists...\n");
+
+        $check = Database::fetch("
+            SELECT `iteration` FROM `migrations`");
+        return isset($check);
+    }
+
+    /**
+     * Create tables.
+     *
+     * @access public.
+     */
+    private static function init(): void
+    {
+        print("creating migration table...\n");
+
+        Database::fetch("
+            CREATE TABLE `migrations` (
+                `id`            INT PRIMARY KEY AUTO_INCREMENT,
+                `class`         VARCHAR(255),
+                `iteration`     INT,
+                `timestamp`     DATETIME DEFAULT CURRENT_TIMESTAMP
+            );");
+    }
+
+    /**
      * Drop tables.
      *
      * @access public.
      */
-    public static function revert()
+    public static function revert(): void
     {
         print("undoing migrations...\n");
 
@@ -154,7 +187,7 @@ EOT;
      *
      * @access public.
      */
-    public static function revert_all()
+    public static function revert_all(): void
     {
         print("undoing migrations...\n");
 
@@ -172,39 +205,6 @@ EOT;
         }
 
         print("all migrations have been undone.\n");
-    }
-
-    /**
-     * Create tables.
-     *
-     * @access public.
-     */
-    private static function init()
-    {
-        print("creating migration table...\n");
-
-        Database::fetch("
-            CREATE TABLE `migrations` (
-                `id`            INT PRIMARY KEY AUTO_INCREMENT,
-                `class`         VARCHAR(255),
-                `iteration`     INT,
-                `timestamp`     DATETIME DEFAULT CURRENT_TIMESTAMP
-            );");
-    }
-
-    /**
-     * Create tables.
-     *
-     * @access public.
-     * @return bool
-     */
-    private static function check()
-    {
-        print("checking if migration table exists...\n");
-
-        $check = Database::fetch("
-            SELECT `iteration` FROM `migrations`");
-        return isset($check);
     }
 
 }

@@ -7,7 +7,7 @@ use Engine\Request;
 /**
  * Receiver.php
  *
- * Middleware class for parsing incoming request.
+ * Mediator class for parsing incoming request.
  */
 class Receiver implements IMediator
 {

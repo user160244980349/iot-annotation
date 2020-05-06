@@ -7,7 +7,7 @@ use Engine\ITransaction;
 
 class create_group_permission_table_migration_05_05_2020_02_00_35 implements ITransaction
 {
-    
+
     public static function commit()
     {
         Database::fetch(
@@ -19,7 +19,7 @@ class create_group_permission_table_migration_05_05_2020_02_00_35 implements ITr
                 FOREIGN KEY (`permission_id`)   REFERENCES `permissions`(`id`)
             )");
     }
-    
+
     public static function revert()
     {
         Database::fetch(

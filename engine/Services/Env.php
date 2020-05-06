@@ -34,7 +34,7 @@ class Env
      * Configuration file path.
      *
      * @access public.
-     * @param string $alias.
+     * @param string $alias .
      * @return mixed.
      */
     public function get(string $alias)

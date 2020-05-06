@@ -21,7 +21,7 @@ class Seed
      * @access public.
      * @param string $name
      */
-    public static function create(string $name)
+    public static function create(string $name): void
     {
         print("creating seed...\n");
 
@@ -30,8 +30,8 @@ class Seed
         $name = "{$name}_seed";
         $file = "{$path}/{$name}_{$date}.php";
         $content =
-/** @lang php&sql */
-<<<EOT
+            /** @lang php&sql */
+            <<<EOT
 <?php
 
 namespace Database\Seeds;
@@ -74,7 +74,7 @@ EOT;
      *
      * @access public.
      */
-    public static function do()
+    public static function do(): void
     {
         print("uploading seeds...\n");
 

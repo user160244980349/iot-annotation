@@ -17,7 +17,7 @@ class Application
      *
      * @access public.
      */
-    public function run()
+    public function run(): void
     {
 
         $queue = new MediatorsQueue();

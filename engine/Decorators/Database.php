@@ -3,7 +3,6 @@
 namespace Engine\Decorators;
 
 use Engine\ServiceBus;
-use PDO;
 
 /**
  * Database.php
@@ -14,11 +13,11 @@ class Database
 {
 
     /**
-     * Send query to database and give a response.
+     * Sends query to database and gives a response with 1 record.
      *
-     * @param string $queryString Query to send.
-     * @return array
      * @access public.
+     * @param string $queryString Query to send.
+     * @return null|array.
      */
     public static function fetch(string $queryString)
     {
@@ -26,11 +25,11 @@ class Database
     }
 
     /**
-     * Send query to database and give a response.
+     * Sends query to database and gives a response with all records.
      *
-     * @param string $queryString Query to send.
-     * @return array
      * @access public.
+     * @param string $queryString Query to send.
+     * @return null|array.
      */
     public static function fetchAll(string $queryString)
     {
@@ -38,12 +37,12 @@ class Database
     }
 
     /**
-     * Send query to database and give a response.
+     * Gives response of the database.
      *
-     * @return array
      * @access public.
+     * @return array.
      */
-    public static function error()
+    public static function error(): array
     {
         return ServiceBus::instance()->get('database')->error();
     }

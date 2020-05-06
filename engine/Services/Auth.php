@@ -7,21 +7,21 @@ use Engine\Decorators\Database;
 use Engine\Decorators\Session;
 
 /**
- * Receiver.php
+ * Auth.php
  *
- * Middleware class for parsing incoming request.
+ * Auth service.
  */
 class Auth
 {
 
     /**
-     * Register new user.
+     * Registers new user.
      *
      * @access public.
      * @param array $user User credentials.
-     * @return bool
+     * @return bool.
      */
-    public function register(array $user)
+    public function register(array $user): bool
     {
         if ($user['password'] == $user['password_confirm']) {
             $user['password'] = md5(md5($user['password']));
@@ -36,13 +36,31 @@ class Auth
     }
 
     /**
+     * Log user out.
+     *
+     * @access public.
+     * @param int $id .
+     * @param string $group .
+     * @return array.
+     */
+    public function associate(int $id, string $group): array
+    {
+        return Database::fetchAll(
+            "INSERT INTO `group_user` (
+                `user_id`, 
+                `group_id`
+                ) VALUE 
+                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
+    }
+
+    /**
      * Log user in.
      *
      * @access public.
-     * @param array $user
-     * @return bool
+     * @param array $user .
+     * @return bool.
      */
-    public function login(array $user)
+    public function login(array $user): bool
     {
         $stored_user = User::getByName($user['name']);
 
@@ -58,7 +76,7 @@ class Auth
      * Get authorized user.
      *
      * @access public.
-     * @return false|\PDOStatement
+     * @return false|int.
      */
     public function userId()
     {
@@ -74,7 +92,7 @@ class Auth
      * Get authorized user.
      *
      * @access public.
-     * @return array
+     * @return null|array.
      */
     public function user()
     {
@@ -90,9 +108,9 @@ class Auth
      * Get authorized user.
      *
      * @access public.
-     * @return bool
+     * @return bool.
      */
-    public function authenticated()
+    public function authenticated(): bool
     {
         $id = Session::get('id');
 
@@ -106,11 +124,11 @@ class Auth
      * Check if user has permissions.
      *
      * @access public.
-     * @param int $id
+     * @param int $id .
      * @param array $permissions Permissions list.
-     * @return bool
+     * @return bool.
      */
-    public function allowed(int $id, array $permissions)
+    public function allowed(int $id, array $permissions): bool
     {
         $user_permissions = $this->permissions($id);
         $difference = array_diff($permissions, $user_permissions);
@@ -121,34 +139,14 @@ class Auth
         return true;
     }
 
-
     /**
      * Log user out.
      *
      * @access public.
-     * @param int $id
-     * @param string $group
-     * @return array
+     * @param int $id .
+     * @return array.
      */
-    public function associate(int $id, string $group)
-    {
-        return Database::fetchAll(
-            "INSERT INTO `group_user` (
-                `user_id`, 
-                `group_id`
-                ) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
-    }
-
-
-    /**
-     * Log user out.
-     *
-     * @access public.
-     * @param int $id
-     * @return array
-     */
-    public function permissions(int $id)
+    public function permissions(int $id): array
     {
         return array_column(Database::fetchAll(
             "SELECT `for` FROM `users`
@@ -164,7 +162,7 @@ class Auth
      *
      * @access public.
      */
-    public function logout()
+    public function logout(): void
     {
         Session::destroy();
     }

@@ -21,7 +21,7 @@ class ExceptionHandler
      *
      * @access public.
      * @param Request $request .
-     * @param Error $exception
+     * @param Error $exception .
      */
     public static function handle(Request $request, Error $exception)
     {

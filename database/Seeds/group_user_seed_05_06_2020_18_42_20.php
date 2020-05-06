@@ -12,12 +12,13 @@ use Engine\ITransaction;
  */
 class group_user_seed_05_06_2020_18_42_20 implements ITransaction
 {
-    
+
     /**
      * Performs seeding
      *
      */
-    public static function commit() {
+    public static function commit()
+    {
         Database::fetch("
             INSERT INTO `group_user` (
                 `group_id`,
@@ -29,12 +30,13 @@ class group_user_seed_05_06_2020_18_42_20 implements ITransaction
             (1, 4)
         ");
     }
-    
+
     /**
      * Revert all seeds
      *
      */
-    public static function revert() {
+    public static function revert()
+    {
         /** nothing */
     }
 }

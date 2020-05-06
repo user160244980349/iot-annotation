@@ -16,10 +16,10 @@ class FSMap
      * Get path by alias.
      *
      * @access public.
-     * @param string $alias.
+     * @param string $alias .
      * @return string.
      */
-    public static function get(string $alias)
+    public static function get(string $alias): string
     {
         return ServiceBus::instance()->get('fs_map')->get($alias);
     }

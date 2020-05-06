@@ -15,8 +15,8 @@ class View
     /**
      * Path of template.
      *
-     * @var string.
      * @access private.
+     * @var string.
      */
     private $path;
 
@@ -31,9 +31,9 @@ class View
     /**
      * View constructor.
      *
+     * @access public.
      * @param string $path Path of template file.
      * @param array $variables Variables to paste in template.
-     * @access public.
      */
     public function __construct($path, array $variables)
     {
@@ -46,7 +46,7 @@ class View
      *
      * @access public.
      */
-    public function display()
+    public function display(): void
     {
         ob_start();
         extract($this->variables);

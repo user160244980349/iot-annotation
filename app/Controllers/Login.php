@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Engine\Decorators\Auth;
+use Engine\Decorators\Redirection;
 use Engine\Request;
 use Engine\View;
 
@@ -18,12 +19,12 @@ class Login
      * Go to login page.
      *
      * @access public.
-     * @param Request $request.
+     * @param Request $request .
      */
     public static function toLoginPage(Request $request)
     {
         if (Auth::authenticated()) {
-            header("location: /home");
+            Redirection::redirect('/home');
             exit;
         }
 
@@ -36,29 +37,26 @@ class Login
      * Log user in.
      *
      * @access public.
-     * @param Request $request.
+     * @param Request $request .
      */
     public static function login(Request $request)
     {
         if (Auth::login($request->parameters['user'])) {
-            header("location: /home");
-            exit;
+            Redirection::redirect('/home');
         }
-        header("location: /login");
-        exit;
+        Redirection::redirect('/login');
     }
 
     /**
      * Log user out.
      *
      * @access public.
-     * @param Request $request.
+     * @param Request $request .
      */
     public static function logout(Request $request)
     {
         Auth::logout();
-        header("location: /");
-        exit;
+        Redirection::redirect('/');
     }
 
 }

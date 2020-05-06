@@ -43,10 +43,10 @@ class FSMap
      * Get path by alias.
      *
      * @access public.
-     * @param string $alias.
+     * @param string $alias .
      * @return string.
      */
-    public function get(string $alias)
+    public function get(string $alias): string
     {
         return $this->_root . $this->_paths[$alias];
     }

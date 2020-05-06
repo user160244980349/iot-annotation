@@ -15,11 +15,11 @@ class Configuration
     /**
      * Gives content of conf file.
      *
-     * @param string $alias Service alias to get.
      * @access public.
-     * @return mixed
+     * @param string $alias Service alias to get.
+     * @return array.
      */
-    public static function get(string $alias)
+    public static function get(string $alias): array
     {
         return ServiceBus::instance()->get('conf')->get($alias);
     }

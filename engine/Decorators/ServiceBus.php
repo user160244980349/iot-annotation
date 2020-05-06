@@ -3,19 +3,19 @@
 namespace Engine\Decorators;
 
 /**
- * Route.php
+ * ServiceBus.php
  *
- * Class Route contains info about route.
+ * Decorator for service bus class.
  */
 class ServiceBus
 {
 
     /**
-     * ServiceBus autoload services from ngn-config.
+     * ServiceBus autoload services from config.
      *
      * @access public.
      */
-    public static function autoload()
+    public static function autoload(): void
     {
         \Engine\ServiceBus::instance()->autoload();
     }
@@ -23,10 +23,11 @@ class ServiceBus
     /**
      * Service getter.
      *
-     * @param string $alias .
      * @access public.
+     * @param string $alias .
+     * @return object.
      */
-    public static function get(string $alias)
+    public static function get(string $alias): object
     {
         return \Engine\ServiceBus::instance()->get($alias);
     }
@@ -36,7 +37,7 @@ class ServiceBus
      *
      * @access public.
      */
-    public static function instance()
+    public static function instance(): \Engine\ServiceBus
     {
         return \Engine\ServiceBus::instance();
     }
@@ -44,11 +45,12 @@ class ServiceBus
     /**
      * Register new service with existing object.
      *
-     * @param string $alias .
-     * @param $object .
      * @access public.
+     * @param string $alias.
+     * @param $object.
+     * @return void
      */
-    public static function register(string $alias, $object)
+    public static function register(string $alias, $object) : void
     {
         \Engine\ServiceBus::instance()->register($alias, $object);
     }

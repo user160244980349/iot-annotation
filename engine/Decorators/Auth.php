@@ -3,12 +3,11 @@
 namespace Engine\Decorators;
 
 use Engine\ServiceBus;
-use PDOStatement;
 
 /**
- * Receiver.php
+ * Auth.php
  *
- * Middleware class for parsing incoming request.
+ * Decorator class for authentication.
  */
 class Auth
 {
@@ -18,9 +17,9 @@ class Auth
      *
      * @access public.
      * @param array $user User credentials.
-     * @return bool
+     * @return bool.
      */
-    public static function register(array $user)
+    public static function register(array $user): bool
     {
         return ServiceBus::instance()->get('auth')->register($user);
     }
@@ -29,19 +28,19 @@ class Auth
      * Log user in.
      *
      * @access public.
-     * @param array $user
-     * @return bool
+     * @param array $user .
+     * @return bool.
      */
-    public static function login(array $user)
+    public static function login(array $user): bool
     {
         return ServiceBus::instance()->get('auth')->login($user);
     }
 
     /**
-     * Get authorized user.
+     * Gives authorized user id.
      *
      * @access public.
-     * @return int.
+     * @return null|int.
      */
     public static function userId()
     {
@@ -49,10 +48,10 @@ class Auth
     }
 
     /**
-     * Get authorized user.
+     * Gives authorized user.
      *
      * @access public.
-     * @return false|PDOStatement
+     * @return null|array.
      */
     public static function user()
     {
@@ -60,12 +59,12 @@ class Auth
     }
 
     /**
-     * Get authorized user.
+     * Gives true if user authenticated.
      *
      * @access public.
-     * @return bool
+     * @return bool.
      */
-    public static function authenticated()
+    public static function authenticated(): bool
     {
         return ServiceBus::instance()->get('auth')->authenticated();
     }
@@ -74,50 +73,50 @@ class Auth
      * Check if user has permissions.
      *
      * @access public.
-     * @param int $id
+     * @param int $id .
      * @param array $permissions Permissions list.
-     * @return bool
+     * @return bool.
      */
-    public static function allowed(int $id, array $permissions)
+    public static function allowed(int $id, array $permissions): bool
     {
         return ServiceBus::instance()->get('auth')->allowed($id, $permissions);
     }
 
 
     /**
-     * Log user out.
+     * Associates user with group.
      *
      * @access public.
-     * @param int $id
-     * @param string $group
-     * @return array
+     * @param int $id .
+     * @param string $group .
+     * @return array.
      */
-    public static function associate(int $id, string $group)
+    public static function associate(int $id, string $group): array
     {
         return ServiceBus::instance()->get('auth')->associate($id, $group);
     }
 
 
     /**
-     * Log user out.
+     * Gives permissions of user.
      *
      * @access public.
-     * @param int $id
-     * @return array
+     * @param int $id .
+     * @return array.
      */
-    public static function permissions(int $id)
+    public static function permissions(int $id): array
     {
         return ServiceBus::instance()->get('auth')->permissions($id);
     }
 
     /**
-     * Log user out.
+     * Logs user out.
      *
      * @access public.
      */
-    public static function logout()
+    public static function logout(): void
     {
-        return ServiceBus::instance()->get('auth')->logout();
+        ServiceBus::instance()->get('auth')->logout();
     }
 
 }

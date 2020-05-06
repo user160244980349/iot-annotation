@@ -17,8 +17,8 @@ class Router implements IMediator
     /**
      * Map for url's and controllers.
      *
-     * @var array.
      * @access private.
+     * @var array.
      */
     private $_routes;
 
@@ -33,12 +33,12 @@ class Router implements IMediator
     }
 
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediator chain call.
      *
      * @access public.
-     * @throws Error
      * @param Request $request .
      * @return Request Modified request.
+     * @throws Error.
      */
     public function let(Request $request): Request
     {

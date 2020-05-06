@@ -9,39 +9,39 @@
 
 return [
 
-    [   'name' => 'welcome.get',
+    ['name' => 'welcome.get',
         'method' => 'get',
         'pattern' => '/^$/',
-        'controller' => ['App\Controllers\Welcome', 'toWelcomePage'] ],
+        'controller' => ['App\Controllers\Welcome', 'toWelcomePage']],
 
-    [   'name' => 'register.get',
+    ['name' => 'register.get',
         'method' => 'get',
         'pattern' => '/^register$/',
-        'controller' => ['App\Controllers\Register', 'toRegisterPage'] ],
+        'controller' => ['App\Controllers\Register', 'toRegisterPage']],
 
-    [   'name' => 'register.post',
+    ['name' => 'register.post',
         'method' => 'post',
         'pattern' => '/^register$/',
-        'controller' => ['App\Controllers\Register', 'register'] ],
+        'controller' => ['App\Controllers\Register', 'register']],
 
-    [   'name' => 'login.get',
+    ['name' => 'login.get',
         'method' => 'get',
         'pattern' => '/^login$/',
-        'controller' => ['App\Controllers\Login', 'toLoginPage'] ],
+        'controller' => ['App\Controllers\Login', 'toLoginPage']],
 
-    [   'name' => 'login.post',
+    ['name' => 'login.post',
         'method' => 'post',
         'pattern' => '/^login$/',
-        'controller' => ['App\Controllers\Login', 'login'] ],
+        'controller' => ['App\Controllers\Login', 'login']],
 
-    [   'name' => 'home.get',
+    ['name' => 'home.get',
         'method' => 'get',
         'pattern' => '/^home$/',
-        'controller' => ['App\Controllers\Home', 'toHomePage'] ],
+        'controller' => ['App\Controllers\Home', 'toHomePage']],
 
-    [   'name' => 'logout.post',
+    ['name' => 'logout.post',
         'method' => 'post',
         'pattern' => '/^logout$/',
-        'controller' => ['App\Controllers\Login', 'logout'] ],
+        'controller' => ['App\Controllers\Login', 'logout']],
 
 ];

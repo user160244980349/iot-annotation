@@ -5,7 +5,7 @@ namespace Engine\Commands;
 /**
  * Session.php
  *
- * Command class intended for manage sessions
+ * Command class intended for manage sessions.
  */
 class Session
 {
@@ -13,7 +13,7 @@ class Session
     /**
      * Clears user session
      */
-    public static function clear()
+    public static function clear(): void
     {
         print("clearing sessions...\n");
         self::rrmdir(session_save_path());
@@ -27,7 +27,7 @@ class Session
      * @param $directory .
      * @param null $delete_parent .
      */
-    private static function rrmdir($directory, $delete_parent = null)
+    private static function rrmdir($directory, $delete_parent = null): void
     {
         $files = glob($directory . '/{,.}[!.,!..]*', GLOB_MARK | GLOB_BRACE);
         foreach ($files as $file) {

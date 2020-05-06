@@ -2,7 +2,7 @@
 
 namespace Engine\Services;
 
-use \Engine\Decorators\Configuration;
+use Engine\Decorators\Configuration;
 
 /**
  * Console.php
@@ -18,16 +18,13 @@ class Console
      * @access public.
      * @param array $args .
      */
-    public function run(array $args)
+    public function run(array $args): void
     {
-
         $conf = Configuration::get('console');
         array_shift($args);
         $method = $args[0];
         array_shift($args);
         forward_static_call($conf[$method], ...$args);
-
-        return;
     }
 
 }
