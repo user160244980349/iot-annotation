@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use Engine\Decorators\Auth;
 use Engine\Request;
-use Engine\ServiceBus;
 use Engine\View;
 
 /**
@@ -22,7 +22,7 @@ class Login
      */
     public static function toLoginPage(Request $request)
     {
-        if (ServiceBus::get('auth')->authenticated()) {
+        if (Auth::authenticated()) {
             header("location: /home");
             exit;
         }
@@ -40,9 +40,7 @@ class Login
      */
     public static function login(Request $request)
     {
-        if (ServiceBus::get('auth')->login(
-            $request->parameters['username'],
-            $request->parameters['password'])) {
+        if (Auth::login($request->parameters['user'])) {
             header("location: /home");
             exit;
         }
@@ -58,7 +56,7 @@ class Login
      */
     public static function logout(Request $request)
     {
-        ServiceBus::get('auth')->logout();
+        Auth::logout();
         header("location: /");
         exit;
     }

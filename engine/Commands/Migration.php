@@ -2,8 +2,10 @@
 
 namespace Engine\Commands;
 
+use Engine\Decorators\Configuration;
+use Engine\Decorators\Database;
+use Engine\Decorators\FSMap;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 /**
  * Migration.php
@@ -23,7 +25,7 @@ class Migration
     {
         print("creating migration...\n");
 
-        $path = ServiceBus::get('fs_map')->get('migrations');
+        $path = FSMap::get('migrations');
         $date = date('m_d_Y_H_i_s');
         $name = "{$name}_migration";
         $file = "{$path}/{$name}_{$date}.php";
@@ -35,7 +37,7 @@ class Migration
 namespace Database\Migrations;
 
 use Engine\ITransaction;
-use Engine\ServiceBus;
+use Engine\Decorators\Database;
 
 /**
  * {$name}_{$date}.php
@@ -50,7 +52,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        ServiceBus::get('database')->query("SELECT * FROM `table`");
+        Database::fetch("SELECT * FROM `table`");
     }
     
     /**
@@ -58,7 +60,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        ServiceBus::get('database')->query("SELECT * FROM `table`");
+        Database::fetch("SELECT * FROM `table`");
     }
 }
 EOT;
@@ -81,7 +83,7 @@ EOT;
             self::init();
         }
 
-        $response = ServiceBus::get('database')->fetch(
+        $response = Database::fetch(
             "SELECT MAX(`iteration`) as `max` FROM `migrations`;");
 
         if (!isset($response['max']))
@@ -89,11 +91,11 @@ EOT;
         else
             $iteration = $response['max'] + 1;
 
-        $response = array_column(ServiceBus::get('database')->fetchAll(
+        $response = array_column(Database::fetchAll(
             "SELECT DISTINCT `class` FROM `migrations`;"),
             'class');
 
-        $migrations_list = ServiceBus::get('conf')->get('migrations_list');
+        $migrations_list = Configuration::get('migrations_list');
         foreach ($migrations_list as $migration) {
 
             if (in_array($migration, $response)) {
@@ -106,7 +108,7 @@ EOT;
             $migration::commit();
 
             $escaped_migration = addslashes($migration);
-            ServiceBus::get('database')->fetch(
+            Database::fetch(
                 "INSERT INTO `migrations` (
                     `class`,
                     `iteration`
@@ -129,8 +131,8 @@ EOT;
     {
         print("undoing migrations...\n");
 
-        $migrations_list = ServiceBus::get('database')->fetchAll(
-            "SELECT `iteration` FROM `migrations`");
+        $migrations_list = Database::fetchAll("
+            SELECT `iteration` FROM `migrations`");
         $migrations_list = array_column($migrations_list, 'class');
 
         foreach (array_reverse($migrations_list) as $migration) {
@@ -151,8 +153,8 @@ EOT;
     {
         print("creating migration table...\n");
 
-        ServiceBus::get('database')->fetch(
-            "CREATE TABLE `migrations` (
+        Database::fetch("
+            CREATE TABLE `migrations` (
                 `id`            INT PRIMARY KEY AUTO_INCREMENT,
                 `class`         VARCHAR(255),
                 `iteration`     INT,
@@ -170,8 +172,8 @@ EOT;
     {
         print("checking if migration table exists...\n");
 
-        $check = ServiceBus::get('database')->fetch(
-            "SELECT `iteration` FROM `migrations`");
+        $check = Database::fetch("
+            SELECT `iteration` FROM `migrations`");
         return isset($check);
     }
 

@@ -2,8 +2,8 @@
 
 namespace Database\Seeds;
 
+use Engine\Decorators\Database;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 /**
  * group_permission_seed_05_06_2020_18_42_18.php
@@ -18,7 +18,7 @@ class group_permission_seed_05_06_2020_18_42_18 implements ITransaction
      *
      */
     public static function commit() {
-        ServiceBus::get('database')->fetch("
+        Database::fetch("
             INSERT INTO `group_permission` (
                 `group_id`,
                 `permission_id`

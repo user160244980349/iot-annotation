@@ -2,6 +2,8 @@
 
 namespace Engine;
 
+use Engine\Decorators\Configuration;
+
 /**
  * Route.php
  *
@@ -31,19 +33,9 @@ class ServiceBus
      *
      * @access public.
      */
-    public static function autoload()
+    public function autoload()
     {
-        return self::instance()->autoloadd();
-    }
-
-    /**
-     * ServiceBus autoload services from ngn-config.
-     *
-     * @access public.
-     */
-    public function autoloadd()
-    {
-        $service_classes = self::$_instance->get('conf')->get('services');
+        $service_classes = Configuration::get('services');
         foreach ($service_classes as $alias => $service_class) {
             $this->_services[$alias] = ['class' => $service_class, 'object' => null];
         }
@@ -55,18 +47,7 @@ class ServiceBus
      * @param string $alias .
      * @access public.
      */
-    public static function get(string $alias)
-    {
-        return self::instance()->getd($alias);
-    }
-
-    /**
-     * Service getter.
-     *
-     * @param string $alias .
-     * @access public.
-     */
-    public function getd(string $alias)
+    public function get(string $alias)
     {
         if (!isset($this->_services[$alias]['object'])) {
             $this->_services[$alias]['object'] = new $this->_services[$alias]['class']();
@@ -94,19 +75,7 @@ class ServiceBus
      * @param $object .
      * @access public.
      */
-    public static function register(string $alias, $object)
-    {
-        return self::instance()->registerd($alias, $object);
-    }
-
-    /**
-     * Register new service with existing object.
-     *
-     * @param string $alias .
-     * @param $object .
-     * @access public.
-     */
-    public function registerd(string $alias, $object)
+    public function register(string $alias, $object)
     {
         if (!isset($this->_services[$alias])) {
             $this->_services[$alias]['class'] = get_class($object);

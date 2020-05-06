@@ -23,22 +23,22 @@
                 <form method="post">
                     <div class="form-group text-left">
                         <label for="inputUsername">Username</label>
-                        <input type="text" name="name" id="inputUsername" class="form-control"
+                        <input type="text" name="user[name]" id="inputUsername" class="form-control"
                                placeholder="Enter username" required="" autofocus="">
                     </div>
                     <div class="form-group text-left">
                         <label for="inputEmail">Email</label>
-                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Enter email"
+                        <input type="email" name="user[email]" id="inputEmail" class="form-control" placeholder="Enter email"
                                required="">
                     </div>
                     <div class="form-group text-left">
                         <label for="inputPassword">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control"
+                        <input type="password" name="user[password]" id="inputPassword" class="form-control"
                                placeholder="Enter password" required="">
                     </div>
                     <div class="form-group text-left">
                         <label for="inputPassword">Password confirmation</label>
-                        <input type="password" name="password_confirm" id="inputPassword" class="form-control"
+                        <input type="password" name="user[password_confirm]" id="inputPassword" class="form-control"
                                placeholder="Confirm password" required="">
                     </div>
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign up">

@@ -2,7 +2,7 @@
 
 namespace Engine\Services;
 
-use Engine\ServiceBus;
+use Engine\Decorators\Env;
 
 /**
  * FSMap.php
@@ -35,8 +35,8 @@ class FSMap
      */
     public function __construct()
     {
-        $this->_root = ServiceBus::get('env')->get('root');
-        $this->_paths = ServiceBus::get('env')->get('filesystem');
+        $this->_root = Env::get('root');
+        $this->_paths = Env::get('filesystem');
     }
 
     /**

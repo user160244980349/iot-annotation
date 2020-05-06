@@ -13,7 +13,7 @@ class Renderer implements IMediator
 {
 
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediator chain call.
      *
      * @param Request $request .
      * @return Request Modified request.

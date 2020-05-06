@@ -13,7 +13,7 @@ class Receiver implements IMediator
 {
 
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediator chain call.
      *
      * @param Request $null Null because not needed.
      * @return Request Initialized request object.

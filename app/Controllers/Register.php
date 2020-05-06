@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use Engine\Decorators\Auth;
 use Engine\Request;
-use Engine\ServiceBus;
 use Engine\View;
 
 /**
@@ -22,7 +22,7 @@ class Register
      */
     public static function toRegisterPage(Request $request)
     {
-        if (ServiceBus::get('auth')->authenticated()) {
+        if (Auth::authenticated()) {
             header("location: /home");
             exit;
         }
@@ -40,16 +40,9 @@ class Register
      */
     public static function register(Request $request)
     {
-        $auth = ServiceBus::get('auth');
 
-        if ($auth->register([
-            'name' => $request->parameters['username'],
-            'password' => $request->parameters['password'],
-            'password_confirm' => $request->parameters['password_confirm'],
-            'email' => $request->parameters['email']])) {
-
-            if ($auth->login($request->parameters['username'],
-                $request->parameters['password'])) {
+        if (Auth::register($request->parameters['user'])) {
+            if (Auth::login($request->parameters['user'])) {
                 header("location: /home");
                 exit;
             }

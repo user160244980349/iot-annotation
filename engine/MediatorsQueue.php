@@ -2,6 +2,7 @@
 
 namespace Engine;
 
+use Engine\Decorators\Configuration;
 use Error;
 
 /**
@@ -26,7 +27,7 @@ class MediatorsQueue
      */
     public function __construct()
     {
-        $mediators = ServiceBus::get('conf')->get('mediators');
+        $mediators = Configuration::get('mediators');
         $this->_mediators = [];
         foreach ($mediators as $mediator) {
             array_push($this->_mediators, new $mediator());
@@ -50,7 +51,7 @@ class MediatorsQueue
             }
 
         } catch (Error $exception) {
-            $fallbackMediators = ServiceBus::get('conf')->get('mediators_fallback');
+            $fallbackMediators = Configuration::get('mediators_fallback');
             $this->_mediators = [];
             foreach ($fallbackMediators as $mediator) {
                 array_push($this->_mediators, new $mediator());

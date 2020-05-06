@@ -2,6 +2,8 @@
 
 namespace Engine;
 
+use Engine\Decorators\FSMap;
+
 /**
  * View.php
  *
@@ -35,7 +37,7 @@ class View
      */
     public function __construct($path, array $variables)
     {
-        $this->path = ServiceBus::get('fs_map')->get('templates') . '/' . $path;
+        $this->path = FSMap::get('templates') . '/' . $path;
         $this->variables = $variables;
     }
 
@@ -48,7 +50,7 @@ class View
     {
         ob_start();
         extract($this->variables);
-        require $this->path;
+        require_once($this->path);
         ob_end_flush();
     }
 

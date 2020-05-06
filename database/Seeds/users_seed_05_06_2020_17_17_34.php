@@ -2,8 +2,8 @@
 
 namespace Database\Seeds;
 
+use Engine\Decorators\Database;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 /**
  * users_seed_05_06_2020_17_17_34.php
@@ -18,7 +18,7 @@ class users_seed_05_06_2020_17_17_34 implements ITransaction
      *
      */
     public static function commit() {
-        ServiceBus::get('database')->fetch("
+        Database::fetch("
             INSERT INTO `users` (
                 `name`,
                 `password`,

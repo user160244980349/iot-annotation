@@ -1,8 +1,8 @@
 <?php
 
-namespace Engine\Services;
+namespace Engine\Decorators;
 
-use \Engine\Decorators\FSMap;
+use Engine\ServiceBus;
 
 /**
  * Configuration.php
@@ -19,9 +19,9 @@ class Configuration
      * @access public.
      * @return mixed
      */
-    public function get(string $alias)
+    public static function get(string $alias)
     {
-        return require_once(FSMap::get($alias));
+        return ServiceBus::instance()->get('conf')->get($alias);
     }
 
 }

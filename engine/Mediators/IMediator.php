@@ -14,7 +14,7 @@ interface IMediator
 {
 
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediator chain call.
      *
      * @param Request $request Request to manage.
      * @return Request Modified request.

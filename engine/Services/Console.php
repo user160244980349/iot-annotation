@@ -2,7 +2,7 @@
 
 namespace Engine\Services;
 
-use Engine\ServiceBus;
+use \Engine\Decorators\Configuration;
 
 /**
  * Console.php
@@ -21,7 +21,7 @@ class Console
     public function run(array $args)
     {
 
-        $conf = ServiceBus::get('conf')->get('console');
+        $conf = Configuration::get('console');
         array_shift($args);
         $method = $args[0];
         array_shift($args);

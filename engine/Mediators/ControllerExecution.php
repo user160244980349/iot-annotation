@@ -12,7 +12,7 @@ use Engine\Request;
 class ControllerExecution implements IMediator
 {
     /**
-     * Method providing middlewares chain call.
+     * Method providing mediators chain call.
      *
      * @param Request $request .
      * @return Request Modified container.

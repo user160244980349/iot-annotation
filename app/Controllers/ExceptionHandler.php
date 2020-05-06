@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use Engine\Decorators\Auth;
+use Engine\Decorators\Env;
 use Engine\Request;
-use Engine\ServiceBus;
 use Engine\View;
 use Error;
 
@@ -24,8 +25,8 @@ class ExceptionHandler
      */
     public static function handle(Request $request, Error $exception)
     {
-        $debug = ServiceBus::get('env')->get('debug');
-        $data = ServiceBus::get('auth')->user();
+        $debug = Env::get('debug');
+        $data = Auth::user();
 
         $request->view = new View('exception.tpl', [
             'title' => $exception->getMessage(),

@@ -2,15 +2,15 @@
 
 namespace Database\Migrations;
 
+use Engine\Decorators\Database;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 class create_group_user_table_migration_05_05_2020_02_00_43 implements ITransaction
 {
     
     public static function commit()
     {
-        ServiceBus::get('database')->fetch(
+        Database::fetch(
             "CREATE TABLE `group_user` (
                 `id`        INT PRIMARY KEY AUTO_INCREMENT,
                 `group_id`  INT,
@@ -22,7 +22,7 @@ class create_group_user_table_migration_05_05_2020_02_00_43 implements ITransact
     
     public static function revert()
     {
-        ServiceBus::get('database')->fetch(
+        Database::fetch(
             "DROP TABLE `group_user`");
     }
 

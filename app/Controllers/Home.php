@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use Engine\Decorators\Auth;
 use Engine\Request;
-use Engine\ServiceBus;
 use Engine\View;
 
 /**
@@ -22,7 +22,7 @@ class Home
      */
     public static function toHomePage(Request $request)
     {
-        $data = ServiceBus::get('auth')->user();
+        $data = Auth::user();
         $request->view = new View('home.tpl', [
             'title' => 'Home',
             'id' => $data['id'],

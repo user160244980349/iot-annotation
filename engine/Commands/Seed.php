@@ -2,8 +2,10 @@
 
 namespace Engine\Commands;
 
+use Engine\Decorators\Configuration;
+use Engine\Decorators\Database;
+use Engine\Decorators\FSMap;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 /**
  * Seed.php
@@ -23,7 +25,7 @@ class Seed
     {
         print("creating seed...\n");
 
-        $path = ServiceBus::get('fs_map')->get('seeds');
+        $path = FSMap::get('seeds');
         $date = date('m_d_Y_H_i_s');
         $name = "{$name}_seed";
         $file = "{$path}/{$name}_{$date}.php";
@@ -35,7 +37,7 @@ class Seed
 namespace Database\Seeds;
 
 use Engine\ITransaction;
-use Engine\ServiceBus;
+use Engine\Decorators\Database;
 
 /**
  * {$name}_{$date}.php
@@ -50,7 +52,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        ServiceBus::get('database')->fetch("SELECT * FROM `table`");
+        Database::fetch("SELECT * FROM `table`");
     }
     
     /**
@@ -58,10 +60,11 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        ServiceBus::get('database')->fetch("SELECT * FROM `table`");
+        Database::fetch("SELECT * FROM `table`");
     }
 }
 EOT;
+
         file_put_contents($file, $content);
         print("seed has been created.\n");
     }
@@ -75,7 +78,7 @@ EOT;
     {
         print("uploading seeds...\n");
 
-        $seeds_list = ServiceBus::get('conf')->get('seeds_list');
+        $seeds_list = Configuration::get('seeds_list');
         foreach ($seeds_list as $seed) {
 
             if (!in_array(ITransaction::class, class_implements($seed))) {
@@ -84,7 +87,7 @@ EOT;
 
             $seed::commit();
 
-            $error = ServiceBus::get('database')->error();
+            $error = Database::error();
             if ($error[0] != '00000')
                 dd($error);
 

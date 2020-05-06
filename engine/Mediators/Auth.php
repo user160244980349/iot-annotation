@@ -3,7 +3,8 @@
 namespace Engine\Mediators;
 
 use Engine\Request;
-use Engine\ServiceBus;
+use Engine\Decorators\Configuration;
+use Engine\Decorators\Auth as AuthService;
 use Error;
 
 /**
@@ -25,13 +26,13 @@ class Auth implements IMediator
     public function let(Request $request): Request
     {
 
-        $permissions = ServiceBus::get('conf')->get('permissions')[$request->route->name];
-
+        $permissions = Configuration::get('permissions')[$request->route->name];
         if (!isset($permissions)) {
             return $request;
         }
 
-        if (ServiceBus::get('auth')->allowed($permissions)) {
+        $id = AuthService::userId();
+        if (isset($id) && AuthService::allowed($id, $permissions)) {
             return $request;
         }
 

@@ -2,8 +2,8 @@
 
 namespace Engine\Services;
 
-use Engine\ServiceBus;
 use PDO;
+use Engine\Decorators\Env;
 
 /**
  * Database.php
@@ -68,7 +68,7 @@ class Database
      */
     public function __construct()
     {
-        $env = ServiceBus::get('env')->get('database');
+        $env = Env::get('database');
 
         $this->_driver = $env['driver'];
         $this->_address = $env['address'];
@@ -77,7 +77,9 @@ class Database
         $this->_password = $env['password'];
 
         $this->_connection = new PDO(
-            $this->_driver . ':host=' . $this->_address . ';dbname=' . $this->_name = $env['name'],
+            $this->_driver . ':host=' .
+            $this->_address . ';dbname=' .
+            $this->_name = $env['name'],
             $this->_user = $env['user'],
             $this->_password
         );

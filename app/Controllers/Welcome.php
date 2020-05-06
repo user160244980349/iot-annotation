@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use Engine\Decorators\Auth;
 use Engine\Request;
-use Engine\ServiceBus;
 use Engine\View;
 
 /**
@@ -22,7 +22,7 @@ class Welcome
      */
     public static function toWelcomePage(Request $request)
     {
-        $data = ServiceBus::get('auth')->user();
+        $data = Auth::user();
         $request->view = new View('welcome.tpl', [
             'title' => 'Welcome',
             'id' => $data['id'],

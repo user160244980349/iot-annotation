@@ -2,8 +2,8 @@
 
 namespace Database\Seeds;
 
+use Engine\Decorators\Database;
 use Engine\ITransaction;
-use Engine\ServiceBus;
 
 /**
  * groups_seed_05_06_2020_18_42_08.php
@@ -18,7 +18,7 @@ class groups_seed_05_06_2020_18_42_08 implements ITransaction
      *
      */
     public static function commit() {
-        ServiceBus::get('database')->fetch("
+        Database::fetch("
             INSERT INTO `groups` (
                 `name`
             ) VALUES

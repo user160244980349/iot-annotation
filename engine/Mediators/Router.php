@@ -2,9 +2,9 @@
 
 namespace Engine\Mediators;
 
+use Engine\Decorators\Configuration;
 use Engine\Request;
 use Engine\Route;
-use Engine\ServiceBus;
 use Error;
 
 /**
@@ -29,7 +29,7 @@ class Router implements IMediator
      */
     public function __construct()
     {
-        $this->_routes = ServiceBus::get('conf')->get('routes');
+        $this->_routes = Configuration::get('routes');
     }
 
     /**

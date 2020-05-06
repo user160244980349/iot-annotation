@@ -1,6 +1,6 @@
 <?php
 
-use Engine\ServiceBus;
+use Engine\Decorators\ServiceBus;
 use Engine\Services\Configuration;
 use Engine\Services\Env;
 use Engine\Services\FSMap;

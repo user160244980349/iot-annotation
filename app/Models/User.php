@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use PDOStatement;
-use Engine\ServiceBus;
+use Engine\Decorators\Database;
 
 /**
  * User.php
@@ -22,7 +22,7 @@ class User
      */
     public static function add(array $user)
     {
-        $response = ServiceBus::get('database')->fetch(
+        $response = Database::fetch(
             "INSERT INTO `users` (
                 `name`,
                 `password`,
@@ -41,11 +41,11 @@ class User
      *
      * @access public.
      * @param string $name.
-     * @return false|PDOStatement.
+     * @return array
      */
     public static function getByName(string $name)
     {
-        return ServiceBus::get('database')->fetch(
+        return Database::fetch(
             "SELECT * FROM `users` WHERE `name` = '$name';");
     }
 
@@ -54,11 +54,11 @@ class User
      *
      * @access public.
      * @param int $id.
-     * @return false|PDOStatement.
+     * @return array
      */
     public static function getById(int $id)
     {
-        return ServiceBus::get('database')->fetch(
+        return Database::fetch(
             "SELECT * FROM `users` WHERE `id` = '$id';");
     }
 
@@ -66,30 +66,12 @@ class User
      * Gives array with all users info.
      *
      * @access public.
-     * @return false|PDOStatement.
+     * @return array
      */
     public static function getAll()
     {
-        return ServiceBus::get('database')->fetchAll(
+        return Database::fetchAll(
             "SELECT * FROM `users`;");
-    }
-
-    /**
-     * Gives array with all user permissions.
-     *
-     * @access public.
-     * @param int $id.
-     * @return array.
-     */
-    public static function permissions(int $id) : array
-    {
-        return ServiceBus::get('database')->fetchAll(
-            "SELECT `for` FROM `users`
-                INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
-                INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
-                INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
-                INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
-                WHERE `users`.`id` = '$id'");
     }
 
 }

@@ -23,12 +23,12 @@
                 <form method="post">
                     <div class="form-group text-left">
                         <label for="inputUsername">Username</label>
-                        <input type="text" name="username" id="inputUsername" class="form-control"
+                        <input type="text" name="user[name]" id="inputUsername" class="form-control"
                                placeholder="Enter username" required="" autofocus="">
                     </div>
                     <div class="form-group text-left">
                         <label for="inputPassword">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control"
+                        <input type="password" name="user[password]" id="inputPassword" class="form-control"
                                placeholder="Enter password" required="">
                     </div>
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
