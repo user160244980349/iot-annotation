@@ -29,9 +29,9 @@ class Database
      *
      * @access public.
      * @param string $queryString Query to send.
-     * @return null|array.
+     * @return array.
      */
-    public static function fetchAll(string $queryString)
+    public static function fetchAll(string $queryString): array
     {
         return ServiceBus::instance()->get('database')->fetchAll($queryString);
     }

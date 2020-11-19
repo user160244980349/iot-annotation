@@ -2,7 +2,6 @@
 
 namespace Engine\Services;
 
-use App\Models\User;
 use Engine\Decorators\Database;
 use Engine\Decorators\Session;
 
@@ -15,27 +14,6 @@ class Auth
 {
 
     /**
-     * Registers new user.
-     *
-     * @access public
-     * @param array $user User credentials
-     * @return bool
-     */
-    public function register(array $user): bool
-    {
-        if ($user['password'] == $user['password_confirm']) {
-            $user['password'] = md5(md5($user['password']));
-            $user['password_confirm'] = md5(md5($user['password_confirm']));
-            if (User::add($user)) {
-                $id = User::getByName($user['name'])['id'];
-                $this->associate($id, 'authenticated');
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Log user out.
      *
      * @access public
@@ -46,78 +24,25 @@ class Auth
     public function associate(int $id, string $group): array
     {
         return Database::fetchAll(
-            "INSERT INTO `group_user` (
-                `user_id`, 
-                `group_id`
-                ) VALUE 
+            "INSERT INTO `group_user` 
+                (`user_id`, 
+                 `group_id`) VALUE 
                 ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
     }
 
     /**
-     * Log user in.
-     *
-     * @access public
-     * @param array $user
-     * @return bool
-     */
-    public function login(array $user): bool
-    {
-        $stored_user = User::getByName($user['name']);
-
-        if ($stored_user['password'] != md5(md5($user['password']))) {
-            return false;
-        }
-
-        Session::set('id', $stored_user['id']);
-        return true;
-    }
-
-    /**
      * Get authorized user.
      *
      * @access public
-     * @return false|int
+     * @return int
      */
-    public function userId()
+    public function authenticated(): int
     {
         $id = Session::get('id');
-
         if (isset($id)) {
             return $id;
         }
-        return null;
-    }
-
-    /**
-     * Get authorized user.
-     *
-     * @access public
-     * @return null|array
-     */
-    public function user()
-    {
-        $id = Session::get('id');
-
-        if (isset($id)) {
-            return User::getById($id);
-        }
-        return null;
-    }
-
-    /**
-     * Get authorized user.
-     *
-     * @access public
-     * @return bool
-     */
-    public function authenticated(): bool
-    {
-        $id = Session::get('id');
-
-        if (isset($id)) {
-            return true;
-        }
-        return false;
+        return 0;
     }
 
     /**
@@ -132,10 +57,9 @@ class Auth
     {
         $user_permissions = $this->permissions($id);
         $difference = array_diff($permissions, $user_permissions);
-        if (count($difference) != count($user_permissions) - count($permissions)) {
+        if ($difference) {
             return false;
         }
-
         return true;
     }
 
@@ -148,13 +72,55 @@ class Auth
      */
     public function permissions(int $id): array
     {
-        return array_column(Database::fetchAll(
+        $permissions = Database::fetchAll(
             "SELECT `for` FROM `users`
-                INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
-                INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
-                INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
-                INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
-                WHERE `users`.`id` = '$id'"), 'for');
+             INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
+             INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
+             INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
+             INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
+             WHERE `users`.`id` = '$id'"
+        );
+        return array_column($permissions, "for");
+    }
+
+    /**
+     * Registers new user.
+     *
+     * @access public
+     * @param array $user User credentials
+     */
+    public function register(int $id, string $password): bool
+    {   
+        $password = md5(md5($password));
+        Database::fetch(
+            "INSERT INTO `passwords`
+            (`id`, `value`) VALUES
+            ($id, '{$password}')"
+        );
+        $this->associate($id, 'authenticated');
+        return true;
+    }
+
+    /**
+     * Log user in.
+     *
+     * @access public
+     * @param array $user
+     * @return bool
+     */
+    public function login(int $id, string $password): bool
+    {
+        $stored_password = Database::fetch(
+            "SELECT `value` FROM `passwords`
+             WHERE `id` = $id"
+        )['value'];
+
+        if ($stored_password != md5(md5($password))) {
+            return false;
+        }
+        
+        Session::set('id', $id);
+        return true;
     }
 
     /**

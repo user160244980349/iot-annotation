@@ -37,7 +37,7 @@ class View
      */
     public function __construct($path, array $variables)
     {
-        $this->path = FSMap::get('templates') . '/' . $path;
+        $this->path = FSMap::get("views") . '/' . $path;
         $this->variables = $variables;
     }
 

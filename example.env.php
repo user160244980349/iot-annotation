@@ -6,15 +6,15 @@ return [
     'root' => __DIR__,
 
     # Debug prints
-    'debug' => false,
+    'debug' => true,
 
     # Database credentials
     'database' => [
 
         'driver' => 'mysql',
         'address' => 'localhost',
-        'name' => 'phpengine',
-        'user' => 'user',
+        'name' => 'custom_bp_editor',
+        'user' => 'custom-bp-editor',
         'password' => 'secret',
 
     ],
@@ -27,8 +27,8 @@ return [
         'routes' => '/config/routes.php',
         'database' => '/config/database.php',
 
-        # Templates path
-        'templates' => '/templates',
+        # Views path
+        'views' => '/views',
 
         # Migrations and seeds
         'migrations' => '/database/migrations',
@@ -39,8 +39,8 @@ return [
         # Engine configs
         'console' => '/config/console.php',
         'services' => '/config/services.php',
-        'mediators' => '/config/mediators.php',
-        'mediators_fallback' => '/config/mediators_fallback.php',
+        'middlewares' => '/config/middlewares.php',
+        'middlewares_fallback' => '/config/middlewares_fallback.php',
 
     ]
 

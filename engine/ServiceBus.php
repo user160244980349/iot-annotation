@@ -35,10 +35,10 @@ class ServiceBus
      */
     public static function instance()
     {
-        if (!isset(self::$_instance)) {
-            self::$_instance = new ServiceBus();
+        if (!isset(static::$_instance)) {
+            static::$_instance = new ServiceBus();
         }
-        return self::$_instance;
+        return static::$_instance;
     }
 
     /**

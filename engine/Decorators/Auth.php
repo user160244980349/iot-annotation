@@ -19,9 +19,9 @@ class Auth
      * @param array $user User credentials
      * @return bool
      */
-    public static function register(array $user): bool
+    public static function register(int $id, string $password): bool
     {
-        return ServiceBus::instance()->get('auth')->register($user);
+        return ServiceBus::instance()->get('auth')->register($id, $password);
     }
 
     /**
@@ -31,40 +31,18 @@ class Auth
      * @param array $user .
      * @return bool.
      */
-    public static function login(array $user): bool
+    public static function login(int $id, string $password): bool
     {
-        return ServiceBus::instance()->get('auth')->login($user);
+        return ServiceBus::instance()->get('auth')->login($id, $password);
     }
 
     /**
-     * Gives authorized user id.
+     * Gives id if user authenticated.
      *
      * @access public.
-     * @return null|int.
+     * @return int.
      */
-    public static function userId()
-    {
-        return ServiceBus::instance()->get('auth')->userId();
-    }
-
-    /**
-     * Gives authorized user.
-     *
-     * @access public.
-     * @return null|array.
-     */
-    public static function user()
-    {
-        return ServiceBus::instance()->get('auth')->user();
-    }
-
-    /**
-     * Gives true if user authenticated.
-     *
-     * @access public.
-     * @return bool.
-     */
-    public static function authenticated(): bool
+    public static function authenticated(): int
     {
         return ServiceBus::instance()->get('auth')->authenticated();
     }

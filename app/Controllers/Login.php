@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use Engine\Decorators\Auth;
 use Engine\Decorators\Redirection;
 use Engine\Request;
@@ -25,10 +26,9 @@ class Login
     {
         if (Auth::authenticated()) {
             Redirection::redirect('/home');
-            exit;
         }
 
-        $request->view = new View('login.tpl', [
+        $request->view = new View('login.php', [
             'title' => 'Login',
         ]);
     }
@@ -41,7 +41,9 @@ class Login
      */
     public static function login(Request $request)
     {
-        if (Auth::login($request->parameters['user'])) {
+        $id = User::getByName($request->parameters['user']['name'])['id'];
+        $password = $request->parameters['user']['password'];
+        if (Auth::login($id, $password)) {
             Redirection::redirect('/home');
         }
         Redirection::redirect('/login');

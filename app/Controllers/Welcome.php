@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Engine\Decorators\Auth;
 use Engine\Request;
 use Engine\View;
+use App\Models\User;
 
 /**
  * Welcome.php
@@ -22,11 +23,20 @@ class Welcome
      */
     public static function toWelcomePage(Request $request)
     {
-        $data = Auth::user();
-        $request->view = new View('welcome.tpl', [
+        $id = Auth::authenticated();
+
+        if ($id) {
+            $user = User::getById($id);
+            $request->view = new View('welcome.php', [
+                'title' => 'Welcome',
+                'id' => $id,
+                'name' => $user['name'],
+            ]);
+        }
+
+        $request->view = new View('welcome.php', [
             'title' => 'Welcome',
-            'id' => $data['id'],
-            'name' => $data['name'],
+            'id' => $id,
         ]);
     }
 

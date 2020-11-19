@@ -12,6 +12,3 @@ ServiceBus::register('fs_map', new FSMap());
 ServiceBus::register('conf', new Configuration());
 ServiceBus::autoload();
 Console::run($argv);
-
-# Debug output
-# dump(ServiceBus::instance());

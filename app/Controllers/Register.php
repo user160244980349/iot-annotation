@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use Engine\Decorators\Auth;
+use Engine\Decorators\Database;
 use Engine\Decorators\Redirection;
 use Engine\Request;
 use Engine\View;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * Register.php
@@ -27,7 +30,7 @@ class Register
             Redirection::redirect('/home');
         }
 
-        $request->view = new View('register.tpl', [
+        $request->view = new View('register.php', [
             'title' => 'Register',
         ]);
     }
@@ -40,10 +43,19 @@ class Register
      */
     public static function register(Request $request)
     {
+        $user = $request->parameters['user'];
 
-        if (Auth::register($request->parameters['user'])) {
-            if (Auth::login($request->parameters['user'])) {
-                Redirection::redirect('/home');
+        if ($user['password'] != $user['password_confirm']) {
+            Redirection::redirect('/register');
+        }
+
+        if (User::create($user)) {
+            $stored_user = User::getByName($user['name']);
+
+            if (Auth::register($stored_user['id'], $user['password'])) {
+                if (Auth::login($stored_user['id'], $user['password'])) {
+                    Redirection::redirect('/home');
+                }
             }
         }
 

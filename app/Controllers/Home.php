@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use Engine\Decorators\Auth;
 use Engine\Request;
 use Engine\View;
@@ -22,11 +23,12 @@ class Home
      */
     public static function toHomePage(Request $request)
     {
-        $data = Auth::user();
-        $request->view = new View('home.tpl', [
+        $id = Auth::authenticated();
+        $user = User::getById($id);
+        $request->view = new View('home.php', [
             'title' => 'Home',
-            'id' => $data['id'],
-            'name' => $data['name'],
+            'id' => $user['id'],
+            'name' => $user['name'],
         ]);
     }
 

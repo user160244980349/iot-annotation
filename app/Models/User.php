@@ -21,14 +21,12 @@ class User
      */
     public static function add(array $user): bool
     {
-        $response = Database::fetch("
-            INSERT INTO `users` (
+        $response = Database::fetch(
+            "INSERT INTO `users` (
                 `name`,
-                `password`,
                 `email`
             ) VALUES (
                 '{$user['name']}',
-                '{$user['password']}',
                 '{$user['email']}'
             );");
 
@@ -40,12 +38,12 @@ class User
      *
      * @access public
      * @param string $name
-     * @return array
+     * @return null|array.
      */
-    public static function getByName(string $name): array
+    public static function getByName(string $name)
     {
-        return Database::fetch("
-            SELECT * FROM `users` WHERE `name` = '$name';");
+        return Database::fetch(
+            "SELECT * FROM `users` WHERE `name` = '$name';");
     }
 
     /**
@@ -57,8 +55,8 @@ class User
      */
     public static function getById(int $id)
     {
-        return Database::fetch("
-            SELECT * FROM `users` WHERE `id` = '$id';");
+        return Database::fetch(
+            "SELECT * FROM `users` WHERE `id` = '$id';");
     }
 
     /**
@@ -69,8 +67,8 @@ class User
      */
     public static function getAll(): array
     {
-        return Database::fetchAll("
-            SELECT * FROM `users`;");
+        return Database::fetchAll(
+            "SELECT * FROM `users`;");
     }
 
 }

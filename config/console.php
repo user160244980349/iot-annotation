@@ -3,14 +3,14 @@
 return [
 
     # Migrations & seeds
-    'migrations.create' => ['Engine\Commands\Migration', 'create'],
-    'migrations.do' => ['Engine\Commands\Migration', 'do'],
-    'migrations.revert' => ['Engine\Commands\Migration', 'revert'],
-    'migrations.revert_all' => ['Engine\Commands\Migration', 'revert_all'],
-    'seeds.create' => ['Engine\Commands\Seed', 'create'],
-    'seeds.do' => ['Engine\Commands\Seed', 'do'],
+    'migrations.create' => ['Engine\Controllers\Migration', 'create'],
+    'migrations.do' => ['Engine\Controllers\Migration', 'do'],
+    'migrations.undo' => ['Engine\Controllers\Migration', 'undo'],
+    'migrations.reset' => ['Engine\Controllers\Migration', 'reset'],
+    'seeds.create' => ['Engine\Controllers\Seed', 'create'],
+    'seeds.do' => ['Engine\Controllers\Seed', 'do'],
 
     # Session
-    'sessions.clear' => ['Engine\Commands\Session', 'clear'],
+    'sessions.clear' => ['Engine\Controllers\Session', 'clear'],
 
 ];

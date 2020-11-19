@@ -2,7 +2,7 @@
 
 namespace Engine\Services;
 
-use Engine\MediatorsQueue;
+use Engine\MiddlewaresQueue;
 
 /**
  * Application.php
@@ -20,11 +20,8 @@ class Application
     public function run(): void
     {
 
-        $queue = new MediatorsQueue();
+        $queue = new MiddlewaresQueue();
         $queue->run();
-
-        # Debug output
-        # dump($this->_queue->run());
 
     }
 

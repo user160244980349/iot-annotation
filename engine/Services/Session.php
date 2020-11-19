@@ -41,7 +41,9 @@ class Session
      */
     public function get(string $name)
     {
-        return $_SESSION[$name];
+        if (array_key_exists($name, $_SESSION))
+            return $_SESSION[$name];
+        return null;
     }
 
     /**
