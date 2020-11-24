@@ -23,8 +23,8 @@ class groups_05_06_2020_18_42_08 implements ITransaction
             INSERT INTO `groups` (
                 `name`
             ) VALUES
-            ('authenticated'),
-            ('administrator')
+            ('Authenticated'),
+            ('Administrator')
         ");
     }
 

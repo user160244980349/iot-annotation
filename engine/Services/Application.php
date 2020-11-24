@@ -11,6 +11,12 @@ use Engine\MiddlewaresQueue;
  */
 class Application
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "application";
 
     /**
      * Application run method.

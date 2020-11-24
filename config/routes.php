@@ -3,80 +3,53 @@
 /**
  * Patterns for parameters:
  *
- * ([0-9]+)      <- number
- * ([a-zA-Z]+)   <- word
+ * (0-9+)      <- number
+ * (a-zA-Z+)   <- word
  */
+
+use Engine\Route;
+use App\Controllers\Register;
+use App\Controllers\Login;
+use App\Controllers\Home;
+use App\Controllers\Welcome;
+use App\Controllers\ManageBusinessProcesses;
+use App\Controllers\ManageUsers;
+use App\Controllers\ManageTasks;
+use App\Controllers\ManageGroups;
 
 return [
 
-    ['name' => 'welcome.get',
-        'method' => 'get',
-        'pattern' => '/^$/',
-        'controller' => ['App\Controllers\Welcome', 'toWelcomePage']],
+    # Auth management
+    new Route('register', 'get', '/^register$/', [Register::class, 'toRegisterPage']),
+    new Route('register', 'post', '/^register$/', [Register::class, 'register']),
+    new Route('login', 'get', '/^login$/', [Login::class, 'toLoginPage']),
+    new Route('login', 'post', '/^login$/', [Login::class, 'login']),
+    new Route('logout', 'post', '/^logout$/', [Login::class, 'logout']),
 
-    ['name' => 'register.get',
-        'method' => 'get',
-        'pattern' => '/^register$/',
-        'controller' => ['App\Controllers\Register', 'toRegisterPage']],
+    # Pages
+    new Route('welcome', 'get', '/^$/', [Welcome::class, 'toWelcomePage']),
+    new Route('home', 'get', '/^home$/', [Home::class, 'toHomePage']),
 
-    ['name' => 'register.post',
-        'method' => 'post',
-        'pattern' => '/^register$/',
-        'controller' => ['App\Controllers\Register', 'register']],
+    # Business processes
+    new Route('business-processes', 'get', '/^business_processes$/', [ManageBusinessProcesses::class, 'toIndexPage']),
+    new Route('business-processes', 'delete', '/^business_processes$/', [ManageBusinessProcesses::class, 'delete']),
+    new Route('create-business-process', 'get', '/^create_business_process$/', [ManageBusinessProcesses::class, 'toCreatePage']),
+    new Route('update-business-process', 'get', '/^update_business_process\/([0-9]+)$/', [ManageBusinessProcesses::class, 'toUpdatePage']),
 
-    ['name' => 'login.get',
-        'method' => 'get',
-        'pattern' => '/^login$/',
-        'controller' => ['App\Controllers\Login', 'toLoginPage']],
+    # Users
+    new Route('users', 'get', '/^users$/', [ManageUsers::class, 'toUsersPage']),
+    new Route('user-groups', 'get', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'toGroupsPage']),
+    new Route('user-group', 'post', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'assign']),
+    new Route('user-group', 'delete', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'disassign']),
 
-    ['name' => 'login.post',
-        'method' => 'post',
-        'pattern' => '/^login$/',
-        'controller' => ['App\Controllers\Login', 'login']],
+    # Tasks
+    new Route('run-task', 'get', '/^run_task$/', [ManageTasks::class, 'toRunPage']),
+    new Route('task', 'get', '/^task\/([0-9]+)$/', [ManageTasks::class, 'toDoPage']),
 
-    ['name' => 'home.get',
-        'method' => 'get',
-        'pattern' => '/^home$/',
-        'controller' => ['App\Controllers\Home', 'toHomePage']],
-
-    ['name' => 'index-bp.get',
-        'method' => 'get',
-        'pattern' => '/^index-bp$/',
-        'controller' => ['App\Controllers\ManageBP', 'toIndexPage']],
-
-    ['name' => 'create-bp.get',
-        'method' => 'get',
-        'pattern' => '/^create-bp$/',
-        'controller' => ['App\Controllers\ManageBP', 'toCreatePage']],
-
-    ['name' => 'edit-bp.get',
-        'method' => 'get',
-        'pattern' => '/^edit-bp$/',
-        'controller' => ['App\Controllers\ManageBP', 'toEditPage']],
-
-    ['name' => 'index-users.get',
-        'method' => 'get',
-        'pattern' => '/^index-users$/',
-        'controller' => ['App\Controllers\ManageGroups', 'toIndexPage']],
-
-    ['name' => 'edit-groups.get',
-        'method' => 'get',
-        'pattern' => '/^edit-groups$/',
-        'controller' => ['App\Controllers\ManageGroups', 'toEditPage']],
-
-    ['name' => 'run-action.get',
-        'method' => 'get',
-        'pattern' => '/^run-action$/',
-        'controller' => ['App\Controllers\ManageActions', 'toRunPage']],
-
-    ['name' => 'view-action.get',
-        'method' => 'get',
-        'pattern' => '/^view-action$/',
-        'controller' => ['App\Controllers\ManageActions', 'toDoPage']],
-
-    ['name' => 'logout.post',
-        'method' => 'post',
-        'pattern' => '/^logout$/',
-        'controller' => ['App\Controllers\Login', 'logout']],
+    # Permissions
+    new Route('groups', 'get', '/^groups$/', [ManageGroups::class, 'toGroupsPage']),
+    new Route('group-permissions', 'get', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'toPermissionsPage']),
+    new Route('group-permissions', 'post', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'assign']),
+    new Route('group-permission', 'delete', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'disassign']),
 
 ];

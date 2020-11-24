@@ -16,7 +16,7 @@ class Auth implements IMiddleware
 {
 
     /**
-     * Method providing mediators chain call.
+     * Method providing middlewares chain call.
      *
      * @access public.
      * @param Request $request
@@ -25,19 +25,23 @@ class Auth implements IMiddleware
      */
     public function let(Request $request): Request
     {
-        $permissions = Configuration::get('permissions');
 
-        if (!array_key_exists($request->route->name, $permissions)) {
-            return $request;
+        $permission_sets = Configuration::get('permissions');
+
+        foreach ($permission_sets as $permission_set) {
+            if ($permission_set->test($request->route->name)) {
+
+                $id = AuthService::authenticated();
+                if (isset($id) && AuthService::allowed($id, $permission_set->permissions)) {
+                    return $request;
+                } else {
+                    throw new Error('You do not have access to this page!', 403);
+                }
+            }
         }
 
-        $route_permissions = $permissions[$request->route->name];
-        $id = AuthService::authenticated();
-        if (isset($id) && AuthService::allowed($id, $route_permissions)) {
-            return $request;
-        }
+        return $request;
 
-        throw new Error('You do not have access to this page!', 403);
     }
 
 }

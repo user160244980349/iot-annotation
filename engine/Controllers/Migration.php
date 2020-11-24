@@ -69,7 +69,10 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        Database::fetch("SELECT * FROM `table`");
+        Database::fetch(
+            "CREATE TABLE `$name` (
+                `id` INT PRIMARY KEY AUTO_INCREMENT
+            )");
     }
     
     /**
@@ -77,7 +80,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        Database::fetch("DROP TABLE `table`");
+        Database::fetch("DROP TABLE `$name`");
     }
 }
 EOT;

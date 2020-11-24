@@ -11,6 +11,12 @@ use Engine\Decorators\FSMap;
  */
 class Configuration
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "configuration";
 
     /**
      * Gives content of conf file.

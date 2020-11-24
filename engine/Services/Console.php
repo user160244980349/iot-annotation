@@ -11,6 +11,12 @@ use Engine\Decorators\Configuration;
  */
 class Console
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "console";
 
     /**
      * Run command.
@@ -20,11 +26,16 @@ class Console
      */
     public function run(array $args): void
     {
-        $conf = Configuration::get('console');
+        $commands = Configuration::get('console');
         array_shift($args);
-        $method = $args[0];
+        $alias = $args[0];
         array_shift($args);
-        forward_static_call($conf[$method], ...$args);
+
+        foreach ($commands as $command) {
+            if ($command->test($alias)) {
+                $command->execute($args);
+            }
+        }
     }
 
 }

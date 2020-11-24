@@ -20,7 +20,7 @@ class ControllerExecution implements IMiddleware
      */
     public function let(Request $request): Request
     {
-        forward_static_call($request->route->controller, $request, ...$request->route->args);
+        $request->route->execute($request);
         return $request;
     }
 

@@ -2,10 +2,10 @@
 
 return [
 
-    'Engine\Middlewares\Receiver',
-    'Engine\Middlewares\Router',
-    'Engine\Middlewares\Auth',
-    'Engine\Middlewares\ControllerExecution',
-    'Engine\Middlewares\Renderer',
+    Engine\Middlewares\Receiver::class,
+    Engine\Middlewares\Router::class,
+    Engine\Middlewares\Auth::class,
+    Engine\Middlewares\ControllerExecution::class,
+    Engine\Middlewares\Renderer::class,
 
 ];

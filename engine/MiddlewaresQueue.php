@@ -57,7 +57,8 @@ class MiddlewaresQueue
                 array_push($this->_middlewares, new $middleware());
             }
 
-            $result->route = new Route ('error', ['Engine\Controllers\ExceptionHandler', 'handle'], [$exception]);
+            $result->route = new Route('error', 'none', 'none', [\Engine\Controllers\ExceptionHandler::class, 'handle']);
+            $result->route->args = [$exception];
             foreach ($this->_middlewares as $_middleware) {
                 $result = $_middleware->let($result);
             }

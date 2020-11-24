@@ -12,7 +12,7 @@ use App\Models\User;
  *
  * Controller class for management of BP.
  */
-class ManageBP
+class ManageBusinessProcesses
 {
 
     /**
@@ -25,7 +25,7 @@ class ManageBP
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_bp/index_bp.php', [
+        $request->view = new View('manage_business_processes/business_processes.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],
@@ -42,7 +42,7 @@ class ManageBP
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_bp/create_bp.php', [
+        $request->view = new View('manage_business_processes/create_business_process.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],
@@ -55,11 +55,11 @@ class ManageBP
      * @access public
      * @param Request $request
      */
-    public static function toEditPage(Request $request)
+    public static function toUpdatePage(Request $request)
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_bp/edit_bp.php', [
+        $request->view = new View('manage_business_processes/update_business_process.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],

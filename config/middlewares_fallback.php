@@ -2,7 +2,7 @@
 
 return [
 
-    'Engine\Middlewares\ControllerExecution',
-    'Engine\Middlewares\Renderer',
+    Engine\Middlewares\ControllerExecution::class,
+    Engine\Middlewares\Renderer::class,
 
 ];

@@ -15,14 +15,14 @@
 <?php include FSMap::get("views")."/blocks/header.php" ?>
 
 <div class="container">
-    <div class="row">
+    <div class="row my-4">
         <div class="col-md-8 offset-2">
             <div class="card">
                 <div class="card-body">
 
                     <div class="row card-title">
                         <div class="col">
-                            <b>List of users</b>
+                            <b>List of groups</b>
                         </div>
                     </div>
 
@@ -39,14 +39,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 0; foreach ($users as $user) { $i++; ?>
+                                    <?php $i = 0; foreach ($groups as $group) { $i++; ?>
                                     <tr>
                                         <th scope="row"><?php echo $i ?></th>
-                                        <td><?php echo $user['name'] ?></td>
+                                        <td><?php echo $group['name'] ?></td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                <a style="margin-right:5px" class="btn btn-sm btn-outline-primary"
-                                                    href="edit-groups/<?php echo $user['id'] ?>">Details</a>
+                                                <a class="btn btn-sm btn-outline-primary"
+                                                    href="/groups/<?php echo $group['id'] ?>/permissions">Details</a>
                                             </div>
                                         </td>
                                     </tr>

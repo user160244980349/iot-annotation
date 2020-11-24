@@ -26,16 +26,20 @@ class ExceptionHandler
      */
     public static function handle(Request $request, Error $exception)
     {
-        $data = User::getById(Auth::authenticated());
+        $id = Auth::authenticated();
 
         $request->view = new View("exception.php", [
-            "id" => $data["id"],
-            "name" => $data["name"],
+            "id" => $id,
             "code" => $exception->getCode(),
             "title" => $exception->getMessage(),
             "trace" => $exception->getTrace(),
             "message" => $exception->getMessage(),
         ]);
+
+        if ($id) {
+            $user = User::getById($id);
+            $request->view->push("name", $user["name"]);
+        }
     }
 
 }

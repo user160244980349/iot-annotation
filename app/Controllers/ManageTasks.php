@@ -8,15 +8,15 @@ use Engine\View;
 use App\Models\User;
 
 /**
- * ManageActions.php
+ * ManageTasks.php
  *
- * Controller class for management of actions.
+ * Controller class for management of tasks.
  */
-class ManageActions
+class ManageTasks
 {
 
     /**
-     * Go to run action page.
+     * Go to run task page.
      *
      * @access public
      * @param Request $request
@@ -25,7 +25,7 @@ class ManageActions
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_actions/run_action.php', [
+        $request->view = new View('manage_tasks/run_task.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],
@@ -33,7 +33,7 @@ class ManageActions
     }
 
     /**
-     * Go to do action page.
+     * Go to do task page.
      *
      * @access public
      * @param Request $request
@@ -42,7 +42,7 @@ class ManageActions
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_actions/view_action.php', [
+        $request->view = new View('manage_tasks/task.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],

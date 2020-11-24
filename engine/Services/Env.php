@@ -18,6 +18,13 @@ class Env
      */
     private $_env;
 
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "env";
+
 
     /**
      * Constructor for initialization.

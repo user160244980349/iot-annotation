@@ -12,6 +12,12 @@ use PDO;
  */
 class Database
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "database";
 
     /**
      * Driver for database access.

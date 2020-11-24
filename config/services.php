@@ -2,11 +2,11 @@
 
 return [
 
-    'application' => 'Engine\Services\Application',
-    'session' => 'Engine\Services\Session',
-    'database' => 'Engine\Services\Database',
-    'auth' => 'Engine\Services\Auth',
-    'console' => 'Engine\Services\Console',
-    'redirection' => 'Engine\Services\Redirection',
+    Engine\Services\Application::class,
+    Engine\Services\Session::class,
+    Engine\Services\Database::class,
+    Engine\Services\Auth::class,
+    Engine\Services\Console::class,
+    Engine\Services\Redirection::class,
 
 ];

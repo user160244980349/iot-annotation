@@ -19,7 +19,7 @@ class User
      * @param array $user
      * @return bool
      */
-    public static function add(array $user): bool
+    public static function create(array $user): bool
     {
         $response = Database::fetch(
             "INSERT INTO `users` (

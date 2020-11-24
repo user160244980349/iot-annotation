@@ -4,7 +4,6 @@ namespace Engine\Middlewares;
 
 use Engine\Decorators\Configuration;
 use Engine\Request;
-use Engine\Route;
 use Error;
 
 /**
@@ -43,16 +42,10 @@ class Router implements IMiddleware
     public function let(Request $request): Request
     {
         foreach ($this->_routes as $route) {
-            if ($route['method'] == $request->parameters['method'] &&
-                preg_match($route['pattern'], $request->parameters['uri'], $params_matches)) {
-                array_shift($params_matches);
-
-                $request->route = new Route (
-                    $route['name'],
-                    $route['controller'],
-                    $params_matches
-                );
-
+            if ($route->test($request->parameters['uri'],
+                             $request->parameters['method'])) {
+                
+                $request->route = $route;
                 return $request;
             }
         }

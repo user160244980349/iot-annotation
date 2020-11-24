@@ -15,7 +15,7 @@ use Engine\Decorators\Redirection;
  *
  * Controller class for managment of actors groups.
  */
-class ManageGroups
+class ManageUsers
 {
 
     /**
@@ -24,15 +24,15 @@ class ManageGroups
      * @access public
      * @param Request $request
      */
-    public static function toGroupsPage(Request $request)
+    public static function toUsersPage(Request $request)
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
-        $request->view = new View('manage_groups/groups.php', [
+        $request->view = new View('manage_users/users.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],
-            'groups' => Group::getAll(),
+            'users' => User::getAll(),
         ]);
     }
 
@@ -42,16 +42,15 @@ class ManageGroups
      * @access public
      * @param Request $request
      */
-    public static function toPermissionsPage(Request $request, int $id)
+    public static function toGroupsPage(Request $request, int $id)
     {
         $user = User::getById($id);
-        $request->view = new View('manage_groups/permissions.php', [
+        $request->view = new View('manage_users/groups.php', [
             'title' => 'Home',
             'id' => $user['id'],
             'name' => $user['name'],
-            'group' => Group::getById($id),
-            'permissions' => Permission::getForGroup($id),
-            'all_permissions' => Permission::getAll(),
+            'groups' => Group::getForId($user['id']),
+            'all_groups' => Group::getAll(),
         ]);
     }
 
@@ -63,8 +62,8 @@ class ManageGroups
      */
     public static function assign(Request $request, int $id)
     {
-        Permission::associateById($id, $request->parameters['permission']);
-        Redirection::redirect("/groups/{$id}/permissions");
+        Group::associateById($id, $request->parameters['group']);
+        Redirection::redirect("/users/{$id}/groups");
     }
 
     /**
@@ -75,8 +74,8 @@ class ManageGroups
      */
     public static function disassign(Request $request, int $id)
     {
-        Permission::disassociateById($id, $request->parameters['permission']);
-        Redirection::redirect("/groups/{$id}/permissions");
+        Group::disassociateById($id, $request->parameters['group']);
+        Redirection::redirect("/users/{$id}/groups");
     }
 
 }

@@ -2,7 +2,9 @@
 
 namespace Engine\Services;
 
-use Engine\Decorators\Database;
+use App\Models\Password;
+use App\Models\Permission;
+use App\Models\Group;
 use Engine\Decorators\Session;
 
 /**
@@ -12,23 +14,12 @@ use Engine\Decorators\Session;
  */
 class Auth
 {
-
     /**
-     * Log user out.
+     * Application run method.
      *
-     * @access public
-     * @param int $id
-     * @param string $group
-     * @return array.
+     * @var public
      */
-    public function associate(int $id, string $group): array
-    {
-        return Database::fetchAll(
-            "INSERT INTO `group_user` 
-                (`user_id`, 
-                 `group_id`) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
-    }
+    static public $alias = "auth";
 
     /**
      * Get authorized user.
@@ -55,32 +46,12 @@ class Auth
      */
     public function allowed(int $id, array $permissions): bool
     {
-        $user_permissions = $this->permissions($id);
+        $user_permissions = Permission::getForUser($id);
         $difference = array_diff($permissions, $user_permissions);
         if ($difference) {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Log user out.
-     *
-     * @access public
-     * @param int $id
-     * @return array
-     */
-    public function permissions(int $id): array
-    {
-        $permissions = Database::fetchAll(
-            "SELECT `for` FROM `users`
-             INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
-             INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
-             INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
-             INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
-             WHERE `users`.`id` = '$id'"
-        );
-        return array_column($permissions, "for");
     }
 
     /**
@@ -91,13 +62,7 @@ class Auth
      */
     public function register(int $id, string $password): bool
     {   
-        $password = md5(md5($password));
-        Database::fetch(
-            "INSERT INTO `passwords`
-            (`id`, `value`) VALUES
-            ($id, '{$password}')"
-        );
-        $this->associate($id, 'authenticated');
+        Password::create($id, $this->encrypt($password));
         return true;
     }
 
@@ -110,17 +75,24 @@ class Auth
      */
     public function login(int $id, string $password): bool
     {
-        $stored_password = Database::fetch(
-            "SELECT `value` FROM `passwords`
-             WHERE `id` = $id"
-        )['value'];
+        $stored_password = Password::getValue($id);
 
-        if ($stored_password != md5(md5($password))) {
+        if ($stored_password != $this->encrypt($password)) {
             return false;
         }
         
         Session::set('id', $id);
         return true;
+    }
+
+    /**
+     * Log user out.
+     *
+     * @access public.
+     */
+    public function encrypt(string $password): string
+    {
+        return md5(md5($password));
     }
 
     /**

@@ -14,3 +14,10 @@
 - [x] Rework the docs because they don’t make any sense 
 - [x] Make things more strict
 - [ ] Optimize route search 
+
+- [x] Finish users pages
+- [x] Finish groups pages
+- [ ] Create relational model
+- [ ] Recursive sql-request
+- [ ] Do process execution
+- [ ] Integrate editor interface

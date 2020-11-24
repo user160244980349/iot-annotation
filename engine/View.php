@@ -18,7 +18,7 @@ class View
      * @access private
      * @var string
      */
-    private $path;
+    private $_path;
 
     /**
      * Variables for template.
@@ -26,7 +26,7 @@ class View
      * @access private
      * @var string
      */
-    private $variables;
+    private $_variables;
 
     /**
      * View constructor.
@@ -37,8 +37,20 @@ class View
      */
     public function __construct($path, array $variables)
     {
-        $this->path = FSMap::get("views") . '/' . $path;
-        $this->variables = $variables;
+        $this->_path = FSMap::get("views") . '/' . $path;
+        $this->_variables = $variables;
+    }
+
+    /**
+     * View constructor.
+     *
+     * @access public
+     * @param string $path Path of template file
+     * @param array $variables Variables to paste in template
+     */
+    public function push(string $name, $value)
+    {
+        $this->_variables[$name] = $value;
     }
 
     /**
@@ -49,8 +61,8 @@ class View
     public function display(): void
     {
         ob_start();
-        extract($this->variables);
-        require_once($this->path);
+        extract($this->_variables);
+        require_once($this->_path);
         ob_end_flush();
     }
 

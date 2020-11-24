@@ -9,6 +9,12 @@ namespace Engine\Services;
  */
 class Redirection
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "redirection";
 
     /**
      * Performs redirection.

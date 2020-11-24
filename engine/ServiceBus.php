@@ -49,8 +49,8 @@ class ServiceBus
     public function autoload()
     {
         $service_classes = Configuration::get('services');
-        foreach ($service_classes as $alias => $service_class) {
-            $this->_services[$alias] = ['class' => $service_class, 'object' => null];
+        foreach ($service_classes as $service_class) {
+            $this->_services[$service_class::$alias] = [$service_class, null];
         }
     }
 
@@ -63,10 +63,10 @@ class ServiceBus
      */
     public function get(string $alias): object
     {
-        if (!isset($this->_services[$alias]['object'])) {
-            $this->_services[$alias]['object'] = new $this->_services[$alias]['class']();
+        if (!isset($this->_services[$alias][1])) {
+            $this->_services[$alias][1] = new $this->_services[$alias][0]();
         }
-        return $this->_services[$alias]['object'];
+        return $this->_services[$alias][1];
     }
 
     /**
@@ -79,8 +79,8 @@ class ServiceBus
     public function register(string $alias, $object)
     {
         if (!isset($this->_services[$alias])) {
-            $this->_services[$alias]['class'] = get_class($object);
-            $this->_services[$alias]['object'] = $object;
+            $this->_services[$alias][0] = get_class($object);
+            $this->_services[$alias][1] = $object;
         }
     }
 

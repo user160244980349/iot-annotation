@@ -21,11 +21,11 @@
 
                     <div class="row card-title">
                         <div class="col align-self-center">
-                            <b>List of tasks</b>
+                            <b>List of business processes</b>
                         </div>
                         <div class="col d-flex flex-row-reverse">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-success" href="/run_task">Run new</a>
+                            <div class="btn-group-sm">
+                                <a class="btn btn-sm btn-success" href="create_business_process">Create new</a>
                             </div>
                         </div>
                     </div>
@@ -48,8 +48,12 @@
                                         <td>Sample business process 1</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-sm btn-outline-primary"
-                                                    href="/task/1">Details</a>
+                                                <a style="margin-right:5px" class="btn btn-sm btn-outline-primary"
+                                                    href="update_business_process/1">Edit</a>
+                                                <form action='business_processes/<?php echo $group['id'] ?>' method='post' class='form-inline justify-content-end'>
+                                                    <input type='hidden' name='_method' value='delete'/>
+                                                    <input class='btn btn-sm btn-outline-danger' type='submit' value='Remove'>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -58,8 +62,12 @@
                                         <td>Sample business process 2</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-sm btn-outline-primary"
-                                                    href="/task/2">Details</a>
+                                                <a style="margin-right:5px" class="btn btn-sm btn-outline-primary"
+                                                    href="update_business_process/2">Edit</a>
+                                                <form action='business_processes/<?php echo $group['id'] ?>' method='post' class='form-inline justify-content-end'>
+                                                    <input type='hidden' name='_method' value='delete'/>
+                                                    <input class='btn btn-sm btn-outline-danger' type='submit' value='Remove'>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

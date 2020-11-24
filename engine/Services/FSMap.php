@@ -27,6 +27,13 @@ class FSMap
      * @var array
      */
     private $_paths;
+    
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "fsmap";
 
     /**
      * FSMap constructor.

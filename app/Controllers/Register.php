@@ -3,12 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Group;
 use Engine\Decorators\Auth;
-use Engine\Decorators\Database;
 use Engine\Decorators\Redirection;
 use Engine\Request;
 use Engine\View;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * Register.php
@@ -30,9 +29,9 @@ class Register
             Redirection::redirect('/home');
         }
 
-        $request->view = new View('register.php', [
+        $request->view = new View('register.php', array(
             'title' => 'Register',
-        ]);
+        ));
     }
 
     /**
@@ -53,6 +52,7 @@ class Register
             $stored_user = User::getByName($user['name']);
 
             if (Auth::register($stored_user['id'], $user['password'])) {
+                Group::associateByName($stored_user['id'], 'Authenticated');
                 if (Auth::login($stored_user['id'], $user['password'])) {
                     Redirection::redirect('/home');
                 }

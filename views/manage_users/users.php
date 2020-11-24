@@ -13,20 +13,16 @@
 <body>
 
 <?php include FSMap::get("views")."/blocks/header.php" ?>
+
 <div class="container">
-    <div class="row">
+    <div class="row my-4">
         <div class="col-md-8 offset-2">
             <div class="card">
                 <div class="card-body">
 
                     <div class="row card-title">
                         <div class="col">
-                            <b>List of business processes</b>
-                        </div>
-                        <div class="col d-flex flex-row-reverse">
-                            <div class="btn-group-sm">
-                                <a class="btn btn-success" href="create-bp">Create new</a>
-                            </div>
+                            <b>List of users</b>
                         </div>
                     </div>
 
@@ -43,30 +39,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 0; foreach ($users as $user) { $i++; ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Sample business process 1</td>
+                                        <th scope="row"><?php echo $i ?></th>
+                                        <td><?php echo $user['name'] ?></td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                <a style="margin-right:5px" class="btn btn-sm btn-outline-primary"
-                                                    href="edit-bp">Edit</a>
-                                                <a class="btn btn-sm btn-outline-danger"
-                                                    href="">Remove</a>
+                                                <a class="btn btn-sm btn-outline-primary"
+                                                    href="/users/<?php echo $user['id'] ?>/groups">Details</a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Sample business process 2</td>
-                                        <td>
-                                            <div class="d-flex justify-content-end">
-                                                <a style="margin-right:5px" class="btn btn-sm btn-outline-primary"
-                                                    href="edit-bp">Edit</a>
-                                                <a class="btn btn-sm btn-outline-danger"
-                                                    href="">Remove</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -76,6 +60,7 @@
         </div>
     </div>
 </div>
+
 <?php include FSMap::get("views")."/blocks/footer.php" ?>
 
 </body>

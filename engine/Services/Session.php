@@ -9,6 +9,12 @@ namespace Engine\Services;
  */
 class Session
 {
+    /**
+     * Application run method.
+     *
+     * @var public
+     */
+    static public $alias = "session";
 
     /**
      * Constructor of service class.

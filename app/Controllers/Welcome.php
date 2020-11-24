@@ -25,19 +25,15 @@ class Welcome
     {
         $id = Auth::authenticated();
 
+        $request->view = new View("welcome.php", [
+            "id" => $id,
+            'title' => 'Welcome',
+        ]);
+
         if ($id) {
             $user = User::getById($id);
-            $request->view = new View('welcome.php', [
-                'title' => 'Welcome',
-                'id' => $id,
-                'name' => $user['name'],
-            ]);
+            $request->view->push("name", $user["name"]);
         }
-
-        $request->view = new View('welcome.php', [
-            'title' => 'Welcome',
-            'id' => $id,
-        ]);
     }
 
 }

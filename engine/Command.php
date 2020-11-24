@@ -7,7 +7,7 @@ namespace Engine;
  *
  * Class Route contains info about route.
  */
-class Route
+class Command
 {
 
     /**
@@ -19,36 +19,12 @@ class Route
     public $name;
 
     /**
-     * Request method.
-     *
-     * @access public
-     * @var string
-     */
-    public $pattern;
-
-    /**
-     * Request method.
-     *
-     * @access public
-     * @var string
-     */
-    public $method;
-
-    /**
      * Request parameters.
      *
      * @access public
      * @var array
      */
     public $controller;
-
-    /**
-     * Request parameters.
-     *
-     * @access public
-     * @var array
-     */
-    public $args;
 
     /**
      * Route constructor.
@@ -59,15 +35,12 @@ class Route
      * @param array $args
      */
     public function __construct(string $name, 
-                                string $method, 
-                                string $pattern, 
                                 array $controller)
     {
         $this->name = $name;
-        $this->method = $method;
-        $this->pattern = $pattern;
         $this->controller = $controller;
     }
+
 
     /**
      * Route constructor.
@@ -77,12 +50,9 @@ class Route
      * @param array $controller
      * @param array $args
      */
-    public function test(string $uri, string $method): bool
+    public function test(string $name): bool
     {
-        if ($this->method == $method &&
-            preg_match($this->pattern, $uri, $params_matches)) {
-            array_shift($params_matches);
-            $this->args = $params_matches;
+        if ($this->name == $name) {
             return true;
         }
         return false;
@@ -96,9 +66,8 @@ class Route
      * @param array $controller
      * @param array $args
      */
-    public function execute($request)
+    public function execute($args)
     {
-        forward_static_call($this->controller, $request, ...$this->args);
+        forward_static_call($this->controller, ...$args);
     }
-
 }
