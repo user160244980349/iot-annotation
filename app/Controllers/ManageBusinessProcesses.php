@@ -26,7 +26,7 @@ class ManageBusinessProcesses
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_business_processes/business_processes.php', [
-            'title' => 'Home',
+            'title' => 'Business processes',
             'id' => $user['id'],
             'name' => $user['name'],
         ]);
@@ -43,7 +43,7 @@ class ManageBusinessProcesses
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_business_processes/create_business_process.php', [
-            'title' => 'Home',
+            'title' => 'Create business process',
             'id' => $user['id'],
             'name' => $user['name'],
         ]);
@@ -60,7 +60,7 @@ class ManageBusinessProcesses
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_business_processes/update_business_process.php', [
-            'title' => 'Home',
+            'title' => 'Update business process',
             'id' => $user['id'],
             'name' => $user['name'],
         ]);

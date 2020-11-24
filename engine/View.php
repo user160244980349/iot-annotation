@@ -24,7 +24,7 @@ class View
      * Variables for template.
      *
      * @access private
-     * @var string
+     * @var array
      */
     private $_variables;
 

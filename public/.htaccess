@@ -1,3 +1,6 @@
 RewriteEngine on
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ /index.php?uri=$1 [NC,L,QSA]
+RewriteCond %{REQUEST_FILENAME} !/(|css|fonts|ico|include|js)/
+
+RewriteRule ^(.*?)/?$ index.php?uri=$1 [NC,L,QSA]

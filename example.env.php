@@ -28,13 +28,13 @@ return [
         'database' => '/config/database.php',
 
         # Views path
-        'views' => '/views',
+        'views' => '/resources/views/',
 
         # Migrations and seeds
-        'migrations' => '/database/migrations',
-        'migrations_list' => '/config/list_migrations.php',
-        'seeds' => '/database/seeds',
-        'seeds_list' => '/config/list_seeds.php',
+        'migrations' => '/database/migrations/',
+        'migrations_list' => '/database/list_migrations.php',
+        'seeds' => '/database/seeds/',
+        'seeds_list' => '/database/list_seeds.php',
 
         # Engine configs
         'console' => '/config/console.php',

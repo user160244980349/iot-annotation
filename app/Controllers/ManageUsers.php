@@ -29,7 +29,7 @@ class ManageUsers
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_users/users.php', [
-            'title' => 'Home',
+            'title' => 'Users',
             'id' => $user['id'],
             'name' => $user['name'],
             'users' => User::getAll(),
@@ -46,7 +46,7 @@ class ManageUsers
     {
         $user = User::getById($id);
         $request->view = new View('manage_users/groups.php', [
-            'title' => 'Home',
+            'title' => 'User groups',
             'id' => $user['id'],
             'name' => $user['name'],
             'groups' => Group::getForId($user['id']),

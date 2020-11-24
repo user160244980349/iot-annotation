@@ -29,7 +29,7 @@ class ManageGroups
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_groups/groups.php', [
-            'title' => 'Home',
+            'title' => 'Groups',
             'id' => $user['id'],
             'name' => $user['name'],
             'groups' => Group::getAll(),
@@ -46,7 +46,7 @@ class ManageGroups
     {
         $user = User::getById($id);
         $request->view = new View('manage_groups/permissions.php', [
-            'title' => 'Home',
+            'title' => 'Permissions',
             'id' => $user['id'],
             'name' => $user['name'],
             'group' => Group::getById($id),

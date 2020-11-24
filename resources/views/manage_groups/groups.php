@@ -1,28 +1,16 @@
 <?php use Engine\Decorators\FSMap; ?>
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $title ?></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
 
-<?php include FSMap::get("views")."/blocks/header.php" ?>
+<?php include_once FSMap::get("views")."/blocks/header.php" ?>
 
 <div class="container">
     <div class="row my-4">
         <div class="col-md-8 offset-2">
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
 
                     <div class="row card-title">
                         <div class="col">
-                            <b>List of users</b>
+                            <b>List of groups</b>
                         </div>
                     </div>
 
@@ -39,14 +27,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 0; foreach ($users as $user) { $i++; ?>
+                                    <?php $i = 0; foreach ($groups as $group) { $i++; ?>
                                     <tr>
                                         <th scope="row"><?php echo $i ?></th>
-                                        <td><?php echo $user['name'] ?></td>
+                                        <td><?php echo $group['name'] ?></td>
                                         <td>
                                             <div class="d-flex justify-content-end">
                                                 <a class="btn btn-sm btn-outline-primary"
-                                                    href="/users/<?php echo $user['id'] ?>/groups">Details</a>
+                                                    href="/groups/<?php echo $group['id'] ?>/permissions">Details</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -61,7 +49,7 @@
     </div>
 </div>
 
-<?php include FSMap::get("views")."/blocks/footer.php" ?>
+<?php include_once FSMap::get("views")."/blocks/footer.php" ?>
 
 </body>
 </html>

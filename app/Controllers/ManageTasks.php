@@ -26,7 +26,7 @@ class ManageTasks
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_tasks/run_task.php', [
-            'title' => 'Home',
+            'title' => 'Run task',
             'id' => $user['id'],
             'name' => $user['name'],
         ]);
@@ -43,7 +43,7 @@ class ManageTasks
         $id = Auth::authenticated();
         $user = User::getById($id);
         $request->view = new View('manage_tasks/task.php', [
-            'title' => 'Home',
+            'title' => 'Task',
             'id' => $user['id'],
             'name' => $user['name'],
         ]);

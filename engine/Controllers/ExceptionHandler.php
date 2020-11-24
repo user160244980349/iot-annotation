@@ -31,7 +31,7 @@ class ExceptionHandler
         $request->view = new View("exception.php", [
             "id" => $id,
             "code" => $exception->getCode(),
-            "title" => $exception->getMessage(),
+            "title" => "Code {$exception->getCode()}",
             "trace" => $exception->getTrace(),
             "message" => $exception->getMessage(),
         ]);
