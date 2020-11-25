@@ -2,12 +2,13 @@
 
 namespace Engine\Decorators;
 
-use Engine\Decorators\ServiceBus;
+use Engine\ServiceBus;
+
 
 /**
  * Console.php
  *
- * Provides console interface for application.
+ * Console decorator.
  */
 class Console
 {
@@ -16,7 +17,8 @@ class Console
      * Run command.
      *
      * @access public
-     * @param array $args
+     * @param array $args - Command line arguments
+     * @return void
      */
     public static function run(array $args): void
     {

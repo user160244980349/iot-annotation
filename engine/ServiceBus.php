@@ -2,8 +2,6 @@
 
 namespace Engine;
 
-use Engine\Decorators\Configuration;
-
 /**
  * ServiceBus.php
  *
@@ -26,14 +24,34 @@ class ServiceBus
      * @access private
      * @var array
      */
-    private $_services;
+    private static $_services;
+
+    /**
+     * ServiceBus array.
+     *
+     * @access private
+     * @var array
+     */
+    private $_service_instances;
+
+    /**
+     * ServiceBus services registration.
+     *
+     * @access public
+     * @return ServiceBus
+     */
+    public static function register(array $services): void
+    {
+        static::$_services = $services;
+    }
 
     /**
      * ServiceBus instance getter.
      *
      * @access public
+     * @return ServiceBus
      */
-    public static function instance()
+    public static function instance(): ServiceBus
     {
         if (!isset(static::$_instance)) {
             static::$_instance = new ServiceBus();
@@ -45,12 +63,12 @@ class ServiceBus
      * ServiceBus autoload services from config.
      *
      * @access public
+     * @return void
      */
-    public function autoload()
+    public function autoload(): void
     {
-        $service_classes = Configuration::get('services');
-        foreach ($service_classes as $service_class) {
-            $this->_services[$service_class::$alias] = [$service_class, null];
+        foreach (static::$_services as $service_class) {
+            $this->_service_instances[$service_class::$alias] = [$service_class, null];
         }
     }
 
@@ -63,25 +81,11 @@ class ServiceBus
      */
     public function get(string $alias): object
     {
-        if (!isset($this->_services[$alias][1])) {
-            $this->_services[$alias][1] = new $this->_services[$alias][0]();
+        if (!isset($this->_service_instances[$alias][1])) {
+            $this->_service_instances[$alias][1] = new $this->_service_instances[$alias][0]();
         }
-        return $this->_services[$alias][1];
-    }
 
-    /**
-     * Register new service with existing object.
-     *
-     * @access public
-     * @param string $alias
-     * @param object $object
-     */
-    public function register(string $alias, $object)
-    {
-        if (!isset($this->_services[$alias])) {
-            $this->_services[$alias][0] = get_class($object);
-            $this->_services[$alias][1] = $object;
-        }
+        return $this->_service_instances[$alias][1];
     }
 
 }

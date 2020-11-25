@@ -10,13 +10,13 @@ use App\Models\User;
 /**
  * Welcome.php
  *
- * Controller class for loading welcome page.
+ * Controller class for welcome page.
  */
 class Welcome
 {
 
     /**
-     * Go to welcome page.
+     * Goes to welcome page.
      *
      * @access public
      * @param Request $request
@@ -25,14 +25,14 @@ class Welcome
     {
         $id = Auth::authenticated();
 
-        $request->view = new View("welcome.php", [
-            "id" => $id,
+        $request->view = new View('welcome.php', [
+            'id' => $id,
             'title' => 'Welcome',
         ]);
 
         if ($id) {
             $user = User::getById($id);
-            $request->view->push("name", $user["name"]);
+            $request->view->push('name', $user['name']);
         }
     }
 

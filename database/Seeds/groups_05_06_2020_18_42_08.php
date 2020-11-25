@@ -2,7 +2,7 @@
 
 namespace Database\Seeds;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 use Engine\ITransaction;
 
 /**
@@ -19,13 +19,13 @@ class groups_05_06_2020_18_42_08 implements ITransaction
      */
     public static function commit()
     {
-        Database::fetch("
-            INSERT INTO `groups` (
+        RawSQL::fetch(
+            'INSERT INTO `groups` (
                 `name`
             ) VALUES
-            ('Authenticated'),
-            ('Administrator')
-        ");
+            (\'Authenticated\'),
+            (\'Administrator\')'
+        );
     }
 
     /**

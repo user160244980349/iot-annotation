@@ -11,7 +11,7 @@ class Route
 {
 
     /**
-     * Request method.
+     * Route name.
      *
      * @access public
      * @var string
@@ -19,7 +19,7 @@ class Route
     public $name;
 
     /**
-     * Request method.
+     * Route pattern.
      *
      * @access public
      * @var string
@@ -35,7 +35,7 @@ class Route
     public $method;
 
     /**
-     * Request parameters.
+     * Controller to execute.
      *
      * @access public
      * @var array
@@ -54,9 +54,10 @@ class Route
      * Route constructor.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Route name
+     * @param string $method - HTTP method
+     * @param string $patetrn - Pattern for url
+     * @param array $controller - Controller to exec
      */
     public function __construct(string $name, 
                                 string $method, 
@@ -70,12 +71,12 @@ class Route
     }
 
     /**
-     * Route constructor.
+     * Test route if it fits.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Route name
+     * @param string $method - HTTP method
+     * @return bool
      */
     public function test(string $uri, string $method): bool
     {
@@ -92,9 +93,7 @@ class Route
      * Route constructor.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param Request $request - Request object to response
      */
     public function execute($request)
     {

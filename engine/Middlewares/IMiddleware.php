@@ -17,9 +17,9 @@ interface IMiddleware
      * Method providing middlewares chain call.
      *
      * @access public
-     * @param Request $request Request to manage
-     * @return Request Modified request
+     * @param Request $request -Request to manage
+     * @return Request - Modified request
      */
-    public function let(Request $request): Request;
+    public static function let(Request $request): Request;
 
 }

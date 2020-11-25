@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use Engine\Decorators\Auth;
+use Engine\Decorators\Debug;
 use Engine\Request;
 use Engine\View;
 
@@ -16,7 +17,7 @@ class Home
 {
 
     /**
-     * Go to home page.
+     * Goes to home page.
      *
      * @access public
      * @param Request $request

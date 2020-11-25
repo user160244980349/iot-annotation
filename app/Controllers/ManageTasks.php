@@ -10,13 +10,13 @@ use App\Models\User;
 /**
  * ManageTasks.php
  *
- * Controller class for management of tasks.
+ * Controller class for tasks management.
  */
 class ManageTasks
 {
 
     /**
-     * Go to run task page.
+     * Goes to run task page.
      *
      * @access public
      * @param Request $request
@@ -33,7 +33,7 @@ class ManageTasks
     }
 
     /**
-     * Go to do task page.
+     * Goes to do task page.
      *
      * @access public
      * @param Request $request

@@ -12,23 +12,23 @@ use Engine\MiddlewaresQueue;
 class Application
 {
     /**
-     * Application run method.
+     * Alias for service.
      *
-     * @var public
+     * @access public
+     * @var string
      */
-    static public $alias = "application";
+    static public $alias = 'application';
 
     /**
      * Application run method.
      *
      * @access public
+     * @return void
      */
     public function run(): void
     {
-
         $queue = new MiddlewaresQueue();
         $queue->run();
-
     }
 
 }

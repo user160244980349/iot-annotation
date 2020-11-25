@@ -1,47 +1,20 @@
 <?php
 
-return [
+use Engine\Settings;
 
-    # Root path of the project
-    'root' => __DIR__,
+Settings::set('env', [
+
+    # Views path
+    'views' => __DIR__ . '/resources/views/',
 
     # Debug prints
     'debug' => true,
 
     # Database credentials
-    'database' => [
+    'db_driver' => 'mysql',
+    'db_address' => 'localhost',
+    'db_name' => 'custom_bp_editor',
+    'db_user' => 'custom-bp-editor',
+    'db_password' => 'secret',
 
-        'driver' => 'mysql',
-        'address' => 'localhost',
-        'name' => 'custom_bp_editor',
-        'user' => 'custom-bp-editor',
-        'password' => 'secret',
-
-    ],
-
-    # Filesystem configurations
-    'filesystem' => [
-
-        # App
-        'permissions' => '/config/access.php',
-        'routes' => '/config/routes.php',
-        'database' => '/config/database.php',
-
-        # Views path
-        'views' => '/resources/views/',
-
-        # Migrations and seeds
-        'migrations' => '/database/migrations/',
-        'migrations_list' => '/database/list_migrations.php',
-        'seeds' => '/database/seeds/',
-        'seeds_list' => '/database/list_seeds.php',
-
-        # Engine configs
-        'console' => '/config/console.php',
-        'services' => '/config/services.php',
-        'middlewares' => '/config/middlewares.php',
-        'middlewares_fallback' => '/config/middlewares_fallback.php',
-
-    ]
-
-];
+]);

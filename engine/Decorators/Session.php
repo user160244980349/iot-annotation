@@ -4,10 +4,11 @@ namespace Engine\Decorators;
 
 use Engine\ServiceBus;
 
+
 /**
  * Session.php
  *
- * Service for manage sessions.
+ * Decorator for sessions service.
  */
 class Session
 {
@@ -15,9 +16,10 @@ class Session
     /**
      * Sets session variable.
      *
-     * @param string $name
-     * @param $value
      * @access public
+     * @param string $name - Variable name
+     * @param $value - Variable value
+     * @return void
      */
     public static function set(string $name, $value): void
     {
@@ -27,7 +29,7 @@ class Session
     /**
      * Gives session variable.
      *
-     * @param string $name
+     * @param string $name - Name of variable to get
      * @access public
      * @return mixed
      */
@@ -40,10 +42,22 @@ class Session
      * Destroys session.
      *
      * @access public
+     * @return void
      */
     public static function destroy(): void
     {
         ServiceBus::instance()->get('session')->destroy();
+    }
+
+    /**
+     * Destroys session.
+     *
+     * @access public
+     * @return void
+     */
+    public static function clearAll(): void
+    {
+        ServiceBus::instance()->get('session')->clearAll();
     }
 
 }

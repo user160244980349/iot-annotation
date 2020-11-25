@@ -2,7 +2,7 @@
 
 namespace Engine;
 
-use Engine\Decorators\FSMap;
+use Engine\Env;
 
 /**
  * View.php
@@ -37,7 +37,7 @@ class View
      */
     public function __construct($path, array $variables)
     {
-        $this->_path = FSMap::get("views") . '/' . $path;
+        $this->_path = Env::get('views') . $path;
         $this->_variables = $variables;
     }
 

@@ -2,25 +2,26 @@
 
 namespace App\Models;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 
 /**
- * Password.php
+ * Group.php
  *
- * Class that provides password model.
+ * Class that provides group model.
  */
 class Group
 {
 
     /**
-     * Gives array with all users info.
+     * Gives array with user groups.
      *
      * @access public
-     * @return array
+     * @param int $id - User id
+     * @return array - Groups for user
      */
     public static function getForId(int $id): array
     {
-        return Database::fetchAll(
+        return RawSQL::fetchAll(
             "SELECT `groups`.`id`, `groups`.`name` FROM `users`
              INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
@@ -28,42 +29,41 @@ class Group
     }
 
     /**
-     * Gives array with user info.
+     * Gives array with group info.
      *
      * @access public
-     * @param int $id
-     * @return array
+     * @param int $id - User id
+     * @return array - Group
      */
     public static function getById(int $id): array
     {
-        return Database::fetch(
+        return RawSQL::fetch(
             "SELECT * FROM `groups` WHERE `id` = $id");
     }
 
     /**
-     * Gives array with user info.
+     * Gives array with all groups.
      *
      * @access public
-     * @param int $id
-     * @return array
+     * @return array - All groups
      */
     public static function getAll(): array
     {
-        return Database::fetchAll(
-            "SELECT * FROM `groups`");
+        return RawSQL::fetchAll(
+            'SELECT * FROM `groups`');
     }
 
     /**
-     * Log user out.
+     * Associates user with group.
      *
      * @access public
-     * @param int $id
-     * @param string $group
-     * @return bool.
+     * @param int $id - User id
+     * @param string $group - Group name
+     * @return bool
      */
     public static function associateByName(int $id, string $group): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
@@ -72,16 +72,16 @@ class Group
     }
 
     /**
-     * Log user out.
+     * Associates user with group.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - User id
+     * @param int $group - Group id
      * @return bool.
      */
     public static function associateById(int $id, int $group_id): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
@@ -90,16 +90,16 @@ class Group
     }
 
     /**
-     * Log user out.
+     * Disassociates user with group.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - User id
+     * @param string $group - Group name
      * @return bool.
      */
     public static function disassociateByName(int $id, string $group): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
                    `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')");
@@ -107,16 +107,16 @@ class Group
     }
 
     /**
-     * Log user out.
+     * Disassociates user with group.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - User id
+     * @param int $group - Group id
      * @return bool.
      */
     public static function disassociateById(int $id, int $group_id): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
                    `group_id` = $group_id");

@@ -4,7 +4,6 @@ namespace Engine\Services;
 
 use App\Models\Password;
 use App\Models\Permission;
-use App\Models\Group;
 use Engine\Decorators\Session;
 
 /**
@@ -14,15 +13,17 @@ use Engine\Decorators\Session;
  */
 class Auth
 {
-    /**
-     * Application run method.
-     *
-     * @var public
-     */
-    static public $alias = "auth";
 
     /**
-     * Get authorized user.
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    static public $alias = 'auth';
+
+    /**
+     * Gives authorized user id.
      *
      * @access public
      * @return int
@@ -37,11 +38,11 @@ class Auth
     }
 
     /**
-     * Check if user has permissions.
+     * Checks if user has permissions.
      *
      * @access public
-     * @param int $id
-     * @param array $permissions Permissions list
+     * @param int $id - User id
+     * @param array $permissions - Permissions list
      * @return bool
      */
     public function allowed(int $id, array $permissions): bool
@@ -58,7 +59,9 @@ class Auth
      * Registers new user.
      *
      * @access public
-     * @param array $user User credentials
+     * @param int $user - User id
+     * @param string $password - User password
+     * @return bool
      */
     public function register(int $id, string $password): bool
     {   
@@ -67,10 +70,11 @@ class Auth
     }
 
     /**
-     * Log user in.
+     * Logs user in.
      *
      * @access public
-     * @param array $user
+     * @param id $user - User id
+     * @param string $password - His password
      * @return bool
      */
     public function login(int $id, string $password): bool
@@ -86,9 +90,11 @@ class Auth
     }
 
     /**
-     * Log user out.
+     * Encrypts passwords.
      *
-     * @access public.
+     * @param string $password - Account password
+     * @access public
+     * @return string
      */
     public function encrypt(string $password): string
     {
@@ -96,9 +102,10 @@ class Auth
     }
 
     /**
-     * Log user out.
+     * Logs user out.
      *
-     * @access public.
+     * @access public
+     * @return void
      */
     public function logout(): void
     {

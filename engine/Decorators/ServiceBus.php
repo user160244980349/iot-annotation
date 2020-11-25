@@ -2,6 +2,7 @@
 
 namespace Engine\Decorators;
 
+
 /**
  * ServiceBus.php
  *
@@ -24,7 +25,7 @@ class ServiceBus
      * Service getter.
      *
      * @access public
-     * @param string $alias
+     * @param string $alias - Alias of service
      * @return object
      */
     public static function get(string $alias): object
@@ -33,21 +34,11 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus instance getter.
-     *
-     * @access public
-     */
-    public static function instance(): \Engine\ServiceBus
-    {
-        return \Engine\ServiceBus::instance();
-    }
-
-    /**
      * Register new service with existing object.
      *
      * @access public
-     * @param string $alias
-     * @param $object
+     * @param string $alias - Alias of service
+     * @param $object - Existing object
      * @return void
      */
     public static function register(string $alias, $object): void

@@ -2,68 +2,71 @@
 
 namespace Engine\Services;
 
-use Engine\Decorators\Env;
+use Engine\Env;
 use PDO;
 
+
 /**
- * Database.php
+ * RawSQL.php
  *
  * Class for database jobs.
  */
-class Database
+class RawSQL
 {
+
     /**
-     * Application run method.
+     * Alias for service.
      *
-     * @var public
+     * @access public
+     * @var string
      */
-    static public $alias = "database";
+    static public $alias = 'database';
 
     /**
      * Driver for database access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_driver;
 
     /**
      * Address for database access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_address;
 
     /**
      * Database name for access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_name;
 
     /**
      * Database for user access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_user;
 
     /**
      * Password for database access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_password;
 
     /**
      * Connection instance for database access.
      *
-     * @access private.
-     * @var string.
+     * @access private
+     * @var string
      */
     private $_connection;
 
@@ -74,19 +77,16 @@ class Database
      */
     public function __construct()
     {
-        $env = Env::get('database');
-
-        $this->_driver = $env['driver'];
-        $this->_address = $env['address'];
-        $this->_name = $env['name'];
-        $this->_user = $env['user'];
-        $this->_password = $env['password'];
+        
+        $this->_driver = Env::get('db_driver');
+        $this->_address = Env::get('db_address');
+        $this->_name = Env::get('db_name');
+        $this->_user = Env::get('db_user');
+        $this->_password = Env::get('db_password');
 
         $this->_connection = new PDO(
-            $this->_driver . ':host=' .
-            $this->_address . ';dbname=' .
-            $this->_name = $env['name'],
-            $this->_user = $env['user'],
+            "$this->_driver:host=$this->_address;dbname=$this->_name",
+            $this->_user,
             $this->_password
         );
     }
@@ -95,7 +95,7 @@ class Database
      * Sends query to database and gives a response.
      *
      * @access public
-     * @param string $queryString Query to send
+     * @param string $queryString - Query to send
      * @return array
      */
     public function fetch($queryString)

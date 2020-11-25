@@ -1,18 +1,19 @@
 <?php
 
 use Engine\Command;
+use Engine\Services\Console;
 
-return [
+Console::register([
 
     # Migrations & seeds
-    new Command('migrations.create', [Engine\Controllers\Migration::class, 'create']),
-    new Command('migrations.do', [Engine\Controllers\Migration::class, 'do']),
-    new Command('migrations.undo', [Engine\Controllers\Migration::class, 'undo']),
-    new Command('migrations.reset', [Engine\Controllers\Migration::class, 'reset']),
-    new Command('seeds.create', [Engine\Controllers\Seed::class, 'create']),
-    new Command('seeds.do', [Engine\Controllers\Seed::class, 'do']),
+    new Command('migrations.create', [Engine\CommandHandlers\Migration::class, 'create']),
+    new Command('migrations.do', [Engine\CommandHandlers\Migration::class, 'do']),
+    new Command('migrations.undo', [Engine\CommandHandlers\Migration::class, 'undo']),
+    new Command('migrations.reset', [Engine\CommandHandlers\Migration::class, 'reset']),
+    new Command('seeds.create', [Engine\CommandHandlers\Seed::class, 'create']),
+    new Command('seeds.do', [Engine\CommandHandlers\Seed::class, 'do']),
 
     # Session
-    new Command('sessions.clear', [Engine\Controllers\Session::class, 'clear'])
+    new Command('sessions.clear', [Engine\CommandHandlers\Session::class, 'clear'])
 
-];
+]);

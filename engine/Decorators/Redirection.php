@@ -2,10 +2,13 @@
 
 namespace Engine\Decorators;
 
+use Engine\ServiceBus;
+
+
 /**
  * Redirection.php
  *
- * Provide redirection.
+ * Redirection decorator.
  */
 class Redirection
 {

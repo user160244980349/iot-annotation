@@ -8,15 +8,15 @@ use Engine\View;
 use App\Models\User;
 
 /**
- * ManageBP.php
+ * ManageBusinessProcesses.php
  *
- * Controller class for management of BP.
+ * Controller class for BP management.
  */
 class ManageBusinessProcesses
 {
 
     /**
-     * Go to index page.
+     * Goes to index page.
      *
      * @access public
      * @param Request $request
@@ -33,7 +33,7 @@ class ManageBusinessProcesses
     }
 
     /**
-     * Go to create BP page.
+     * Goes to BP create page.
      *
      * @access public
      * @param Request $request
@@ -50,7 +50,7 @@ class ManageBusinessProcesses
     }
 
     /**
-     * Go to edit BP page.
+     * Goes to BP edit page.
      *
      * @access public
      * @param Request $request

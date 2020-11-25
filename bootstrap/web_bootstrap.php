@@ -2,23 +2,17 @@
 
 use Engine\Decorators\Application;
 use Engine\Decorators\ServiceBus;
-use Engine\Decorators\Env as E;
-use Engine\Services\Configuration;
-use Engine\Services\Env;
-use Engine\Services\FSMap;
-
+use Engine\Decorators\Debug;
+use Engine\View;
 
 # Call application
-ServiceBus::register("env", new Env());
-
-if (E::get("debug")) {
-    ini_set("display_errors", "1");
-    ini_set("display_startup_errors", "1");
-    error_reporting(E_ALL);
+try {
+    ServiceBus::autoload();
+    Application::run();
+} catch (Error $exception) {
+    Debug::push($exception);
+    $view = new View('exception.php', ["exception" => $exception]);
+    $view->display();
 }
 
-ServiceBus::register("fs_map", new FSMap());
-ServiceBus::register("conf", new Configuration());
-ServiceBus::autoload();
-
-Application::run();
+Debug::printIfAllowed();

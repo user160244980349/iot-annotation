@@ -2,27 +2,36 @@
 
 namespace Database\Migrations;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 use Engine\ITransaction;
 
 class group_user_05_05_2020_02_00_43 implements ITransaction
 {
 
+    /**
+     * Performs migration
+     *
+     */
     public static function commit()
     {
-        Database::fetch(
-            "CREATE TABLE `group_user` (
+        RawSQL::fetch(
+            'CREATE TABLE `group_user` (
                 `id`        INT PRIMARY KEY AUTO_INCREMENT,
                 `group_id`  INT,
                 `user_id`   INT,
                 FOREIGN KEY (`group_id`)    REFERENCES `groups`(`id`),
                 FOREIGN KEY (`user_id`)     REFERENCES `users`(`id`)
-            )");
+            )'
+        );
     }
 
+    /**
+     * Revert migration
+     *
+     */
     public static function revert()
     {
-        Database::fetch(
+        RawSQL::fetch(
             "DROP TABLE `group_user`");
     }
 

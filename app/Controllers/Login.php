@@ -11,13 +11,13 @@ use Engine\View;
 /**
  * Login.php
  *
- * Controller class for loading login page.
+ * Controller class for login management.
  */
 class Login
 {
 
     /**
-     * Go to login page.
+     * Goes to login page.
      *
      * @access public
      * @param Request $request
@@ -34,7 +34,7 @@ class Login
     }
 
     /**
-     * Log user in.
+     * Logs user in.
      *
      * @access public
      * @param Request $request
@@ -50,12 +50,12 @@ class Login
     }
 
     /**
-     * Log user out.
+     * Logs user out.
      *
      * @access public
      * @param Request $request
      */
-    public static function logout(Request $request)
+    public static function logout()
     {
         Auth::logout();
         Redirection::redirect('/');

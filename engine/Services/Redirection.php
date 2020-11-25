@@ -2,6 +2,7 @@
 
 namespace Engine\Services;
 
+
 /**
  * Redirect.php
  *
@@ -9,12 +10,14 @@ namespace Engine\Services;
  */
 class Redirection
 {
+
     /**
-     * Application run method.
+     * Alias for service.
      *
-     * @var public
+     * @access public
+     * @var string
      */
-    static public $alias = "redirection";
+    static public $alias = 'redirection';
 
     /**
      * Performs redirection.

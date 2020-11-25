@@ -35,11 +35,11 @@ class Request
     public $view;
 
     /**
-     * Route constructor.
+     * Request constructor.
      *
      * @access public
-     * @param array $parameters
-     * @param Route $route
+     * @param array $parameters - To pass in controller
+     * @param Route $route - Route to follow
      */
     public function __construct(array $parameters, Route $route = null)
     {

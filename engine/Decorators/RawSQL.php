@@ -4,19 +4,20 @@ namespace Engine\Decorators;
 
 use Engine\ServiceBus;
 
+
 /**
- * Database.php
+ * RawSQL.php
  *
- * Class for database jobs.
+ * Decorator for database tool.
  */
-class Database
+class RawSQL
 {
 
     /**
      * Sends query to database and gives a response with 1 record.
      *
      * @access public
-     * @param string $queryString Query to send
+     * @param string $queryString - Query to send
      * @return null|array
      */
     public static function fetch(string $queryString)
@@ -27,11 +28,11 @@ class Database
     /**
      * Sends query to database and gives a response with all records.
      *
-     * @access public.
-     * @param string $queryString Query to send.
-     * @return array.
+     * @access public
+     * @param string $queryString - Query to send
+     * @return array
      */
-    public static function fetchAll(string $queryString): array
+    public static function fetchAll(string $queryString)
     {
         return ServiceBus::instance()->get('database')->fetchAll($queryString);
     }
@@ -39,10 +40,10 @@ class Database
     /**
      * Gives response of the database.
      *
-     * @access public.
-     * @return array.
+     * @access public
+     * @return array
      */
-    public static function error(): array
+    public static function error()
     {
         return ServiceBus::instance()->get('database')->error();
     }

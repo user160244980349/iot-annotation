@@ -1,10 +1,9 @@
 <?php
 
-namespace Engine\Controllers;
+namespace Engine\Services;
 
-use Engine\Decorators\Configuration;
-use Engine\Decorators\Database;
-use Engine\Decorators\FSMap;
+use Engine\Decorators\RawSQL;
+use Engine\Env;
 use Engine\ITransaction;
 
 /**
@@ -14,18 +13,41 @@ use Engine\ITransaction;
  */
 class Seed
 {
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    static public $alias = 'seed';
+
+    /**
+     * List of migrations.
+     *
+     * @access private
+     */
+    private static $_seeds_list;
+
+    /**
+     * Static constructor.
+     *
+     * @access public
+     */
+    public static function register(array $seeds)
+    {
+        static::$_seeds_list = $seeds;
+    }
 
     /**
      * Create seeds file.
      *
      * @access public
-     * @param string $name
+     * @param string $name - Seed`s name
      */
-    public static function create(string $name): void
+    public function create(string $name): void
     {
-        print("creating seed...\n");
 
-        $path = FSMap::get("seeds");
+        $path = Env::get('seeds');
         $date = date("m_d_Y_H_i_s");
         $file = "{$path}/{$name}_{$date}.php";
         $content =
@@ -36,7 +58,7 @@ class Seed
 namespace Database\Seeds;
 
 use Engine\ITransaction;
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 
 /**
  * {$name}_{$date}.php
@@ -51,7 +73,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        Database::fetch("SELECT * FROM `table`");
+        RawSQL::fetch("SELECT * FROM `table`");
     }
     
     /**
@@ -59,13 +81,12 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        Database::fetch("SELECT * FROM `table`");
+        RawSQL::fetch("SELECT * FROM `table`");
     }
 }
 EOT;
 
         file_put_contents($file, $content);
-        print("seed has been created.\n");
     }
 
     /**
@@ -73,26 +94,19 @@ EOT;
      *
      * @access public
      */
-    public static function do(): void
+    public function do(): void
     {
-        print("uploading seeds...\n");
-
-        $seeds_list = Configuration::get("seeds_list");
-        foreach ($seeds_list as $seed) {
-
+        foreach (static::$_seeds_list as $seed) {
             if (!in_array(ITransaction::class, class_implements($seed))) {
                 return;
             }
 
             $seed::commit();
 
-            $error = Database::error();
+            $error = RawSQL::error();
             if ($error[0] != "00000")
                 dd($error);
-
         }
-
-        print("seeds have been uploaded.\n");
     }
 
 }

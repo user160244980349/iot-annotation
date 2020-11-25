@@ -16,10 +16,10 @@ class Receiver implements IMiddleware
      * Method providing middlewares chain call.
      *
      * @access public
-     * @param Request $null Null because not needed
-     * @return Request Initialized request object
+     * @param Request $null - Null because not needed
+     * @return Request - Initialized request object
      */
-    public function let(Request $request = null): Request
+    public static function let(Request $request = null): Request
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

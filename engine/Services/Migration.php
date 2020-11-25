@@ -1,50 +1,55 @@
 <?php
 
-namespace Engine\Controllers;
+namespace Engine\Services;
 
-use Engine\Controllers\Seed;
-use Engine\Decorators\Configuration;
-use Engine\Decorators\Database;
-use Engine\Decorators\FSMap;
+use Engine\Decorators\Seed;
+use Engine\Decorators\RawSQL;
+use Engine\Env;
 use Engine\ITransaction;
 
 /**
  * Migration.php
  *
- * Command class to deploy database subjects.
+ * Command class to deploy RawSQL schemes.
  */
 class Migration
 {
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    static public $alias = 'migration';
+
     /**
      * List of migrations.
      *
      * @access private
      */
-    private static $_migrations_list = null;
-
+    private static $_migrations_list;
 
     /**
      * Static constructor.
      *
      * @access public
      */
-    public static function __constructStatic()
+    public static function register(array $migrations)
     {
-        static::$_migrations_list = Configuration::get("migrations_list");
+        static::$_migrations_list = $migrations;
     }
 
     /**
      * Create tables.
      *
      * @access public
-     * @param string $name
+     * @param string $name - Migration`s name
      */
-    public static function create(string $name): void
+    public function create(string $name): void
     {
-        print("creating migration...\n");
 
-        $path = FSMap::get("migrations");
-        $date = date("m_d_Y_H_i_s");
+        $path = Env::get('migrations');
+        $date = date('m_d_Y_H_i_s');
         $file = "{$path}/{$name}_{$date}.php";
         $content =
 /** @lang php */
@@ -54,7 +59,7 @@ class Migration
 namespace Database\Migrations;
 
 use Engine\ITransaction;
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 
 /**
  * {$name}_{$date}.php
@@ -69,7 +74,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        Database::fetch(
+        RawSQL::fetch(
             "CREATE TABLE `$name` (
                 `id` INT PRIMARY KEY AUTO_INCREMENT
             )");
@@ -80,71 +85,54 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        Database::fetch("DROP TABLE `$name`");
+        RawSQL::fetch("DROP TABLE `$name`");
     }
 }
 EOT;
 
         file_put_contents($file, $content);
-
-        print("migration has been created.\n");
     }
 
     /**
-     * Create tables.
+     * Creates tables.
      *
      * @access public
      */
-    public static function do(): void
+    public function do(): void
     {
-        print("setting up migrations...\n");
-
         foreach (static::$_migrations_list as $migration) {
             if (in_array(ITransaction::class, class_implements($migration))) {
                 $migration::commit();
             }
         }
-
-        print("migrations have been set up.\n");
     }
 
     /**
-     * Drop tables.
+     * Drops tables.
      *
      * @access public
      */
-    public static function undo(): void
+    public function undo(): void
     {
-        print("reverting migrations...\n");
-        
-        Database::fetch('SET foreign_key_checks = 0');
+        RawSQL::fetch('SET foreign_key_checks = 0');
         foreach (static::$_migrations_list as $migration) {
             if (in_array(ITransaction::class, class_implements($migration))) {
                 $migration::revert();
             }
         }
-        Database::fetch('SET foreign_key_checks = 1');
-
-        print("all migrations have been reverted.\n");
+        RawSQL::fetch('SET foreign_key_checks = 1');
     }
 
     /**
-     * Drop tables.
+     * Drops tables and up them again with seeding.
      *
      * @access public
      */
-    public static function reset(): void
+    public function reset(): void
     {
-        print("resetting migrations...\n");
-        
-        static::undo();
-        static::do();
+        $this->undo();
+        $this->do();
         Seed::do();
-
-        print("all migrations have been reset.\n");
     }
     
 }
-
-# Call static fields initialization
-Migration::__constructStatic();

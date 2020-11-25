@@ -4,6 +4,7 @@ namespace Engine\Services;
 
 use Engine\Decorators\Configuration;
 
+
 /**
  * Console.php
  *
@@ -11,27 +12,48 @@ use Engine\Decorators\Configuration;
  */
 class Console
 {
+
     /**
-     * Application run method.
+     * Alias for service.
      *
-     * @var public
+     * @access public
+     * @var string
      */
-    static public $alias = "console";
+    static public $alias = 'console';
+
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    private static $_commands;
+
+    /**
+     * ServiceBus services registration.
+     *
+     * @access public
+     * @return ServiceBus
+     */
+    public static function register(array $commands): void
+    {
+        static::$_commands = $commands;
+    }
 
     /**
      * Run command.
      *
      * @access public
-     * @param array $args
+     * @param array $args - Command prompt arguments
+     * @return void
      */
     public function run(array $args): void
     {
-        $commands = Configuration::get('console');
         array_shift($args);
         $alias = $args[0];
         array_shift($args);
 
-        foreach ($commands as $command) {
+        foreach (static::$_commands as $command) {
             if ($command->test($alias)) {
                 $command->execute($args);
             }

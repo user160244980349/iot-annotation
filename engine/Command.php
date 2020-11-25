@@ -3,15 +3,15 @@
 namespace Engine;
 
 /**
- * Route.php
+ * Command.php
  *
- * Class Route contains info about route.
+ * Command class for console interaction.
  */
 class Command
 {
 
     /**
-     * Request method.
+     * Name of command.
      *
      * @access public
      * @var string
@@ -19,7 +19,7 @@ class Command
     public $name;
 
     /**
-     * Request parameters.
+     * Controller.
      *
      * @access public
      * @var array
@@ -27,12 +27,12 @@ class Command
     public $controller;
 
     /**
-     * Route constructor.
+     * Command constructor.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Name of command
+     * @param array $controller - Controller
+     * @return void
      */
     public function __construct(string $name, 
                                 array $controller)
@@ -46,9 +46,8 @@ class Command
      * Route constructor.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Name of command
+     * @return bool
      */
     public function test(string $name): bool
     {
@@ -59,14 +58,14 @@ class Command
     }
 
     /**
-     * Route constructor.
+     * Excecution of command.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param array $controller - Controller
+     * @param array $args - Arguments
+     * @return void
      */
-    public function execute($args)
+    public function execute($args): void
     {
         forward_static_call($this->controller, ...$args);
     }

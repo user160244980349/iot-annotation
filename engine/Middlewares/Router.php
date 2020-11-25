@@ -2,14 +2,14 @@
 
 namespace Engine\Middlewares;
 
-use Engine\Decorators\Configuration;
+use Engine\Settings;
 use Engine\Request;
 use Error;
 
 /**
  * Router.php
  *
- * Simple router class for managing url's.
+ * Simple router class for managing urls.
  */
 class Router implements IMiddleware
 {
@@ -19,16 +19,17 @@ class Router implements IMiddleware
      * @access private
      * @var array
      */
-    private $_routes;
+    private static $_routes;
 
     /**
-     * Router constructor.
+     * ServiceBus services registration.
      *
      * @access public
+     * @return ServiceBus
      */
-    public function __construct()
+    public static function register(array $routes): void
     {
-        $this->_routes = Configuration::get('routes');
+        static::$_routes = $routes;
     }
 
     /**
@@ -36,12 +37,12 @@ class Router implements IMiddleware
      *
      * @access public
      * @param Request $request
-     * @return Request Modified request
+     * @return Request
      * @throws Error
      */
-    public function let(Request $request): Request
+    public static function let(Request $request): Request
     {
-        foreach ($this->_routes as $route) {
+        foreach (static::$_routes as $route) {
             if ($route->test($request->parameters['uri'],
                              $request->parameters['method'])) {
                 
@@ -49,7 +50,7 @@ class Router implements IMiddleware
                 return $request;
             }
         }
-
+        
         throw new Error('The requested route does not exist!', 404);
     }
 

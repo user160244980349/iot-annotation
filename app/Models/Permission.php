@@ -2,27 +2,26 @@
 
 namespace App\Models;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 
 /**
- * Password.php
+ * Permission.php
  *
- * Class that provides password model.
+ * Class that provides permission model.
  */
 class Permission
 {
 
     /**
-     * Adds new password into database.
+     * Gives all user permissions.
      *
      * @access public
-     * @param int $id
-     * @param string $password
-     * @return bool
+     * @param int $id - User id
+     * @return array - Permissions values
      */
     public static function getForUser(int $id): array
     {
-        $permissions = Database::fetchAll(
+        $permissions = RawSQL::fetchAll(
             "SELECT `for` FROM `users`
              INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
@@ -34,16 +33,15 @@ class Permission
     }
 
     /**
-     * Adds new password into database.
+     * Gives all group permissions.
      *
      * @access public
-     * @param int $id
-     * @param string $password
-     * @return bool
+     * @param int $id - Group id
+     * @return array - Permissions values
      */
     public static function getForGroup(int $id): array
     {
-        return Database::fetchAll(
+        return RawSQL::fetchAll(
             "SELECT * FROM `permissions`
              INNER JOIN `group_permission`   ON `permissions`.`id` = `group_permission`.`permission_id`
              INNER JOIN `groups`             ON `group_permission`.`group_id` = `groups`.`id` 
@@ -52,47 +50,46 @@ class Permission
     }
 
     /**
-     * Gives array with user info.
+     * Gives array with all permissions.
      *
      * @access public
-     * @param int $id
      * @return array
      */
     public static function getAll(): array
     {
-        return Database::fetchAll(
-            "SELECT * FROM `permissions`");
+        return RawSQL::fetchAll(
+            'SELECT * FROM `permissions`');
     }
 
     /**
-     * Log user out.
+     * Associates group with permission.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - Group id
+     * @param string $permission - Permission value
      * @return bool.
      */
     public static function associateByName(int $id, string $permission): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "INSERT INTO `group_permission` 
                 (`group_id`, 
                  `permission_id`) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$permission'))");
+                ($id, (SELECT `id` FROM `permission` WHERE `for` = '$permission'))");
         return true;
     }
 
     /**
-     * Log user out.
+     * Associates group with permission.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - Group id
+     * @param string $permission - Permission id
      * @return bool.
      */
     public static function associateById(int $id, int $permission_id): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "INSERT INTO `group_permission` 
                 (`group_id`, 
                  `permission_id`) VALUE 
@@ -101,33 +98,33 @@ class Permission
     }
 
     /**
-     * Log user out.
+     * Disassociates group with permission.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - Group id
+     * @param string $permission - Permission id
      * @return bool.
      */
     public static function disassociateByName(int $id, string $permission): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
-                   `permission_id` = (SELECT `id` FROM `permissions` WHERE `permissions`.`name` = '$permission')");
+                   `permission_id` = (SELECT `id` FROM `permissions` WHERE `for` = '$permission')");
         return true;
     }
 
     /**
-     * Log user out.
+     * Disassociates group with permission.
      *
      * @access public
-     * @param int $id
-     * @param string $group
+     * @param int $id - Group id
+     * @param string $permission_id - Permission id
      * @return bool.
      */
     public static function disassociateById(int $id, int $permission_id): bool
     {
-        Database::fetch(
+        RawSQL::fetch(
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
                    `permission_id` = $permission_id");

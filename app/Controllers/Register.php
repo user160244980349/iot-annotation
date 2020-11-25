@@ -12,13 +12,13 @@ use Engine\View;
 /**
  * Register.php
  *
- * Controller class for managing registration.
+ * Controller class for registration management.
  */
 class Register
 {
 
     /**
-     * Go to register page.
+     * Goes to register page.
      *
      * @access public
      * @param Request $request
@@ -35,7 +35,7 @@ class Register
     }
 
     /**
-     * Register new user.
+     * Registers new user.
      *
      * @access public
      * @param Request $request

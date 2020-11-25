@@ -3,15 +3,16 @@
 namespace Engine;
 
 /**
- * Route.php
+ * RoutePermission.php
  *
- * Class Route contains info about route.
+ * Class RoutePermission defines permissions for 
+ * visiting and accepting responses on different routes.
  */
 class RoutePermission
 {
 
     /**
-     * Request method.
+     * Name of related route.
      *
      * @access public
      * @var string
@@ -19,7 +20,7 @@ class RoutePermission
     public $name;
 
     /**
-     * Request parameters.
+     * Permissions list.
      *
      * @access public
      * @var array
@@ -27,12 +28,11 @@ class RoutePermission
     public $permissions;
 
     /**
-     * Route constructor.
+     * Permission constructor.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Route name
+     * @param array $permissions - Permission token
      */
     public function __construct(string $name, 
                                 array $permissions)
@@ -43,12 +43,10 @@ class RoutePermission
 
 
     /**
-     * Route constructor.
+     * Test if permissions for proper route.
      *
      * @access public
-     * @param string $name
-     * @param array $controller
-     * @param array $args
+     * @param string $name - Route name.
      */
     public function test(string $name): bool
     {

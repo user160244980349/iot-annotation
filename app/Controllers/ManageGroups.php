@@ -11,15 +11,15 @@ use App\Models\Permission;
 use Engine\Decorators\Redirection;
 
 /**
- * ManageUsers.php
+ * ManageGroups.php
  *
- * Controller class for managment of actors groups.
+ * Controller class for actors groups managment.
  */
 class ManageGroups
 {
 
     /**
-     * Go to index page.
+     * Goes to groups index page.
      *
      * @access public
      * @param Request $request
@@ -37,10 +37,11 @@ class ManageGroups
     }
 
     /**
-     * Go to edit page.
+     * Goes to groups edit page.
      *
      * @access public
      * @param Request $request
+     * @param int $id - User id
      */
     public static function toPermissionsPage(Request $request, int $id)
     {
@@ -56,10 +57,11 @@ class ManageGroups
     }
 
     /**
-     * Go to edit page.
+     * Assign group.
      *
      * @access public
      * @param Request $request
+     * @param int $id - User id
      */
     public static function assign(Request $request, int $id)
     {
@@ -68,10 +70,11 @@ class ManageGroups
     }
 
     /**
-     * Go to edit page.
+     * Disassign group.
      *
      * @access public
-     * @param Request $request
+     * @param Request $request.
+     * @param int $id - User id
      */
     public static function disassign(Request $request, int $id)
     {

@@ -13,10 +13,10 @@ class Auth
 {
 
     /**
-     * Register new user.
+     * Registers new user.
      *
      * @access public
-     * @param array $user User credentials
+     * @param array $user - User credentials
      * @return bool
      */
     public static function register(int $id, string $password): bool
@@ -25,11 +25,12 @@ class Auth
     }
 
     /**
-     * Log user in.
+     * Logs user in.
      *
-     * @access public.
-     * @param array $user .
-     * @return bool.
+     * @access public
+     * @param int $id - User id
+     * @param string $password - User password
+     * @return bool
      */
     public static function login(int $id, string $password): bool
     {
@@ -37,10 +38,10 @@ class Auth
     }
 
     /**
-     * Gives id if user authenticated.
+     * Gives id if user is authenticated.
      *
-     * @access public.
-     * @return int.
+     * @access public
+     * @return int
      */
     public static function authenticated(): int
     {
@@ -48,12 +49,12 @@ class Auth
     }
 
     /**
-     * Check if user has permissions.
+     * Checks if user has certain permissions.
      *
-     * @access public.
-     * @param int $id .
-     * @param array $permissions Permissions list.
-     * @return bool.
+     * @access public
+     * @param int $id - User  id
+     * @param array $permissions - Permissions list
+     * @return bool
      */
     public static function allowed(int $id, array $permissions): bool
     {

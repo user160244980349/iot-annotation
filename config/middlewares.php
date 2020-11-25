@@ -1,6 +1,8 @@
 <?php
 
-return [
+use Engine\MiddlewaresQueue;
+
+MiddlewaresQueue::register([
 
     Engine\Middlewares\Receiver::class,
     Engine\Middlewares\Router::class,
@@ -8,4 +10,4 @@ return [
     Engine\Middlewares\ControllerExecution::class,
     Engine\Middlewares\Renderer::class,
 
-];
+]);

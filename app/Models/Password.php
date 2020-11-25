@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 
 /**
  * Password.php
@@ -16,35 +16,35 @@ class Password
      * Adds new password into database.
      *
      * @access public
-     * @param int $id
-     * @param string $password
+     * @param int $id - User id
+     * @param string $password - Password string
      * @return bool
      */
     public static function create(int $id, string $password): bool
     {
-        $response = Database::fetch(
+        $response = RawSQL::fetch(
             "INSERT INTO `passwords` (
                 `id`,
                 `value`
             ) VALUES (
                 '{$id}',
                 '{$password}'
-            );");
+            )");
 
         return isset($response);
     }
 
     /**
-     * Gives array with user info.
+     * Gives encrypted password.
      *
      * @access public
-     * @param int $id
+     * @param int $id - User id
      * @return null|array
      */
     public static function getValue(int $id)
     {
-        return Database::fetch(
-            "SELECT * FROM `passwords` WHERE `id` = '$id';")['value'];
+        return RawSQL::fetch(
+            "SELECT * FROM `passwords` WHERE `id` = '$id'")['value'];
     }
 
 }

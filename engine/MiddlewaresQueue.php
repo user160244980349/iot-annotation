@@ -2,13 +2,10 @@
 
 namespace Engine;
 
-use Engine\Decorators\Configuration;
-use Error;
-
 /**
  * MiddlewaresQueue.php
  *
- * Class, that contains core mediators important for application work.
+ * Class that contains core middlewares important for application.
  */
 class MiddlewaresQueue
 {
@@ -18,50 +15,31 @@ class MiddlewaresQueue
      * @access private
      * @var array
      */
-    private $_middlewares;
+    private static $_middlewares;
 
     /**
-     * Queue constructor.
+     * ServiceBus services registration.
      *
      * @access public
+     * @return ServiceBus
      */
-    public function __construct()
+    public static function register(array $middleware_classes): void
     {
-        $middlewares = Configuration::get('middlewares');
-        $this->_middlewares = [];
-        foreach ($middlewares as $middleware) {
-            array_push($this->_middlewares, new $middleware());
-        }
+        static::$_middlewares = $middleware_classes;
     }
 
     /**
      * Iterate all middlewares as a chain.
      *
      * @access public
-     * @return Request Modified container
+     * @return Request
      */
     public function run(): Request
     {
         $result = null;
 
-        try {
-
-            foreach ($this->_middlewares as $_middleware) {
-                $result = $_middleware->let($result);
-            }
-
-        } catch (Error $exception) {
-            $fallbackMiddlewares = Configuration::get('middlewares_fallback');
-            $this->_middlewares = [];
-            foreach ($fallbackMiddlewares as $middleware) {
-                array_push($this->_middlewares, new $middleware());
-            }
-
-            $result->route = new Route('error', 'none', 'none', [\Engine\Controllers\ExceptionHandler::class, 'handle']);
-            $result->route->args = [$exception];
-            foreach ($this->_middlewares as $_middleware) {
-                $result = $_middleware->let($result);
-            }
+        foreach (static::$_middlewares as $middleware) {
+            $result = $middleware::let($result);
         }
 
         return $result;

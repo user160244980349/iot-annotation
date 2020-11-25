@@ -5,6 +5,7 @@ namespace Engine\Middlewares;
 use Engine\Decorators\Auth as AuthService;
 use Engine\Decorators\Configuration;
 use Engine\Request;
+use Engine\Settings;
 use Error;
 
 /**
@@ -16,19 +17,35 @@ class Auth implements IMiddleware
 {
 
     /**
+     * ServiceBus services registration.
+     *
+     * @access public
+     * @return ServiceBus
+     */
+    private static $_permissions_sets;
+
+    /**
+     * ServiceBus services registration.
+     *
+     * @access public
+     * @return ServiceBus
+     */
+    public static function register(array $permissions_sets): void
+    {
+        static::$_permissions_sets = $permissions_sets;
+    }
+
+    /**
      * Method providing middlewares chain call.
      *
-     * @access public.
+     * @access public
      * @param Request $request
-     * @return Request Modified request
+     * @return Request
      * @throws Error
      */
-    public function let(Request $request): Request
+    public static function let(Request $request): Request
     {
-
-        $permission_sets = Configuration::get('permissions');
-
-        foreach ($permission_sets as $permission_set) {
+        foreach (static::$_permissions_sets as $permission_set) {
             if ($permission_set->test($request->route->name)) {
 
                 $id = AuthService::authenticated();

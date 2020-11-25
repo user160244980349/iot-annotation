@@ -2,7 +2,7 @@
 
 namespace Database\Seeds;
 
-use Engine\Decorators\Database;
+use Engine\Decorators\RawSQL;
 use Engine\ITransaction;
 
 /**
@@ -19,15 +19,15 @@ class permissions_05_06_2020_18_42_13 implements ITransaction
      */
     public static function commit()
     {
-        Database::fetch("
-            INSERT INTO `permissions` (
+        RawSQL::fetch(
+            'INSERT INTO `permissions` (
                 `for`
             ) VALUES
-            ('visit-home'),
-            ('manage-bp'),
-            ('manage-groups'),
-            ('manage-products')
-        ");
+            (\'visit-home\'),
+            (\'manage-bp\'),
+            (\'manage-groups\'),
+            (\'manage-products\')'
+        );
     }
 
     /**

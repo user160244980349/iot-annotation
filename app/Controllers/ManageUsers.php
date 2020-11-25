@@ -13,13 +13,13 @@ use Engine\Decorators\Redirection;
 /**
  * ManageUsers.php
  *
- * Controller class for managment of actors groups.
+ * Controller class for users managment.
  */
 class ManageUsers
 {
 
     /**
-     * Go to index page.
+     * Goes to index page.
      *
      * @access public
      * @param Request $request
@@ -37,10 +37,11 @@ class ManageUsers
     }
 
     /**
-     * Go to edit page.
+     * Goes to edit page.
      *
      * @access public
      * @param Request $request
+     * @param int $id - User id
      */
     public static function toGroupsPage(Request $request, int $id)
     {
@@ -55,10 +56,11 @@ class ManageUsers
     }
 
     /**
-     * Go to edit page.
+     * Includes user in a group.
      *
      * @access public
      * @param Request $request
+     * @param int $id - User id
      */
     public static function assign(Request $request, int $id)
     {
@@ -67,10 +69,11 @@ class ManageUsers
     }
 
     /**
-     * Go to edit page.
+     * Excludes user from a group.
      *
      * @access public
      * @param Request $request
+     * @param int $id - User id
      */
     public static function disassign(Request $request, int $id)
     {
