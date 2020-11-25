@@ -19,7 +19,7 @@ class Router implements IMiddleware
      * @access private
      * @var array
      */
-    private static $_routes;
+    private $_routes;
 
     /**
      * ServiceBus services registration.
@@ -27,9 +27,9 @@ class Router implements IMiddleware
      * @access public
      * @return ServiceBus
      */
-    public static function register(array $routes): void
+    public function __construct()
     {
-        static::$_routes = $routes;
+        $this->_routes = require_once ENV['routes'];
     }
 
     /**
@@ -40,9 +40,9 @@ class Router implements IMiddleware
      * @return Request
      * @throws Error
      */
-    public static function let(Request $request): Request
+    public function let(Request $request): Request
     {
-        foreach (static::$_routes as $route) {
+        foreach ($this->_routes as $route) {
             if ($route->test($request->parameters['uri'],
                              $request->parameters['method'])) {
                 

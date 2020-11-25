@@ -27,7 +27,7 @@ class Console
      * @access public
      * @var string
      */
-    private static $_commands;
+    private $_commands;
 
     /**
      * ServiceBus services registration.
@@ -35,9 +35,9 @@ class Console
      * @access public
      * @return ServiceBus
      */
-    public static function register(array $commands): void
+    public function __construct()
     {
-        static::$_commands = $commands;
+        $this->_commands = require_once ENV['commands'];
     }
 
     /**

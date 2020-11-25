@@ -1,11 +1,10 @@
 <?php
 
 use Engine\RoutePermission;
-use Engine\Middlewares\Auth;
 
-Auth::register([
+return [
 
     # Home page
     new RoutePermission('home', ['visit-home'])
     
-]);
+];

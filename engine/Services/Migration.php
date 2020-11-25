@@ -27,16 +27,16 @@ class Migration
      *
      * @access private
      */
-    private static $_migrations_list;
+    private $_migrations_list;
 
     /**
      * Static constructor.
      *
      * @access public
      */
-    public static function register(array $migrations)
+    public function __construct()
     {
-        static::$_migrations_list = $migrations;
+        $this->_migrations_list = require_once ENV['migrations'];
     }
 
     /**

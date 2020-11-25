@@ -1,9 +1,8 @@
 <?php
 
 use Engine\Command;
-use Engine\Services\Console;
 
-Console::register([
+return [
 
     # Migrations & seeds
     new Command('migrations.create', [Engine\CommandHandlers\Migration::class, 'create']),
@@ -16,4 +15,4 @@ Console::register([
     # Session
     new Command('sessions.clear', [Engine\CommandHandlers\Session::class, 'clear'])
 
-]);
+];

@@ -26,16 +26,16 @@ class Seed
      *
      * @access private
      */
-    private static $_seeds_list;
+    private $_seeds_list;
 
     /**
      * Static constructor.
      *
      * @access public
      */
-    public static function register(array $seeds)
+    public function __construct()
     {
-        static::$_seeds_list = $seeds;
+        $this->_seeds_list = require_once ENV['seeds'];
     }
 
     /**

@@ -19,7 +19,7 @@ class Renderer implements IMiddleware
      * @param Request $request
      * @return Request
      */
-    public static function let(Request $request): Request
+    public function let(Request $request): Request
     {
         $request->view->display();
         return $request;

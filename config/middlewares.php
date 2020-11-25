@@ -2,7 +2,7 @@
 
 use Engine\Services\MiddlewaresQueue;
 
-MiddlewaresQueue::register([
+return [
 
     Engine\Middlewares\Receiver::class,
     Engine\Middlewares\Router::class,
@@ -10,4 +10,4 @@ MiddlewaresQueue::register([
     Engine\Middlewares\ControllerExecution::class,
     Engine\Middlewares\Renderer::class,
 
-]);
+];

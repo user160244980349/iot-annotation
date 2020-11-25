@@ -19,7 +19,7 @@ class Receiver implements IMiddleware
      * @param Request $null - Null because not needed
      * @return Request - Initialized request object
      */
-    public static function let(Request $request = null): Request
+    public function let(Request $request = null): Request
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -24,15 +24,7 @@ class ServiceBus
      * @access private
      * @var array
      */
-    private static $_services;
-
-    /**
-     * ServiceBus array.
-     *
-     * @access private
-     * @var array
-     */
-    private $_service_instances;
+    private $_services;
 
     /**
      * ServiceBus services registration.
@@ -40,9 +32,13 @@ class ServiceBus
      * @access public
      * @return ServiceBus
      */
-    public static function register(array $services): void
+    public function __construct()
     {
-        static::$_services = $services;
+        $services = require_once ENV['services'];
+
+        foreach ($services as $service) {
+            $this->_services[$service::$alias] = [$service, null];
+        }
     }
 
     /**
@@ -60,19 +56,6 @@ class ServiceBus
     }
 
     /**
-     * ServiceBus autoload services from config.
-     *
-     * @access public
-     * @return void
-     */
-    public function autoload(): void
-    {
-        foreach (static::$_services as $service_class) {
-            $this->_service_instances[$service_class::$alias] = [$service_class, null];
-        }
-    }
-
-    /**
      * Service getter.
      *
      * @access public
@@ -81,11 +64,11 @@ class ServiceBus
      */
     public function get(string $alias): object
     {
-        if (!isset($this->_service_instances[$alias][1])) {
-            $this->_service_instances[$alias][1] = new $this->_service_instances[$alias][0]();
+        if (!isset($this->_services[$alias][1])) {
+            $this->_services[$alias][1] = new $this->_services[$alias][0]();
         }
 
-        return $this->_service_instances[$alias][1];
+        return $this->_services[$alias][1];
     }
 
 }

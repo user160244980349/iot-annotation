@@ -25,7 +25,7 @@ class MiddlewaresQueue
      * @access private
      * @var array
      */
-    private static $_middlewares;
+    private $_middlewares;
 
     /**
      * ServiceBus services registration.
@@ -33,9 +33,9 @@ class MiddlewaresQueue
      * @access public
      * @return ServiceBus
      */
-    public static function register(array $middleware_classes): void
+    public function __construct()
     {
-        static::$_middlewares = $middleware_classes;
+        $this->_middlewares = require_once ENV['middlewares'];
     }
 
     /**
@@ -48,7 +48,7 @@ class MiddlewaresQueue
     {
         $result = null;
 
-        foreach (static::$_middlewares as $middleware) {
+        foreach ($this->_middlewares as $middleware) {
             $m = new $middleware();
             $result = $m->let($result);
         }

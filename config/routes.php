@@ -16,9 +16,8 @@ use App\Controllers\ManageUsers;
 use App\Controllers\ManageTasks;
 use App\Controllers\ManageGroups;
 use Engine\Route;
-use Engine\Middlewares\Router;
 
-Router::register([
+return [
 
     # Auth management
     new Route('register', 'get', '/^register$/', [Register::class, 'toRegisterPage']),
@@ -53,4 +52,4 @@ Router::register([
     new Route('group-permissions', 'post', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'assign']),
     new Route('group-permission', 'delete', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'disassign']),
 
-]);
+];

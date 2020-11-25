@@ -16,14 +16,7 @@
       "Database\\Seeds\\": "database/seeds/"
     },
     "files": [
-      "env.php",
-      "config/console.php",
-      "config/middlewares.php",
-      "config/permissions.php",
-      "config/routes.php",
-      "config/services.php",
-      "database/migrations.php",
-      "database/seeds.php"
+      "env.php"
     ]
   }
 }

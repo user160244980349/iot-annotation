@@ -22,7 +22,7 @@ class Auth implements IMiddleware
      * @access public
      * @return ServiceBus
      */
-    private static $_permissions_sets;
+    private $_permissions_sets;
 
     /**
      * ServiceBus services registration.
@@ -30,9 +30,9 @@ class Auth implements IMiddleware
      * @access public
      * @return ServiceBus
      */
-    public static function register(array $permissions_sets): void
+    public function __construct()
     {
-        static::$_permissions_sets = $permissions_sets;
+        $this->_permissions_sets = require_once ENV['permissions'];
     }
 
     /**
@@ -43,9 +43,9 @@ class Auth implements IMiddleware
      * @return Request
      * @throws Error
      */
-    public static function let(Request $request): Request
+    public function let(Request $request): Request
     {
-        foreach (static::$_permissions_sets as $permission_set) {
+        foreach ($this->_permissions_sets as $permission_set) {
             if ($permission_set->test($request->route->name)) {
 
                 $id = AuthService::authenticated();

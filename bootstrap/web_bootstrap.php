@@ -1,13 +1,13 @@
 <?php
 
-use Engine\Decorators\ServiceBus;
+use Engine\ServiceBus;
 use Engine\Decorators\Debug;
 use Engine\Decorators\MiddlewaresQueue;
 use Engine\View;
 
 # Call application
 try {
-    ServiceBus::autoload();
+    ServiceBus::instance();
     MiddlewaresQueue::run();
 } catch (Error $exception) {
     Debug::push($exception);

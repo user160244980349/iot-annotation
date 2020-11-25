@@ -1,8 +1,6 @@
 <?php
 
-use Engine\ServiceBus;
-
-ServiceBus::register([
+return [
     
     Engine\Services\Debug::class,
     Engine\Services\MiddlewaresQueue::class,
@@ -14,4 +12,4 @@ ServiceBus::register([
     Engine\Services\Migration::class,
     Engine\Services\Seed::class,
 
-]);
+];

@@ -18,7 +18,7 @@ class ControllerExecution implements IMiddleware
      * @param Request $request
      * @return Request
      */
-    public static function let(Request $request): Request
+    public function let(Request $request): Request
     {
         $request->route->execute($request);
         return $request;
