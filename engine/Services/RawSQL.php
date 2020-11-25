@@ -78,11 +78,11 @@ class RawSQL
     public function __construct()
     {
         
-        $this->_driver = Env::get('db_driver');
-        $this->_address = Env::get('db_address');
-        $this->_name = Env::get('db_name');
-        $this->_user = Env::get('db_user');
-        $this->_password = Env::get('db_password');
+        $this->_driver = ENV['db_driver'];
+        $this->_address = ENV['db_address'];
+        $this->_name = ENV['db_name'];
+        $this->_user = ENV['db_user'];
+        $this->_password = ENV['db_password'];
 
         $this->_connection = new PDO(
             "$this->_driver:host=$this->_address;dbname=$this->_name",

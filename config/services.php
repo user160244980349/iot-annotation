@@ -5,7 +5,7 @@ use Engine\ServiceBus;
 ServiceBus::register([
     
     Engine\Services\Debug::class,
-    Engine\Services\Application::class,
+    Engine\Services\MiddlewaresQueue::class,
     Engine\Services\Session::class,
     Engine\Services\RawSQL::class,
     Engine\Services\Auth::class,

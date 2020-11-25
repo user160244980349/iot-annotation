@@ -1,6 +1,8 @@
 <?php
 
-namespace Engine;
+namespace Engine\Services;
+
+use Engine\Request;
 
 /**
  * MiddlewaresQueue.php
@@ -9,6 +11,14 @@ namespace Engine;
  */
 class MiddlewaresQueue
 {
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    static public $alias = 'middlewares_queue';
+
     /**
      * Middlewares providing different functions.
      *
@@ -39,7 +49,8 @@ class MiddlewaresQueue
         $result = null;
 
         foreach (static::$_middlewares as $middleware) {
-            $result = $middleware::let($result);
+            $m = new $middleware();
+            $result = $m->let($result);
         }
 
         return $result;

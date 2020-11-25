@@ -31,10 +31,8 @@ class RedBeanORM
      */
     public function __construct()
     {
-        $env = Env::get('database');
-
-        R::setup("{$env['driver']}:host={$env['address']};dbname={$env['name']}",
-                   $env['user'], $env['password']);
+        R::setup("{ENV['db_driver']}:host={ENV['db_address']};dbname={ENV['db_name']}",
+                   ENV['db_user'], ENV['db_password']);
 
         if (!R::testConnection()) {
             throw new Error('Database connection was not established', 500, null);

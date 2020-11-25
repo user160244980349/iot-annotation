@@ -1,6 +1,6 @@
 <?php
 
-use Engine\MiddlewaresQueue;
+use Engine\Services\MiddlewaresQueue;
 
 MiddlewaresQueue::register([
 

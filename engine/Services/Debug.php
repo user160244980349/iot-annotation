@@ -44,7 +44,7 @@ class Debug
      */
     public function __construct()
     {
-        $this->_allowed = Env::get('debug');
+        $this->_allowed = ENV['debug'];
     }
 
     /**
