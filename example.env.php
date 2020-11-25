@@ -1,8 +1,8 @@
 <?php
 
-use Engine\Settings;
+use Engine\Env;
 
-Settings::set('env', [
+Env::set([
 
     # Views path
     'views' => __DIR__ . '/resources/views/',
