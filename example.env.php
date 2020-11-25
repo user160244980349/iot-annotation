@@ -11,8 +11,8 @@ define('ENV', [
     # Database credentials
     'db_driver' => 'mysql',
     'db_address' => 'localhost',
-    'db_name' => 'custom_bp_editor',
-    'db_user' => 'custom-bp-editor',
+    'db_name' => 'database',
+    'db_user' => 'user',
     'db_password' => 'secret',
 
     'commands' => __DIR__ . '/config/console.php',
@@ -21,5 +21,5 @@ define('ENV', [
     'routes' => __DIR__ . '/config/routes.php',
     'services' => __DIR__ . '/config/services.php',
     'migrations' => __DIR__ . '/database/migrations.php',
-    'seeds' => 'database/seeds.php'
+    'seeds' => __DIR__ . '/database/seeds.php'
 ]);
