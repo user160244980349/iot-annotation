@@ -1,6 +1,6 @@
 {
   "name": "user/php-engine",
-  "description": "null",
+  "description": "php engine",
   "type": "project",
   "require": {
     "gabordemooij/redbean": "dev-master",
@@ -11,9 +11,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "Engine\\": "engine/",
-      "Database\\Migrations\\": "database/migrations/",
-      "Database\\Seeds\\": "database/seeds/"
+      "Engine\\": "engine/"
     },
     "files": [
       "env.php"

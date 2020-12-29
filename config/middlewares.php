@@ -1,10 +1,8 @@
 <?php
 
-use Engine\Services\MiddlewaresQueue;
-
 return [
 
-    Engine\Middlewares\Receiver::class,
+    Engine\Middlewares\ReceiverNginx::class,
     Engine\Middlewares\Router::class,
     Engine\Middlewares\Auth::class,
     Engine\Middlewares\ControllerExecution::class,
