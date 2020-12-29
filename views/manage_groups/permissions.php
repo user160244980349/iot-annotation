@@ -1,4 +1,5 @@
 <?php include_once __DIR__ . '/../blocks/header.php' ?>
+
 <div class="container">
 
 <div class="row my-4">
@@ -65,6 +66,7 @@
 </div>
 </div>
 </div>
+
 <?php include_once __DIR__ . '/../blocks/footer.php' ?>
 
 </body>

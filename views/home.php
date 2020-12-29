@@ -1,4 +1,5 @@
 <?php include_once "blocks/header.php" ?>
+
 <div class="container">
     <div class="row my-4">
         <div class="col-md-8 offset-2">
