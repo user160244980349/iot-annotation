@@ -17,7 +17,7 @@ class RoutePermission
      * @access public
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * Permissions list.
@@ -25,7 +25,7 @@ class RoutePermission
      * @access public
      * @var array
      */
-    public $permissions;
+    public array $permissions;
 
     /**
      * Permission constructor.

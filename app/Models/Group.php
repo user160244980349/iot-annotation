@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
+use PDO;
 
 /**
  * Group.php
@@ -21,11 +22,12 @@ class Group
      */
     public static function getForId(int $id): array
     {
-        return RawSQL::fetchAll(
+        return RawSQL::query(
             "SELECT `groups`.`id`, `groups`.`name` FROM `users`
              INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
-             WHERE `users`.`id` = '$id'");
+             WHERE `users`.`id` = '$id'")
+            ->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -37,8 +39,9 @@ class Group
      */
     public static function getById(int $id): array
     {
-        return RawSQL::fetch(
-            "SELECT * FROM `groups` WHERE `id` = $id");
+        return RawSQL::query(
+            "SELECT * FROM `groups` WHERE `id` = $id")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -49,8 +52,8 @@ class Group
      */
     public static function getAll(): array
     {
-        return RawSQL::fetchAll(
-            'SELECT * FROM `groups`');
+        return RawSQL::query('SELECT * FROM `groups`')
+            ->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -61,14 +64,14 @@ class Group
      * @param string $group - Group name
      * @return bool
      */
-    public static function associateByName(int $id, string $group): bool
+    public static function associateByName(int $id, string $group): void
     {
-        RawSQL::fetch(
+        RawSQL::query(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
-        return true;
+                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))")
+            ->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -79,14 +82,14 @@ class Group
      * @param int $group - Group id
      * @return bool.
      */
-    public static function associateById(int $id, int $group_id): bool
+    public static function associateById(int $id, int $group_id): void
     {
-        RawSQL::fetch(
+        RawSQL::query(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
-                ($id, $group_id)");
-        return true;
+                ($id, $group_id)")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -97,13 +100,13 @@ class Group
      * @param string $group - Group name
      * @return bool.
      */
-    public static function disassociateByName(int $id, string $group): bool
+    public static function disassociateByName(int $id, string $group): void
     {
-        RawSQL::fetch(
+        RawSQL::query(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')");
-        return true;
+                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -114,13 +117,13 @@ class Group
      * @param int $group - Group id
      * @return bool.
      */
-    public static function disassociateById(int $id, int $group_id): bool
+    public static function disassociateById(int $id, int $group_id): void
     {
-        RawSQL::fetch(
+        RawSQL::query(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = $group_id");
-        return true;
+                   `group_id` = $group_id")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
 }

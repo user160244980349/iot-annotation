@@ -18,7 +18,7 @@ class DebugService
      * @access public
      * @var string
      */
-    static public $alias = 'debug';
+    static public string $alias = 'debug';
 
     /**
      * Objects to print.
@@ -26,7 +26,7 @@ class DebugService
      * @access public
      * @var array
      */
-    private $_items = [];
+    private array $_items = [];
 
     /**
      * If debug printing allowed.
@@ -34,7 +34,7 @@ class DebugService
      * @access private
      * @var bool
      */
-    private $_allowed;
+    private bool $_allowed;
 
     /**
      * Constructor.

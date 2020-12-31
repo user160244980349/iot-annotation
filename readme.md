@@ -16,7 +16,7 @@ This is PHP engine
 - [x] Redirection service
 - [x] Rework the docs because they don’t make any sense 
 - [x] Make things more strict
-- [ ] Optimize route search
 - [x] Remove decorators
-- [ ] Return PDO object to models
+- [x] Return PDO object to models
 - [x] Load config via static class
+- [ ] Optimize route search

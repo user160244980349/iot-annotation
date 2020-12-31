@@ -18,7 +18,7 @@ class ServiceBus
      * @access private
      * @var ServiceBus
      */
-    private static $_instance;
+    private static ServiceBus $_instance;
 
     /**
      * ServiceBus array.
@@ -26,7 +26,7 @@ class ServiceBus
      * @access private
      * @var array
      */
-    private $_services;
+    private array $_services;
 
     /**
      * ServiceBus services registration.

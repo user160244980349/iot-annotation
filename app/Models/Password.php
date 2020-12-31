@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
+use PDO;
 
 /**
  * Password.php
@@ -22,14 +23,15 @@ class Password
      */
     public static function create(int $id, string $password): bool
     {
-        $response = RawSQL::fetch(
+        $response = RawSQL::query(
             "INSERT INTO `passwords` (
                 `id`,
                 `value`
             ) VALUES (
                 '{$id}',
                 '{$password}'
-            )");
+            )")
+            ->fetch(PDO::FETCH_ASSOC);
 
         return isset($response);
     }
@@ -43,8 +45,9 @@ class Password
      */
     public static function getValue(int $id)
     {
-        return RawSQL::fetch(
-            "SELECT * FROM `passwords` WHERE `id` = '$id'")['value'];
+        return RawSQL::query(
+            "SELECT * FROM `passwords` WHERE `id` = '$id'")
+            ->fetch(PDO::FETCH_ASSOC)['value'];
     }
 
 }

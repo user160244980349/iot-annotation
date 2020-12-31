@@ -26,7 +26,7 @@ class ReceiverNginxMiddleware implements IMiddleware
 
             case 'GET':
                 $parameters = $_GET;
-                $parameters['uri'] = $_SERVER['REQUEST_URI'];
+                $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
                 $parameters['method'] = 'get';
                 break;
 

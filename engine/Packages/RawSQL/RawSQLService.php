@@ -3,6 +3,7 @@
 namespace Engine\Packages\RawSQL;
 
 use Engine\Config;
+use PDOStatement;
 use PDO;
 
 /**
@@ -19,7 +20,7 @@ class RawSQLService
      * @access public
      * @var string
      */
-    static public $alias = 'database';
+    static public string $alias = 'database';
 
     /**
      * Driver for database access.
@@ -27,7 +28,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_driver;
+    private string $_driver;
 
     /**
      * Address for database access.
@@ -35,7 +36,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_address;
+    private string $_address;
 
     /**
      * Database name for access.
@@ -43,7 +44,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_name;
+    private string $_name;
 
     /**
      * Database for user access.
@@ -51,7 +52,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_user;
+    private string $_user;
 
     /**
      * Password for database access.
@@ -59,7 +60,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_password;
+    private string $_password;
 
     /**
      * Connection instance for database access.
@@ -67,7 +68,7 @@ class RawSQLService
      * @access private
      * @var string
      */
-    private $_connection;
+    private PDO $_connection;
 
     /**
      * Database constructor.
@@ -97,27 +98,11 @@ class RawSQLService
      * @param string $queryString - Query to send
      * @return array
      */
-    public function fetch($queryString)
+    public function query($queryString): PDOStatement
     {
         $pdo = $this->_connection->query($queryString);
         if (isset($pdo) && $pdo != false) {
-            return $pdo->fetch(PDO::FETCH_ASSOC);
-        }
-        return null;
-    }
-
-    /**
-     * Sends query to database and gives a response.
-     *
-     * @access public
-     * @param string $queryString Query to send
-     * @return array
-     */
-    public function fetchAll($queryString)
-    {
-        $pdo = $this->_connection->query($queryString);
-        if (isset($pdo) && $pdo != false) {
-            return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            return $pdo;
         }
         return null;
     }

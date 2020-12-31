@@ -16,7 +16,7 @@ class Config
      * @access public
      * @var array
      */
-    private static $_values = [];
+    private static array $_values = [];
 
     /**
      * Request constructor.

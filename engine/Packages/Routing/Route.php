@@ -16,7 +16,7 @@ class Route
      * @access public
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * Route pattern.
@@ -24,7 +24,7 @@ class Route
      * @access public
      * @var string
      */
-    public $pattern;
+    public string $pattern;
 
     /**
      * Request method.
@@ -32,7 +32,7 @@ class Route
      * @access public
      * @var string
      */
-    public $method;
+    public string $method;
 
     /**
      * Controller to execute.
@@ -40,7 +40,7 @@ class Route
      * @access public
      * @var array
      */
-    public $controller;
+    public array $controller;
 
     /**
      * Request parameters.
@@ -48,7 +48,7 @@ class Route
      * @access public
      * @var array
      */
-    public $args;
+    public array $args;
 
     /**
      * Route constructor.

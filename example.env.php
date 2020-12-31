@@ -17,9 +17,4 @@ Config::set('env', [
     'db_user'     => 'php_engine',
     'db_password' => 'secret',
 
-    'middlewares' => __DIR__ . '/config/middlewares.php',
-    'permissions' => __DIR__ . '/config/permissions.php',
-    'routes'      => __DIR__ . '/config/routes.php',
-    'services'    => __DIR__ . '/config/services.php',
-
 ]);

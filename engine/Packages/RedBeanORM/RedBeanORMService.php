@@ -21,7 +21,7 @@ class RedBeanORMService
      * @access public
      * @var string
      */
-    static public $alias = 'database';
+    static public string $alias = 'database';
 
     /**
      * RedBeanORM service constructor.

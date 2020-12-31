@@ -21,7 +21,7 @@ class AuthMiddleware implements IMiddleware
      * @access public
      * @return ServiceBus
      */
-    private $_permissions_sets;
+    private array $_permissions_sets;
 
     /**
      * ServiceBus services registration.

@@ -18,7 +18,7 @@ class View
      * @access private
      * @var string
      */
-    private $_path;
+    private string $_path;
 
     /**
      * Variables for template.
@@ -26,7 +26,7 @@ class View
      * @access private
      * @var array
      */
-    private $_variables;
+    private array $_variables;
 
     /**
      * View constructor.

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
+use PDO;
 
 /**
  * User.php
@@ -21,14 +22,15 @@ class User
      */
     public static function create(array $user): bool
     {
-        $response = RawSQL::fetch(
+        $response = RawSQL::query(
             "INSERT INTO `users` (
                 `name`,
                 `email`
             ) VALUES (
                 '{$user['name']}',
                 '{$user['email']}'
-            )");
+            )")
+            ->fetch(PDO::FETCH_ASSOC);
 
         return isset($response);
     }
@@ -42,8 +44,9 @@ class User
      */
     public static function getByName(string $name)
     {
-        return RawSQL::fetch(
-            "SELECT * FROM `users` WHERE `name` = '$name'");
+        return RawSQL::query(
+            "SELECT * FROM `users` WHERE `name` = '$name'")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -55,8 +58,9 @@ class User
      */
     public static function getById(int $id)
     {
-        return RawSQL::fetch(
-            "SELECT * FROM `users` WHERE `id` = '$id'");
+        return RawSQL::query(
+            "SELECT * FROM `users` WHERE `id` = '$id'")
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -67,8 +71,9 @@ class User
      */
     public static function getAll(): array
     {
-        return RawSQL::fetchAll(
-            "SELECT * FROM `users`");
+        return RawSQL::query(
+            "SELECT * FROM `users`")
+            ->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

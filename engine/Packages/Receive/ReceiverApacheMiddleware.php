@@ -21,23 +21,36 @@ class ReceiverApacheMiddleware implements IMiddleware
      */
     public function let(?Request $request): Request
     {
+        
+        switch ($_SERVER['REQUEST_METHOD']) {
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $parameters = $_GET;
-            $parameters['method'] = 'get';
-        }
+            case 'GET':
+                $parameters = $_GET;
+                $parameters['method'] = 'get';
+                break;
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $parameters = $_POST;
-            $parameters['uri'] = $_GET['uri'];
-            $parameters['method'] = 'post';
-            if (isset($parameters['_method'])) {
-                if ($parameters['_method'] == 'put') {
-                    $parameters['method'] = 'put';
-                } elseif ($parameters['_method'] == 'delete') {
-                    $parameters['method'] = 'delete';
+            case 'POST':
+                $parameters = $_POST;
+                $parameters['uri'] = $_GET['uri'];
+    
+                if (isset($parameters['_method'])) {
+
+                    switch ($parameters['_method']) {
+                        
+                        case 'put':
+                            $parameters['method'] = 'put';
+                            break;
+
+                        case 'delete':
+                            $parameters['method'] = 'delete';
+                            break;
+
+                    }
+                } else {
+                    $parameters['method'] = 'post';
                 }
-            }
+                break;
+
         }
 
         return new Request($parameters);

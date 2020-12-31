@@ -16,7 +16,7 @@ class RedirectionService
      * @access public
      * @var string
      */
-    static public $alias = 'redirection';
+    static public string $alias = 'redirection';
 
     /**
      * Performs redirection.

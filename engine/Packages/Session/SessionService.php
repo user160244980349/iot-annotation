@@ -16,7 +16,7 @@ class SessionService
      * @access public
      * @var string
      */
-    static public $alias = 'session';
+    static public string $alias = 'session';
 
     /**
      * Constructor of service class.

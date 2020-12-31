@@ -14,12 +14,12 @@ use Error;
 class RouterMiddleware implements IMiddleware
 {
     /**
-     * Map for url's and controllers.
+     * Map for urls and controllers.
      *
      * @access private
      * @var array
      */
-    private $_routes;
+    private array $_routes;
 
     /**
      * ServiceBus services registration.

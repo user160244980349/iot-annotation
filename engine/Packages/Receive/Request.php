@@ -3,6 +3,7 @@
 namespace Engine\Packages\Receive;
 
 use Engine\Packages\Routing\Route;
+use Engine\Packages\Rendering\View;
 
 /**
  * Request.php
@@ -18,7 +19,7 @@ class Request
      * @access public
      * @var array
      */
-    public $parameters;
+    public array $parameters;
 
     /**
      * Route that will be executed.
@@ -26,7 +27,7 @@ class Request
      * @access public
      * @var Route
      */
-    public $route;
+    public ?Route $route;
 
     /**
      * View that will be displayed.
@@ -34,7 +35,7 @@ class Request
      * @access public
      * @var View
      */
-    public $view;
+    public ?View $view;
 
     /**
      * Request constructor.

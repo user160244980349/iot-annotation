@@ -20,7 +20,7 @@ class AuthService
      * @access public
      * @var string
      */
-    static public $alias = 'auth';
+    static public string $alias = 'auth';
 
     /**
      * Gives authorized user id.

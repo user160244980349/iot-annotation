@@ -18,7 +18,7 @@ class MiddlewareService
      * @access public
      * @var string
      */
-    static public $alias = 'middlewares_queue';
+    static public string $alias = 'middlewares_queue';
 
     /**
      * Middlewares providing different functions.
@@ -26,7 +26,7 @@ class MiddlewareService
      * @access private
      * @var array
      */
-    private $_middlewares;
+    private array $_middlewares;
 
     /**
      * ServiceBus services registration.
