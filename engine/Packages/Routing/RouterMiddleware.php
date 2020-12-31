@@ -2,8 +2,8 @@
 namespace Engine\Packages\Routing;
 
 use Engine\Packages\Middleware\Bundled\IMiddleware;
-use Engine\Config;
 use Engine\Packages\Receive\Request;
+use Engine\Config;
 use Error;
 
 /**
@@ -40,7 +40,7 @@ class RouterMiddleware implements IMiddleware
      * @return Request
      * @throws Error
      */
-    public function let(Request $request): Request
+    public function let(?Request $request): Request
     {
         foreach ($this->_routes as $route) {
             if ($route->test($request->parameters['uri'],

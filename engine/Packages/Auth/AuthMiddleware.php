@@ -42,7 +42,7 @@ class AuthMiddleware implements IMiddleware
      * @return Request
      * @throws Error
      */
-    public function let(Request $request): Request
+    public function let(?Request $request): Request
     {
         foreach ($this->_permissions_sets as $permission_set) {
             if ($permission_set->test($request->route->name)) {

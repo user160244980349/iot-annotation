@@ -19,7 +19,7 @@ class ReceiverNginxMiddleware implements IMiddleware
      * @param Request $null - Null because not needed
      * @return Request - Initialized request object
      */
-    public function let(Request $request = null): Request
+    public function let(?Request $request): Request
     {
 
         switch ($_SERVER['REQUEST_METHOD']) {

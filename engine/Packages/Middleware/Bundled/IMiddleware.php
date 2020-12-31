@@ -20,6 +20,6 @@ interface IMiddleware
      * @param Request $request -Request to manage
      * @return Request - Modified request
      */
-    public function let(Request $request): Request;
+    public function let(?Request $request): Request;
 
 }

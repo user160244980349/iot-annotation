@@ -2,10 +2,10 @@
 
 namespace Engine\Packages\RedBeanORM;
 
-use Error;
 use RedBeanPHP\R;
 use RedBeanPHP\Logger;
 use Engine\Config;
+use Error;
 
 /**
  * RedBeanORM.php
