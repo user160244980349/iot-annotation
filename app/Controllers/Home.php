@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
+use Engine\Packages\Auth\Facade as Auth;
+use Engine\Packages\Receive\Request;
+use Engine\Packages\Rendering\View;
 use App\Models\User;
-use Engine\Decorators\Auth;
-use Engine\Decorators\Debug;
-use Engine\Request;
-use Engine\View;
 
 /**
  * Home.php

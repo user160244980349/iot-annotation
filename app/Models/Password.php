@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 
 /**
  * Password.php

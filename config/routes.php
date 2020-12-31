@@ -15,9 +15,11 @@ use App\Controllers\ManageBusinessProcesses;
 use App\Controllers\ManageUsers;
 use App\Controllers\ManageTasks;
 use App\Controllers\ManageGroups;
-use Engine\Route;
+use Engine\Packages\Routing\Route;
+use Engine\Config;
 
-return [
+
+Config::set('routes', [
 
     # Auth management
     new Route('register', 'get', '/^\/register$/', [Register::class, 'toRegisterPage']),
@@ -52,4 +54,4 @@ return [
     new Route('group-permissions', 'post', '/^\/groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'assign']),
     new Route('group-permission', 'delete', '/^\/groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'disassign']),
 
-];
+]);

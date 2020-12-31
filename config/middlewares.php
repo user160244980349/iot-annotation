@@ -1,11 +1,13 @@
 <?php
 
-return [
+use Engine\Config;
 
-    Engine\Middlewares\ReceiverNginx::class,
-    Engine\Middlewares\Router::class,
-    Engine\Middlewares\Auth::class,
-    Engine\Middlewares\ControllerExecution::class,
-    Engine\Middlewares\Renderer::class,
+Config::set('middlewares', [
 
-];
+    Engine\Packages\Receive\ReceiverNginxMiddleware::class,
+    Engine\Packages\Routing\RouterMiddleware::class,
+    Engine\Packages\Auth\AuthMiddleware::class,
+    Engine\Packages\Middleware\Bundled\ControllerExecutionMiddleware::class,
+    Engine\Packages\Rendering\RendererMiddleware::class,
+
+]);

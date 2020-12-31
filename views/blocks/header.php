@@ -1,4 +1,4 @@
-<?php use Engine\Decorators\Auth; ?>
+<?php use Engine\Packages\Auth\Facade as Auth; ?>
 <!doctype html>
 <html lang="ru">
 <head>

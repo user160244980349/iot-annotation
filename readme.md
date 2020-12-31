@@ -17,3 +17,7 @@ This is PHP engine
 - [x] Rework the docs because they don’t make any sense 
 - [x] Make things more strict
 - [ ] Optimize route search
+- [ ] Remove decorators
+- [ ] Return PDO object to models
+- [ ] Make services as private properties
+- [ ] Load config via static class

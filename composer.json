@@ -14,7 +14,12 @@
       "Engine\\": "engine/"
     },
     "files": [
-      "env.php"
+      "env.php",
+      "config/middlewares.php",
+      "config/permissions.php",
+      "config/routes.php",
+      "config/services.php",
+      "bootstrap/web_bootstrap.php"
     ]
   }
 }

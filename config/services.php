@@ -1,12 +1,14 @@
 <?php
 
-return [
-    
-    Engine\Services\Debug::class,
-    Engine\Services\MiddlewaresQueue::class,
-    Engine\Services\Session::class,
-    Engine\Services\RawSQL::class,
-    Engine\Services\Auth::class,
-    Engine\Services\Redirection::class,
+use Engine\Config;
 
-];
+Config::set('services', [
+    
+    Engine\Packages\Debug\DebugService::class,
+    Engine\Packages\Middleware\MiddlewareService::class,
+    Engine\Packages\Session\SessionService::class,
+    Engine\Packages\RawSQL\RawSQLService::class,
+    Engine\Packages\Auth\AuthService::class,
+    Engine\Packages\Redirection\RedirectionService::class,
+
+]);

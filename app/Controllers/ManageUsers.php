@@ -2,18 +2,17 @@
 
 namespace App\Controllers;
 
-use Engine\Decorators\Auth;
-use Engine\Request;
-use Engine\View;
+use Engine\Packages\Auth\Facade as Auth;
+use Engine\Packages\Redirection\Facade as Redirection;
+use Engine\Packages\Receive\Request;
+use Engine\Packages\Rendering\View;
 use App\Models\User;
 use App\Models\Group;
-use App\Models\Permission;
-use Engine\Decorators\Redirection;
 
 /**
  * ManageUsers.php
  *
- * Controller class for users managment.
+ * Controller class for users management.
  */
 class ManageUsers
 {

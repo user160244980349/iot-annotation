@@ -1,9 +1,11 @@
 <?php
 
-define('ENV', [
+use Engine\Config;
+
+Config::set('env', [
 
     # Views path
-    'views' => __DIR__ . '/views/',
+    'views' => __DIR__ . '/views',
 
     # Debug prints
     'debug' => true,

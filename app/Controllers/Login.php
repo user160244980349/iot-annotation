@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
+use Engine\Packages\Auth\Facade as Auth;
+use Engine\Packages\Redirection\Facade as Redirection;
+use Engine\Packages\Receive\Request;
+use Engine\Packages\Rendering\View;
 use App\Models\User;
-use Engine\Decorators\Auth;
-use Engine\Decorators\Redirection;
-use Engine\Request;
-use Engine\View;
 
 /**
  * Login.php

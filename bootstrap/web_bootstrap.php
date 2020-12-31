@@ -1,16 +1,20 @@
 <?php
 
-use Engine\Decorators\Debug;
-use Engine\Decorators\MiddlewaresQueue;
-use Engine\View;
+use Engine\Packages\Debug\Facade as Debug;
+use Engine\Packages\Middleware\Facade as Queue;
+use Engine\Packages\Rendering\View;
 
 # Call application
 try {
-    MiddlewaresQueue::run();
-} catch (Error $exception) {
+
+    Queue::run();
+
+} catch (PDOException | Exception | Error $exception) {
+
     Debug::push($exception);
-    $view = new View('exception.php', ["exception" => $exception]);
+    $view = new View('exception.php', ['exception' => $exception]);
     $view->display();
+
 }
 
 Debug::printIfAllowed();

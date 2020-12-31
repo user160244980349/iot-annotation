@@ -6,6 +6,3 @@ error_reporting(-1);
 
 # Import composer autoloader
 require_once __DIR__ . '/../vendor/autoload.php';
-
-# Import part, that boots application up
-require_once __DIR__ . '/../bootstrap/web_bootstrap.php';

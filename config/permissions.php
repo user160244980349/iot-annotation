@@ -1,10 +1,11 @@
 <?php
 
-use Engine\RoutePermission;
+use Engine\Packages\Routing\RoutePermission;
+use Engine\Config;
 
-return [
+Config::set('permissions', [
 
     # Home page
     new RoutePermission('home', ['visit-home'])
     
-];
+]);
