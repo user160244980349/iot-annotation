@@ -42,6 +42,7 @@ class RouterMiddleware implements IMiddleware
      */
     public function let(?Request $request): Request
     {
+
         foreach ($this->_routes as $route) {
             if ($route->test($request->parameters['uri'],
                              $request->parameters['method'])) {

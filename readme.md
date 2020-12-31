@@ -20,3 +20,5 @@ This is PHP engine
 - [x] Return PDO object to models
 - [x] Load config via static class
 - [ ] Optimize route search
+- [ ] XSRF protection
+- [ ] Other protection things

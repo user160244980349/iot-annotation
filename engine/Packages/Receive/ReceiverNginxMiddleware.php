@@ -32,7 +32,7 @@ class ReceiverNginxMiddleware implements IMiddleware
 
             case 'POST':
                 $parameters = $_POST;
-                $parameters['uri'] = $_SERVER['REQUEST_URI'];
+                $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
     
                 if (isset($parameters['_method'])) {
 
