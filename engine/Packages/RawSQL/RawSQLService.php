@@ -98,7 +98,7 @@ class RawSQLService
      * @param string $queryString - Query to send
      * @return array
      */
-    public function query($queryString): PDOStatement
+    public function query($queryString): ?PDOStatement
     {
         $pdo = $this->_connection->query($queryString);
         if (isset($pdo) && $pdo != false) {

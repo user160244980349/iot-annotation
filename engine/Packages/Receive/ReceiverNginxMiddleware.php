@@ -21,32 +21,20 @@ class ReceiverNginxMiddleware implements IMiddleware
      */
     public function let(?Request $request): Request
     {
+        $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
 
         switch ($_SERVER['REQUEST_METHOD']) {
 
             case 'GET':
-                $parameters = $_GET;
-                $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
+                $parameters = array_merge($parameters, $_GET);
                 $parameters['method'] = 'get';
                 break;
 
             case 'POST':
-                $parameters = $_POST;
-                $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
+                $parameters = array_merge($parameters, $_POST);
     
                 if (isset($parameters['_method'])) {
-
-                    switch ($parameters['_method']) {
-                        
-                        case 'put':
-                            $parameters['method'] = 'put';
-                            break;
-
-                        case 'delete':
-                            $parameters['method'] = 'delete';
-                            break;
-
-                    }
+                    $parameters['method'] = $parameters['_method'];
                 } else {
                     $parameters['method'] = 'post';
                 }

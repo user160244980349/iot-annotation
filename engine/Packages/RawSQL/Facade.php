@@ -20,7 +20,7 @@ class Facade
      * @param string $queryString - Query to send
      * @return array
      */
-    public static function query(string $queryString): PDOStatement
+    public static function query(string $queryString): ?PDOStatement
     {
         return ServiceBus::instance()->get('database')->query($queryString);
     }
