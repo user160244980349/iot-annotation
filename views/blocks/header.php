@@ -16,14 +16,11 @@
     <?php if ($id) { ?>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/home">Home</a>
-        <?php if (Auth::allowed($id, ['manage-bp'])) {
+        <?php if (Auth::allowed($id, ['manage-users'])) {
             echo "<a class='p-2 text-dark' href='/users'>Users</a>";
         } ?>
-        <?php if (Auth::allowed($id, ['manage-bp'])) {
+        <?php if (Auth::allowed($id, ['manage-groups'])) {
             echo "<a class='p-2 text-dark' href='/groups'>Groups</a>";
-        } ?>
-        <?php if (Auth::allowed($id, ['manage-bp'])) {
-            echo "<a class='p-2 text-dark' href='/business_processes'>Business Processes</a>";
         } ?>
     </nav>
     <form class="form-inline my-2 my-lg-0" action="/logout" method="post">

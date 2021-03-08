@@ -13,8 +13,8 @@ Config::set('env', [
     # Database credentials
     'db_driver'   => 'mysql',
     'db_address'  => 'localhost',
-    'db_name'     => 'php_engine',
-    'db_user'     => 'php_engine',
+    'db_name'     => 'iot_annotation',
+    'db_user'     => 'iot_annotation',
     'db_password' => 'secret',
 
 ]);

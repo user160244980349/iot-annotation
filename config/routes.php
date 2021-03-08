@@ -32,21 +32,11 @@ Config::set('routes', [
     new Route('welcome', 'get', '/^$/', [Welcome::class, 'toWelcomePage']),
     new Route('home', 'get', '/^home$/', [Home::class, 'toHomePage']),
 
-    # Business processes
-    new Route('business-processes', 'get', '/^business_processes$/', [ManageBusinessProcesses::class, 'toIndexPage']),
-    new Route('business-processes', 'delete', '/^business_processes$/', [ManageBusinessProcesses::class, 'delete']),
-    new Route('create-business-process', 'get', '/^create_business_process$/', [ManageBusinessProcesses::class, 'toCreatePage']),
-    new Route('update-business-process', 'get', '/^update_business_process\/([0-9]+)$/', [ManageBusinessProcesses::class, 'toUpdatePage']),
-
     # Users
     new Route('users', 'get', '/^users$/', [ManageUsers::class, 'toUsersPage']),
     new Route('user-groups', 'get', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'toGroupsPage']),
     new Route('user-group', 'post', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'assign']),
     new Route('user-group', 'delete', '/^users\/([0-9]+)\/groups$/', [ManageUsers::class, 'disassign']),
-
-    # Tasks
-    new Route('run-task', 'get', '/^run_task$/', [ManageTasks::class, 'toRunPage']),
-    new Route('task', 'get', '/^task\/([0-9]+)$/', [ManageTasks::class, 'toDoPage']),
 
     # Permissions
     new Route('groups', 'get', '/^groups$/', [ManageGroups::class, 'toGroupsPage']),

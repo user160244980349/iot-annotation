@@ -43,8 +43,10 @@ class Login
     {
         $id = User::getByName($request->parameters['user']['name'])['id'];
         $password = $request->parameters['user']['password'];
-        if (Auth::login($id, $password)) {
-            Redirection::redirect('/home');
+        if (isset($id)) {
+            if (Auth::login($id, $password)) {
+                Redirection::redirect('/home');
+            }
         }
         Redirection::redirect('/login');
     }
