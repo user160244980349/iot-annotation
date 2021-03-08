@@ -12,16 +12,16 @@
         <b>List of groups  for <?php echo $name ?></b>
     </div>
     <div class="col-md-8">
+    <?php if (count($all_groups) != count($groups)) { ?>
         <form action="" class="form-inline justify-content-end" method="post">
         <select class="form-control form-control-sm" name="group">
-        <?php 
-            foreach ($all_groups as $group) {
-                echo "<option value={$group['id']}>{$group['name']}</option>";
-            }
-        ?>
+            <?php foreach ($all_groups as $group) { ?>
+                <option value=<?php echo $group['id'] ?>><?php echo $group['name'] ?></option>
+            <?php } ?>
         </select>
         <input class="ml-1 btn btn-sm btn-success" type="submit" value="Assign">
         </form>
+    <?php } ?>
     </div>
 </div>
 

@@ -25,8 +25,7 @@ class ManageUsers
      */
     public static function toUsersPage(Request $request)
     {
-        $id = Auth::authenticated();
-        $user = User::getById($id);
+        $user = User::getById(Auth::authenticated());
         $request->view = new View('manage_users/users.php', [
             'title' => 'Users',
             'id' => $user['id'],
@@ -47,7 +46,7 @@ class ManageUsers
         $user = User::getById($id);
         $request->view = new View('manage_users/groups.php', [
             'title' => 'User groups',
-            'id' => $user['id'],
+            'id' => Auth::authenticated(),
             'name' => $user['name'],
             'groups' => Group::getForId($user['id']),
             'all_groups' => Group::getAll(),

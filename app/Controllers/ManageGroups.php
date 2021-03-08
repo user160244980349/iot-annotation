@@ -26,8 +26,7 @@ class ManageGroups
      */
     public static function toGroupsPage(Request $request)
     {
-        $id = Auth::authenticated();
-        $user = User::getById($id);
+        $user = User::getById(Auth::authenticated());
         $request->view = new View('manage_groups/groups.php', [
             'title' => 'Groups',
             'id' => $user['id'],
@@ -45,7 +44,7 @@ class ManageGroups
      */
     public static function toPermissionsPage(Request $request, int $id)
     {
-        $user = User::getById($id);
+        $user = User::getById(Auth::authenticated());
         $request->view = new View('manage_groups/permissions.php', [
             'title' => 'Permissions',
             'id' => $user['id'],
@@ -77,7 +76,7 @@ class ManageGroups
      * @param int $id - User id
      */
     public static function disassign(Request $request, int $id)
-    {
+    {   
         Permission::disassociateById($id, $request->parameters['permission']);
         Redirection::redirect("/groups/{$id}/permissions");
     }

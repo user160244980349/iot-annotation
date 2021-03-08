@@ -23,11 +23,11 @@ class Permission
     public static function getForUser(int $id): array
     {
         $permissions = RawSQL::query(
-            "SELECT `for` FROM `users`
+            "SELECT * FROM `users`
              INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
              INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
-             INNER JOIN `permissions`        ON `group_permission`.`id` = `permissions`.`id` 
+             INNER JOIN `permissions`        ON `group_permission`.`permission_id` = `permissions`.`id` 
              WHERE `users`.`id` = '$id'")
             ->fetchAll(PDO::FETCH_ASSOC);
 
