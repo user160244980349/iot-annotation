@@ -49,7 +49,7 @@ class AuthService
     {
         $user_permissions = Permission::getForUser($id);
         $difference = array_diff($permissions, $user_permissions);
-        if ($difference) {
+        if (count($difference)) {
             return false;
         }
         return true;

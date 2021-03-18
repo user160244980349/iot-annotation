@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Engine\Packages\RawSQL\Facade as RawSQL;
-use PDO;
+use Engine\Packages\RedBeanORM\Facade as R;
 
 /**
  * Group.php
@@ -22,12 +21,11 @@ class Group
      */
     public static function getForId(int $id): array
     {
-        return RawSQL::query(
+        return R::R()::getAll(
             "SELECT `groups`.`id`, `groups`.`name` FROM `users`
              INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
-             WHERE `users`.`id` = '$id'")
-            ->fetchAll(PDO::FETCH_ASSOC);
+             WHERE `users`.`id` = '$id'");
     }
 
     /**
@@ -39,9 +37,8 @@ class Group
      */
     public static function getById(int $id): array
     {
-        return RawSQL::query(
-            "SELECT * FROM `groups` WHERE `id` = $id")
-            ->fetch(PDO::FETCH_ASSOC);
+        return R::R()::getAll(
+            "SELECT * FROM `groups` WHERE `id` = $id");
     }
 
     /**
@@ -52,8 +49,7 @@ class Group
      */
     public static function getAll(): array
     {
-        return RawSQL::query('SELECT * FROM `groups`')
-            ->fetchAll(PDO::FETCH_ASSOC);
+        return R::R()::getAll('SELECT * FROM `groups`');
     }
 
     /**
@@ -66,12 +62,11 @@ class Group
      */
     public static function associateByName(int $id, string $group): void
     {
-        RawSQL::query(
+        R::R()::exec(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))")
-            ->fetchAll(PDO::FETCH_ASSOC);
+                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
     }
 
     /**
@@ -84,12 +79,11 @@ class Group
      */
     public static function associateById(int $id, int $group_id): void
     {
-        RawSQL::query(
+        R::R()::exec(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
-                ($id, $group_id)")
-            ->fetch(PDO::FETCH_ASSOC);
+                ($id, $group_id)");
     }
 
     /**
@@ -102,11 +96,10 @@ class Group
      */
     public static function disassociateByName(int $id, string $group): void
     {
-        RawSQL::query(
+        R::R()::exec(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')")
-            ->fetch(PDO::FETCH_ASSOC);
+                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')");
     }
 
     /**
@@ -119,11 +112,10 @@ class Group
      */
     public static function disassociateById(int $id, int $group_id): void
     {
-        RawSQL::query(
+        R::R()::exec(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = $group_id")
-            ->fetch(PDO::FETCH_ASSOC);
+                   `group_id` = $group_id");
     }
 
 }

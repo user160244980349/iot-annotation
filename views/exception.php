@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+<div class="container pt-5">
+    <div class="text-center">
         <h1 class="display-4"><?php echo "Code {$exception->getCode()}" ?></h1>
         <p class="lead">
             <?php echo "Error! {$exception->getMessage()}" ?>

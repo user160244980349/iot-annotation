@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Engine\Packages\RawSQL\Facade as RawSQL;
-use PDO;
+use Engine\Packages\RedBeanORM\Facade as R;
 
 /**
  * User.php
@@ -22,15 +21,14 @@ class User
      */
     public static function create(array $user): bool
     {
-        $response = RawSQL::query(
+        $response = R::R()::exec(
             "INSERT INTO `users` (
                 `name`,
                 `email`
             ) VALUES (
                 '{$user['name']}',
                 '{$user['email']}'
-            )")
-            ->fetch(PDO::FETCH_ASSOC);
+            )");
 
         return isset($response);
     }
@@ -44,9 +42,8 @@ class User
      */
     public static function getByName(string $name)
     {
-        return RawSQL::query(
-            "SELECT * FROM `users` WHERE `name` = '$name'")
-            ->fetch(PDO::FETCH_ASSOC);
+        return R::R()::getRow(
+            "SELECT * FROM `users` WHERE `name` = '$name'");
     }
 
     /**
@@ -58,9 +55,8 @@ class User
      */
     public static function getById(int $id)
     {
-        return RawSQL::query(
-            "SELECT * FROM `users` WHERE `id` = '$id'")
-            ->fetch(PDO::FETCH_ASSOC);
+        return R::R()::getRow(
+            "SELECT * FROM `users` WHERE `id` = '$id'");
     }
 
     /**
@@ -71,9 +67,8 @@ class User
      */
     public static function getAll(): array
     {
-        return RawSQL::query(
-            "SELECT * FROM `users`")
-            ->fetchAll(PDO::FETCH_ASSOC);
+        return R::R()::getAll(
+            "SELECT * FROM `users`");
     }
 
 }

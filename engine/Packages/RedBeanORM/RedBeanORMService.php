@@ -32,7 +32,7 @@ class RedBeanORMService
     {
         $env = Config::get('env');
 
-        R::setup("{ENV['db_driver']}:host={ENV['db_address']};dbname={ENV['db_name']}",
+        R::setup("{$env['db_driver']}:host={$env['db_address']};dbname={$env['db_name']}",
                   $env['db_user'], $env['db_password']);
 
         if (!R::testConnection()) {
@@ -58,7 +58,7 @@ class RedBeanORMService
      * @access public
      * @return class
      */
-    public function R()
+    public function r()
     {
         return R::class;
     }
