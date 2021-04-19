@@ -10,7 +10,9 @@
 </head>
 <body>
 
-<div class="container pt-5">
+<div class="container-fluid page-root">
+
+    <main class="col">
 
     <div class="row justify-content-center">
         <h1 class="display-4">Hello!</h1>
@@ -22,14 +24,13 @@
         </p>
     </div>
 
-    <div class="row py-4">
-        <div class="col-md-6 offset-3">
-
+    <div class="row pt-4">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
             <form method="post">
                 <div class="form-group text-left">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" name="user[name]" id="inputUsername" class="form-control"
-                            placeholder="Enter username" required="" autofocus="">
+                    <label for="inputEmail">Email</label>
+                    <input type="text" name="user[email]" id="inputEmail" class="form-control"
+                            placeholder="Enter email" required="" autofocus="">
                 </div>
                 <div class="form-group text-left">
                     <label for="inputPassword">Password</label>
@@ -40,9 +41,10 @@
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
                 </div>
             </form>
-
         </div>
     </div>
+
+    </main>
 
 </div>
 

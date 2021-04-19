@@ -22,7 +22,7 @@ class Password
      */
     public static function create(int $id, string $password): bool
     {
-        $response = R::R()::exec(
+        $response = R::get()::exec(
             "INSERT INTO `passwords` (
                 `id`,
                 `value`
@@ -43,7 +43,7 @@ class Password
      */
     public static function getValue(int $id)
     {
-        return R::R()::getCell(
+        return R::get()::getCell(
             "SELECT `value` FROM `passwords` WHERE `id` = '$id'");
     }
 

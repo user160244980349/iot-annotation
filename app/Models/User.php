@@ -21,7 +21,7 @@ class User
      */
     public static function create(array $user): bool
     {
-        $response = R::R()::exec(
+        $response = R::get()::exec(
             "INSERT INTO `users` (
                 `name`,
                 `email`
@@ -42,8 +42,21 @@ class User
      */
     public static function getByName(string $name)
     {
-        return R::R()::getRow(
+        return R::get()::getRow(
             "SELECT * FROM `users` WHERE `name` = '$name'");
+    }
+
+    /**
+     * Gives array with user info.
+     *
+     * @access public
+     * @param string $name - User`s name
+     * @return null|array.
+     */
+    public static function getByEmail(string $email)
+    {
+        return R::get()::getRow(
+            "SELECT * FROM `users` WHERE `email` = '$email'");
     }
 
     /**
@@ -55,7 +68,7 @@ class User
      */
     public static function getById(int $id)
     {
-        return R::R()::getRow(
+        return R::get()::getRow(
             "SELECT * FROM `users` WHERE `id` = '$id'");
     }
 
@@ -67,7 +80,7 @@ class User
      */
     public static function getAll(): array
     {
-        return R::R()::getAll(
+        return R::get()::getAll(
             "SELECT * FROM `users`");
     }
 

@@ -18,9 +18,9 @@ class Facade
      * @access public
      * @return class
      */
-    public static function r()
+    public static function get()
     {
-        return ServiceBus::instance()->get('database')->r();
+        return ServiceBus::instance()->get('database')->get();
     }
 
     /**

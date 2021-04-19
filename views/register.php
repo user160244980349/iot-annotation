@@ -10,7 +10,9 @@
 </head>
 <body>
 
-<div class="container pt-5">
+<div class="container-fluid page-root">
+
+    <main class="col">
 
     <div class="row justify-content-center">
         <h1 class="display-4">Hello!</h1>
@@ -23,7 +25,7 @@
     </div>
 
     <div class="row py-4">
-        <div class="col-md-6 offset-3">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
 
             <form method="post">
                 <div class="form-group text-left">
@@ -54,6 +56,9 @@
 
         </div>
     </div>
+
+    </main>
+
 </div>
 
 </body>

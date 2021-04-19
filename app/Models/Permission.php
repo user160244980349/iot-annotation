@@ -21,7 +21,7 @@ class Permission
      */
     public static function getForUser(int $id): array
     {   
-        return R::R()::getCol(
+        return R::get()::getCol(
             "SELECT `for` FROM `users`
                 INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
                 INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
@@ -39,7 +39,7 @@ class Permission
      */
     public static function getForGroup(int $id): array
     {
-        return R::R()::getAll(
+        return R::get()::getAll(
             "SELECT * FROM `permissions`
              INNER JOIN `group_permission`   ON `permissions`.`id` = `group_permission`.`permission_id`
              INNER JOIN `groups`             ON `group_permission`.`group_id` = `groups`.`id` 
@@ -54,7 +54,7 @@ class Permission
      */
     public static function getAll(): array
     {
-        return R::R()::getAll(
+        return R::get()::getAll(
             'SELECT * FROM `permissions`');
     }
 
@@ -67,7 +67,7 @@ class Permission
      */
     public static function associateByName(int $id, string $permission): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "INSERT INTO `group_permission` 
                 (`group_id`, 
                  `permission_id`) VALUE 
@@ -83,7 +83,7 @@ class Permission
      */
     public static function associateById(int $id, int $permission_id): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "INSERT INTO `group_permission` 
                 (`group_id`, 
                  `permission_id`) VALUE 
@@ -99,7 +99,7 @@ class Permission
      */
     public static function disassociateByName(int $id, string $permission): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
                    `permission_id` = (SELECT `id` FROM `permissions` WHERE `for` = '$permission')");
@@ -114,7 +114,7 @@ class Permission
      */
     public static function disassociateById(int $id, int $permission_id): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
                    `permission_id` = $permission_id");

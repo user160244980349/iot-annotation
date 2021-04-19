@@ -21,7 +21,7 @@ class Group
      */
     public static function getForId(int $id): array
     {
-        return R::R()::getAll(
+        return R::get()::getAll(
             "SELECT `groups`.`id`, `groups`.`name` FROM `users`
              INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
              INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
@@ -37,7 +37,7 @@ class Group
      */
     public static function getById(int $id): array
     {
-        return R::R()::getAll(
+        return R::get()::getAll(
             "SELECT * FROM `groups` WHERE `id` = $id");
     }
 
@@ -49,7 +49,7 @@ class Group
      */
     public static function getAll(): array
     {
-        return R::R()::getAll('SELECT * FROM `groups`');
+        return R::get()::getAll('SELECT * FROM `groups`');
     }
 
     /**
@@ -62,7 +62,7 @@ class Group
      */
     public static function associateByName(int $id, string $group): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
@@ -79,7 +79,7 @@ class Group
      */
     public static function associateById(int $id, int $group_id): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "INSERT INTO `group_user` 
                 (`user_id`, 
                  `group_id`) VALUE 
@@ -96,7 +96,7 @@ class Group
      */
     public static function disassociateByName(int $id, string $group): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
                    `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')");
@@ -112,7 +112,7 @@ class Group
      */
     public static function disassociateById(int $id, int $group_id): void
     {
-        R::R()::exec(
+        R::get()::exec(
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
                    `group_id` = $group_id");

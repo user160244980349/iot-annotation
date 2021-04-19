@@ -1,7 +1,6 @@
 <?php require_once __DIR__ . '/../blocks/header.php' ?>
 
-<div class="container pt-5">
-<div class="col-8 offset-2">
+<main class="col col-md-6 offset-md-3">
 
 <div class="row align-items-center" style="height: 4em">
 <div class="col">
@@ -49,9 +48,7 @@
 </div>
 </div>
 
-</div>
-</div>
-
+</main>
 
 <?php require_once __DIR__ . '/../blocks/footer.php' ?>
 

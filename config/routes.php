@@ -7,13 +7,12 @@
  * (a-zA-Z+)   <- word
  */
 
+use App\Controllers\Annotation;
 use App\Controllers\Register;
 use App\Controllers\Login;
 use App\Controllers\Home;
 use App\Controllers\Welcome;
-use App\Controllers\ManageBusinessProcesses;
 use App\Controllers\ManageUsers;
-use App\Controllers\ManageTasks;
 use App\Controllers\ManageGroups;
 use Engine\Packages\Routing\Route;
 use Engine\Config;
@@ -31,6 +30,7 @@ Config::set('routes', [
     # Pages
     new Route('welcome', 'get', '/^$/', [Welcome::class, 'toWelcomePage']),
     new Route('home', 'get', '/^home$/', [Home::class, 'toHomePage']),
+    new Route('annotation', 'get', '/^annotation$/', [Annotation::class, 'toAnnotationPage']),
 
     # Users
     new Route('users', 'get', '/^users$/', [ManageUsers::class, 'toUsersPage']),

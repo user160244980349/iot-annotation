@@ -75,19 +75,6 @@ class Facade
         return ServiceBus::instance()->get('auth')->associate($id, $group);
     }
 
-
-    /**
-     * Gives permissions of user.
-     *
-     * @access public.
-     * @param int $id .
-     * @return array.
-     */
-    public static function permissions(int $id): array
-    {
-        return ServiceBus::instance()->get('auth')->permissions($id);
-    }
-
     /**
      * Logs user out.
      *

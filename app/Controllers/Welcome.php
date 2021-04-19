@@ -5,7 +5,6 @@ namespace App\Controllers;
 use Engine\Packages\Auth\Facade as Auth;
 use Engine\Packages\Receive\Request;
 use Engine\Packages\Rendering\View;
-use App\Models\User;
 
 /**
  * Welcome.php
@@ -29,11 +28,6 @@ class Welcome
             'id' => $id,
             'title' => 'Welcome',
         ]);
-
-        if ($id) {
-            $user = User::getById($id);
-            $request->view->push('name', $user['name']);
-        }
     }
 
 }

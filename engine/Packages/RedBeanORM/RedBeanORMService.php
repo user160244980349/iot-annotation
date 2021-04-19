@@ -58,7 +58,7 @@ class RedBeanORMService
      * @access public
      * @return class
      */
-    public function r()
+    public function get()
     {
         return R::class;
     }

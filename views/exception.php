@@ -10,13 +10,19 @@
 </head>
 <body>
 
-<div class="container pt-5">
+<div class="container-fluid page-root">
+
+    <main class="col">
+    
     <div class="text-center">
         <h1 class="display-4"><?php echo "Code {$exception->getCode()}" ?></h1>
         <p class="lead">
             <?php echo "Error! {$exception->getMessage()}" ?>
         </p>
     </div>
+    
+    </main>
+
 </div>
 
 </body>

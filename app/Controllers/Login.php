@@ -41,7 +41,8 @@ class Login
      */
     public static function login(Request $request)
     {
-        $id = User::getByName($request->parameters['user']['name'])['id'];
+        // Debug::push($request);
+        $id = User::getByEmail($request->parameters['user']['email'])['id'];
         $password = $request->parameters['user']['password'];
         if (isset($id)) {
             if (Auth::login($id, $password)) {

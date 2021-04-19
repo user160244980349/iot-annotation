@@ -3,6 +3,7 @@
 namespace Engine\Packages\Rendering;
 
 use Engine\Config;
+use Engine\Packages\Debug\Facade as Debug;
 
 /**
  * View.php
@@ -62,6 +63,7 @@ class View
     public function display(): void
     {
         ob_start();
+        Debug::printIfAllowed();
         extract($this->_variables);
         require_once($this->_path);
         ob_end_flush();

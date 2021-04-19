@@ -25,10 +25,10 @@ class Home
     {
         $id = Auth::authenticated();
         $user = User::getById($id);
+
         $request->view = new View('home.php', [
             'title' => 'Home',
-            'id' => $user['id'],
-            'name' => $user['name'],
+            'id' => $id,
         ]);
     }
 
