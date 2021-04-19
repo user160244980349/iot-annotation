@@ -12,7 +12,7 @@ use App\Models\User;
         <h1 class="display-4">Home!</h1>
         <p class="lead">
             <?php if (Auth::allowed($id, ['visit-home'])) { ?>
-                Congratulation You are passed to <a href="/annotation">annotation</a>.
+                Congratulations! You are granted for <a href="/annotation">annotation</a>.
             <?php } else { ?>
                 You are at the home page now. 
             <?php } ?>
