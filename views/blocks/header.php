@@ -1,5 +1,5 @@
 <?php 
-use Engine\Packages\Auth\Facade as Auth; 
+use Engine\Auth\Facade as Auth; 
 use App\Models\User; 
 ?>
 <!doctype html>
@@ -38,6 +38,12 @@ use App\Models\User;
             <?php if (Auth::allowed($id, ['manage-groups'])) { ?>
             <li class="nav-item">
                 <a class="nav-link" href="/groups">Groups</a>
+            </li>
+            <?php } ?>
+            
+            <?php if (Auth::allowed($id, ['manage-data'])) { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/data">Data</a>
             </li>
             <?php } ?>
             

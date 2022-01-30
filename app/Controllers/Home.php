@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use Engine\Packages\Auth\Facade as Auth;
-use Engine\Packages\Receive\Request;
-use Engine\Packages\Rendering\View;
+use Engine\Auth\Facade as Auth;
+use Engine\Receive\Request;
+use Engine\Rendering\View;
 use App\Models\User;
 
 /**

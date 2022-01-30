@@ -1,6 +1,6 @@
 <?php include_once "blocks/header.php" ?>
 <?php 
-use Engine\Packages\Auth\Facade as Auth; 
+use Engine\Auth\Facade as Auth; 
 use App\Models\User; 
 ?>
 

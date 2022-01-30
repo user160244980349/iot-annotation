@@ -14,7 +14,8 @@ use App\Controllers\Home;
 use App\Controllers\Welcome;
 use App\Controllers\ManageUsers;
 use App\Controllers\ManageGroups;
-use Engine\Packages\Routing\Route;
+use App\Controllers\ManageData;
+use Engine\Routing\Route;
 use Engine\Config;
 
 
@@ -43,5 +44,10 @@ Config::set('routes', [
     new Route('group-permissions', 'get', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'toPermissionsPage']),
     new Route('group-permissions', 'post', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'assign']),
     new Route('group-permission', 'delete', '/^groups\/([0-9]+)\/permissions$/', [ManageGroups::class, 'disassign']),
+
+    # Data
+    new Route('data', 'get', '/^data$/', [ManageData::class, 'toDataPage']),
+    new Route('data-upload', 'post', '/^data-upload$/', [ManageData::class, 'upload']),
+    new Route('data-download', 'post', '/^data-download$/', [ManageData::class, 'download']),
 
 ]);

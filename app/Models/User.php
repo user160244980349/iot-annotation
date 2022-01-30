@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Engine\Packages\RedBeanORM\Facade as R;
+use Engine\RawSQL\Facade as SQL;
+use PDO;
 
 /**
  * User.php
@@ -21,14 +22,15 @@ class User
      */
     public static function create(array $user): bool
     {
-        $response = R::get()::exec(
+        $response = SQL::query(
+
             "INSERT INTO `users` (
                 `name`,
                 `email`
-            ) VALUES (
-                '{$user['name']}',
-                '{$user['email']}'
-            )");
+             ) VALUE 
+                ('{$user['name']}', '{$user['email']}')"
+
+        );
 
         return isset($response);
     }
@@ -42,8 +44,11 @@ class User
      */
     public static function getByName(string $name)
     {
-        return R::get()::getRow(
-            "SELECT * FROM `users` WHERE `name` = '$name'");
+        return SQL::query(
+
+            "SELECT * FROM `users` WHERE `name` = '$name'"
+
+        )->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -55,8 +60,11 @@ class User
      */
     public static function getByEmail(string $email)
     {
-        return R::get()::getRow(
-            "SELECT * FROM `users` WHERE `email` = '$email'");
+        return SQL::query(
+
+            "SELECT * FROM `users` WHERE `email` = '$email'"
+
+        )->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -68,8 +76,11 @@ class User
      */
     public static function getById(int $id)
     {
-        return R::get()::getRow(
-            "SELECT * FROM `users` WHERE `id` = '$id'");
+        return SQL::query(
+
+            "SELECT * FROM `users` WHERE `id` = '$id'"
+
+        )->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -80,8 +91,11 @@ class User
      */
     public static function getAll(): array
     {
-        return R::get()::getAll(
-            "SELECT * FROM `users`");
+        return SQL::query(
+
+            "SELECT * FROM `users`"
+
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

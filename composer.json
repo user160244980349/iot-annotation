@@ -18,8 +18,7 @@
       "config/middlewares.php",
       "config/permissions.php",
       "config/routes.php",
-      "config/services.php",
-      "bootstrap/web_bootstrap.php"
+      "config/services.php"
     ]
   }
 }

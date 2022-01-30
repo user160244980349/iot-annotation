@@ -1,11 +1,11 @@
 <?php
 
-use Engine\Packages\Debug\DebugService;
-use Engine\Packages\Middleware\MiddlewareService;
-use Engine\Packages\Session\SessionService;
-use Engine\Packages\RedBeanORM\RedBeanORMService;
-use Engine\Packages\Auth\AuthService;
-use Engine\Packages\Redirection\RedirectionService;
+use Engine\Debug\DebugService;
+use Engine\Middleware\MiddlewareService;
+use Engine\Session\SessionService;
+use Engine\RawSQL\RawSQLService;
+use Engine\Auth\AuthService;
+use Engine\Redirection\RedirectionService;
 use Engine\Config;
 
 Config::set('services', [
@@ -13,7 +13,7 @@ Config::set('services', [
     DebugService::class,
     MiddlewareService::class,
     SessionService::class,
-    RedBeanORMService::class,
+    RawSQLService::class,
     AuthService::class,
     RedirectionService::class,
 

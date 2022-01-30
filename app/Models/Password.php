@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Engine\Packages\RedBeanORM\Facade as R;
+use Engine\RawSQL\Facade as SQL;
+use PDO;
 
 /**
  * Password.php
@@ -22,14 +23,15 @@ class Password
      */
     public static function create(int $id, string $password): bool
     {
-        $response = R::get()::exec(
+        $response = SQL::query(
+
             "INSERT INTO `passwords` (
                 `id`,
                 `value`
-            ) VALUES (
-                '{$id}',
-                '{$password}'
-            )");
+             ) VALUE 
+                ('{$id}', '{$password}')"
+            
+        );
 
         return isset($response);
     }
@@ -43,8 +45,11 @@ class Password
      */
     public static function getValue(int $id)
     {
-        return R::get()::getCell(
-            "SELECT `value` FROM `passwords` WHERE `id` = '$id'");
+        return SQL::query(
+
+            "SELECT `value` FROM `passwords` WHERE `id` = '$id'"
+
+        )->fetch(PDO::FETCH_ASSOC);
     }
 
 }

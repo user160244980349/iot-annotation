@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Models\Group;
-use Engine\Packages\Auth\Facade as Auth;
-use Engine\Packages\Redirection\Facade as Redirection;
-use Engine\Packages\Receive\Request;
-use Engine\Packages\Rendering\View;
+use Engine\Auth\Facade as Auth;
+use Engine\Redirection\Facade as Redirection;
+use Engine\Receive\Request;
+use Engine\Rendering\View;
 
 /**
  * Register.php

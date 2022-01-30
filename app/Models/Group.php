@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Engine\Packages\RedBeanORM\Facade as R;
+use Engine\RawSQL\Facade as SQL;
+use PDO;
 
 /**
  * Group.php
@@ -21,11 +22,14 @@ class Group
      */
     public static function getForId(int $id): array
     {
-        return R::get()::getAll(
+        return SQL::query(
+
             "SELECT `groups`.`id`, `groups`.`name` FROM `users`
-             INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
-             INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
-             WHERE `users`.`id` = '$id'");
+                INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
+                INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
+             WHERE `users`.`id` = '$id'"
+
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -37,8 +41,11 @@ class Group
      */
     public static function getById(int $id): array
     {
-        return R::get()::getAll(
-            "SELECT * FROM `groups` WHERE `id` = $id");
+        return SQL::query(
+
+            "SELECT * FROM `groups` WHERE `id` = $id"
+
+        )->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -49,7 +56,11 @@ class Group
      */
     public static function getAll(): array
     {
-        return R::get()::getAll('SELECT * FROM `groups`');
+        return SQL::query(
+            
+            'SELECT * FROM `groups`'
+            
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -62,11 +73,15 @@ class Group
      */
     public static function associateByName(int $id, string $group): void
     {
-        R::get()::exec(
-            "INSERT INTO `group_user` 
-                (`user_id`, 
-                 `group_id`) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))");
+        SQL::query(
+
+            "INSERT INTO `group_user` (
+                `user_id`, 
+                `group_id`
+             ) VALUE 
+                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))"
+                
+        );
     }
 
     /**
@@ -79,11 +94,15 @@ class Group
      */
     public static function associateById(int $id, int $group_id): void
     {
-        R::get()::exec(
-            "INSERT INTO `group_user` 
-                (`user_id`, 
-                 `group_id`) VALUE 
-                ($id, $group_id)");
+        SQL::query(
+        
+            "INSERT INTO `group_user` (
+                `user_id`, 
+                `group_id`
+             ) VALUE 
+                ($id, $group_id)"
+                
+        );
     }
 
     /**
@@ -96,10 +115,13 @@ class Group
      */
     public static function disassociateByName(int $id, string $group): void
     {
-        R::get()::exec(
+        SQL::query(
+
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')");
+                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')"
+                   
+        );
     }
 
     /**
@@ -112,10 +134,13 @@ class Group
      */
     public static function disassociateById(int $id, int $group_id): void
     {
-        R::get()::exec(
+        SQL::query(
+
             "DELETE FROM `group_user`
              WHERE `user_id`  = $id AND
-                   `group_id` = $group_id");
+                   `group_id` = $group_id"
+                   
+        );
     }
 
 }

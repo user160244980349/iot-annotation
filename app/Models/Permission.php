@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Engine\Packages\RedBeanORM\Facade as R;
+use Engine\RawSQL\Facade as SQL;
+use PDO;
 
 /**
  * Permission.php
@@ -21,13 +22,16 @@ class Permission
      */
     public static function getForUser(int $id): array
     {   
-        return R::get()::getCol(
+        return SQL::query(
+
             "SELECT `for` FROM `users`
                 INNER JOIN `group_user`         ON `users`.`id` = `group_user`.`user_id`
                 INNER JOIN `groups`             ON `group_user`.`group_id` = `groups`.`id`
                 INNER JOIN `group_permission`   ON `groups`.`id` = `group_permission`.`group_id` 
                 INNER JOIN `permissions`        ON `group_permission`.`permission_id` = `permissions`.`id` 
-                WHERE `users`.`id` = '$id'");
+             WHERE `users`.`id` = '$id'"
+             
+        )->fetchAll(PDO::FETCH_COLUMN);
     }
 
     /**
@@ -39,11 +43,14 @@ class Permission
      */
     public static function getForGroup(int $id): array
     {
-        return R::get()::getAll(
+        return SQL::query(
+
             "SELECT * FROM `permissions`
-             INNER JOIN `group_permission`   ON `permissions`.`id` = `group_permission`.`permission_id`
-             INNER JOIN `groups`             ON `group_permission`.`group_id` = `groups`.`id` 
-             WHERE `groups`.`id` = $id");
+                INNER JOIN `group_permission`   ON `permissions`.`id` = `group_permission`.`permission_id`
+                INNER JOIN `groups`             ON `group_permission`.`group_id` = `groups`.`id` 
+             WHERE `groups`.`id` = $id"
+             
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -54,8 +61,11 @@ class Permission
      */
     public static function getAll(): array
     {
-        return R::get()::getAll(
-            'SELECT * FROM `permissions`');
+        return SQL::query(
+
+            'SELECT * FROM `permissions`'
+            
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -67,11 +77,15 @@ class Permission
      */
     public static function associateByName(int $id, string $permission): void
     {
-        R::get()::exec(
-            "INSERT INTO `group_permission` 
-                (`group_id`, 
-                 `permission_id`) VALUE 
-                ($id, (SELECT `id` FROM `permission` WHERE `for` = '$permission'))");
+        SQL::query(
+
+            "INSERT INTO `group_permission` (
+                `group_id`, 
+                `permission_id`
+             ) VALUE
+                ($id, (SELECT `id` FROM `permission` WHERE `for` = '$permission'))"
+                
+        );
     }
 
     /**
@@ -83,11 +97,15 @@ class Permission
      */
     public static function associateById(int $id, int $permission_id): void
     {
-        R::get()::exec(
-            "INSERT INTO `group_permission` 
-                (`group_id`, 
-                 `permission_id`) VALUE 
-                ($id, $permission_id)");
+        SQL::query(
+
+            "INSERT INTO `group_permission` (
+                `group_id`, 
+                `permission_id`
+             ) VALUE 
+                ($id, $permission_id)"
+                
+        );
     }
 
     /**
@@ -99,10 +117,13 @@ class Permission
      */
     public static function disassociateByName(int $id, string $permission): void
     {
-        R::get()::exec(
+        SQL::query(
+
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
-                   `permission_id` = (SELECT `id` FROM `permissions` WHERE `for` = '$permission')");
+                   `permission_id` = (SELECT `id` FROM `permissions` WHERE `for` = '$permission')"
+                   
+        );
     }
 
     /**
@@ -114,10 +135,13 @@ class Permission
      */
     public static function disassociateById(int $id, int $permission_id): void
     {
-        R::get()::exec(
+        SQL::query(
+
             "DELETE FROM `group_permission`
              WHERE `group_id`  = $id AND
-                   `permission_id` = $permission_id");
+                   `permission_id` = $permission_id"
+                   
+        );
     }
 
 }

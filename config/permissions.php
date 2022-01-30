@@ -1,6 +1,6 @@
 <?php
 
-use Engine\Packages\Routing\RoutePermission;
+use Engine\Routing\RoutePermission;
 use Engine\Config;
 
 Config::set('permissions', [
@@ -14,5 +14,8 @@ Config::set('permissions', [
     new RoutePermission('groups', ['manage-groups']),
     new RoutePermission('group-permission', ['manage-groups']),
     new RoutePermission('group-permissions', ['manage-groups']),
+    new RoutePermission('data', ['manage-data']),
+    new RoutePermission('data-upload', ['manage-data']),
+    new RoutePermission('data-download', ['manage-data']),
     
 ]);

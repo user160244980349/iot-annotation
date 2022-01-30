@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use Engine\Packages\Auth\Facade as Auth;
-use Engine\Packages\Redirection\Facade as Redirection;
-use Engine\Packages\Receive\Request;
-use Engine\Packages\Rendering\View;
+use Engine\Auth\Facade as Auth;
+use Engine\Redirection\Facade as Redirection;
+use Engine\Receive\Request;
+use Engine\Rendering\View;
 use App\Models\User;
 
 /**
@@ -41,15 +41,18 @@ class Login
      */
     public static function login(Request $request)
     {
-        // Debug::push($request);
-        $id = User::getByEmail($request->parameters['user']['email'])['id'];
+        $user = User::getByEmail($request->parameters['user']['email']);
         $password = $request->parameters['user']['password'];
-        if (isset($id)) {
-            if (Auth::login($id, $password)) {
-                Redirection::redirect('/home');
-            }
+
+        if (empty($user)) {
+            Redirection::redirect('/login');
         }
-        Redirection::redirect('/login');
+
+        if (!Auth::login($user['id'], $password)) {
+            Redirection::redirect('/login');
+        }
+        
+        Redirection::redirect('/home');
     }
 
     /**

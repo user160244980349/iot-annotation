@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use Engine\Packages\Auth\Facade as Auth;
-use Engine\Packages\Receive\Request;
-use Engine\Packages\Rendering\View;
-use Engine\Packages\RedBeanORM\Facade as R;
+use App\Models\Data;
+use Engine\Auth\Facade as Auth;
+use Engine\Receive\Request;
+use Engine\Rendering\View;
+use Engine\RedBeanORM\Facade as R;
 
 /**
  * Annotation.php
@@ -22,13 +23,11 @@ class Annotation
      * @param Request $request
      */
     public static function toAnnotationPage(Request $request)
-    {
-        $id = Auth::authenticated();
-
+    {   
         $request->view = new View('annotation.php', [
             'title' => 'Annotation',
-            'id' => $id,
-            'text' => R::get()::getCell("SELECT `content` FROM `texts` ORDER BY RAND() LIMIT 1;"),
+            'id' => Auth::authenticated(),
+            'policy' => Data::getOne(),
         ]);
     }
 
