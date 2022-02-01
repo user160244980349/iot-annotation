@@ -4,6 +4,7 @@ namespace Engine\Receive;
 
 use Engine\Routing\Route;
 use Engine\Rendering\View;
+use Closure;
 
 /**
  * Request.php
@@ -36,6 +37,14 @@ class Request
      * @var View
      */
     public ?View $view;
+
+    /**
+     * Post response job.
+     *
+     * @access public
+     * @var Closure
+     */
+    public ?Closure $post_response;
 
     /**
      * Request constructor.

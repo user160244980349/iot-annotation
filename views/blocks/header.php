@@ -5,11 +5,11 @@ use App\Models\User;
 <!doctype html>
 <html lang="en">
 <head>
+    <title><?php echo $title ?></title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script type="text/javascript" src="/js/index.js"></script>
-    <title><?php echo $title ?></title>
 </head>
 <body>
     
@@ -85,5 +85,3 @@ use App\Models\User;
     <?php } ?>
 
 </header>
-
-<div class="container-fluid page-root">

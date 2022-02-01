@@ -22,7 +22,10 @@ class ReceiverNginxMiddleware implements IMiddleware
     public function let(?Request $request): Request
     {
         $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
-        $parameters['files'] = $_FILES;
+
+        if (!empty($_FILES)) {
+            $parameters['files'] = $_FILES;
+        }
 
         switch ($_SERVER['REQUEST_METHOD']) {
 

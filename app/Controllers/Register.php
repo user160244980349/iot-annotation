@@ -27,6 +27,7 @@ class Register
     {
         if (Auth::authenticated()) {
             Redirection::redirect('/home');
+            return;
         }
 
         $request->view = new View('register.php', array(
@@ -46,6 +47,7 @@ class Register
 
         if ($user['password'] != $user['password_confirm']) {
             Redirection::redirect('/register');
+            return;
         }
 
         if (User::create($user)) {
@@ -55,6 +57,7 @@ class Register
                 Group::associateByName($stored_user['id'], 'Authenticated');
                 if (Auth::login($stored_user['id'], $user['password'])) {
                     Redirection::redirect('/home');
+                    return;
                 }
             }
         }

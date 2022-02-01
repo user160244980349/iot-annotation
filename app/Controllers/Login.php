@@ -26,6 +26,7 @@ class Login
     {
         if (Auth::authenticated()) {
             Redirection::redirect('/home');
+            return;
         }
 
         $request->view = new View('login.php', [
@@ -46,10 +47,12 @@ class Login
 
         if (empty($user)) {
             Redirection::redirect('/login');
+            return;
         }
 
         if (!Auth::login($user['id'], $password)) {
             Redirection::redirect('/login');
+            return;
         }
         
         Redirection::redirect('/home');

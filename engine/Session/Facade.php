@@ -38,14 +38,14 @@ class Facade
     }
 
     /**
-     * Destroys session.
+     * Finishes request.
      *
      * @access public
      * @return void
      */
-    public static function destroy(): void
+    public static function finish_request(): void
     {
-        ServiceBus::instance()->get('session')->destroy();
+        ServiceBus::instance()->get('session')->finish_request();
     }
 
     /**
@@ -54,9 +54,9 @@ class Facade
      * @access public
      * @return void
      */
-    public static function clearAll(): void
+    public static function destroy(): void
     {
-        ServiceBus::instance()->get('session')->clearAll();
+        ServiceBus::instance()->get('session')->destroy();
     }
 
 }

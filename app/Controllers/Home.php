@@ -23,12 +23,9 @@ class Home
      */
     public static function toHomePage(Request $request)
     {
-        $id = Auth::authenticated();
-        $user = User::getById($id);
-
         $request->view = new View('home.php', [
             'title' => 'Home',
-            'id' => $id,
+            'id' => Auth::authenticated(),
         ]);
     }
 

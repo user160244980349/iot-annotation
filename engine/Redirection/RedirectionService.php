@@ -27,7 +27,6 @@ class RedirectionService
     public function redirect(string $uri): void
     {
         header("location: $uri");
-        exit;
     }
 
 }

@@ -21,8 +21,11 @@ class ReceiverApacheMiddleware implements IMiddleware
      */
     public function let(?Request $request): Request
     {
-
         $parameters['uri'] = ltrim($_SERVER['REQUEST_URI'], '/');
+
+        if (!empty($_FILES)) {
+            $parameters['files'] = $_FILES;
+        }
 
         switch ($_SERVER['REQUEST_METHOD']) {
 

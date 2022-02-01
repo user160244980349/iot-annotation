@@ -22,10 +22,8 @@ class Welcome
      */
     public static function toWelcomePage(Request $request)
     {
-        $id = Auth::authenticated();
-
         $request->view = new View('welcome.php', [
-            'id' => $id,
+            'id' => Auth::authenticated(),
             'title' => 'Welcome',
         ]);
     }

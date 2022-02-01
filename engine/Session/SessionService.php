@@ -55,6 +55,17 @@ class SessionService
     }
 
     /**
+     * Finishes request.
+     *
+     * @access public
+     */
+    public function finish_request(): void
+    {
+        session_write_close();
+        fastcgi_finish_request();
+    }
+
+    /**
      * Destroys session.
      *
      * @access public
@@ -62,39 +73,6 @@ class SessionService
     public function destroy(): void
     {
         session_destroy();
-    }
-
-    /**
-     * Destroys session.
-     *
-     * @access public
-     */
-    public function clearAll() 
-    {
-        static::_rrmdir(session_save_path());
-    }
-
-    /**
-     * Recursively removes directory content.
-     *
-     * @access private
-     * @param $directory - Directory to delete
-     * @param null $delete_parent - Recursive argument
-     */
-    private static function _rrmdir($directory, $delete_parent = null): void
-    {
-        static::_rrmdir(session_save_path());
-        $files = glob($directory . "/{,.}[!.,!..]*", GLOB_MARK | GLOB_BRACE);
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                static::_rrmdir($file, 1);
-            } else {
-                unlink($file);
-            }
-        }
-        if ($delete_parent) {
-            rmdir($directory);
-        }
     }
 
 }

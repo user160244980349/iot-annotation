@@ -22,7 +22,9 @@ class RendererMiddleware implements IMiddleware
      */
     public function let(?Request $request): Request
     {
-        $request->view->display();
+        if (isset($request->view)) {
+            $request->view->display();
+        }
         return $request;
     }
 

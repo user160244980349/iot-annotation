@@ -5,6 +5,7 @@ use Engine\Routing\RouterMiddleware;
 use Engine\Auth\AuthMiddleware;
 use Engine\Middleware\Bundled\ControllerExecutionMiddleware;
 use Engine\Rendering\RendererMiddleware;
+use Engine\PostResponse\PostResponseMiddleware;
 use Engine\Config;
 
 Config::set('middlewares', [
@@ -14,5 +15,6 @@ Config::set('middlewares', [
     AuthMiddleware::class,
     ControllerExecutionMiddleware::class,
     RendererMiddleware::class,
+    PostResponseMiddleware::class,
 
 ]);

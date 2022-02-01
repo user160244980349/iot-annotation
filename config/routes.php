@@ -32,6 +32,7 @@ Config::set('routes', [
     new Route('welcome', 'get', '/^$/', [Welcome::class, 'toWelcomePage']),
     new Route('home', 'get', '/^home$/', [Home::class, 'toHomePage']),
     new Route('annotation', 'get', '/^annotation$/', [Annotation::class, 'toAnnotationPage']),
+    new Route('annotation', 'post', '/^annotation$/', [Annotation::class, 'processAnnotations']),
 
     # Users
     new Route('users', 'get', '/^users$/', [ManageUsers::class, 'toUsersPage']),
@@ -48,6 +49,6 @@ Config::set('routes', [
     # Data
     new Route('data', 'get', '/^data$/', [ManageData::class, 'toDataPage']),
     new Route('data-upload', 'post', '/^data-upload$/', [ManageData::class, 'upload']),
-    new Route('data-download', 'post', '/^data-download$/', [ManageData::class, 'download']),
+    new Route('data-download', 'get', '/^data-download$/', [ManageData::class, 'download']),
 
 ]);
