@@ -76,14 +76,14 @@ class ManageData
             }
             unlink($archive);
 
-            $json = json_decode(file_get_contents("$uncompressed/iot-dataset/json/plain.json"), true);
+            $json = json_decode(file_get_contents("$uncompressed/plain.json"), true);
 
             $portion = 100;
             $policies = [];
             $products = [];
             foreach ($json as $row => $value) {
                 
-                $file = "$uncompressed/iot-dataset/{$value['plain_policy']}";
+                $file = "$uncompressed/{$value['plain_policy']}";
     
                 if (is_file($file)) {
                     $policies["{$value['policy_hash']}"] = file_get_contents($file);
