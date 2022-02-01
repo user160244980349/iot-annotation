@@ -12,3 +12,4 @@ This is PHP app for iot-dataset annotation
 - [ ] Protect of SQL injections (stored procedures)
 - [ ] Protect of XSRF
 - [ ] Adaptive page layout
+- [ ] Download service

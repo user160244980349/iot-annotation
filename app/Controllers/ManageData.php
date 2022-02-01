@@ -138,6 +138,7 @@ class ManageData
             ob_clean();
             flush();
             readfile($file);
+            unlink($file);
         }
     }
 
