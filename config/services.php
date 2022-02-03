@@ -6,6 +6,7 @@ use Engine\Session\SessionService;
 use Engine\RawSQL\RawSQLService;
 use Engine\Auth\AuthService;
 use Engine\Redirection\RedirectionService;
+use Engine\Download\DownloadService;
 use Engine\Config;
 
 Config::set('services', [
@@ -16,5 +17,6 @@ Config::set('services', [
     RawSQLService::class,
     AuthService::class,
     RedirectionService::class,
+    DownloadService::class,
 
 ]);

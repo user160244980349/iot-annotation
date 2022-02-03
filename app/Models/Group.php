@@ -22,14 +22,18 @@ class Group
      */
     public static function getForId(int $id): array
     {
-        return SQL::query(
+        $sql = <<<SQL
 
-            "SELECT `groups`.`id`, `groups`.`name` FROM `users`
-                INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
-                INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
-             WHERE `users`.`id` = '$id'"
+        SELECT `groups`.`id`, `groups`.`name` FROM `users`
+            INNER JOIN `group_user` ON `users`.`id` = `group_user`.`user_id`
+            INNER JOIN `groups`     ON `group_user`.`group_id` = `groups`.`id`
+        WHERE `users`.`id` = ?
 
-        )->fetchAll(PDO::FETCH_ASSOC);
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id]);
+        return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -41,11 +45,15 @@ class Group
      */
     public static function getById(int $id): array
     {
-        return SQL::query(
+        $sql = <<<SQL
 
-            "SELECT * FROM `groups` WHERE `id` = $id"
+        SELECT * FROM `groups` WHERE `id` = ?
 
-        )->fetch(PDO::FETCH_ASSOC);
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id]);
+        return $q->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -56,11 +64,14 @@ class Group
      */
     public static function getAll(): array
     {
-        return SQL::query(
-            
-            'SELECT * FROM `groups`'
-            
-        )->fetchAll(PDO::FETCH_ASSOC);
+        $sql = <<<SQL
+
+        SELECT * FROM `groups`
+
+        SQL;
+
+        $q = SQL::query($sql);
+        return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -73,15 +84,18 @@ class Group
      */
     public static function associateByName(int $id, string $group): void
     {
-        SQL::query(
+        $sql = <<<SQL
 
-            "INSERT INTO `group_user` (
-                `user_id`, 
-                `group_id`
-             ) VALUE 
-                ($id, (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group'))"
-                
-        );
+        INSERT INTO `group_user` (
+            `user_id`, 
+            `group_id`
+        ) VALUE
+            (?, (SELECT `id` FROM `groups` WHERE `groups`.`name` = ?))
+
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id, $group]);
     }
 
     /**
@@ -94,15 +108,18 @@ class Group
      */
     public static function associateById(int $id, int $group_id): void
     {
-        SQL::query(
-        
-            "INSERT INTO `group_user` (
-                `user_id`, 
-                `group_id`
-             ) VALUE 
-                ($id, $group_id)"
-                
-        );
+        $sql = <<<SQL
+
+        INSERT INTO `group_user` (
+            `user_id`, 
+            `group_id`
+        ) VALUE 
+            (?, ?)
+
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id, $group_id]);
     }
 
     /**
@@ -115,13 +132,16 @@ class Group
      */
     public static function disassociateByName(int $id, string $group): void
     {
-        SQL::query(
+        $sql = <<<SQL
+        
+        DELETE FROM `group_user`
+        WHERE `user_id`  = ? AND
+              `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = ?)
 
-            "DELETE FROM `group_user`
-             WHERE `user_id`  = $id AND
-                   `group_id` = (SELECT `id` FROM `groups` WHERE `groups`.`name` = '$group')"
-                   
-        );
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id, $group]);
     }
 
     /**
@@ -134,13 +154,16 @@ class Group
      */
     public static function disassociateById(int $id, int $group_id): void
     {
-        SQL::query(
+        $sql = <<<SQL
 
-            "DELETE FROM `group_user`
-             WHERE `user_id`  = $id AND
-                   `group_id` = $group_id"
-                   
-        );
+        DELETE FROM `group_user`
+        WHERE `user_id`  = ? AND
+              `group_id` = ?
+
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id, $group_id]);
     }
 
 }

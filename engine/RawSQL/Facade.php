@@ -2,38 +2,14 @@
 
 namespace Engine\RawSQL;
 
-use Engine\ServiceBus;
-use PDOStatement;
+use Engine\ServiceFacade;
 
 /**
  * RawSQL.php
  *
  * Decorator for database tool.
  */
-class Facade
+class Facade extends ServiceFacade
 {
-
-    /**
-     * Sends query to database and gives a response with all records.
-     *
-     * @access public
-     * @param string $queryString - Query to send
-     * @return array
-     */
-    public static function query(string $queryString): ?PDOStatement
-    {
-        return ServiceBus::instance()->get('database')->query($queryString);
-    }
-
-    /**
-     * Gives response of the database.
-     *
-     * @access public
-     * @return array
-     */
-    public static function error()
-    {
-        return ServiceBus::instance()->get('database')->error();
-    }
-
+    public static $alias = 'database';
 }

@@ -22,17 +22,19 @@ class User
      */
     public static function create(array $user): bool
     {
-        $response = SQL::query(
+        $sql = <<<SQL
 
-            "INSERT INTO `users` (
-                `name`,
-                `email`
-             ) VALUE 
-                ('{$user['name']}', '{$user['email']}')"
+        INSERT INTO `users` (
+            `name`,
+            `email`
+        ) VALUE 
+            (?, ?)
 
-        );
-
-        return isset($response);
+        SQL;
+        
+        $q = SQL::prepare($sql);
+        $r = $q->execute([$user['name'], $user['email']]);
+        return isset($r);
     }
 
     /**
@@ -42,13 +44,17 @@ class User
      * @param string $name - User`s name
      * @return null|array.
      */
-    public static function getByName(string $name)
+    public static function getByName(string $name): array
     {
-        return SQL::query(
-
-            "SELECT * FROM `users` WHERE `name` = '$name'"
-
-        )->fetch(PDO::FETCH_ASSOC);
+        $sql = <<<SQL
+        
+        SELECT * FROM `users` WHERE `name` = ?
+        
+        SQL;
+        
+        $q = SQL::prepare($sql);
+        $q->execute([$name]);
+        return $q->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -58,13 +64,17 @@ class User
      * @param string $name - User`s name
      * @return null|array.
      */
-    public static function getByEmail(string $email)
+    public static function getByEmail(string $email): array
     {
-        return SQL::query(
+        $sql = <<<SQL
+        
+        SELECT * FROM `users` WHERE `email` = ?
 
-            "SELECT * FROM `users` WHERE `email` = '$email'"
-
-        )->fetch(PDO::FETCH_ASSOC);
+        SQL;
+        
+        $q = SQL::prepare($sql);
+        $q->execute([$email]);
+        return $q->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -74,13 +84,17 @@ class User
      * @param int $id - User id
      * @return null|array
      */
-    public static function getById(int $id)
+    public static function getById(int $id): array
     {
-        return SQL::query(
+        $sql = <<<SQL
 
-            "SELECT * FROM `users` WHERE `id` = '$id'"
+        SELECT * FROM `users` WHERE `id` = ?
 
-        )->fetch(PDO::FETCH_ASSOC);
+        SQL;
+        
+        $q = SQL::prepare($sql);
+        $q->execute([$id]);
+        return $q->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -91,11 +105,14 @@ class User
      */
     public static function getAll(): array
     {
-        return SQL::query(
+        $sql = <<<SQL
 
-            "SELECT * FROM `users`"
+        SELECT * FROM `users`
 
-        )->fetchAll(PDO::FETCH_ASSOC);
+        SQL;
+        
+        $q = SQL::query($sql);
+        return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

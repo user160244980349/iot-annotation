@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\Session;
+namespace Engine\Download;
 
 use Engine\ServiceFacade;
 
@@ -11,5 +11,5 @@ use Engine\ServiceFacade;
  */
 class Facade extends ServiceFacade
 {
-    public static $alias = 'session';
+    public static $alias = 'download';
 }

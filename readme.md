@@ -6,10 +6,12 @@ This is PHP app for iot-dataset annotation
 - [x] Data upload
 - [x] Data download
 - [x] Annotations upload and processing
-- [ ] Annotation algorithm
-- [ ] Clean code
+- [x] Download service
+- [x] Protect of SQL injections (stored procedures)
+- [x] Simplified Facades
+- [ ] Clean code (middlewares folder, services folder)
+- [ ] Improve RawSQL service
 - [ ] Update comments
-- [ ] Protect of SQL injections (stored procedures)
-- [ ] Protect of XSRF
+- [ ] Protect of XSRF (middleware on post query)
 - [ ] Adaptive page layout
-- [ ] Download service
+- [ ] Annotation process on sessions with ajax

@@ -2,25 +2,14 @@
 
 namespace Engine\Redirection;
 
-use Engine\ServiceBus;
+use Engine\ServiceFacade;
 
 /**
  * Redirection.php
  *
  * Redirection decorator.
  */
-class Facade
+class Facade extends ServiceFacade
 {
-
-    /**
-     * Does redirection.
-     *
-     * @access public
-     * @param string $uri
-     */
-    public static function redirect(string $uri): void
-    {
-        ServiceBus::instance()->get('redirection')->redirect($uri);
-    }
-
+    public static $alias = 'redirection';
 }

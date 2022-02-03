@@ -108,6 +108,22 @@ class RawSQLService
     }
 
     /**
+     * Sends query to database and gives a response.
+     *
+     * @access public
+     * @param string $queryString - Query to send
+     * @return array
+     */
+    public function prepare($queryString): ?PDOStatement
+    {
+        $pdo = $this->_connection->prepare($queryString);
+        if (isset($pdo) && $pdo != false) {
+            return $pdo;
+        }
+        return null;
+    }
+
+    /**
      * Gives an error.
      *
      * @access public

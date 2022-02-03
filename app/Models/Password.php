@@ -23,17 +23,19 @@ class Password
      */
     public static function create(int $id, string $password): bool
     {
-        $response = SQL::query(
+        $sql = <<<SQL
 
-            "INSERT INTO `passwords` (
-                `id`,
-                `value`
-             ) VALUE 
-                ('{$id}', '{$password}')"
+        INSERT INTO `passwords` (
+            `id`,
+            `value`
+        ) VALUE 
+            (?, ?)
             
-        );
+        SQL;
 
-        return isset($response);
+        $q = SQL::prepare($sql);
+        $r = $q->execute([$id, $password]);
+        return isset($r);
     }
 
     /**
@@ -45,11 +47,15 @@ class Password
      */
     public static function getValue(int $id)
     {
-        return SQL::query(
+        $sql = <<<SQL
 
-            "SELECT `value` FROM `passwords` WHERE `id` = '$id'"
+        SELECT `value` FROM `passwords` WHERE `id` = ?
 
-        )->fetch(PDO::FETCH_ASSOC);
+        SQL;
+
+        $q = SQL::prepare($sql);
+        $q->execute([$id]);
+        return $q->fetch(PDO::FETCH_ASSOC);
     }
 
 }

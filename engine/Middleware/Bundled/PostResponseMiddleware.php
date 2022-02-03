@@ -1,5 +1,6 @@
 <?php
-namespace Engine\PostResponse;
+
+namespace Engine\Middleware\Bundled;
 
 use Engine\Middleware\Bundled\IMiddleware;
 use Engine\Receive\Request;

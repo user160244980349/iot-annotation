@@ -2,26 +2,14 @@
 
 namespace Engine\Middleware;
 
-use Engine\Receive\Request;
-use Engine\ServiceBus;
+use Engine\ServiceFacade;
 
 /**
  * MiddlewaresQueue.php
  *
  * MiddlewaresQueue service decorator.
  */
-class Facade
+class Facade extends ServiceFacade
 {
-
-    /**
-     * Pushes new object to print.
-     *
-     * @access public
-     * @return Request
-     */
-    public static function run(): Request
-    {
-        return ServiceBus::instance()->get('middlewares_queue')->run();
-    }
-
+    public static $alias = 'middlewares_queue';
 }

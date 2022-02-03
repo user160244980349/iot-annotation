@@ -18,7 +18,8 @@
                         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upload">
                     </div>
                 </form>
-                <div class="form-group text-left py-4">
+                <div class="text-left py-4">
+                    <div class="py-2">Annotation results</div>
                     <a class="btn btn-lg btn-success btn-block" href="/data-download">Download</a>
                 </div>
             </div>

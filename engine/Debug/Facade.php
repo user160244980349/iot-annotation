@@ -2,38 +2,14 @@
 
 namespace Engine\Debug;
 
-use Engine\ServiceBus;
+use Engine\ServiceFacade;
 
 /**
  * Debug.php
  *
  * Debug service decorator.
  */
-class Facade
+class Facade extends ServiceFacade
 {
-
-    /**
-     * Pushes new object to print.
-     *
-     * @access public
-     * @param mixed $obj - Object to print
-     * @return string
-     */
-    public static function push($obj): void
-    {
-        ServiceBus::instance()->get('debug')->push($obj);
-    }
-
-    /**
-     * Prints objects if it is allowed.
-     *
-     * @access public
-     * 
-     * @return void
-     */
-    public static function printIfAllowed(): void
-    {
-        ServiceBus::instance()->get('debug')->printIfAllowed();
-    }
-
+    public static $alias = 'debug';
 }

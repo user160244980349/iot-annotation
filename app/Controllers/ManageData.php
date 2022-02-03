@@ -7,6 +7,7 @@ use App\Models\Policy;
 use App\Models\Product;
 use Engine\Config;
 use Engine\Auth\Facade as Auth;
+use Engine\Download\Facade as Download;
 use Engine\Receive\Request;
 use Engine\Rendering\View;
 use Engine\Redirection\Facade as Redirection;
@@ -27,12 +28,12 @@ class ManageData
      * @param $directory - Directory to delete
      * @param null $delete_parent - Recursive argument
      */
-    private static function _rrmdir($directory, $delete_parent = True): void
+    private static function _rrmdir($directory, $delete_parent = true): void
     {
         $files = glob($directory . "/{,.}[!.,!..]*", GLOB_MARK | GLOB_BRACE);
         foreach ($files as $file) {
             if (is_dir($file)) {
-                static::_rrmdir($file, True);
+                static::_rrmdir($file, true);
             } else {
                 unlink($file);
             }
@@ -70,7 +71,7 @@ class ManageData
             $archive = "$uncompressed.zip";
             move_uploaded_file($tmp_file, $archive);
             $zip = new ZipArchive;
-            if ($zip->open($archive) === TRUE) {
+            if ($zip->open($archive) === true) {
                 $zip->extractTo($uncompressed);
                 $zip->close();
             }
@@ -126,20 +127,7 @@ class ManageData
 
         file_put_contents($file, json_encode(Selection::packWithUsers()));
 
-        if(file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename($file));
-            header('Content-Transfer-Encoding: binary');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            ob_clean();
-            flush();
-            readfile($file);
-            unlink($file);
-        }
+        Download::do($file, true);
     }
 
 }
