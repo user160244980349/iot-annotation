@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -23,20 +23,24 @@ class Policy
      */
     public static function create(array $rows)
     {
-        $q = 
-        "INSERT INTO `policies` (
+        $sql = <<<SQL
+
+        INSERT INTO `policies` (
             `hash`,
             `content`
-         ) VALUES ";
+        ) VALUES
+
+        SQL;
 
         $instances = [];
+        $values = [];
         foreach ($rows as $hash => $content) {
-            $instances[] =
-                "('$hash', 
-                  '$content')";
+            $instances[] = "\n(?, ?)";
+            $values[]    = $hash;
+            $values[]    = $content;
         }
-        $d = implode(",", $instances);
-        SQL::query($q . $d);
+
+        SQL::set($sql . implode(",", $instances), $values);
     }
 
     /**
@@ -47,11 +51,28 @@ class Policy
      */
     public static function getOne()
     {
-        return SQL::query(
+        $sql1 = <<<SQL
 
-            "SELECT * FROM `policies` WHERE `content` <> '' ORDER BY RAND() LIMIT 1;"
+        SELECT * FROM `policies` 
+        WHERE `content` <> '' AND
+              `requested` = (SELECT MIN(`requested`) FROM `policies`)
+        ORDER BY RAND() LIMIT 1
 
-        )->fetch(PDO::FETCH_ASSOC);
+        SQL;
+
+        $r = SQL::get($sql1, all: false);
+
+        $sql2 = <<<SQL
+
+        UPDATE `policies` 
+        SET `requested` = `requested` + 1
+        WHERE `id` = ?
+
+        SQL;
+
+        SQL::set($sql2, [$r['id']]);
+
+        return $r;
     }
 
 }

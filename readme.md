@@ -9,9 +9,11 @@ This is PHP app for iot-dataset annotation
 - [x] Download service
 - [x] Protect of SQL injections (stored procedures)
 - [x] Simplified Facades
-- [ ] Clean code (middlewares folder, services folder)
-- [ ] Improve RawSQL service
+- [x] Clean code (middlewares folder, services folder)
+- [x] Protect of CSRF (middleware on post query)
+- [x] Improve RawSQL service
+- [x] Annotation request
+- [ ] Check if user exists on registration
 - [ ] Update comments
-- [ ] Protect of XSRF (middleware on post query)
 - [ ] Adaptive page layout
 - [ ] Annotation process on sessions with ajax

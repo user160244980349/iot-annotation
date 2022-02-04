@@ -1,7 +1,10 @@
 <?php 
-use Engine\Auth\Facade as Auth; 
-use App\Models\User; 
+    use Engine\Services\AuthService as Auth; 
+    use Engine\Services\CSRFService as CSRF; 
+    use App\Models\User; 
 ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -58,8 +61,8 @@ use App\Models\User;
             <a class="nav-item nav-link dropdown-toggle" href="#" id="bd-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo (User::getById($id)['name']); ?></a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-actions">
-                <!-- <div class="dropdown-divider"></div> -->
                 <form class="form-inline" action="/logout" method="post">
+                    <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
                     <input class="dropdown-item" type="submit" value="Sign Out">
                 </form>
             </div>

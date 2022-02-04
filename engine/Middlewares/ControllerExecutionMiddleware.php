@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\Middleware\Bundled;
+namespace Engine\Middlewares;
 
-use Engine\Receive\Request;
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
 
 /**
  * ControllerExecution.php

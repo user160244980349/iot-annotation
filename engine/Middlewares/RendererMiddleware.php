@@ -1,9 +1,9 @@
 <?php
 
-namespace Engine\Rendering;
+namespace Engine\Middlewares;
 
-use Engine\Middleware\Bundled\IMiddleware;
-use Engine\Receive\Request;
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
 
 /**
  * Renderer.php

@@ -1,13 +1,15 @@
 <?php
 
-namespace Engine\Redirection;
+namespace Engine\Services;
+
+use Engine\Service;
 
 /**
  * Redirect.php
  *
  * Provide redirect.
  */
-class RedirectionService
+class RedirectionService extends Service
 {
 
     /**
@@ -24,7 +26,7 @@ class RedirectionService
      * @access public
      * @param string $uri
      */
-    public function redirect(string $uri): void
+    protected function redirect(string $uri): void
     {
         header("location: $uri");
     }

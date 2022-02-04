@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\RawSQL;
+namespace Engine\Services;
 
 use Engine\Config;
+use Engine\Service;
 use PDOStatement;
 use PDO;
 
@@ -11,7 +12,7 @@ use PDO;
  *
  * Class for database jobs.
  */
-class RawSQLService
+class RawSQLService extends Service
 {
 
     /**
@@ -98,10 +99,10 @@ class RawSQLService
      * @param string $queryString - Query to send
      * @return array
      */
-    public function query($queryString): ?PDOStatement
+    protected function connection(): ?PDO
     {
-        $pdo = $this->_connection->query($queryString);
-        if (isset($pdo) && $pdo != false) {
+        $pdo = $this->_connection;
+        if (isset($pdo)) {
             return $pdo;
         }
         return null;
@@ -114,13 +115,44 @@ class RawSQLService
      * @param string $queryString - Query to send
      * @return array
      */
-    public function prepare($queryString): ?PDOStatement
+    protected function set(string $queryString, array $params = null): ?PDOStatement
     {
-        $pdo = $this->_connection->prepare($queryString);
-        if (isset($pdo) && $pdo != false) {
-            return $pdo;
+        if (!isset($this->_connection) || !$this->_connection) {
+            return null;
         }
-        return null;
+
+        $q = null;
+        if (isset($params)) {
+            $q = $this->_connection->prepare($queryString);
+            if (!isset($q) || !$q) return null;
+            if (!$q->execute($params)) return null;
+        } else {
+            $q = $this->_connection->query($queryString);
+            if (!isset($q) || !$q) return null;
+        }
+
+        return $q;
+    }
+
+    /**
+     * Sends query to database and gives a response.
+     *
+     * @access public
+     * @param string $queryString - Query to send
+     * @return array
+     */
+    protected function get(string $queryString, array $params = null, int $options = PDO::FETCH_ASSOC, bool $all = true): ?array
+    {
+        $q = static::set($queryString, $params);
+        if (!isset($q)) return null;
+
+        $r = null;
+        if ($all)
+            $r = $q->fetchAll($options);
+        else
+            $r = $q->fetch($options);
+
+        return $r !== false ? $r : null;
     }
 
     /**
@@ -129,7 +161,7 @@ class RawSQLService
      * @access public
      * @return array
      */
-    public function error()
+    protected function error()
     {
         return $this->_connection->errorInfo();
     }

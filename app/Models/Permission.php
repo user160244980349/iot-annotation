@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -33,9 +33,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetchAll(PDO::FETCH_COLUMN);
+        return SQL::get($sql, [$id], options: PDO::FETCH_COLUMN);
     }
 
     /**
@@ -56,9 +54,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$id]);
     }
 
     /**
@@ -75,8 +71,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::query($sql);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql);
     }
 
     /**
@@ -86,7 +81,7 @@ class Permission
      * @param int $id - Group id
      * @param string $permission - Permission value
      */
-    public static function associateByName(int $id, string $permission): void
+    public static function associateByName(int $id, string $permission)
     {
         $sql = <<<SQL
         
@@ -98,8 +93,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $permission]);
+        return SQL::set($sql, [$id, $permission]);
     }
 
     /**
@@ -109,7 +103,7 @@ class Permission
      * @param int $id - Group id
      * @param string $permission - Permission id
      */
-    public static function associateById(int $id, int $permission_id): void
+    public static function associateById(int $id, int $permission_id)
     {
         $sql = <<<SQL
 
@@ -121,8 +115,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $permission_id]);
+        return SQL::set($sql, [$id, $permission_id]);
     }
 
     /**
@@ -132,7 +125,7 @@ class Permission
      * @param int $id - Group id
      * @param string $permission - Permission id
      */
-    public static function disassociateByName(int $id, string $permission): void
+    public static function disassociateByName(int $id, string $permission)
     {
         $sql = <<<SQL
 
@@ -142,8 +135,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $permission]);
+        return SQL::set($sql, [$id, $permission]);
     }
 
     /**
@@ -153,7 +145,7 @@ class Permission
      * @param int $id - Group id
      * @param string $permission_id - Permission id
      */
-    public static function disassociateById(int $id, int $permission_id): void
+    public static function disassociateById(int $id, int $permission_id)
     {
         $sql = <<<SQL
 
@@ -163,8 +155,7 @@ class Permission
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $permission_id]);
+        return SQL::set($sql, [$id, $permission_id]);
     }
 
 }

@@ -1,16 +1,18 @@
 <?php
 
-use Engine\Receive\ReceiverNginxMiddleware;
-use Engine\Routing\RouterMiddleware;
-use Engine\Auth\AuthMiddleware;
-use Engine\Middleware\Bundled\ControllerExecutionMiddleware;
-use Engine\Middleware\Bundled\PostResponseMiddleware;
-use Engine\Rendering\RendererMiddleware;
+use Engine\Middlewares\ReceiverNginxMiddleware;
+use Engine\Middlewares\RouterMiddleware;
+use Engine\Middlewares\AuthMiddleware;
+use Engine\Middlewares\ControllerExecutionMiddleware;
+use Engine\Middlewares\CSRFMiddleware;
+use Engine\Middlewares\PostResponseMiddleware;
+use Engine\Middlewares\RendererMiddleware;
 use Engine\Config;
 
 Config::set('middlewares', [
 
     ReceiverNginxMiddleware::class,
+    CSRFMiddleware::class,
     RouterMiddleware::class,
     AuthMiddleware::class,
     ControllerExecutionMiddleware::class,

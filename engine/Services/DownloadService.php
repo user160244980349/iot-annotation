@@ -1,13 +1,15 @@
 <?php
 
-namespace Engine\Download;
+namespace Engine\Services;
+
+use Engine\Service;
 
 /**
  * Session.php
  *
  * Service for sessions  management.
  */
-class DownloadService
+class DownloadService extends Service
 {
 
     /**
@@ -25,7 +27,7 @@ class DownloadService
      * @param string $name - Name of a variable
      * @return mixed
      */
-    public function do(string $file, bool $remove)
+    protected function do(string $file, bool $remove = false)
     {
         if(file_exists($file)) {
             header('Content-Description: File Transfer');

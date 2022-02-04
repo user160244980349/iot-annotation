@@ -1,8 +1,8 @@
 <?php
 
-namespace Engine\Middleware\Bundled;
+namespace Engine\Middlewares;
 
-use Engine\Receive\Request;
+use Engine\Request;
 
 /**
  * IMiddleware.php

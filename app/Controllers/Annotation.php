@@ -4,12 +4,11 @@ namespace App\Controllers;
 
 use App\Models\Policy;
 use App\Models\Selection;
-use Engine\Redirection\Facade as Redirection;
-use Engine\Session\Facade as Session;
-use Engine\Auth\Facade as Auth;
-use Engine\Receive\Request;
-use Engine\Rendering\View;
-use Engine\RedBeanORM\Facade as R;
+use Engine\Services\RedirectionService as Redirection;
+use Engine\Services\SessionService as Session;
+use Engine\Services\AuthService as Auth;
+use Engine\Request;
+use Engine\View;
 
 /**
  * Annotation.php
@@ -28,7 +27,7 @@ class Annotation
     public static function toAnnotationPage(Request $request)
     {   
         $policy = Policy::getOne();
-        Session::set('policy_hash', $policy['hash']);
+        if (!empty($policy)) Session::set('policy_hash', $policy['hash']);
         $request->view = new View('annotation.php', [
             'title' => 'Annotation',
             'id' => Auth::authenticated(),

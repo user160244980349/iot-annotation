@@ -1,9 +1,9 @@
 <?php
 
-namespace Engine\Rendering;
+namespace Engine;
 
 use Engine\Config;
-use Engine\Debug\Facade as Debug;
+use Engine\Services\DebugService as Debug;
 
 /**
  * View.php

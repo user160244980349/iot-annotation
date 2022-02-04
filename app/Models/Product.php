@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -23,27 +23,31 @@ class Product
      */
     public static function create(array $rows)
     {
-        $q = 
-        "INSERT INTO `products` (
+        $sql = <<<SQL
+
+        INSERT INTO `products` (
             `manufacturer`,
             `keyword`,
             `product_url`,
             `website_url`,
             `policy_url`,
             `policy_hash`
-         ) VALUES ";
+        ) VALUES 
+
+        SQL;
 
         $instances = [];
-        foreach ($rows as $row => $value) {
-            $instances[] =
-                "('{$value['manufacturer']}', 
-                  '{$value['keyword']}', 
-                  '{$value['product_url']}',
-                  '{$value['website_url']}', 
-                  '{$value['policy_url']}', 
-                  '{$value['policy_hash']})";
+        $values = [];
+        foreach ($rows as $row) {
+            $instances[] = "\n(?, ?, ?, ?, ?, ?)";
+            $values[]    = $row['manufacturer'];
+            $values[]    = $row['keyword'];
+            $values[]    = $row['product_url'];
+            $values[]    = $row['website_url'];
+            $values[]    = $row['policy_url'];
+            $values[]    = $row['policy_hash'];
         }
-        $d = implode(",", $instances);
-        SQL::query($q . $d);
+
+        SQL::set($sql . implode(",", $instances), $values);
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\Middleware;
+namespace Engine\Services;
 
 use Engine\Receive\Request;
+use Engine\Service;
 use Engine\Config;
 
 /**
@@ -10,8 +11,9 @@ use Engine\Config;
  *
  * Class that contains core middlewares important for application.
  */
-class MiddlewareService
+class MiddlewareService extends Service
 {
+
     /**
      * Alias for service.
      *
@@ -45,7 +47,7 @@ class MiddlewareService
      * @access public
      * @return Request
      */
-    public function run(): Request
+    protected function run(): Request
     {
         $result = null;
 

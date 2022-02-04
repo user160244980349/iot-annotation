@@ -1,5 +1,6 @@
 <?php require_once __DIR__ . '/../blocks/header.php' ?>
 
+
 <div class="container-fluid page-root">
 <main class="col col-md-6 offset-md-3">
 
@@ -51,5 +52,6 @@
 
 </main>
 </div>
+
 
 <?php require_once __DIR__ . '/../blocks/footer.php' ?>

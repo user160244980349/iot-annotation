@@ -1,8 +1,8 @@
 <?php
 
-use Engine\Debug\Facade as Debug;
-use Engine\Middleware\Facade as Queue;
-use Engine\Rendering\View;
+use Engine\Services\DebugService as Debug;
+use Engine\Services\MiddlewareService as Queue;
+use Engine\View;
 
 
 # Call application

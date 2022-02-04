@@ -1,3 +1,8 @@
+<?php 
+    use Engine\Services\CSRFService as CSRF; 
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,6 +33,7 @@
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
 
             <form method="post">
+                <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
                 <div class="form-group text-left">
                     <label for="inputUsername">Username</label>
                     <input type="text" name="user[name]" id="inputUsername" class="form-control"

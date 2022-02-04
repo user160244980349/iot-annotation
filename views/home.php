@@ -1,9 +1,9 @@
-<?php include_once "blocks/header.php" ?>
-
 <?php 
-use Engine\Auth\Facade as Auth; 
-use App\Models\User; 
+    include_once __DIR__ . '/blocks/header.php';
+    use Engine\Services\AuthService as Auth; 
+    use App\Models\User; 
 ?>
+
 
 <div class="container-fluid page-root">
 
@@ -25,4 +25,4 @@ use App\Models\User;
 </div>
 
 
-<?php include_once "blocks/footer.php" ?>
+<?php include_once __DIR__ . '/blocks/footer.php' ?>

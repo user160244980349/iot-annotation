@@ -1,10 +1,10 @@
 <?php
 
-namespace Engine\Middleware\Bundled;
+namespace Engine\Middlewares;
 
-use Engine\Middleware\Bundled\IMiddleware;
-use Engine\Receive\Request;
-use Engine\Session\Facade as Session;
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
+use Engine\Services\SessionService as Session;
 
 /**
  * Router.php

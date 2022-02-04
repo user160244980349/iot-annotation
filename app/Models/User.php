@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -32,9 +32,7 @@ class User
 
         SQL;
         
-        $q = SQL::prepare($sql);
-        $r = $q->execute([$user['name'], $user['email']]);
-        return isset($r);
+        return null !== SQL::set($sql, [$user['name'], $user['email']]);
     }
 
     /**
@@ -52,9 +50,7 @@ class User
         
         SQL;
         
-        $q = SQL::prepare($sql);
-        $q->execute([$name]);
-        return $q->fetch(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$name], all: false);
     }
 
     /**
@@ -71,10 +67,8 @@ class User
         SELECT * FROM `users` WHERE `email` = ?
 
         SQL;
-        
-        $q = SQL::prepare($sql);
-        $q->execute([$email]);
-        return $q->fetch(PDO::FETCH_ASSOC);
+
+        return SQL::get($sql, [$email], all: false);
     }
 
     /**
@@ -92,9 +86,7 @@ class User
 
         SQL;
         
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetch(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$id], all: false);
     }
 
     /**
@@ -111,8 +103,7 @@ class User
 
         SQL;
         
-        $q = SQL::query($sql);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql);
     }
 
 }

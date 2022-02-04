@@ -1,4 +1,4 @@
-<?php include_once "blocks/header.php" ?>
+<?php include_once __DIR__ . '/blocks/header.php' ?>
 
 
 <div class="container-fluid page-root">
@@ -17,4 +17,4 @@
 </div>
 
 
-<?php include_once "blocks/footer.php" ?>
+<?php include_once __DIR__ . '/blocks/footer.php' ?>

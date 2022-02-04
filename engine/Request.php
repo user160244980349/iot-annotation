@@ -1,9 +1,9 @@
 <?php
 
-namespace Engine\Receive;
+namespace Engine;
 
 use Engine\Routing\Route;
-use Engine\Rendering\View;
+use Engine\Request;
 use Closure;
 
 /**

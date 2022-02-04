@@ -1,4 +1,8 @@
-<?php include_once __DIR__ . '/../blocks/header.php' ?>
+<?php 
+    include_once __DIR__ . '/../blocks/header.php';
+    use Engine\Services\CSRFService as CSRF; 
+?>
+
 
 <div class="container-fluid page-root">
 <main class="col col-md-6 offset-md-3">
@@ -10,6 +14,7 @@
 
     <div class="col-6">
     <form action="" class="form-inline justify-content-end" method="post">
+        <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
         <div class="form-group">
             <select class="custom-select custom-select-sm" name="group">
                 <?php foreach ($all_groups as $group) { ?>
@@ -50,6 +55,7 @@
         <td>
             <div class='d-flex justify-content-end'>
             <form action='' method='post' class='form-inline justify-content-end'>
+                <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
                 <input type='hidden' name='_method' value='delete'>
                 <input type='hidden' name='group' value='<?php echo $group['id']?>'>
                 <input class='ml-1 btn btn-sm btn-outline-danger' type='submit' value='Disassign'>
@@ -68,5 +74,6 @@
 </div>
 </main>
 </div>
+
 
 <?php include_once __DIR__ . '/../blocks/footer.php' ?>

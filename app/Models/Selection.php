@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -23,27 +23,29 @@ class Selection
      */
     public static function create(array $rows)
     {
-        $q = 
-        "INSERT INTO `selections` (
+        $sql = <<<SQL
+
+        INSERT INTO `selections` (
             `starts_on`,
             `ends_on`,
             `selection_class`,
             `user_id`,
             `policy_hash`
-         ) VALUES ";
+        ) VALUES
+
+        SQL;
 
         $instances = [];
         foreach ($rows as $content) {
-            $instances[] =
-                "('{$content['starts_on']}', 
-                  '{$content['ends_on']}', 
-                  '{$content['selection_class']}', 
-                  '{$content['user_id']}', 
-                  '{$content['policy_hash']}')";
+            $instances[] = "\n(?, ?, ?, ?, ?)";
+            $values[]    = $content['starts_on'];
+            $values[]    = $content['ends_on'];
+            $values[]    = $content['selection_class'];
+            $values[]    = $content['user_id'];
+            $values[]    = $content['policy_hash'];
         }
-        $d = implode(",", $instances);
 
-        SQL::query($q . $d);
+        return SQL::set($sql . implode(",", $instances), $values);
     }
 
     /**
@@ -56,12 +58,14 @@ class Selection
      */
     public static function packWithUsers()
     {
-        return SQL::query(
+        $sql = <<<SQL
+        
+        SELECT * FROM `selections`
+            INNER JOIN `users` ON `user_id` = `users`.`id`
+        
+        SQL;
 
-            "SELECT * FROM `selections`
-                INNER JOIN `users` ON `user_id` = `users`.`id`"
-
-        )->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql);
     }
 
 }

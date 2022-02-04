@@ -1,9 +1,10 @@
 <?php
 
-namespace Engine\Auth;
+namespace Engine\Middlewares;
 
-use Engine\Middleware\Bundled\IMiddleware;
-use Engine\Receive\Request;
+use Engine\Services\AuthService;
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
 use Engine\Config;
 use Error;
 
@@ -47,8 +48,8 @@ class AuthMiddleware implements IMiddleware
         foreach ($this->_permissions_sets as $permission_set) {
             if ($permission_set->test($request->route->name)) {
 
-                $id = Facade::authenticated();
-                if (isset($id) && Facade::allowed($id, $permission_set->permissions)) {
+                $id = AuthService::authenticated();
+                if (isset($id) && AuthService::allowed($id, $permission_set->permissions)) {
                     return $request;
                 } else {
                     throw new Error('You do not have access to this page!', 403);

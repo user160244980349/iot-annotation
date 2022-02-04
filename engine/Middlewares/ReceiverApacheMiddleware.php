@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\Receive;
+namespace Engine\Middlewares;
 
-use Engine\Middleware\Bundled\IMiddleware;
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
 
 /**
  * Receiver.php

@@ -1,4 +1,8 @@
-<?php include_once "blocks/header.php" ?>
+<?php 
+    include_once __DIR__ . '/blocks/header.php';
+    use Engine\Services\CSRFService as CSRF; 
+?>
+
 
 <div class="container-fluid page-root">
 
@@ -93,6 +97,7 @@
                 <div class="row">
                     <div class="col-4 offset-8 p-0">
                         <form action="/annotation" method="post" id="json_form" hidden>
+                            <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
                             <input id="json_data" name="json" type="text">
                         </form>
                         <button id="commit" class="btn btn-lg btn-success btn-block">Commit annotations</button>
@@ -122,4 +127,4 @@
 </div>
 
 
-<?php include_once "blocks/footer.php" ?>
+<?php include_once __DIR__ . '/blocks/footer.php' ?>

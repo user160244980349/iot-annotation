@@ -3,17 +3,29 @@
 namespace Engine;
 
 use Engine\ServiceBus;
-use Engine\ServiceFacade;
 
 /**
  * ServiceFacade.php
  *
  * Decorator class for authentication.
  */
-class ServiceFacade
+abstract class Service
 {
-    public static $alias;
 
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
+    static public string $alias;
+
+    /**
+     * Alias for service.
+     *
+     * @access public
+     * @var string
+     */
     public static function __callStatic($method, $args) {
         return call_user_func_array(
             [ServiceBus::instance()->get(static::$alias), $method], 

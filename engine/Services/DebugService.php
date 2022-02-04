@@ -1,15 +1,16 @@
 <?php
 
-namespace Engine\Debug;
+namespace Engine\Services;
 
 use Engine\Config;
+use Engine\Service;
 
 /**
  * Debug.php
  *
  * Debug class for application.
  */
-class DebugService
+class DebugService extends Service
 {
 
     /**
@@ -54,7 +55,7 @@ class DebugService
      * @param $obj - Object to print
      * @return void
      */
-    public function push($obj): void
+    protected function push($obj): void
     {
         array_push($this->_items, $obj);
     }
@@ -65,7 +66,7 @@ class DebugService
      * @access public
      * @return void
      */
-    public function printIfAllowed(): void
+    protected function printIfAllowed(): void
     {
         if (count($this->_items) > 0 && $this->_allowed) {
             dump($this->_items);

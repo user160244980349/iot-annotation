@@ -1,8 +1,9 @@
 <?php
-namespace Engine\Routing;
 
-use Engine\Middleware\Bundled\IMiddleware;
-use Engine\Receive\Request;
+namespace Engine\Middlewares;
+
+use Engine\Middlewares\IMiddleware;
+use Engine\Request;
 use Engine\Config;
 use Error;
 

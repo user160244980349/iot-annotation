@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Models\Group;
-use Engine\Auth\Facade as Auth;
-use Engine\Redirection\Facade as Redirection;
-use Engine\Receive\Request;
-use Engine\Rendering\View;
+use Engine\Services\AuthService as Auth;
+use Engine\Services\RedirectionService as Redirection;
+use Engine\Request;
+use Engine\View;
 
 /**
  * Register.php
@@ -66,3 +66,4 @@ class Register
     }
 
 }
+//

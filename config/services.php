@@ -1,12 +1,13 @@
 <?php
 
-use Engine\Debug\DebugService;
-use Engine\Middleware\MiddlewareService;
-use Engine\Session\SessionService;
-use Engine\RawSQL\RawSQLService;
-use Engine\Auth\AuthService;
-use Engine\Redirection\RedirectionService;
-use Engine\Download\DownloadService;
+use Engine\Services\DebugService;
+use Engine\Services\MiddlewareService;
+use Engine\Services\SessionService;
+use Engine\Services\RawSQLService;
+use Engine\Services\AuthService;
+use Engine\Services\RedirectionService;
+use Engine\Services\DownloadService;
+use Engine\Services\CSRFService;
 use Engine\Config;
 
 Config::set('services', [
@@ -18,5 +19,6 @@ Config::set('services', [
     AuthService::class,
     RedirectionService::class,
     DownloadService::class,
+    CSRFService::class,
 
 ]);

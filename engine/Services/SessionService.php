@@ -1,13 +1,15 @@
 <?php
 
-namespace Engine\Session;
+namespace Engine\Services;
+
+use Engine\Service;
 
 /**
  * Session.php
  *
  * Service for sessions  management.
  */
-class SessionService
+class SessionService extends Service
 {
 
     /**
@@ -35,7 +37,7 @@ class SessionService
      * @param string $name - Name of a variable
      * @param $value - Storing value
      */
-    public function set(string $name, $value): void
+    protected function set(string $name, $value): void
     {
         $_SESSION[$name] = $value;
     }
@@ -47,7 +49,7 @@ class SessionService
      * @param string $name - Name of a variable
      * @return mixed
      */
-    public function get(string $name)
+    protected function get(string $name)
     {
         if (array_key_exists($name, $_SESSION))
             return $_SESSION[$name];
@@ -59,7 +61,7 @@ class SessionService
      *
      * @access public
      */
-    public function finish_request(): void
+    protected function finish_request(): void
     {
         session_write_close();
         fastcgi_finish_request();
@@ -70,7 +72,7 @@ class SessionService
      *
      * @access public
      */
-    public function destroy(): void
+    protected function destroy(): void
     {
         session_destroy();
     }

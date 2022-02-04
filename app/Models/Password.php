@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -33,9 +33,7 @@ class Password
             
         SQL;
 
-        $q = SQL::prepare($sql);
-        $r = $q->execute([$id, $password]);
-        return isset($r);
+        return null !== SQL::set($sql, [$id, $password]);
     }
 
     /**
@@ -53,9 +51,7 @@ class Password
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetch(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$id], all: false);
     }
 
 }

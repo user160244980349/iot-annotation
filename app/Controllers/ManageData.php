@@ -6,11 +6,11 @@ use App\Models\Selection;
 use App\Models\Policy;
 use App\Models\Product;
 use Engine\Config;
-use Engine\Auth\Facade as Auth;
-use Engine\Download\Facade as Download;
-use Engine\Receive\Request;
-use Engine\Rendering\View;
-use Engine\Redirection\Facade as Redirection;
+use Engine\Services\AuthService as Auth;
+use Engine\Services\DownloadService as Download;
+use Engine\Request;
+use Engine\View;
+use Engine\Services\RedirectionService as Redirection;
 use ZipArchive;
 
 /**
@@ -65,7 +65,7 @@ class ManageData
 
             $tmp_file = $request->parameters['files']['data']['tmp_name'];
             $resources = Config::get('env')['resources'];
-            $hash = md5(rand());
+            $hash = md5(md5(rand()));
             $uncompressed = "$resources/$hash";
 
             $archive = "$uncompressed.zip";
@@ -79,9 +79,7 @@ class ManageData
 
             $json = json_decode(file_get_contents("$uncompressed/plain.json"), true);
 
-            $portion = 100;
             $policies = [];
-            $products = [];
             foreach ($json as $row => $value) {
                 
                 $file = "$uncompressed/{$value['plain_policy']}";
@@ -89,28 +87,33 @@ class ManageData
                 if (is_file($file)) {
                     $policies["{$value['policy_hash']}"] = file_get_contents($file);
                 }
-                    
+            }
+            Policy::create($policies);
+
+            $portion = 100;
+            $products = [];
+            foreach ($json as $row => $value) {
+                
+                if (!in_array($value['policy_hash'], array_keys($policies))) continue;
+
                 $products[] = [
                     'manufacturer' => $value['manufacturer'],
                     'keyword'      => $value['keyword'],
                     'product_url'  => $value['url'],
                     'website_url'  => $value['website'],
                     'policy_url'   => $value['policy'],
-                    'policy_hash'  => $value['policy_hash'],
+                    'policy_hash'  => $value['policy_hash']
                 ];
 
                 if ($portion-- < 1) {
-                    Policy::create($policies);
+
                     Product::create($products);
 
                     $portion = 100;
-                    $policies = [];
                     $products = [];
                 }
 
             }
-
-            Policy::create($policies);
             Product::create($products);
 
             static::_rrmdir($uncompressed);

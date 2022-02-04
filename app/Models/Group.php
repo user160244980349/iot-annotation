@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Engine\RawSQL\Facade as SQL;
+use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
@@ -31,9 +31,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$id]);
     }
 
     /**
@@ -51,9 +49,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id]);
-        return $q->fetch(PDO::FETCH_ASSOC);
+        return SQL::get($sql, [$id], all: false);
     }
 
     /**
@@ -70,8 +66,7 @@ class Group
 
         SQL;
 
-        $q = SQL::query($sql);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        return SQL::get($sql);
     }
 
     /**
@@ -82,7 +77,7 @@ class Group
      * @param string $group - Group name
      * @return bool
      */
-    public static function associateByName(int $id, string $group): void
+    public static function associateByName(int $id, string $group)
     {
         $sql = <<<SQL
 
@@ -94,8 +89,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $group]);
+        return SQL::set($sql, [$id, $group]);
     }
 
     /**
@@ -106,7 +100,7 @@ class Group
      * @param int $group - Group id
      * @return bool.
      */
-    public static function associateById(int $id, int $group_id): void
+    public static function associateById(int $id, int $group_id)
     {
         $sql = <<<SQL
 
@@ -118,8 +112,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $group_id]);
+        return SQL::set($sql, [$id, $group_id]);
     }
 
     /**
@@ -130,7 +123,7 @@ class Group
      * @param string $group - Group name
      * @return bool.
      */
-    public static function disassociateByName(int $id, string $group): void
+    public static function disassociateByName(int $id, string $group)
     {
         $sql = <<<SQL
         
@@ -140,8 +133,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $group]);
+        return SQL::set($sql, [$id, $group]);
     }
 
     /**
@@ -152,7 +144,7 @@ class Group
      * @param int $group - Group id
      * @return bool.
      */
-    public static function disassociateById(int $id, int $group_id): void
+    public static function disassociateById(int $id, int $group_id)
     {
         $sql = <<<SQL
 
@@ -162,8 +154,7 @@ class Group
 
         SQL;
 
-        $q = SQL::prepare($sql);
-        $q->execute([$id, $group_id]);
+        return SQL::set($sql, [$id, $group_id]);
     }
 
 }

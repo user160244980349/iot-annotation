@@ -1,17 +1,18 @@
 <?php
 
-namespace Engine\Auth;
+namespace Engine\Services;
 
 use App\Models\Password;
 use App\Models\Permission;
-use Engine\Session\Facade as Session;
+use Engine\Service;
+use Engine\Services\SessionService as Session;
 
 /**
  * Auth.php
  *
  * Auth service.
  */
-class AuthService
+class AuthService extends Service
 {
 
     /**
@@ -28,7 +29,7 @@ class AuthService
      * @access public
      * @return int
      */
-    public function authenticated(): int
+    protected function authenticated(): int
     {
         $id = Session::get('id');
         if (isset($id)) {
@@ -45,7 +46,7 @@ class AuthService
      * @param array $permissions - Permissions list
      * @return bool
      */
-    public function allowed(int $id, array $permissions): bool
+    protected function allowed(int $id, array $permissions): bool
     {
         $user_permissions = Permission::getForUser($id);
         $difference = array_diff($permissions, $user_permissions);
@@ -63,7 +64,7 @@ class AuthService
      * @param string $password - User password
      * @return bool
      */
-    public function register(int $id, string $password): bool
+    protected function register(int $id, string $password): bool
     {   
         Password::create($id, $this->encrypt($password));
         return true;
@@ -77,7 +78,7 @@ class AuthService
      * @param string $password - His password
      * @return bool
      */
-    public function login(int $id, string $password): bool
+    protected function login(int $id, string $password): bool
     {
         $stored_password = Password::getValue($id);
         if ($stored_password['value'] != $this->encrypt($password)) {
@@ -95,7 +96,7 @@ class AuthService
      * @access public
      * @return string
      */
-    public function encrypt(string $password): string
+    protected function encrypt(string $password): string
     {
         return md5(md5($password));
     }
@@ -106,7 +107,7 @@ class AuthService
      * @access public
      * @return void
      */
-    public function logout(): void
+    protected function logout(): void
     {
         Session::destroy();
     }
