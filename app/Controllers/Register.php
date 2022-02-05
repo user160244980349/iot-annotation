@@ -18,9 +18,8 @@ class Register
 {
 
     /**
-     * Goes to register page.
+     * Goes to registeration page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toRegisterPage(Request $request)
@@ -38,7 +37,6 @@ class Register
     /**
      * Registers new user.
      *
-     * @access public
      * @param Request $request
      */
     public static function register(Request $request)
@@ -46,6 +44,11 @@ class Register
         $user = $request->parameters['user'];
 
         if ($user['password'] != $user['password_confirm']) {
+            Redirection::redirect('/register');
+            return;
+        }
+
+        if (!empty(User::getByEmail($user['email']))) {
             Redirection::redirect('/register');
             return;
         }
@@ -66,4 +69,3 @@ class Register
     }
 
 }
-//

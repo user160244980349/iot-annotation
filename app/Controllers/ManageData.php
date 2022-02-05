@@ -46,7 +46,6 @@ class ManageData
     /**
      * Goes to annotation page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toDataPage(Request $request)
@@ -57,6 +56,11 @@ class ManageData
         ]);
     }
 
+    /**
+     * Uploads data for annotation.
+     *
+     * @param Request $request
+     */
     public static function upload(Request $request)
     {
         Redirection::redirect('/home');
@@ -122,6 +126,11 @@ class ManageData
 
     }
 
+    /**
+     * Gives annotation data for download.
+     *
+     * @param Request $request
+     */
     public static function download(Request $request)
     {
         $resources = Config::get('env')['resources'];

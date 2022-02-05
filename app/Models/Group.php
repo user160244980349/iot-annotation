@@ -16,11 +16,10 @@ class Group
     /**
      * Gives array with user groups.
      *
-     * @access public
      * @param int $id - User id
      * @return array - Groups for user
      */
-    public static function getForId(int $id): array
+    public static function getForId(int $id): ?array
     {
         $sql = <<<SQL
 
@@ -35,13 +34,12 @@ class Group
     }
 
     /**
-     * Gives array with group info.
+     * Gives array with groups info.
      *
-     * @access public
      * @param int $id - User id
      * @return array - Group
      */
-    public static function getById(int $id): array
+    public static function getById(int $id): ?array
     {
         $sql = <<<SQL
 
@@ -55,10 +53,9 @@ class Group
     /**
      * Gives array with all groups.
      *
-     * @access public
-     * @return array - All groups
+     * @return null|array - All groups
      */
-    public static function getAll(): array
+    public static function getAll(): ?array
     {
         $sql = <<<SQL
 
@@ -72,10 +69,9 @@ class Group
     /**
      * Associates user with group.
      *
-     * @access public
      * @param int $id - User id
      * @param string $group - Group name
-     * @return bool
+     * @return ?
      */
     public static function associateByName(int $id, string $group)
     {
@@ -95,10 +91,9 @@ class Group
     /**
      * Associates user with group.
      *
-     * @access public
      * @param int $id - User id
      * @param int $group - Group id
-     * @return bool.
+     * @return ?
      */
     public static function associateById(int $id, int $group_id)
     {
@@ -118,10 +113,9 @@ class Group
     /**
      * Disassociates user with group.
      *
-     * @access public
      * @param int $id - User id
      * @param string $group - Group name
-     * @return bool.
+     * @return ?
      */
     public static function disassociateByName(int $id, string $group)
     {
@@ -139,10 +133,9 @@ class Group
     /**
      * Disassociates user with group.
      *
-     * @access public
      * @param int $id - User id
      * @param int $group - Group id
-     * @return bool.
+     * @return ?
      */
     public static function disassociateById(int $id, int $group_id)
     {

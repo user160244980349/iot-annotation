@@ -12,11 +12,10 @@ use Engine\Service;
  */
 class DebugService extends Service
 {
-
+    
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'debug';
@@ -24,7 +23,7 @@ class DebugService extends Service
     /**
      * Objects to print.
      *
-     * @access public
+     * @access private
      * @var array
      */
     private array $_items = [];
@@ -39,8 +38,6 @@ class DebugService extends Service
 
     /**
      * Constructor.
-     *
-     * @access public
      */
     public function __construct()
     {
@@ -51,7 +48,7 @@ class DebugService extends Service
     /**
      * Pushes new object to print queue.
      *
-     * @access public
+     * @access protected
      * @param $obj - Object to print
      * @return void
      */
@@ -63,7 +60,7 @@ class DebugService extends Service
     /**
      * Prints objects if it is allowed.
      *
-     * @access public
+     * @access protected
      * @return void
      */
     protected function printIfAllowed(): void

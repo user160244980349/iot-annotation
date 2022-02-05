@@ -5,7 +5,6 @@ use Engine\Config;
 
 Config::set('permissions', [
 
-    # Home page
     new RoutePermission('home', ['visit-home']),
     new RoutePermission('annotation', ['visit-home']),
     new RoutePermission('users', ['manage-users']),

@@ -19,7 +19,7 @@ class AuthMiddleware implements IMiddleware
     /**
      * ServiceBus services registration.
      *
-     * @access public
+     * @access private
      * @return ServiceBus
      */
     private array $_permissions_sets;
@@ -38,7 +38,6 @@ class AuthMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      * @throws Error
@@ -58,7 +57,6 @@ class AuthMiddleware implements IMiddleware
         }
 
         return $request;
-
     }
 
 }

@@ -16,7 +16,6 @@ interface IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request -Request to manage
      * @return Request - Modified request
      */

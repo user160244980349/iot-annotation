@@ -18,7 +18,6 @@ class AuthService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'auth';
@@ -26,7 +25,7 @@ class AuthService extends Service
     /**
      * Gives authorized user id.
      *
-     * @access public
+     * @access protected
      * @return int
      */
     protected function authenticated(): int
@@ -41,7 +40,7 @@ class AuthService extends Service
     /**
      * Checks if user has permissions.
      *
-     * @access public
+     * @access protected
      * @param int $id - User id
      * @param array $permissions - Permissions list
      * @return bool
@@ -59,7 +58,7 @@ class AuthService extends Service
     /**
      * Registers new user.
      *
-     * @access public
+     * @access protected
      * @param int $user - User id
      * @param string $password - User password
      * @return bool
@@ -73,7 +72,7 @@ class AuthService extends Service
     /**
      * Logs user in.
      *
-     * @access public
+     * @access protected
      * @param id $user - User id
      * @param string $password - His password
      * @return bool
@@ -92,8 +91,8 @@ class AuthService extends Service
     /**
      * Encrypts passwords.
      *
+     * @access protected
      * @param string $password - Account password
-     * @access public
      * @return string
      */
     protected function encrypt(string $password): string

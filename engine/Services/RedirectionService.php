@@ -15,7 +15,6 @@ class RedirectionService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'redirection';
@@ -23,7 +22,7 @@ class RedirectionService extends Service
     /**
      * Performs redirection.
      *
-     * @access public
+     * @access protected
      * @param string $uri
      */
     protected function redirect(string $uri): void

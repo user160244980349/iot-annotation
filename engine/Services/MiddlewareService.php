@@ -17,7 +17,6 @@ class MiddlewareService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'middlewares_queue';
@@ -33,7 +32,6 @@ class MiddlewareService extends Service
     /**
      * ServiceBus services registration.
      *
-     * @access public
      * @return ServiceBus
      */
     public function __construct()
@@ -44,7 +42,7 @@ class MiddlewareService extends Service
     /**
      * Iterate all middlewares as a chain.
      *
-     * @access public
+     * @access protected
      * @return Request
      */
     protected function run(): Request

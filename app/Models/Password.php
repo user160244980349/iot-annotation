@@ -16,7 +16,6 @@ class Password
     /**
      * Adds new password into database.
      *
-     * @access public
      * @param int $id - User id
      * @param string $password - Password string
      * @return bool
@@ -39,11 +38,10 @@ class Password
     /**
      * Gives encrypted password.
      *
-     * @access public
      * @param int $id - User id
      * @return null|array
      */
-    public static function getValue(int $id)
+    public static function getValue(int $id): ?array
     {
         $sql = <<<SQL
 

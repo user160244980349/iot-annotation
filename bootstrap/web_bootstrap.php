@@ -5,7 +5,6 @@ use Engine\Services\MiddlewareService as Queue;
 use Engine\View;
 
 
-# Call application
 try {
 
     Queue::run();

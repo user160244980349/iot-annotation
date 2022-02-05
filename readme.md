@@ -13,7 +13,9 @@ This is PHP app for iot-dataset annotation
 - [x] Protect of CSRF (middleware on post query)
 - [x] Improve RawSQL service
 - [x] Annotation request
-- [ ] Check if user exists on registration
-- [ ] Update comments
+- [x] Check if user exists on registration
+- [ ] Review database service return types
+- [ ] File system service
 - [ ] Adaptive page layout
+- [ ] Update comments and declarations
 - [ ] Annotation process on sessions with ajax

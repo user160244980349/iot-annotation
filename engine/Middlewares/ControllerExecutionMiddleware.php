@@ -8,7 +8,7 @@ use Engine\Request;
 /**
  * ControllerExecution.php
  *
- * Middleware class for executing controllers.
+ * Middleware class for controllers execution.
  */
 class ControllerExecutionMiddleware implements IMiddleware
 {
@@ -16,7 +16,6 @@ class ControllerExecutionMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      */

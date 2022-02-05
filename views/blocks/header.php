@@ -17,7 +17,8 @@
 <body>
     
 <header class="navbar navbar-expand fixed-top navbar-dark bg-dark">
-  
+<div class="container">
+
     <a class="navbar-brand" href="/">IoT Annotation</a>
     
     <?php if ($id) { ?>
@@ -55,36 +56,29 @@
     </div>
 
     <ul class="navbar-nav ml-auto flex-row">
-
         <li class="nav-item dropdown">
-
             <a class="nav-item nav-link dropdown-toggle" href="#" id="bd-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo (User::getById($id)['name']); ?></a>
-
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-actions">
                 <form class="form-inline" action="/logout" method="post">
                     <input name="csrf_token" value="<?php echo CSRF::generate() ?>" hidden>
                     <input class="dropdown-item" type="submit" value="Sign Out">
                 </form>
             </div>
-
         </li>
-
     </ul>
 
     <?php } else { ?>
 
     <ul class="navbar-nav ml-auto flex-row">
-
         <li class="nav-item mr-2">
             <a class="btn btn-outline-success" href="/login" role="button">Sign In</a>
         </li>
-        
         <li class="nav-item">
             <a class="btn btn-outline-primary" href="/register" role="button">Sign Up</a>
         </li>
-
     </ul>
 
     <?php } ?>
 
+</div>
 </header>

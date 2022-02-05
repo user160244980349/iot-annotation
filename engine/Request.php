@@ -17,7 +17,6 @@ class Request
     /**
      * Request parameters.
      *
-     * @access public
      * @var array
      */
     public array $parameters;
@@ -25,7 +24,6 @@ class Request
     /**
      * Route that will be executed.
      *
-     * @access public
      * @var Route
      */
     public ?Route $route;
@@ -33,7 +31,6 @@ class Request
     /**
      * View that will be displayed.
      *
-     * @access public
      * @var View
      */
     public ?View $view;
@@ -41,7 +38,6 @@ class Request
     /**
      * Post response job.
      *
-     * @access public
      * @var Closure
      */
     public ?Closure $post_response;
@@ -49,7 +45,6 @@ class Request
     /**
      * Request constructor.
      *
-     * @access public
      * @param array $parameters - To pass in controller
      * @param Route $route - Route to follow
      */

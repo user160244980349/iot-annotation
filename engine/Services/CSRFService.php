@@ -8,9 +8,9 @@ use Engine\Service;
 use Engine\Services\SessionService as Session;
 
 /**
- * Auth.php
+ * CSRFService.php
  *
- * Auth service.
+ * Service for CSRF check.
  */
 class CSRFService extends Service
 {
@@ -18,23 +18,22 @@ class CSRFService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'csrf';
 
     /**
-     * Gives authorized user id.
+     * CSRF page token.
      *
-     * @access public
+     * @access private
      * @return int
      */
     private string $_hash;
 
     /**
-     * Gives authorized user id.
+     * Generates CSRF token.
      *
-     * @access public
+     * @access protected
      * @return int
      */
     protected function generate(): string
@@ -48,9 +47,10 @@ class CSRFService extends Service
     }
 
     /**
-     * Gives authorized user id.
+     * Tests CSRF token.
      *
-     * @access public
+     * @access protected
+     * @param string $hash - CSRF token to test
      * @return int
      */
     protected function test(string $hash): bool

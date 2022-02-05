@@ -31,7 +31,6 @@ class ServiceBus
     /**
      * ServiceBus services registration.
      *
-     * @access public
      * @return ServiceBus
      */
     public function __construct()
@@ -46,7 +45,6 @@ class ServiceBus
     /**
      * ServiceBus instance getter.
      *
-     * @access public
      * @return ServiceBus
      */
     public static function instance(): ServiceBus
@@ -60,7 +58,6 @@ class ServiceBus
     /**
      * Service getter.
      *
-     * @access public
      * @param string $alias
      * @return object
      */

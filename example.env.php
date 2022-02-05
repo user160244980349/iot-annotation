@@ -7,9 +7,10 @@ Config::set('env', [
     # Debug prints
     'debug' => true,
 
-    # Views path
+    # Paths
     'views'       => __DIR__ . '/views',
     'resources'   => __DIR__ . '/resources',
+    'sessions'    => __DIR__ . '/resources/sessions',
 
     # Database credentials
     'db_driver'   => 'mysql',

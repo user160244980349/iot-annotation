@@ -16,7 +16,6 @@ class User
     /**
      * Adds new user into database.
      *
-     * @access public
      * @param array $user - Array of values
      * @return bool
      */
@@ -38,11 +37,10 @@ class User
     /**
      * Gives array with user info.
      *
-     * @access public
      * @param string $name - User`s name
-     * @return null|array.
+     * @return null|array
      */
-    public static function getByName(string $name): array
+    public static function getByName(string $name): ?array
     {
         $sql = <<<SQL
         
@@ -56,11 +54,10 @@ class User
     /**
      * Gives array with user info.
      *
-     * @access public
      * @param string $name - User`s name
-     * @return null|array.
+     * @return null|array
      */
-    public static function getByEmail(string $email): array
+    public static function getByEmail(string $email): ?array
     {
         $sql = <<<SQL
         
@@ -74,11 +71,10 @@ class User
     /**
      * Gives array with user info.
      *
-     * @access public
      * @param int $id - User id
      * @return null|array
      */
-    public static function getById(int $id): array
+    public static function getById(int $id): ?array
     {
         $sql = <<<SQL
 
@@ -92,10 +88,9 @@ class User
     /**
      * Gives array with all users info.
      *
-     * @access public
      * @return array
      */
-    public static function getAll(): array
+    public static function getAll(): ?array
     {
         $sql = <<<SQL
 

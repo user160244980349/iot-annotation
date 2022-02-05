@@ -13,7 +13,7 @@ use App\Models\Permission;
 /**
  * ManageGroups.php
  *
- * Controller class for actors groups management.
+ * Controller class for actors users management.
  */
 class ManageGroups
 {
@@ -21,7 +21,6 @@ class ManageGroups
     /**
      * Goes to groups index page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toGroupsPage(Request $request)
@@ -36,9 +35,8 @@ class ManageGroups
     }
 
     /**
-     * Goes to groups edit page.
+     * Goes to group edit page.
      *
-     * @access public
      * @param Request $request
      * @param int $id - User id
      */
@@ -58,7 +56,6 @@ class ManageGroups
     /**
      * Assign group.
      *
-     * @access public
      * @param Request $request
      * @param int $id - User id
      */
@@ -71,7 +68,6 @@ class ManageGroups
     /**
      * Disassign group.
      *
-     * @access public
      * @param Request $request.
      * @param int $id - User id
      */

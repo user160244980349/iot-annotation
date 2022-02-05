@@ -13,7 +13,6 @@ class Route
     /**
      * Route name.
      *
-     * @access public
      * @var string
      */
     public string $name;
@@ -21,7 +20,6 @@ class Route
     /**
      * Route pattern.
      *
-     * @access public
      * @var string
      */
     public string $pattern;
@@ -29,7 +27,6 @@ class Route
     /**
      * Request method.
      *
-     * @access public
      * @var string
      */
     public string $method;
@@ -37,7 +34,6 @@ class Route
     /**
      * Controller to execute.
      *
-     * @access public
      * @var array
      */
     public array $controller;
@@ -45,7 +41,6 @@ class Route
     /**
      * Request parameters.
      *
-     * @access public
      * @var array
      */
     public array $args;
@@ -53,7 +48,6 @@ class Route
     /**
      * Route constructor.
      *
-     * @access public
      * @param string $name - Route name
      * @param string $method - HTTP method
      * @param string $patetrn - Pattern for url
@@ -73,7 +67,6 @@ class Route
     /**
      * Test route if it fits.
      *
-     * @access public
      * @param string $name - Route name
      * @param string $method - HTTP method
      * @return bool

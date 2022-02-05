@@ -15,7 +15,6 @@ abstract class Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias;
@@ -23,7 +22,6 @@ abstract class Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     public static function __callStatic($method, $args) {

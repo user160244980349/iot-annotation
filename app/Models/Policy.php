@@ -14,12 +14,10 @@ class Policy
 {
 
     /**
-     * Adds new password into database.
+     * Adds new policies into database.
      *
-     * @access public
-     * @param int $id - User id
-     * @param string $password - Password string
-     * @return bool
+     * @param array $rows - Set of policies
+     * @return ?
      */
     public static function create(array $rows)
     {
@@ -40,14 +38,13 @@ class Policy
             $values[]    = $content;
         }
 
-        SQL::set($sql . implode(",", $instances), $values);
+        return SQL::set($sql . implode(",", $instances), $values);
     }
 
     /**
-     * Gives encrypted password.
+     * Gives policy for annotation.
      *
-     * @access public
-     * @return null|array
+     * @return ?
      */
     public static function getOne()
     {
@@ -70,9 +67,8 @@ class Policy
 
         SQL;
 
-        SQL::set($sql2, [$r['id']]);
-
-        return $r;
+        $s = SQL::set($sql2, [$r['id']]);
+        if ($s) return $r; else return $s;
     }
 
 }

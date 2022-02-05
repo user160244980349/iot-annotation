@@ -19,7 +19,6 @@ class Login
     /**
      * Goes to login page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toLoginPage(Request $request)
@@ -37,7 +36,6 @@ class Login
     /**
      * Logs user in.
      *
-     * @access public
      * @param Request $request
      */
     public static function login(Request $request)
@@ -61,7 +59,6 @@ class Login
     /**
      * Logs user out.
      *
-     * @access public
      * @param Request $request
      */
     public static function logout()

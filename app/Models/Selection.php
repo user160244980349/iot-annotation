@@ -14,12 +14,10 @@ class Selection
 {
 
     /**
-     * Adds new password into database.
+     * Adds new selections into database.
      *
-     * @access public
-     * @param int $id - User id
-     * @param string $password - Password string
-     * @return bool
+     * @param array $rows - Set of selections
+     * @return ?
      */
     public static function create(array $rows)
     {
@@ -49,14 +47,11 @@ class Selection
     }
 
     /**
-     * Adds new password into database.
+     * Gives annotation results.
      *
-     * @access public
-     * @param int $id - User id
-     * @param string $password - Password string
-     * @return bool
+     * @return null|array
      */
-    public static function packWithUsers()
+    public static function packWithUsers(): ?array
     {
         $sql = <<<SQL
         

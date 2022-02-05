@@ -3,11 +3,12 @@
 namespace Engine\Services;
 
 use Engine\Service;
+use Engine\Config;
 
 /**
  * Session.php
  *
- * Service for sessions  management.
+ * Service for sessions management.
  */
 class SessionService extends Service
 {
@@ -15,25 +16,23 @@ class SessionService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'session';
 
     /**
      * Constructor of service class.
-     *
-     * @access public
      */
     public function __construct()
     {
+        session_save_path(Config::get('env')['sessions']);
         session_start();
     }
 
     /**
      * Sets session variable.
      *
-     * @access public
+     * @access protected
      * @param string $name - Name of a variable
      * @param $value - Storing value
      */
@@ -45,7 +44,7 @@ class SessionService extends Service
     /**
      * Gives session variable.
      *
-     * @access public
+     * @access protected
      * @param string $name - Name of a variable
      * @return mixed
      */
@@ -58,8 +57,8 @@ class SessionService extends Service
 
     /**
      * Finishes request.
-     *
-     * @access public
+     * 
+     * @access protected
      */
     protected function finish_request(): void
     {
@@ -69,8 +68,8 @@ class SessionService extends Service
 
     /**
      * Destroys session.
-     *
-     * @access public
+     * 
+     * @access protected
      */
     protected function destroy(): void
     {

@@ -14,12 +14,10 @@ class Product
 {
 
     /**
-     * Adds new password into database.
+     * Adds new products into database.
      *
-     * @access public
-     * @param int $id - User id
-     * @param string $password - Password string
-     * @return bool
+     * @param array $rows - Set of products
+     * @return ?
      */
     public static function create(array $rows)
     {
@@ -48,6 +46,6 @@ class Product
             $values[]    = $row['policy_hash'];
         }
 
-        SQL::set($sql . implode(",", $instances), $values);
+        return SQL::set($sql . implode(",", $instances), $values);
     }
 }

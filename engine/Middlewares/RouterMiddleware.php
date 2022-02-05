@@ -25,7 +25,6 @@ class RouterMiddleware implements IMiddleware
     /**
      * ServiceBus services registration.
      *
-     * @access public
      * @return ServiceBus
      */
     public function __construct()
@@ -36,7 +35,6 @@ class RouterMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      * @throws Error

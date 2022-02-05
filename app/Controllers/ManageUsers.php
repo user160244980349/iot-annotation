@@ -20,7 +20,6 @@ class ManageUsers
     /**
      * Goes to index page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toUsersPage(Request $request)
@@ -37,7 +36,6 @@ class ManageUsers
     /**
      * Goes to edit page.
      *
-     * @access public
      * @param Request $request
      * @param int $id - User id
      */
@@ -56,7 +54,6 @@ class ManageUsers
     /**
      * Includes user in a group.
      *
-     * @access public
      * @param Request $request
      * @param int $id - User id
      */
@@ -69,7 +66,6 @@ class ManageUsers
     /**
      * Excludes user from a group.
      *
-     * @access public
      * @param Request $request
      * @param int $id - User id
      */

@@ -13,7 +13,6 @@ class Config
     /**
      * Request parameters.
      *
-     * @access public
      * @var array
      */
     private static array $_values = [];
@@ -21,7 +20,6 @@ class Config
     /**
      * Request constructor.
      *
-     * @access public
      * @param array $parameters - To pass in controller
      * @param Route $route - Route to follow
      */
@@ -33,7 +31,6 @@ class Config
     /**
      * Request constructor.
      *
-     * @access public
      * @param array $parameters - To pass in controller
      * @param Route $route - Route to follow
      */
@@ -45,7 +42,6 @@ class Config
     /**
      * Request constructor.
      *
-     * @access public
      * @param array $parameters - To pass in controller
      * @param Route $route - Route to follow
      */

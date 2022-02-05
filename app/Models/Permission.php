@@ -16,7 +16,6 @@ class Permission
     /**
      * Gives all user permissions.
      *
-     * @access public
      * @param int $id - User id
      * @return array - Permissions values
      */
@@ -39,11 +38,10 @@ class Permission
     /**
      * Gives all group permissions.
      *
-     * @access public
      * @param int $id - Group id
-     * @return array - Permissions values
+     * @return null|array - Permissions values
      */
-    public static function getForGroup(int $id): array
+    public static function getForGroup(int $id): ?array
     {
         $sql = <<<SQL
 
@@ -60,10 +58,9 @@ class Permission
     /**
      * Gives array with all permissions.
      *
-     * @access public
-     * @return array
+     * @return null|array
      */
-    public static function getAll(): array
+    public static function getAll(): ?array
     {
         $sql = <<<SQL
 
@@ -77,7 +74,6 @@ class Permission
     /**
      * Associates group with permission.
      *
-     * @access public
      * @param int $id - Group id
      * @param string $permission - Permission value
      */
@@ -99,9 +95,9 @@ class Permission
     /**
      * Associates group with permission.
      *
-     * @access public
      * @param int $id - Group id
      * @param string $permission - Permission id
+     * @return ?
      */
     public static function associateById(int $id, int $permission_id)
     {
@@ -121,7 +117,6 @@ class Permission
     /**
      * Disassociates group with permission.
      *
-     * @access public
      * @param int $id - Group id
      * @param string $permission - Permission id
      */
@@ -141,9 +136,9 @@ class Permission
     /**
      * Disassociates group with permission.
      *
-     * @access public
      * @param int $id - Group id
      * @param string $permission_id - Permission id
+     * @return ?
      */
     public static function disassociateById(int $id, int $permission_id)
     {

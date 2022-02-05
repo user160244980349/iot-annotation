@@ -18,7 +18,6 @@ class RawSQLService extends Service
     /**
      * Alias for service.
      *
-     * @access public
      * @var string
      */
     static public string $alias = 'database';
@@ -73,8 +72,6 @@ class RawSQLService extends Service
 
     /**
      * Database constructor.
-     *
-     * @access public
      */
     public function __construct()
     {
@@ -93,9 +90,9 @@ class RawSQLService extends Service
     }
 
     /**
-     * Sends query to database and gives a response.
+     * Gives PDO object.
      *
-     * @access public
+     * @access protected
      * @param string $queryString - Query to send
      * @return array
      */
@@ -109,11 +106,12 @@ class RawSQLService extends Service
     }
 
     /**
-     * Sends query to database and gives a response.
+     * Sends insert/update/delete query.
      *
-     * @access public
+     * @access protected
      * @param string $queryString - Query to send
-     * @return array
+     * @param array $params - Parameters
+     * @return null|PDOStatement
      */
     protected function set(string $queryString, array $params = null): ?PDOStatement
     {
@@ -135,11 +133,14 @@ class RawSQLService extends Service
     }
 
     /**
-     * Sends query to database and gives a response.
+     * Send select query.
      *
-     * @access public
+     * @access protected
      * @param string $queryString - Query to send
-     * @return array
+     * @param array $params - Parameters
+     * @param int $options - Options
+     * @param bool $all - Fetch all or one
+     * @return null|array
      */
     protected function get(string $queryString, array $params = null, int $options = PDO::FETCH_ASSOC, bool $all = true): ?array
     {
@@ -156,9 +157,8 @@ class RawSQLService extends Service
     }
 
     /**
-     * Gives an error.
+     * Gives an error log.
      *
-     * @access public
      * @return array
      */
     protected function error()

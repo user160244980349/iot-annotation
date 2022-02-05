@@ -14,7 +14,6 @@ class RoutePermission
     /**
      * Name of related route.
      *
-     * @access public
      * @var string
      */
     public string $name;
@@ -22,7 +21,6 @@ class RoutePermission
     /**
      * Permissions list.
      *
-     * @access public
      * @var array
      */
     public array $permissions;
@@ -30,7 +28,6 @@ class RoutePermission
     /**
      * Permission constructor.
      *
-     * @access public
      * @param string $name - Route name
      * @param array $permissions - Permission token
      */
@@ -45,7 +42,6 @@ class RoutePermission
     /**
      * Test if permissions for proper route.
      *
-     * @access public
      * @param string $name - Route name.
      */
     public function test(string $name): bool

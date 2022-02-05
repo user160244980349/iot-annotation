@@ -16,7 +16,6 @@ class ReceiverApacheMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $null - Null because not needed
      * @return Request - Initialized request object
      */

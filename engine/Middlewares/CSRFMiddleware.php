@@ -9,26 +9,14 @@ use Engine\Config;
 use Error;
 
 /**
- * Auth.php
+ * CSRFMiddleware.php
  *
- * Class Auth checks access to pages.
+ * Class checking CSRF.
  */
 class CSRFMiddleware implements IMiddleware
 {
-
     /**
-     * ServiceBus services registration.
-     *
-     * @access public
-     * @return ServiceBus
-     */
-    private array $_permissions_sets;
-
-    /**
-     * ServiceBus services registration.
-     *
-     * @access public
-     * @return ServiceBus
+     * Constructor.
      */
     public function __construct()
     {
@@ -38,7 +26,6 @@ class CSRFMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      * @throws Error

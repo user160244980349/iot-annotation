@@ -16,7 +16,6 @@ class RendererMiddleware implements IMiddleware
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      */

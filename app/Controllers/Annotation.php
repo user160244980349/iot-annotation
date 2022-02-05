@@ -21,13 +21,12 @@ class Annotation
     /**
      * Goes to annotation page.
      *
-     * @access public
      * @param Request $request
      */
     public static function toAnnotationPage(Request $request)
     {   
         $policy = Policy::getOne();
-        if (!empty($policy)) Session::set('policy_hash', $policy['hash']);
+        if (isset($policy)) Session::set('policy_hash', $policy['hash']);
         $request->view = new View('annotation.php', [
             'title' => 'Annotation',
             'id' => Auth::authenticated(),
@@ -36,9 +35,8 @@ class Annotation
     }
 
     /**
-     * Goes to annotation page.
+     * Process the annotations.
      *
-     * @access public
      * @param Request $request
      */
     public static function processAnnotations(Request $request)

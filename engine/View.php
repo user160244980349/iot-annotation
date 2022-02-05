@@ -32,7 +32,6 @@ class View
     /**
      * View constructor.
      *
-     * @access public
      * @param string $path Path of template file
      * @param array $variables Variables to paste in template
      */
@@ -46,7 +45,6 @@ class View
     /**
      * View constructor.
      *
-     * @access public
      * @param string $path Path of template file
      * @param array $variables Variables to paste in template
      */
@@ -56,9 +54,7 @@ class View
     }
 
     /**
-     * Render template.
-     *
-     * @access public
+     * Renders template.
      */
     public function display(): void
     {

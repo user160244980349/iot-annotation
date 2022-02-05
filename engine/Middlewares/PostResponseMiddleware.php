@@ -7,16 +7,15 @@ use Engine\Request;
 use Engine\Services\SessionService as Session;
 
 /**
- * Router.php
+ * PostResponseMiddleware.php
  *
- * Simple router class for managing urls.
+ * Class providing after session job.
  */
 class PostResponseMiddleware implements IMiddleware
 {
     /**
      * Method providing middlewares chain call.
      *
-     * @access public
      * @param Request $request
      * @return Request
      * @throws Error
