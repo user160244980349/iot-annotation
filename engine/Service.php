@@ -5,29 +5,25 @@ namespace Engine;
 use Engine\ServiceBus;
 
 /**
- * ServiceFacade.php
+ * Service.php
  *
- * Decorator class for authentication.
+ * Base class for service.
  */
 abstract class Service
 {
 
     /**
-     * Alias for service.
+     * Binding of static calls to objects.
      *
-     * @var string
+     * @param string $method
+     * @param array $args
      */
-    static public string $alias;
-
-    /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    public static function __callStatic($method, $args) {
+    public static function __callStatic(string $method, array $args): mixed
+    {
         return call_user_func_array(
-            [ServiceBus::instance()->get(static::$alias), $method], 
+            [ServiceBus::instance()->get(static::class), $method], 
             $args
         );
     }
+
 }

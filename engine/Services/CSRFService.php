@@ -16,13 +16,6 @@ class CSRFService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'csrf';
-
-    /**
      * CSRF page token.
      *
      * @access private

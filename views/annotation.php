@@ -52,11 +52,11 @@
             
         <?php } else { ?>
 
-            <main class="col-8 col-md-8">
+            <main class="col">
 
             <div class="text-center">
                 <h1 class="display-4">Attention!</h1>
-                <p class="lead">The data was not uploaded to database.</p>
+                <p class="lead">The data was not uploaded to the database.</p>
             </div>
 
             </main>

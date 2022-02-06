@@ -15,13 +15,6 @@ class MiddlewareService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'middlewares_queue';
-
-    /**
      * Middlewares providing different functions.
      *
      * @access private

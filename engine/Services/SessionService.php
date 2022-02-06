@@ -14,13 +14,6 @@ class SessionService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'session';
-
-    /**
      * Constructor of service class.
      */
     public function __construct()

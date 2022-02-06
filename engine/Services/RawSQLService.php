@@ -16,13 +16,6 @@ class RawSQLService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'database';
-
-    /**
      * Driver for database access.
      *
      * @access private

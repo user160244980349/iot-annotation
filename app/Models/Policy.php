@@ -44,9 +44,27 @@ class Policy
     /**
      * Gives policy for annotation.
      *
+     * @param array $hash - Policy hash
      * @return ?
      */
-    public static function getOne()
+    public static function getExact($hash)
+    {
+        $sql1 = <<<SQL
+
+        SELECT * FROM `policies` 
+        WHERE `hash` = ?
+
+        SQL;
+
+        return SQL::get($sql1, [$hash], all: false);
+    }
+
+    /**
+     * Gives policy for annotation.
+     *
+     * @return ?
+     */
+    public static function getRandom()
     {
         $sql1 = <<<SQL
 
@@ -58,6 +76,7 @@ class Policy
         SQL;
 
         $r = SQL::get($sql1, all: false);
+        if (!isset($r)) return null;
 
         $sql2 = <<<SQL
 
@@ -68,7 +87,7 @@ class Policy
         SQL;
 
         $s = SQL::set($sql2, [$r['id']]);
-        if ($s) return $r; else return $s;
+        if ($s == null) return $s; else return $r;
     }
 
 }

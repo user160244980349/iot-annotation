@@ -4,7 +4,6 @@ use Engine\Services\DebugService as Debug;
 use Engine\Services\MiddlewareService as Queue;
 use Engine\View;
 
-
 try {
 
     Queue::run();

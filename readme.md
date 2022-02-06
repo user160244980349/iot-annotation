@@ -14,9 +14,8 @@ This is PHP app for iot-dataset annotation
 - [x] Improve RawSQL service
 - [x] Annotation request
 - [x] Check if user exists on registration
-- [ ] Push warnings to debug
-- [ ] Review database service return types
-- [ ] File system service
-- [ ] Adaptive page layout
+- [x] Push warnings to debug
+- [x] Review database service return types
+- [x] Adaptive page layout
 - [ ] Update comments and declarations
 - [ ] Annotation process on sessions with ajax

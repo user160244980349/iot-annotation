@@ -89,7 +89,7 @@ class ManageData
                 $file = "$uncompressed/{$value['plain_policy']}";
     
                 if (is_file($file)) {
-                    $policies["{$value['policy_hash']}"] = file_get_contents($file);
+                    $policies[$value['policy_hash']] = file_get_contents($file);
                 }
             }
             Policy::create($policies);

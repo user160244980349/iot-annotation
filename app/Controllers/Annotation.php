@@ -25,8 +25,16 @@ class Annotation
      */
     public static function toAnnotationPage(Request $request)
     {   
-        $policy = Policy::getOne();
-        if (isset($policy)) Session::set('policy_hash', $policy['hash']);
+        $hash = Session::get('policy_hash');
+
+        $policy = null;
+        if (isset($hash)) {
+            $policy = Policy::getExact($hash);
+        } else {
+            $policy = Policy::getRandom();
+            Session::set('policy_hash', $policy['hash']);
+        }
+
         $request->view = new View('annotation.php', [
             'title' => 'Annotation',
             'id' => Auth::authenticated(),
@@ -45,6 +53,7 @@ class Annotation
 
         $id = Auth::authenticated();
         $hash = Session::get('policy_hash');
+        Session::set('policy_hash', null);
 
         $request->post_response = function () use ($request, $id, $hash) {
 
@@ -72,7 +81,6 @@ class Annotation
 
             Selection::create($rows);
         };
-
     }
 
 }

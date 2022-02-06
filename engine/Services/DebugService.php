@@ -12,13 +12,6 @@ use Engine\Service;
  */
 class DebugService extends Service
 {
-    
-    /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'debug';
 
     /**
      * Objects to print.

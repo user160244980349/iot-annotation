@@ -16,13 +16,6 @@ class AuthService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'auth';
-
-    /**
      * Gives authorized user id.
      *
      * @access protected

@@ -13,13 +13,6 @@ class DownloadService extends Service
 {
 
     /**
-     * Alias for service.
-     *
-     * @var string
-     */
-    static public string $alias = 'download';
-
-    /**
      * Gives file to download.
      *
      * @access protected

@@ -3,6 +3,8 @@
 namespace Engine;
 
 use Engine\Config;
+use Engine\Service;
+use Error;
 
 /**
  * ServiceBus.php
@@ -35,10 +37,14 @@ class ServiceBus
      */
     public function __construct()
     {
+        set_error_handler(function($errno, $errstr, $errfile, $errline) {
+            throw new Error($errstr, $errno, null);
+        });
+
         $services = Config::get('services');
 
         foreach ($services as $service) {
-            $this->_services[$service::$alias] = [$service, null];
+            $this->_services[$service] = [$service, null];
         }
     }
 
@@ -58,16 +64,16 @@ class ServiceBus
     /**
      * Service getter.
      *
-     * @param string $alias
+     * @param Service $service
      * @return object
      */
-    public function get(string $alias): object
+    public function get(string $service): object
     {
-        if (!isset($this->_services[$alias][1])) {
-            $this->_services[$alias][1] = new $this->_services[$alias][0]();
+        if (!isset($this->_services[$service][1])) {
+            $this->_services[$service][1] = new $this->_services[$service][0]();
         }
 
-        return $this->_services[$alias][1];
+        return $this->_services[$service][1];
     }
 
 }

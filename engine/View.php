@@ -38,7 +38,7 @@ class View
     public function __construct($path, array $variables)
     {
         $env = Config::get('env');
-        $this->_path = $env['views'] . "/$path";
+        $this->_path = "{$env['views']}/$path";
         $this->_variables = $variables;
     }
 
@@ -58,6 +58,7 @@ class View
      */
     public function display(): void
     {
+        if (ob_get_length()) ob_clean();
         ob_start();
         Debug::printIfAllowed();
         extract($this->_variables);
