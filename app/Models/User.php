@@ -88,7 +88,7 @@ class User
     /**
      * Gives array with all users info.
      *
-     * @return array
+     * @return null|array
      */
     public static function getAll(): ?array
     {

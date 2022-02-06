@@ -6,7 +6,7 @@ use Engine\Service;
 use Engine\Config;
 
 /**
- * Session.php
+ * SessionService.php
  *
  * Service for sessions management.
  */

@@ -1,7 +1,7 @@
 <?php include_once __DIR__ . '/blocks/header.php' ?>
 
 
-<div class="container-fluid page-root">
+<div class="container page-root">
 
     <main class="col">
 

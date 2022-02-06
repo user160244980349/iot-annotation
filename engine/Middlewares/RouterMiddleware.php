@@ -8,7 +8,7 @@ use Engine\Config;
 use Error;
 
 /**
- * Router.php
+ * RouterMiddleware.php
  *
  * Simple router class for managing urls.
  */

@@ -6,7 +6,7 @@ namespace Engine\Routing;
  * RoutePermission.php
  *
  * Class RoutePermission defines permissions for 
- * visiting and accepting responses on different routes.
+ * visiting and accepting requests on different routes.
  */
 class RoutePermission
 {

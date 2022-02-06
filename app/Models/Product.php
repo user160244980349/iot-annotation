@@ -6,9 +6,9 @@ use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
- * Data.php
+ * Product.php
  *
- * Class that provides password model.
+ * Class that provides product model.
  */
 class Product
 {
@@ -17,9 +17,9 @@ class Product
      * Adds new products into database.
      *
      * @param array $rows - Set of products
-     * @return ?
+     * @return bool
      */
-    public static function create(array $rows)
+    public static function create(array $rows): bool
     {
         $sql = <<<SQL
 
@@ -46,6 +46,6 @@ class Product
             $values[]    = $row['policy_hash'];
         }
 
-        return SQL::set($sql . implode(",", $instances), $values);
+        return null !== SQL::set($sql . implode(",", $instances), $values);
     }
 }

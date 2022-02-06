@@ -5,9 +5,9 @@ namespace Engine\Services;
 use Engine\Service;
 
 /**
- * Redirect.php
+ * RedirectionService.php
  *
- * Provide redirect.
+ * Provides redirect.
  */
 class RedirectionService extends Service
 {

@@ -27,7 +27,7 @@ class CSRFService extends Service
      * Generates CSRF token.
      *
      * @access protected
-     * @return int
+     * @return string
      */
     protected function generate(): string
     {

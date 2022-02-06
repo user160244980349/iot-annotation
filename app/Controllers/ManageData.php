@@ -7,41 +7,18 @@ use App\Models\Policy;
 use App\Models\Product;
 use Engine\Config;
 use Engine\Services\AuthService as Auth;
-use Engine\Services\DownloadService as Download;
+use Engine\Services\FileSystemService as FS;
 use Engine\Request;
 use Engine\View;
 use Engine\Services\RedirectionService as Redirection;
-use ZipArchive;
 
 /**
- * Annotation.php
+ * ManageData.php
  *
  * Controller class for loading annotation page.
  */
 class ManageData
 {
-
-    /**
-     * Recursively removes directory content.
-     *
-     * @access private
-     * @param $directory - Directory to delete
-     * @param null $delete_parent - Recursive argument
-     */
-    private static function _rrmdir($directory, $delete_parent = true): void
-    {
-        $files = glob($directory . "/{,.}[!.,!..]*", GLOB_MARK | GLOB_BRACE);
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                static::_rrmdir($file, true);
-            } else {
-                unlink($file);
-            }
-        }
-        if ($delete_parent) {
-            rmdir($directory);
-        }
-    }
 
     /**
      * Goes to annotation page.
@@ -68,29 +45,18 @@ class ManageData
         $request->post_response = function () use ($request) {
 
             $tmp_file = $request->parameters['files']['data']['tmp_name'];
-            $resources = Config::get('env')['resources'];
             $hash = md5(md5(rand()));
-            $uncompressed = "$resources/$hash";
 
-            $archive = "$uncompressed.zip";
-            move_uploaded_file($tmp_file, $archive);
-            $zip = new ZipArchive;
-            if ($zip->open($archive) === true) {
-                $zip->extractTo($uncompressed);
-                $zip->close();
-            }
-            unlink($archive);
+            $archive = "$hash.zip";
+            FS::resource($tmp_file, $archive);
+            FS::unzip($archive, $hash);
 
-            $json = json_decode(file_get_contents("$uncompressed/plain.json"), true);
+            $json = json_decode(FS::read("$hash/plain.json"), true);
 
             $policies = [];
             foreach ($json as $row => $value) {
-                
-                $file = "$uncompressed/{$value['plain_policy']}";
-    
-                if (is_file($file)) {
-                    $policies[$value['policy_hash']] = file_get_contents($file);
-                }
+                $content = FS::read("$hash/{$value['plain_policy']}");
+                $policies[$value['policy_hash']] = str_replace("\r", '', $content);
             }
             Policy::create($policies);
 
@@ -110,18 +76,15 @@ class ManageData
                 ];
 
                 if ($portion-- < 1) {
-
                     Product::create($products);
-
                     $portion = 100;
                     $products = [];
                 }
 
             }
+
             Product::create($products);
-
-            static::_rrmdir($uncompressed);
-
+            FS::rmdir($hash, true);
         };
 
     }
@@ -133,13 +96,10 @@ class ManageData
      */
     public static function download(Request $request)
     {
-        $resources = Config::get('env')['resources'];
         $hash = md5(rand());
-        $file = "$resources/$hash.json";
-
-        file_put_contents($file, json_encode(Selection::packWithUsers()));
-
-        Download::do($file, true);
+        $file = "$hash.json";
+        FS::write($file, json_encode(Selection::packWithUsers()));
+        FS::download($file, true);
     }
 
 }

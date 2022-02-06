@@ -6,9 +6,9 @@ use Engine\Services\RawSQLService as SQL;
 use PDO;
 
 /**
- * Data.php
+ * Policy.php
  *
- * Class that provides password model.
+ * Class that provides policy model.
  */
 class Policy
 {
@@ -17,9 +17,9 @@ class Policy
      * Adds new policies into database.
      *
      * @param array $rows - Set of policies
-     * @return ?
+     * @return bool
      */
-    public static function create(array $rows)
+    public static function create(array $rows): bool
     {
         $sql = <<<SQL
 
@@ -38,16 +38,16 @@ class Policy
             $values[]    = $content;
         }
 
-        return SQL::set($sql . implode(",", $instances), $values);
+        return null !== SQL::set($sql . implode(",", $instances), $values);
     }
 
     /**
      * Gives policy for annotation.
      *
-     * @param array $hash - Policy hash
-     * @return ?
+     * @param string $hash - Policy hash
+     * @return null|array
      */
-    public static function getExact($hash)
+    public static function getExact(string $hash): ?array
     {
         $sql1 = <<<SQL
 
@@ -62,9 +62,9 @@ class Policy
     /**
      * Gives policy for annotation.
      *
-     * @return ?
+     * @return null|array
      */
-    public static function getRandom()
+    public static function getRandom(): ?array
     {
         $sql1 = <<<SQL
 
@@ -86,8 +86,7 @@ class Policy
 
         SQL;
 
-        $s = SQL::set($sql2, [$r['id']]);
-        if ($s == null) return $s; else return $r;
+        if (null == SQL::set($sql2, [$r['id']])) return null; else return $r;
     }
 
 }

@@ -15,6 +15,7 @@ use Error;
  */
 class CSRFMiddleware implements IMiddleware
 {
+
     /**
      * Constructor.
      */
@@ -43,7 +44,6 @@ class CSRFMiddleware implements IMiddleware
         }
 
         return $request;
-        
     }
 
 }

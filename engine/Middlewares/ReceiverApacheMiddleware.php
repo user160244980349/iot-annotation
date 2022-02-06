@@ -6,7 +6,7 @@ use Engine\Middlewares\IMiddleware;
 use Engine\Request;
 
 /**
- * Receiver.php
+ * ReceiverApacheMiddleware.php
  *
  * Middleware class for parsing incoming request.
  */

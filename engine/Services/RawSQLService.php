@@ -8,7 +8,7 @@ use PDOStatement;
 use PDO;
 
 /**
- * RawSQL.php
+ * RawSQLService.php
  *
  * Class for database jobs.
  */

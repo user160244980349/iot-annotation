@@ -6,7 +6,7 @@ use Engine\Services\SessionService;
 use Engine\Services\RawSQLService;
 use Engine\Services\AuthService;
 use Engine\Services\RedirectionService;
-use Engine\Services\DownloadService;
+use Engine\Services\FileSystemService;
 use Engine\Services\CSRFService;
 use Engine\Config;
 
@@ -18,7 +18,7 @@ Config::set('services', [
     RawSQLService::class,
     AuthService::class,
     RedirectionService::class,
-    DownloadService::class,
+    FileSystemService::class,
     CSRFService::class,
 
 ]);

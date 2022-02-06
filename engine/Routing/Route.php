@@ -83,9 +83,8 @@ class Route
     }
 
     /**
-     * Route constructor.
+     * Executes controller action.
      *
-     * @access public
      * @param Request $request - Request object to response
      */
     public function execute($request)

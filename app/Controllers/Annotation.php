@@ -9,6 +9,7 @@ use Engine\Services\SessionService as Session;
 use Engine\Services\AuthService as Auth;
 use Engine\Request;
 use Engine\View;
+use Engine\Services\DebugService as Debug;
 
 /**
  * Annotation.php
@@ -32,7 +33,7 @@ class Annotation
             $policy = Policy::getExact($hash);
         } else {
             $policy = Policy::getRandom();
-            Session::set('policy_hash', $policy['hash']);
+            if (!empty($policy)) Session::set('policy_hash', $policy['hash']);
         }
 
         $request->view = new View('annotation.php', [
@@ -53,9 +54,11 @@ class Annotation
 
         $id = Auth::authenticated();
         $hash = Session::get('policy_hash');
+        $policy = Policy::getExact($hash)['content'];
+
         Session::set('policy_hash', null);
 
-        $request->post_response = function () use ($request, $id, $hash) {
+        $request->post_response = function () use ($request, $id, $hash, $policy) {
 
             $annotations = json_decode($request->parameters['json']);
 
@@ -64,16 +67,20 @@ class Annotation
             foreach ($annotations as $annotation) {
 
                 $rows[] = [
-                    'starts_on'       => $annotation->selection->sc,
-                    'ends_on'         => $annotation->selection->ec,
-                    'selection_class' => $annotation->metaLayer->label,
-                    'user_id'         => $id,
-                    'policy_hash'     => $hash,
+                    'starts_on'         => $annotation->selection->sc,
+                    'ends_on'           => $annotation->selection->ec,
+                    'selection_class'   => $annotation->metaLayer->label,
+                    'selection_content' => substr(
+                        $policy, 
+                        $annotation->selection->sc, 
+                        $annotation->selection->ec - $annotation->selection->sc
+                    ),
+                    'user_id'           => $id,
+                    'policy_hash'       => $hash,
                 ];
 
                 if ($portion-- < 1) {
                     Selection::create($rows);
-
                     $portion = 100;
                     $rows = [];
                 }
@@ -81,6 +88,7 @@ class Annotation
 
             Selection::create($rows);
         };
+
     }
 
 }

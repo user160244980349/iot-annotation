@@ -13,12 +13,12 @@ use Engine\Services\SessionService as Session;
  */
 class PostResponseMiddleware implements IMiddleware
 {
+    
     /**
      * Method providing middlewares chain call.
      *
      * @param Request $request
      * @return Request
-     * @throws Error
      */
     public function let(?Request $request): Request
     {

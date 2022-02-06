@@ -38,7 +38,7 @@ class ServiceBus
     public function __construct()
     {
         set_error_handler(function($errno, $errstr, $errfile, $errline) {
-            throw new Error($errstr, $errno, null);
+            throw new Error($errstr, $errno);
         });
 
         $services = Config::get('services');
@@ -56,7 +56,7 @@ class ServiceBus
     public static function instance(): ServiceBus
     {
         if (!isset(static::$_instance)) {
-            static::$_instance = new ServiceBus();
+            static::$_instance = new ServiceBus;
         }
         return static::$_instance;
     }
@@ -70,7 +70,7 @@ class ServiceBus
     public function get(string $service): object
     {
         if (!isset($this->_services[$service][1])) {
-            $this->_services[$service][1] = new $this->_services[$service][0]();
+            $this->_services[$service][1] = new $this->_services[$service][0];
         }
 
         return $this->_services[$service][1];

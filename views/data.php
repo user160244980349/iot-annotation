@@ -4,7 +4,7 @@
 ?>
 
 
-<div class="container-fluid page-root">
+<div class="container page-root">
 
     <main class="col">
 

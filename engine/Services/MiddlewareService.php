@@ -7,7 +7,7 @@ use Engine\Service;
 use Engine\Config;
 
 /**
- * MiddlewaresQueue.php
+ * MiddlewareService.php
  *
  * Class that contains core middlewares important for application.
  */
@@ -15,7 +15,7 @@ class MiddlewareService extends Service
 {
 
     /**
-     * Middlewares providing different functions.
+     * Middlewares providing different activities.
      *
      * @access private
      * @var array

@@ -36,7 +36,7 @@ class Group
     /**
      * Gives array with groups info.
      *
-     * @param int $id - User id
+     * @param int $id - Group id
      * @return array - Group
      */
     public static function getById(int $id): ?array
@@ -71,9 +71,9 @@ class Group
      *
      * @param int $id - User id
      * @param string $group - Group name
-     * @return ?
+     * @return bool
      */
-    public static function associateByName(int $id, string $group)
+    public static function associateByName(int $id, string $group): bool
     {
         $sql = <<<SQL
 
@@ -85,7 +85,7 @@ class Group
 
         SQL;
 
-        return SQL::set($sql, [$id, $group]);
+        return null !== SQL::set($sql, [$id, $group]);
     }
 
     /**
@@ -93,9 +93,9 @@ class Group
      *
      * @param int $id - User id
      * @param int $group - Group id
-     * @return ?
+     * @return bool
      */
-    public static function associateById(int $id, int $group_id)
+    public static function associateById(int $id, int $group_id): bool
     {
         $sql = <<<SQL
 
@@ -107,7 +107,7 @@ class Group
 
         SQL;
 
-        return SQL::set($sql, [$id, $group_id]);
+        return null !== SQL::set($sql, [$id, $group_id]);
     }
 
     /**
@@ -115,9 +115,9 @@ class Group
      *
      * @param int $id - User id
      * @param string $group - Group name
-     * @return ?
+     * @return bool
      */
-    public static function disassociateByName(int $id, string $group)
+    public static function disassociateByName(int $id, string $group): bool
     {
         $sql = <<<SQL
         
@@ -127,7 +127,7 @@ class Group
 
         SQL;
 
-        return SQL::set($sql, [$id, $group]);
+        return null !== SQL::set($sql, [$id, $group]);
     }
 
     /**
@@ -135,9 +135,9 @@ class Group
      *
      * @param int $id - User id
      * @param int $group - Group id
-     * @return ?
+     * @return bool
      */
-    public static function disassociateById(int $id, int $group_id)
+    public static function disassociateById(int $id, int $group_id): bool
     {
         $sql = <<<SQL
 
@@ -147,7 +147,7 @@ class Group
 
         SQL;
 
-        return SQL::set($sql, [$id, $group_id]);
+        return null !== SQL::set($sql, [$id, $group_id]);
     }
 
 }

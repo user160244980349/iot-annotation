@@ -8,7 +8,7 @@ use Engine\Service;
 use Engine\Services\SessionService as Session;
 
 /**
- * Auth.php
+ * AuthService.php
  *
  * Auth service.
  */
@@ -96,7 +96,7 @@ class AuthService extends Service
     /**
      * Logs user out.
      *
-     * @access public
+     * @access protected
      * @return void
      */
     protected function logout(): void

@@ -9,26 +9,23 @@ use Engine\Config;
 use Error;
 
 /**
- * Auth.php
+ * AuthMiddleware.php
  *
- * Class Auth checks access to pages.
+ * Class AuthMiddleware checks access to pages.
  */
 class AuthMiddleware implements IMiddleware
 {
 
     /**
-     * ServiceBus services registration.
+     * Sets of permissions for routs.
      *
      * @access private
-     * @return ServiceBus
+     * @var array $_permissions_sets
      */
     private array $_permissions_sets;
 
     /**
-     * ServiceBus services registration.
-     *
-     * @access public
-     * @return ServiceBus
+     * Constructor.
      */
     public function __construct()
     {

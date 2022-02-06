@@ -6,9 +6,9 @@ use Engine\Middlewares\IMiddleware;
 use Engine\Request;
 
 /**
- * Renderer.php
+ * RendererMiddleware.php
  *
- * Class Renderer - calls renderer display method.
+ * Class RendererMiddleware - calls renderer display method.
  */
 class RendererMiddleware implements IMiddleware
 {

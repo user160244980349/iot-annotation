@@ -8,7 +8,7 @@ try {
 
     Queue::run();
 
-} catch (PDOException | Exception | Error $exception) {
+} catch (Throwable $exception) {
 
     Debug::push($exception);
     $view = new View('exception.php', ['exception' => $exception]);

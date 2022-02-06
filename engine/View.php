@@ -8,7 +8,7 @@ use Engine\Services\DebugService as Debug;
 /**
  * View.php
  *
- * Class View - template manager, that collects variables and injects those in templates.
+ * Class View - template manager, that collects variables and injects them into a template.
  */
 class View
 {
@@ -32,8 +32,8 @@ class View
     /**
      * View constructor.
      *
-     * @param string $path Path of template file
-     * @param array $variables Variables to paste in template
+     * @param string $path - Path of template file
+     * @param array $variables - Variables to paste in template
      */
     public function __construct($path, array $variables)
     {
@@ -43,18 +43,21 @@ class View
     }
 
     /**
-     * View constructor.
+     * Pushes variable to list.
      *
-     * @param string $path Path of template file
-     * @param array $variables Variables to paste in template
+     * @param string $name - Name of variable
+     * @param mixed $value - Variable value
+     * @return void
      */
-    public function push(string $name, $value)
+    public function push(string $name, mixed $value): void
     {
         $this->_variables[$name] = $value;
     }
 
     /**
      * Renders template.
+     * 
+     * @return void
      */
     public function display(): void
     {

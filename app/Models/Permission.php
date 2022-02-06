@@ -76,8 +76,9 @@ class Permission
      *
      * @param int $id - Group id
      * @param string $permission - Permission value
+     * @return bool
      */
-    public static function associateByName(int $id, string $permission)
+    public static function associateByName(int $id, string $permission): bool
     {
         $sql = <<<SQL
         
@@ -89,7 +90,7 @@ class Permission
 
         SQL;
 
-        return SQL::set($sql, [$id, $permission]);
+        return null !== SQL::set($sql, [$id, $permission]);
     }
 
     /**
@@ -97,9 +98,9 @@ class Permission
      *
      * @param int $id - Group id
      * @param string $permission - Permission id
-     * @return ?
+     * @return bool
      */
-    public static function associateById(int $id, int $permission_id)
+    public static function associateById(int $id, int $permission_id): bool
     {
         $sql = <<<SQL
 
@@ -111,7 +112,7 @@ class Permission
 
         SQL;
 
-        return SQL::set($sql, [$id, $permission_id]);
+        return null !== SQL::set($sql, [$id, $permission_id]);
     }
 
     /**
@@ -119,8 +120,9 @@ class Permission
      *
      * @param int $id - Group id
      * @param string $permission - Permission id
+     * @return bool
      */
-    public static function disassociateByName(int $id, string $permission)
+    public static function disassociateByName(int $id, string $permission): bool
     {
         $sql = <<<SQL
 
@@ -130,7 +132,7 @@ class Permission
 
         SQL;
 
-        return SQL::set($sql, [$id, $permission]);
+        return null !== SQL::set($sql, [$id, $permission]);
     }
 
     /**
@@ -138,9 +140,9 @@ class Permission
      *
      * @param int $id - Group id
      * @param string $permission_id - Permission id
-     * @return ?
+     * @return bool
      */
-    public static function disassociateById(int $id, int $permission_id)
+    public static function disassociateById(int $id, int $permission_id): bool
     {
         $sql = <<<SQL
 
@@ -150,7 +152,7 @@ class Permission
 
         SQL;
 
-        return SQL::set($sql, [$id, $permission_id]);
+        return null !== SQL::set($sql, [$id, $permission_id]);
     }
 
 }

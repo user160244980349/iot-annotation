@@ -6,7 +6,7 @@ use Engine\Config;
 use Engine\Service;
 
 /**
- * Debug.php
+ * DebugService.php
  *
  * Debug class for application.
  */
@@ -34,8 +34,7 @@ class DebugService extends Service
      */
     public function __construct()
     {
-        $env = Config::get('env');
-        $this->_allowed = $env['debug'];
+        $this->_allowed = Config::get('env')['debug'];
     }
 
     /**

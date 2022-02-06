@@ -3,51 +3,52 @@
 namespace Engine;
 
 /**
- * Request.php
+ * Config.php
  *
- * Class Request contains info about request.
+ * Class managing configuration variables.
  */
 class Config
 {
 
     /**
-     * Request parameters.
+     * Variable of config.
      *
      * @var array
      */
-    private static array $_values = [];
+    private static array $_variables = [];
 
     /**
-     * Request constructor.
+     * Sets configuration variable.
      *
-     * @param array $parameters - To pass in controller
-     * @param Route $route - Route to follow
+     * @param string $key - Variable name
+     * @param mixed $value - Variable value
+     * @return void
      */
-    public static function set(string $key, $value)
+    public static function set(string $key, mixed $value): void
     {
-        static::$_values[$key] = $value;
+        static::$_variables[$key] = $value;
     }
 
     /**
-     * Request constructor.
+     * Unsets configuration variable.
      *
-     * @param array $parameters - To pass in controller
-     * @param Route $route - Route to follow
+     * @param string $key - Variable name
+     * @return void
      */
-    public static function unset(string $key)
+    public static function unset(string $key): void
     {
-        unset(static::$_values[$key]);
+        unset(static::$_variables[$key]);
     }
 
     /**
-     * Request constructor.
+     * Gives configuration variable.
      *
-     * @param array $parameters - To pass in controller
-     * @param Route $route - Route to follow
+     * @param string $key - Variable name
+     * @return mixed
      */
-    public static function get(string $key)
+    public static function get(string $key): mixed
     {
-        return static::$_values[$key];
+        return static::$_variables[$key];
     }
 
 }

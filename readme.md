@@ -17,5 +17,5 @@ This is PHP app for iot-dataset annotation
 - [x] Push warnings to debug
 - [x] Review database service return types
 - [x] Adaptive page layout
-- [ ] Update comments and declarations
+- [x] Update comments and declarations
 - [ ] Annotation process on sessions with ajax

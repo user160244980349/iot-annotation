@@ -4,8 +4,8 @@
 ?>
 
 
-<div class="container-fluid page-root">
-<main class="col col-md-6 offset-md-3">
+<div class="container page-root">
+<main class="col">
 
 <div class="row align-items-center" style="height: 4em">
     <div class="col-6">
