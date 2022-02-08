@@ -14,9 +14,11 @@
             <div class="row sticky-sidebar">
             <div class="col">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div>Annotation Layers</div>
-                        <div id="pin_icon"></div>
+                    <div class="card-header d-inline-flex">
+                        <div class="col m-0 p-0" style="min-width: 90%">Annotation Layers</div>
+                        <div class="col m-0 p-0" style="min-width: 10px">
+                            <div class="d-flex m-0 p-0 h-100 justify-content-center align-items-center" id="pin_icon"></div>
+                        </div>
                     </div>
                     <div class="card-body overflow p-1">
                         <div id="layers_management"></div>

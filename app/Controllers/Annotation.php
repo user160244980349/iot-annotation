@@ -59,7 +59,6 @@ class Annotation
         Session::set('policy_hash', null);
 
         $request->post_response = function () use ($request, $id, $hash, $policy) {
-
             $annotations = json_decode($request->parameters['json']);
 
             $portion = 100;
@@ -69,7 +68,7 @@ class Annotation
                 $rows[] = [
                     'starts_on'         => $annotation->selection->sc,
                     'ends_on'           => $annotation->selection->ec,
-                    'selection_class'   => $annotation->metaLayer->label,
+                    'selection_class'   => $annotation->metaLayer->class,
                     'selection_content' => substr(
                         $policy, 
                         $annotation->selection->sc, 
