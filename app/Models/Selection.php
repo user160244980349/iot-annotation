@@ -57,7 +57,18 @@ class Selection
     {
         $sql = <<<SQL
         
-        SELECT * FROM `selections`
+        SELECT 
+            `selections`.`id`,
+            `selections`.`starts_on`,
+            `selections`.`ends_on`,
+            `selections`.`selection_class`,
+            `selections`.`selection_content`,
+            `selections`.`user_id`,
+            `selections`.`policy_hash`,
+            `selections`.`created_at`,
+            `users`.`name`,
+            `users`.`email`
+         FROM `selections`
             INNER JOIN `users` ON `user_id` = `users`.`id`
         
         SQL;
